@@ -1,0 +1,1 @@
+export {default as AlertPage} from './Page.tsx'
