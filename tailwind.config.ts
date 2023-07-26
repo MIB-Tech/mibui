@@ -1,7 +1,6 @@
 import colors = require('tailwindcss/colors');
 import flowbite = require('flowbite/plugin');
 import forms = require('@tailwindcss/forms');
-import plugin = require('tailwindcss/plugin');
 import {Config} from 'tailwindcss';
 
 const CONFIG:Config = {
@@ -23,6 +22,9 @@ const CONFIG:Config = {
       danger: colors.red,
       warning: colors.amber,
     },
+    borderRadius: {
+      DEFAULT: '10px'
+    }
   },
   safelist: [
     {

@@ -15,12 +15,12 @@ export const Button: FC<ButtonType> = ({
 
   const className = useMemo<string>(() => {
     const _className: ArgumentArray = [
-      'ring-offset-1 focus:ring-2 focus:z-10 hover:shadow',
+      'ring-offset-1 focus:ring-2 focus:z-10 hover:shadow rounded',
       `focus:ring-${buttonUtils({...color, weight: 300})} focus:outline-none`
     ]
 
-    _className.push(`rounded-s-${round?.start || 'xl'}`)
-    _className.push(`rounded-e-${round?.end || 'xl'}`)
+    // _className.push(round?.start && `rounded-s-none`)
+    // _className.push(round?.end && `rounded-e-none`)
 
     if (active) {
       _className.push(`ring-2 ring-${buttonUtils({...color, weight: 300})} z-10`)
