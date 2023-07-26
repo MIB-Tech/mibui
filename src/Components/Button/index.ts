@@ -1,0 +1,1 @@
+export {default as ButtonPage} from '../../pages/Components/Button/Page.tsx'

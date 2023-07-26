@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {TopHeader} from './Layouts/Dashboard/TopHeader.tsx';
+import {HeaderMenu} from './Layouts/Dashboard/HeaderMenu.tsx';
+import {NavLink, Outlet} from 'react-router-dom';
+import * as classNames from 'classnames';
+import {Trans} from 'react-i18next';
+import {useActiveRouteContext} from './hooks/UseActiveRouteContext.tsx';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {parent, title} = useActiveRouteContext()
+  const childRoutes = parent?.children || []
+  const hasChild = childRoutes.length > 0
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <TopHeader/>
+      <HeaderMenu/>
+      <div className="max-w-[85%] mx-auto mt-5">
+        <h2 className="text-3xl font-bold mt-5">
+          {title}
+        </h2>
+        {/*<Breadcrumb />*/}
+        <div className={classNames(' pt-5', hasChild && 'grid grid-cols-8 gap-4')}>
+          {hasChild && (
+            <div>
+              <div className="flex flex-col space-y-2 border-s border-gray-200">
+                {childRoutes.map(childRoute => (
+                  <NavLink
+                    key={childRoute.id}
+                    to={`${parent?.path}/${childRoute?.path}`}
+                    className={({isActive}) => classNames(
+                      'dark:text-primary-500 border-s  hover:border-s-primary-500 ps-3',
+                      isActive ?
+                        'text-primary-600 border-s-primary-500 font-bold' :
+                        'border-s-transparent'
+                    )}
+                  >
+                    <Trans i18nKey={childRoute.id}/>
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className={classNames(hasChild && 'col-span-7')}>
+            <Outlet/>
+          </div>
+        </div>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
