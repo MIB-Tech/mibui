@@ -1,6 +1,17 @@
-import {useState} from 'react';
+import {FC, HTMLAttributes, useState} from 'react';
 import {ButtonSizeEnum, ButtonVariant, ColorVariantEnum} from '../../../Components/Button/Button.types.tsx';
 import {Button} from '../../../Components/Button/Button.tsx';
+
+const DocBlock:FC<HTMLAttributes<HTMLDivElement>> = ({title, children}) => (
+  <div className="pt-10">
+    <div className="text-2xl capitalize">
+      {title}
+    </div>
+    <div className="flex gap-2 pt-2">
+      {children}
+    </div>
+  </div>
+)
 
 const Page = () => {
   const [size, setSize] = useState<ButtonSizeEnum | undefined>()
@@ -81,10 +92,7 @@ const Page = () => {
         )
       })}
 
-      <div className="pt-10">
-        <div className="text-2xl capitalize">
-          Button Group
-        </div>
+      <DocBlock title='Button Group'>
         <div className="inline-flex pt-2" role="group">
           <Button
             className="capitalize"
@@ -121,7 +129,7 @@ const Page = () => {
             Button 3
           </Button>
         </div>
-      </div>
+      </DocBlock>
     </div>
   )
 }
