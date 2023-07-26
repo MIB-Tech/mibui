@@ -6,7 +6,7 @@ import {RouteEnum} from './@types/Route';
 import App from './App.tsx';
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {ButtonPage, PaginationPage} from './pages/Components';
+import {BadgePage, ButtonPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
 
 enum Lang {
@@ -75,6 +75,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsAlert,
             path: 'alert',
             element: <AlertPage />
+          },
+          {
+            id: RouteEnum.ComponentsBadge,
+            path: 'badge',
+            element: <BadgePage />
           },
           {
             id: RouteEnum.ComponentButton,
