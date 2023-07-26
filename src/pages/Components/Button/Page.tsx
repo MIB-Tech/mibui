@@ -2,7 +2,7 @@ import {FC, HTMLAttributes, useState} from 'react';
 import {ButtonSizeEnum, ButtonVariant, ColorVariantEnum} from '../../../Components/Button/Button.types.tsx';
 import {Button} from '../../../Components/Button/Button.tsx';
 
-const DocBlock:FC<HTMLAttributes<HTMLDivElement>> = ({title, children}) => (
+const PreviewBlock:FC<HTMLAttributes<HTMLDivElement>> = ({title, children}) => (
   <div className="pt-10">
     <div className="text-2xl capitalize">
       {title}
@@ -92,7 +92,7 @@ const Page = () => {
         )
       })}
 
-      <DocBlock title='Button Group'>
+      <PreviewBlock title='Button Group'>
         <div className="inline-flex pt-2" role="group">
           <Button
             className="capitalize"
@@ -129,7 +129,7 @@ const Page = () => {
             Button 3
           </Button>
         </div>
-      </DocBlock>
+      </PreviewBlock>
     </div>
   )
 }
