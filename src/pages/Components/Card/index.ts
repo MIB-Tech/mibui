@@ -1,1 +1,1 @@
-export {default as AlertPage} from './Page.tsx'
+export {default as CardPage} from './Page.tsx'
