@@ -1,83 +1,105 @@
 import {FC, useMemo} from 'react';
 import * as classNames from 'classnames';
-import {ArgumentArray} from 'classnames';
-import {ButtonSizeEnum, ButtonType, ButtonVariant, ColorVariantEnum} from './Button.types.tsx';
-import {buttonUtils} from './Button.utils.tsx';
+import {ButtonType, ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from './Button.types.tsx';
+import {getColorClassName} from './Button.utils.tsx';
+import {Spinner} from '../Spinner';
+
 
 export const Button: FC<ButtonType> = ({
-                                         round,
+                                         outline,
+                                         loading,
+                                         children,
                                          active,
                                          size,
-                                         variant = ButtonVariant.Default,
-                                         color = {color: ColorVariantEnum.Primary},
+                                         variant = ButtonVariant.Hard,
+                                         bgColor: color = ColorVariantEnum.Primary,
                                          ...props
                                        }) => {
+  const disabled = props.disabled || loading;
+  const hardColorWeight = WeightEnum.W500;
+  const softColorWeight = WeightEnum.W100;
+  const hardColor = getColorClassName({color, weight: hardColorWeight});
+  const softColor = color === ColorVariantEnum.Black ? 'gray-300' : getColorClassName({color, weight: softColorWeight})
 
-  const className = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'ring-offset-1 focus:ring-2 focus:z-10 hover:shadow rounded',
-      `focus:ring-${buttonUtils({...color, weight: 300})} focus:outline-none`
-    ]
-
-    // _className.push(round?.start && `rounded-s-none`)
-    // _className.push(round?.end && `rounded-e-none`)
-
-    if (active) {
-      _className.push(`ring-2 ring-${buttonUtils({...color, weight: 300})} z-10`)
-    }
-    if (props.disabled) {
-      _className.push(`cursor-not-allowed opacity-60`)
-    }
-    if (size) {
-      _className.push(`text-${size}`)
-    }
-
+  const bgColor = useMemo<string>(() => {
     switch (variant) {
-      case ButtonVariant.Default:
-        _className.push(
-          `text-white`,
-          `bg-${buttonUtils(color)}`
-        )
-        switch (size) {
-          case ButtonSizeEnum.Small:
-            _className.push('px-[8px] py-[3px]');
-            break;
-          case ButtonSizeEnum.Large:
-            _className.push('px-[14px] py-[9px]');
-            break;
-          default:
-            _className.push('px-[10px] py-[5px]');
-            break;
-        }
-        break;
-      case ButtonVariant.Outline:
-        _className.push(
-          `text-${buttonUtils(color)}`,
-          'bg-white',
-          `border-2 border-${color.color === ColorVariantEnum.Black ? 'gray-500' : buttonUtils({...color})}`
-        )
-        switch (size) {
-          case ButtonSizeEnum.Small:
-            _className.push('px-[6px] py-[1px]');
-            break;
-          case ButtonSizeEnum.Large:
-            _className.push('px-[12px] py-[7px]');
-            break;
-          default:
-            _className.push('px-[8px] py-[3px]');
-            break;
-        }
-        break;
+      case ButtonVariant.Hard:
+        return hardColor
+      case ButtonVariant.Soft:
+        return softColor
+      case ButtonVariant.Clean:
+        return 'white'
     }
+  }, [hardColor, softColor, variant])
 
-    return classNames(_className)
-  }, [color, round, active, props.disabled, size, variant])
+  const hoverBgColor = useMemo<string>(() => {
+    switch (variant) {
+      case ButtonVariant.Hard:
+        return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: hardColorWeight + 100})
+      case ButtonVariant.Soft:
+        return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: softColorWeight + 100})
+      case ButtonVariant.Clean:
+        return 'gray-50'
+    }
+  }, [color, hardColorWeight, softColorWeight, variant])
+
+  const textColor = useMemo<string>(() => {
+    return variant === ButtonVariant.Hard ? 'white' : hardColor;
+  }, [hardColor, variant])
+
+  const outlineColor = useMemo<string>(() => {
+    switch (variant) {
+      case ButtonVariant.Hard:
+        return color === ColorVariantEnum.Black ? 'gray-400' : softColor
+      default:
+        return hardColor
+    }
+  }, [color, hardColor, softColor, variant])
+
+
+  const spacingClassName = useMemo<string>(() => {
+    switch (size) {
+      case SizeEnum.Small:
+        return `px-2 py-1`
+      case SizeEnum.Large:
+        return `px-3 py-2`
+      default:
+        return `px-2.5 py-1.5`
+    }
+  }, [size])
 
   return (
     <button
       type="button"
       {...props}
-      className={classNames(className, props.className)}
-    />
+      disabled={disabled}
+      className={classNames(
+        spacingClassName,
+        loading && 'relative',
+        `rounded font-semibold bg-${bgColor} text-${textColor}`,
+        disabled ? `cursor-not-allowed opacity-60` : `hover:bg-${hoverBgColor}`,
+        active && `bg-${hoverBgColor}`,
+        size && `text-${size}`,
+        outline && `ring-1 ring-inset ring-${outlineColor}`,
+        props.className
+      )}
+    >
+      {loading && (
+        <div role="status" className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+          <Spinner
+            color={color}
+            size={size}
+          />
+        </div>
+      )}
+      {/*{loading && (*/}
+      {/*  <Spinner */}
+      {/*    color={color} */}
+      {/*    size={size} */}
+      {/*    className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2"*/}
+      {/*  />*/}
+      {/*)}*/}
+      {children}
+    </button>
   )
 }

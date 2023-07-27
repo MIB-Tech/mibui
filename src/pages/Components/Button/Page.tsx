@@ -1,133 +1,85 @@
-import {FC, HTMLAttributes, useState} from 'react';
-import {ButtonSizeEnum, ButtonVariant, ColorVariantEnum} from '../../../Components/Button/Button.types.tsx';
+import {ButtonVariant, ColorVariantEnum, SizeEnum} from '../../../Components/Button/Button.types.tsx';
 import {Button} from '../../../Components/Button/Button.tsx';
-
-const PreviewBlock:FC<HTMLAttributes<HTMLDivElement>> = ({title, children}) => (
-  <div className="pt-10">
-    <div className="text-2xl capitalize">
-      {title}
-    </div>
-    <div className="flex gap-2 pt-2">
-      {children}
-    </div>
-  </div>
-)
+import {Preview} from '../../../Components/Preview';
 
 const Page = () => {
-  const [size, setSize] = useState<ButtonSizeEnum | undefined>()
-  const [disabled, setDisabled] = useState<boolean>(false)
-  const [active, setActive] = useState<boolean>(false)
-
   return (
     <div>
-      <PreviewBlock title='Controllers'>
-        <div className="flex items-center gap-2">
-          <div>
-            <Button
-              size={ButtonSizeEnum.Small}
-              onClick={() => setSize(ButtonSizeEnum.Small)}
-              active={size === ButtonSizeEnum.Small}
-            >
+      <div className="flex flex-col gap-12">
+        {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
+          <Preview key={variant} title={variant} className="capitalize">
+            <div className="flex justify-center gap-2">
+              {(Object.values(ColorVariantEnum) as ColorVariantEnum[]).map(color => (
+                <Button
+                  key={variant + color}
+                  variant={variant}
+                  bgColor={color}
+                  className="capitalize"
+                >
+                  {color}
+                </Button>
+              ))}
+            </div>
+          </Preview>
+        ))}
+
+        <Preview title="Outline" className="capitalize">
+          <div className="flex justify-center gap-2">
+            {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
+              <Button
+                key={variant}
+                variant={variant}
+                className="capitalize"
+                outline
+              >
+                {variant}
+              </Button>
+            ))}
+          </div>
+        </Preview>
+
+        <Preview title="Size" className="capitalize">
+          <div className="flex items-center justify-center gap-2">
+            <Button className="capitalize" size={SizeEnum.Small}>
               Small
             </Button>
-          </div>
-          <div>
-            <Button
-              onClick={() => setSize(undefined)}
-              active={!size}
-            >
+            <Button className="capitalize">
               Default
             </Button>
-          </div>
-          <div>
-            <Button
-              size={ButtonSizeEnum.Large}
-              onClick={() => setSize(ButtonSizeEnum.Large)}
-              active={size === ButtonSizeEnum.Large}
-            >
+            <Button className="capitalize" size={SizeEnum.Large}>
               Large
             </Button>
           </div>
-          <div>
-            <Button
-              onClick={() => setDisabled(!disabled)}
-              active={disabled}
-            >
-              Disabled
-            </Button>
+        </Preview>
+        <Preview title="Disbaled" className="capitalize">
+          <div className="flex justify-center gap-2">
+            {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
+              <Button
+                key={variant}
+                variant={variant}
+                className="capitalize"
+                disabled
+              >
+                {variant}
+              </Button>
+            ))}
           </div>
-          <div>
-            <Button
-              onClick={() => setActive(!active)}
-              active={active}
-            >
+        </Preview>
+        <Preview title="Active" className="capitalize">
+          <div className="flex items-center justify-center gap-2">
+            <Button active>
               Active
             </Button>
           </div>
-        </div>
-      </PreviewBlock>
-
-
-      {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => {
-
-        return (
-          <PreviewBlock key={variant} title='Button Group'>
-            {(Object.values(ColorVariantEnum) as ColorVariantEnum[]).map(color => (
-              <Button
-                key={variant + color}
-                variant={variant}
-                color={{color: color}}
-                className="capitalize"
-                size={size}
-                disabled={disabled}
-                active={active}
-              >
-                {/*<BellIcon className='header-icon'/>*/}
-                {color}
-              </Button>
-            ))}
-          </PreviewBlock>
-        )
-      })}
-
-      <PreviewBlock title='Button Group'>
-        <div className="inline-flex pt-2" role="group">
-          <Button
-            className="capitalize"
-            size={size}
-            disabled={disabled}
-            active={active}
-            round={{
-              end: 'none'
-            }}
-          >
-            Button 1
-          </Button>
-          <Button
-            className="capitalize"
-            size={size}
-            disabled={disabled}
-            active={active}
-            round={{
-              start: 'none',
-              end: 'none'
-            }}
-          >
-            Button 2
-          </Button>
-          <Button
-            className="capitalize"
-            size={size}
-            disabled={disabled}
-            active={active}
-            round={{
-              start: 'none'
-            }}
-          >
-            Button 3
-          </Button>
-        </div>
-      </PreviewBlock>
+        </Preview>
+        <Preview title="Loading" className="capitalize">
+          <div className="flex items-center justify-center gap-2">
+            <Button className="capitalize" loading>
+              Loading
+            </Button>
+          </div>
+        </Preview>
+      </div>
     </div>
   )
 }

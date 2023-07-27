@@ -15,7 +15,7 @@ export const Card: FC<PropsType> = ({header, footer, children, ...props}) => {
 
   const bodyClassName = useMemo<string>(() => {
     const _className: ArgumentArray = [
-      'w-full p-5'
+      'p-5'
     ]
 
     return classNames(_className)

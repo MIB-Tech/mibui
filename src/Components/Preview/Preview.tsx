@@ -11,7 +11,7 @@ const Preview: FC<HTMLAttributes<HTMLDivElement>> = ({title, children, ...props}
         </h3>
       )}
 
-      <Card className="flex justify-center bg-gray-100 w-full border-gray-200 py-14 px-56">
+      <Card className="bg-gray-100 border-gray-200 py-8 px-40">
         {children}
       </Card>
     </div>
