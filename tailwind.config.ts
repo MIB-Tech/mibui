@@ -18,6 +18,7 @@ const CONFIG:Config = {
     extend: {},
     colors: {
       primary: colors.violet,
+      secondary: colors.slate,
       success: colors.emerald,
       danger: colors.red,
       warning: colors.amber,
@@ -28,7 +29,11 @@ const CONFIG:Config = {
   },
   safelist: [
     {
-      pattern: /(bg|ring|border|text)-(black|primary|danger|warning|success)/,
+      pattern: /(bg|ring|border|text)-(primary|secondary|danger|warning|success|black|gray)/,
+      variants: ['hover', 'focus'],
+    },
+    {
+      pattern: /(fill)-(primary|secondary|danger|warning|success|black)/,
       variants: ['hover', 'focus'],
     },
     {

@@ -1,1 +1,5 @@
 export * from './Button'
+export * from './Card'
+export * from './Pagination'
+export * from './Preview'
+export * from './Spinner'
