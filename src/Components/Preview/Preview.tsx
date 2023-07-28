@@ -1,5 +1,5 @@
 import {FC, HTMLAttributes} from 'react';
-import {Card} from '../Card/Card.tsx';
+import {Card} from '../Card';
 
 const Preview: FC<HTMLAttributes<HTMLDivElement>> = ({title, children, ...props}) => {
 

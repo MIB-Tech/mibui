@@ -1,70 +1,64 @@
 import {FC, useMemo} from 'react';
-import * as classNames from 'classnames';
-import {ButtonType, ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from './Button.types.tsx';
-import {getColorClassName} from './Button.utils.tsx';
+import {ButtonProps, ButtonVariant, ColorVariantEnum, SizeEnum} from './Button.types.tsx';
+import {
+  getColorClassName,
+  getOutlineClassName,
+  getSoftColor,
+  getSolidColor,
+  SOFT_WEIGHT,
+  SOLID_WEIGHT
+} from './Button.utils.tsx';
 import {Spinner} from '../Spinner';
+import {twMerge} from 'tailwind-merge';
 
-
-export const Button: FC<ButtonType> = ({
-                                         outline,
-                                         loading,
-                                         children,
-                                         active,
-                                         size,
-                                         variant = ButtonVariant.Hard,
-                                         bgColor: color = ColorVariantEnum.Primary,
-                                         ...props
-                                       }) => {
+const Button: FC<ButtonProps> = ({
+                                   outline,
+                                   loading,
+                                   children,
+                                   active,
+                                   size,
+                                   variant = ButtonVariant.Solid,
+                                   color = ColorVariantEnum.Primary,
+                                   ...props
+                                 }) => {
   const disabled = props.disabled || loading;
-  const hardColorWeight = WeightEnum.W500;
-  const softColorWeight = WeightEnum.W100;
-  const hardColor = getColorClassName({color, weight: hardColorWeight});
-  const softColor = color === ColorVariantEnum.Black ? 'gray-300' : getColorClassName({color, weight: softColorWeight})
+  const solidColor = getSolidColor(color)
+  const softColor = getSoftColor(color)
 
   const bgColor = useMemo<string>(() => {
     switch (variant) {
-      case ButtonVariant.Hard:
-        return hardColor
+      case ButtonVariant.Solid:
+        return solidColor
       case ButtonVariant.Soft:
         return softColor
       case ButtonVariant.Clean:
         return 'white'
     }
-  }, [hardColor, softColor, variant])
+  }, [solidColor, softColor, variant])
 
   const hoverBgColor = useMemo<string>(() => {
     switch (variant) {
-      case ButtonVariant.Hard:
-        return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: hardColorWeight + 100})
+      case ButtonVariant.Solid:
+        return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: SOLID_WEIGHT + 100})
       case ButtonVariant.Soft:
-        return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: softColorWeight + 100})
+        return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: SOFT_WEIGHT + 100})
       case ButtonVariant.Clean:
-        return 'gray-50'
+        return softColor
     }
-  }, [color, hardColorWeight, softColorWeight, variant])
+  }, [color, softColor, variant])
 
   const textColor = useMemo<string>(() => {
-    return variant === ButtonVariant.Hard ? 'white' : hardColor;
-  }, [hardColor, variant])
-
-  const outlineColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Hard:
-        return color === ColorVariantEnum.Black ? 'gray-400' : softColor
-      default:
-        return hardColor
-    }
-  }, [color, hardColor, softColor, variant])
-
+    return variant === ButtonVariant.Solid ? 'white' : solidColor;
+  }, [solidColor, variant])
 
   const spacingClassName = useMemo<string>(() => {
     switch (size) {
       case SizeEnum.Small:
-        return `px-2 py-1`
+        return `px-[8px] py-[4px]`
       case SizeEnum.Large:
-        return `px-3 py-2`
+        return `px-[12px] py-[8px]`
       default:
-        return `px-2.5 py-1.5`
+        return `px-[10px] py-[6px]`
     }
   }, [size])
 
@@ -73,14 +67,14 @@ export const Button: FC<ButtonType> = ({
       type="button"
       {...props}
       disabled={disabled}
-      className={classNames(
+      className={twMerge(
         spacingClassName,
         loading && 'relative',
         `rounded font-semibold bg-${bgColor} text-${textColor}`,
         disabled ? `cursor-not-allowed opacity-60` : `hover:bg-${hoverBgColor}`,
         active && `bg-${hoverBgColor}`,
         size && `text-${size}`,
-        outline && `ring-1 ring-inset ring-${outlineColor}`,
+        outline && getOutlineClassName({color, variant}),
         props.className
       )}
     >
@@ -92,14 +86,9 @@ export const Button: FC<ButtonType> = ({
           />
         </div>
       )}
-      {/*{loading && (*/}
-      {/*  <Spinner */}
-      {/*    color={color} */}
-      {/*    size={size} */}
-      {/*    className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2"*/}
-      {/*  />*/}
-      {/*)}*/}
       {children}
     </button>
   )
 }
+
+export default Button

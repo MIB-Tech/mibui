@@ -1,1 +1,1 @@
-export {default as ButtonPage} from '../../pages/Components/Button/Page.tsx'
+export {default as Button} from './Button.tsx'

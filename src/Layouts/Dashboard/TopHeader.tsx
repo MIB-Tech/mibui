@@ -1,12 +1,12 @@
 import {BellIcon, Cog6ToothIcon, QuestionMarkCircleIcon, UserIcon} from '@heroicons/react/20/solid';
 import {FC, HTMLAttributes} from 'react';
-import * as classNames from 'classnames';
 import {Tooltip} from 'flowbite-react';
 import {Link} from 'react-router-dom';
+import {twMerge} from 'tailwind-merge';
 
 const IconButton: FC<HTMLAttributes<HTMLButtonElement>> = ({className, ...props}) => (
   <button
-    className={classNames(
+    className={twMerge(
       'flex items-center text-sm text-gray-600 hover:text-gray-700 dark:text-white',
       className
     )}
@@ -23,7 +23,7 @@ export const TopHeader = () => (
       >
         {/*<img src="https://flowbite.com/docs/images/logo.svg" className="h-6 mr-3" alt="Flowbite Logo"/>*/}
         <span className="self-center font-semibold whitespace-nowrap dark:text-white">
-          MIB Tech UI
+          MIBUI
         </span>
       </Link>
       <div className="flex items-center">

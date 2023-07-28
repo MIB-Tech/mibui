@@ -1,11 +1,11 @@
 import {FC, HTMLAttributes} from 'react';
-import * as classNames from 'classnames';
 import PaginationButton from './Pagination.Button.tsx';
+import {twMerge} from 'tailwind-merge';
 
 const Pagination: FC<HTMLAttributes<HTMLDivElement>> = ({className}) => {
 
   return (
-    <nav className={classNames(className)}>
+    <nav className={twMerge(className)}>
       <ul className="inline-flex -space-x-px text-sm">
         <PaginationButton className="rounded-l-lg">
           Previous

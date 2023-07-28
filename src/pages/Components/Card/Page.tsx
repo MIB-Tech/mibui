@@ -1,4 +1,4 @@
-import {Card} from '../../../Components/Card/Card.tsx';
+import {Card} from '../../../Components';
 import {CardPlaceholder} from './CardPlaceholder.tsx';
 import {Preview} from '../../../Components/Preview';
 

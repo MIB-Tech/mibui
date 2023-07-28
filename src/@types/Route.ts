@@ -5,7 +5,7 @@ export enum RouteEnum {
   ComponentsAlert = 'COMPONENTS.ALERT',
   ComponentsBadge = 'COMPONENTS.BADGE',
   ComponentsBreadcrumb = 'COMPONENTS.BREADCRUMB',
-  ComponentButton = 'COMPONENTS.BUTTON',
+  ComponentsButton = 'COMPONENTS.BUTTON',
   ComponentsButtonGroup = 'COMPONENTS.BUTTON_GROUP',
   ComponentsCard = 'COMPONENTS.CARD',
   ComponentsDropdown = 'COMPONENTS.DROPDOWN',

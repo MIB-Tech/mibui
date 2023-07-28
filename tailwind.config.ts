@@ -15,7 +15,8 @@ const CONFIG:Config = {
         'Work Sans'
       ]
     },
-    extend: {},
+    extend: {
+    },
     colors: {
       primary: colors.violet,
       secondary: colors.slate,

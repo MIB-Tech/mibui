@@ -1,6 +1,6 @@
 import {ButtonVariant, ColorVariantEnum, SizeEnum} from '../../../Components/Button/Button.types.tsx';
-import {Button} from '../../../Components/Button/Button.tsx';
 import {Preview} from '../../../Components/Preview';
+import {Button} from '../../../Components';
 
 const Page = () => {
   return (
@@ -13,7 +13,7 @@ const Page = () => {
                 <Button
                   key={variant + color}
                   variant={variant}
-                  bgColor={color}
+                  color={color}
                   className="capitalize"
                 >
                   {color}
