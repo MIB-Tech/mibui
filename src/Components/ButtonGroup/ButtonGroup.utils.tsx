@@ -1,4 +1,4 @@
-import {ColorVariant, ColorVariantEnum, WeightEnum} from './ButtonGroup.types.tsx';
+import {ColorVariant, ColorVariantEnum, WeightEnum} from '../Button/Button.types.tsx';
 
 export const getColorClassName = ({color, weight = WeightEnum.W500}: ColorVariant) => {
   let className = color as string
