@@ -1,8 +1,23 @@
-import {Children, cloneElement, FC, ReactElement, useMemo} from 'react';
+import {Children, cloneElement, FC, Fragment, isValidElement, ReactElement, ReactNode, useMemo} from 'react';
 import {ButtonGroupProps} from './ButtonGroup.types.tsx';
 import {twMerge} from 'tailwind-merge';
 import {SizeEnum} from '../Button/Button.types.tsx';
 import {getOutlineColor} from '../Button/Button.utils.tsx';
+
+
+function getChildren(children: ReactNode): ReactNode {
+  return Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      if (child.type === Fragment) {
+        return getChildren(child.props.children);
+      }
+
+      return cloneElement(child, child.props);
+    }
+
+    return child;
+  });
+}
 
 const ButtonGroup: FC<ButtonGroupProps> = ({vertical, outline, children, ...props}) => {
   const outlineColor = getOutlineColor({color: props.color, variant: props.variant})
@@ -19,16 +34,16 @@ const ButtonGroup: FC<ButtonGroupProps> = ({vertical, outline, children, ...prop
   }, [props.size])
   
   const items = useMemo(() => {
-      const _children = children as ReactElement<ButtonGroupProps>[];
+      const _children = getChildren(children) as ReactElement<ButtonGroupProps>[];
 
       return Children.map(_children, (child, index) => {
         const first = index === 0;
-        const last = index === _children.length - 1;
+        const last = index === Children.count(_children) - 1;
 
         return cloneElement(child, {
           ...props,
           className: twMerge(
-            'rounded-none z-0',
+            'rounded-none',
             first && `rounded-${vertical ? 't' : 's'}`,
             last && `rounded-${vertical ? 'b' : 'e'}`,
             outline && twMerge(
