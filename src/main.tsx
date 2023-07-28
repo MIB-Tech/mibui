@@ -6,7 +6,7 @@ import {RouteEnum} from './@types/Route';
 import App from './App.tsx';
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {BadgePage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
+import {BadgePage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
 
 enum Lang {
@@ -18,7 +18,7 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
     translation: {
       [RouteEnum.Home]: 'Home',
       [RouteEnum.Components]: 'Components',
-      [RouteEnum.ComponentButton]: 'Button',
+      [RouteEnum.ComponentsButton]: 'Button',
       [RouteEnum.ComponentsAlert]: 'Alert',
       [RouteEnum.ComponentsBadge]: 'Badge',
       [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
@@ -82,9 +82,14 @@ export const router = createBrowserRouter([
             element: <BadgePage />
           },
           {
-            id: RouteEnum.ComponentButton,
+            id: RouteEnum.ComponentsButton,
             path: 'button',
             element: <ButtonPage/>
+          },
+          {
+            id: RouteEnum.ComponentsButtonGroup,
+            path: 'button-group',
+            element: <ButtonGroupPage/>
           },
           {
             id: RouteEnum.ComponentsCard,

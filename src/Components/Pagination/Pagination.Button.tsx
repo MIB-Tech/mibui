@@ -1,5 +1,5 @@
 import {FC, HTMLAttributes} from 'react';
-import * as classNames from 'classnames';
+import {twMerge} from 'tailwind-merge';
 
 const PaginationButton: FC<HTMLAttributes<HTMLLIElement> & { active?: boolean }> = ({className, active, children}) => {
   const numberItem = false
@@ -7,7 +7,7 @@ const PaginationButton: FC<HTMLAttributes<HTMLLIElement> & { active?: boolean }>
     <li>
       <a
         href="#"
-        className={classNames(
+        className={twMerge(
           className,
           'flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white',
           numberItem ? 'ml-0 ' : '',
