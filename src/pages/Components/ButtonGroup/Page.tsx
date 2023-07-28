@@ -18,7 +18,6 @@ const Page = () => {
           </div>
         </Preview>
       ))}
-
       <Preview title="Outline" className="capitalize">
         <div className="flex justify-center gap-10">
           {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (

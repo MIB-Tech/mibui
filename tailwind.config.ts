@@ -38,7 +38,10 @@ const CONFIG:Config = {
       variants: ['hover', 'focus'],
     },
     {
-      pattern: /rounded-(s|e)/,
+      pattern: /rounded-[se]/,
+    },
+    {
+      pattern: /border-[se]/,
     }
   ],
   plugins: [
