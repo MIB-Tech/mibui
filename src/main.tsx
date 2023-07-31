@@ -6,7 +6,7 @@ import {RouteEnum} from './@types/Route';
 import App from './App.tsx';
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {BadgePage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
+import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
 
@@ -81,6 +81,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsBadge,
             path: 'badge',
             element: <BadgePage />
+          },
+          {
+            id: RouteEnum.ComponentsBreadcrumb,
+            path: 'breadcrumb',
+            element: <BreadcrumbPage />
           },
           {
             id: RouteEnum.ComponentsButton,
