@@ -3,15 +3,15 @@ import {ColorVariantEnum, SizeEnum} from '../Button/Button.types.tsx';
 import {getColorClassName} from '../Button/Button.utils.tsx';
 import {twMerge} from 'tailwind-merge';
 
-const Spinner: FC<{ color: ColorVariantEnum, size?: SizeEnum } & HTMLAttributes<HTMLOrSVGElement>> = ({color = ColorVariantEnum.Primary, size, ...props}) => {
+const Spinner: FC<{ color?: ColorVariantEnum, size?: SizeEnum } & HTMLAttributes<HTMLOrSVGElement>> = ({color = ColorVariantEnum.Primary, size, ...props}) => {
   const className = useMemo(() => {
     switch (size) {
       case SizeEnum.Small:
-        return 'w-3 h-3';
+        return 'w-4 h-4';
       case SizeEnum.Large:
-        return 'w-5 h-5'
+        return 'w-8 h-8'
       default:
-        return 'w-4 h-4'
+        return 'w-6 h-6'
     }
   }, [size])
 

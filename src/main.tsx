@@ -8,6 +8,7 @@ import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {BadgePage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
+import {SpinnerPage} from './pages/Components/Spinner';
 
 enum Lang {
   English = 'en'
@@ -100,6 +101,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsPagination,
             path: 'pagination',
             element: <PaginationPage/>
+          },
+          {
+            id: RouteEnum.ComponentsSpinner,
+            path: 'spinner',
+            element: <SpinnerPage/>
           },
         ]
       },
