@@ -58,6 +58,7 @@ const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>((
     switch (size) {
       case SizeEnum.Small:
         return `px-[8px] py-[4px]`
+
       case SizeEnum.Large:
         return `px-[12px] py-[8px]`
       default:
