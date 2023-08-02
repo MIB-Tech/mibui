@@ -1,4 +1,4 @@
-import {FC, useMemo} from 'react';
+import {FC, forwardRef, useMemo} from 'react';
 import {ButtonProps, ButtonVariant, ColorVariantEnum, SizeEnum} from './Button.types.tsx';
 import {
   getColorClassName,
@@ -11,16 +11,19 @@ import {
 import {Spinner} from '../Spinner';
 import {twMerge} from 'tailwind-merge';
 
-const Button: FC<ButtonProps> = ({
-                                   outline,
-                                   loading,
-                                   children,
-                                   active,
-                                   size,
-                                   variant = ButtonVariant.Solid,
-                                   color = ColorVariantEnum.Primary,
-                                   ...props
-                                 }) => {
+const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>((
+  {
+    outline,
+    loading,
+    children,
+    active,
+    size,
+    variant = ButtonVariant.Solid,
+    color = ColorVariantEnum.Primary,
+    ...props
+  },
+  ref
+) => {
   const disabled = props.disabled || loading;
   const solidColor = getSolidColor(color)
   const softColor = getSoftColor(color)
@@ -64,6 +67,7 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       type="button"
       {...props}
       disabled={disabled}
@@ -89,6 +93,6 @@ const Button: FC<ButtonProps> = ({
       {children}
     </button>
   )
-}
+})
 
 export default Button
