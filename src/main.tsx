@@ -10,6 +10,7 @@ import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, Pagina
 import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
+import {InputPage} from './pages/Forms';
 
 enum Lang {
   English = 'en'
@@ -120,6 +121,17 @@ export const router = createBrowserRouter([
           },
         ]
       },
+      {
+        id: RouteEnum.Form,
+        path: 'form',
+        children: [
+          {
+            id: RouteEnum.FormInput,
+            path: 'input',
+            element: <InputPage/>
+          },
+        ]
+      }
     ]
   }
 ]);

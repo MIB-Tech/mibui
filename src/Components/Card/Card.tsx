@@ -8,18 +8,22 @@ const Card: FC<PropsType> = ({header, footer, children, className, ...props}) =>
   return (
     <div
       {...props}
-      className={twMerge('border border-gray-200 rounded', className)}
+      className={twMerge('border border-gray-200 rounded p-5', className)}
     >
       {header && (
-        <div className='p-5 border-b'>
+        <div className='border-b pb-5'>
           {header}
         </div>
       )}
-      <div className='p-5'>
-        {children}
-      </div>
+      {header || footer ?
+        <div className='py-5'>
+          {children}
+        </div>:
+        children
+      }
+
       {footer && (
-        <div className='p-5 border-t'>
+        <div className='pt-5 border-t'>
           {footer}
         </div>
       )}
