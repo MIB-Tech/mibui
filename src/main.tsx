@@ -9,6 +9,7 @@ import {initReactI18next} from 'react-i18next';
 import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
+import {ModalPage} from "./pages/Components/Modal";
 
 enum Lang {
   English = 'en'
@@ -111,6 +112,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsSpinner,
             path: 'spinner',
             element: <SpinnerPage/>
+          },
+          {
+            id: RouteEnum.ComponentsModal,
+            path: 'modal',
+            element: <ModalPage />
           },
         ]
       },
