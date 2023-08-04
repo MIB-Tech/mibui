@@ -12,7 +12,7 @@ import {ChatBubbleLeftIcon, ClipboardIcon, Cog6ToothIcon} from '@heroicons/react
 import {ReactNode} from 'react';
 import DropdownHeader from '../../../Components/Dropdown/Dropdown.Header.tsx';
 
-const OPTIONS: Array<{ label: string, icon?: ReactNode }> = [
+export const DROPDOWN_OPTIONS: Array<{ label: string, icon?: ReactNode }> = [
   {
     label: 'Account Settings', icon: <Cog6ToothIcon className="mr-2 h-5 w-5"/>
   },
@@ -34,7 +34,7 @@ const Page = () => {
               Dropdown
             </DropdownToggle>
             <DropdownMenu>
-              {OPTIONS.map(({label}) => (
+              {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
@@ -51,7 +51,7 @@ const Page = () => {
                 {direction}
               </DropdownToggle>
               <DropdownMenu direction={direction}>
-                {OPTIONS.map(({label}) => (
+                {DROPDOWN_OPTIONS.map(({label}) => (
                   <DropdownItem key={label}>
                     {label}
                   </DropdownItem>
@@ -68,7 +68,7 @@ const Page = () => {
               Dropdown
             </DropdownToggle>
             <DropdownMenu>
-              {OPTIONS.map(({label}) => (
+              {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
@@ -86,7 +86,7 @@ const Page = () => {
               Dropdown
             </DropdownToggle>
             <DropdownMenu>
-              {OPTIONS.map(({label}) => (
+              {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
@@ -103,7 +103,7 @@ const Page = () => {
               Dropdown
             </DropdownToggle>
             <DropdownMenu>
-              {OPTIONS.map(({label}) => (
+              {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
@@ -128,7 +128,7 @@ const Page = () => {
                   bonnie@flowbite.com
                 </a>
               </DropdownHeader>
-              {OPTIONS.map(({label, icon}) => (
+              {DROPDOWN_OPTIONS.map(({label, icon}) => (
                 <DropdownItem key={label}>
                   {icon}
                   {label}
@@ -148,7 +148,7 @@ const Page = () => {
               }}
             />
             <DropdownMenu>
-              {OPTIONS.map(({label, icon}) => (
+              {DROPDOWN_OPTIONS.map(({label, icon}) => (
                 <DropdownItem key={label}>
                   {icon}
                   {label}

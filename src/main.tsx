@@ -10,7 +10,7 @@ import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, Pagina
 import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
-import {InputNumberPage, InputPage} from './pages/Forms';
+import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
 import {ModalPage} from './pages/Components/Modal';
 
 enum Lang {
@@ -145,6 +145,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.FormInputNumber,
             path: 'input-number',
             element: <InputNumberPage/>
+          },
+          {
+            id: RouteEnum.FormInputGroup,
+            path: 'input-group',
+            element: <InputGroupPage/>
           },
         ]
       }

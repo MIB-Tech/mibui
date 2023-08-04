@@ -1,1 +1,1 @@
-export {default as InputNumberPage} from './InputNumberPage.tsx'
+export {default as InputGroupPage} from './InputGroupPage.tsx'
