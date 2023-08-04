@@ -14,12 +14,12 @@ const Page: React.FC = () => {
             <Preview title={'Sizes'} className="capitalize">
                 <div className="flex items-center justify-center gap-2">
                     <ModalExample
-                        buttonLabel={'Default Modal'}
+                        buttonLabel='Small'
                         size={SizeEnum.Small}
                     />
-                    <ModalExample  buttonLabel={'Small Modal'}/>
+                    <ModalExample />
                     <ModalExample
-                        buttonLabel={'Large Modal'}
+                        buttonLabel='Large'
                         size={SizeEnum.Large}
                     />
                 </div>
