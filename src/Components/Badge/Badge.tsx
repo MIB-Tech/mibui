@@ -1,82 +1,64 @@
-import {FC, useMemo} from 'react';
-import * as classNames from 'classnames';
-import {ArgumentArray} from 'classnames';
-import {ColorVariantEnum} from '../Button/Button.types.tsx';
-import {buttonUtils} from '../Button/Button.utils.tsx';
-import {BadgeSizeEnum, BadgeType, BadgeVariant} from "./Badge.types.tsx";
+import {ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from "../Button/Button.types.tsx";
+import {FC, useMemo} from "react";
+import {BadgeProps} from "./Badge.types.ts";
+import {getColorClassName} from "../Button/Button.utils.tsx";
+import XMarkIcon from "@heroicons/react/20/solid/XMarkIcon";
 
-export const Badge: FC<BadgeType> = ({
-                                       round,
-                                       active,
-                                       size,
-                                       variant = BadgeVariant.Default,
-                                       color = { color: ColorVariantEnum.Primary },
-                                       ...props
-                                     }) => {
-  const className = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'ring-offset-1 focus:ring-2 focus:z-10 hover:shadow',
-      `focus:ring-${buttonUtils({ ...color, weight: 300 })} focus:outline-none`
-    ];
 
-    _className.push(`rounded-s-${round?.start || 'xl'}`);
-    _className.push(`rounded-e-${round?.end || 'xl'}`);
+export const Badge: FC<BadgeProps> = ({
+                                          // outline,
+                                          size,
+                                          variant = ButtonVariant.Hard,
+                                          color = ColorVariantEnum.Primary,
+                                          closing = false,
+                                          children,
+                                          ...props
+                                      }) => {
 
-    if (active) {
-      _className.push(`ring-2 ring-${buttonUtils({ ...color, weight: 300 })} z-10`);
-    }
-    if (props.disabled) {
-      _className.push('cursor-not-allowed opacity-60');
-    }
-    if (size) {
-      _className.push(`text-${size}`);
-    }
+    const hardColorWeight = WeightEnum.W500;
+    const softColorWeight = WeightEnum.W100;
+    const hardColor = getColorClassName({color, weight: hardColorWeight});
+    const softColor = color === ColorVariantEnum.Black ? 'gray-300' : getColorClassName({color, weight: softColorWeight})
 
-    switch (variant) {
-      case BadgeVariant.Default:
-        _className.push(
-            `text-white`,
-            `bg-${buttonUtils(color)}`
-        );
-        switch (size) {
-          case BadgeSizeEnum.Small:
-            _className.push('px-[8px] py-[3px]');
-            break;
-          case BadgeSizeEnum.Large:
-            _className.push('px-[14px] py-[9px]');
-            break;
-          default:
-            _className.push('px-[10px] py-[5px]');
-            break;
+    const bgColor = useMemo<string>(() => {
+        switch (variant) {
+            case ButtonVariant.Hard:
+                return hardColor
+            case ButtonVariant.Soft:
+                return softColor
+            case ButtonVariant.Clean:
+                return 'white'
         }
-        break;
-      case BadgeVariant.Outline:
-        _className.push(
-            `text-${buttonUtils(color)}`,
-            'bg-white',
-            `border-2 border-${color.color === ColorVariantEnum.Black ? 'gray-500' : buttonUtils({ ...color })}`
-        );
+    }, [hardColor, softColor, variant])
+
+    const textColor = useMemo<string>(() => {
+        return variant === ButtonVariant.Hard ? 'white' : hardColor;
+    }, [hardColor, variant])
+    const spacingClassName = useMemo<string>(() => {
         switch (size) {
-          case BadgeSizeEnum.Small:
-            _className.push('px-[6px] py-[1px]');
-            break;
-          case BadgeSizeEnum.Large:
-            _className.push('px-[12px] py-[7px]');
-            break;
-          default:
-            _className.push('px-[8px] py-[3px]');
-            break;
+            case SizeEnum.Small:
+                return `text-xs px-1.5 py-0.5`
+            case SizeEnum.Large:
+                return `px-3 py-1`
+            default:
+                return `text-sm px-2.5 py-0.5`
         }
-        break;
-    }
+    }, [size])
 
-    return classNames(_className);
-  }, [color, round, active, props.disabled, size, variant]);
 
-  return (
-      <span
-          {...props}
-          className={classNames(className, props.className)}
-      />
-  );
+    return (
+        <span
+            {...props}
+            className={
+                `inline-flex items-center justify-center rounded bg-${bgColor} ${spacingClassName} font-medium text-${textColor}`
+            }
+        >
+            {children}
+            {closing && (
+                <XMarkIcon className={`w-4 h-4 ml-1 rounded hover:bg-${textColor} hover:text-${bgColor} cursor-pointer`}/>
+            )}
+        </span>
+    );
 };
+
+

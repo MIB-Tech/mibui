@@ -16,7 +16,7 @@ function App() {
     <>
       <TopHeader/>
       <HeaderMenu/>
-      <div className="max-w-[85%] mx-auto mt-5">
+      <div className="max-w-[85%] mx-auto my-5">
         <h2 className="text-3xl font-bold mt-5">
           {title}
         </h2>
@@ -47,7 +47,6 @@ function App() {
             <Outlet/>
           </div>
         </div>
-
       </div>
     </>
   )

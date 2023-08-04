@@ -1,17 +1,23 @@
 import {HTMLAttributes} from 'react';
 
 export enum ButtonVariant {
-  Default = 'default',
-  Outline = 'outline',
+  Hard = 'hard',
+  Soft = 'soft',
+  Clean = 'clean'
 }
 
-export enum ButtonSizeEnum {
+export enum SizeEnum {
   Small = 'sm',
   Large = 'xl',
 }
+// export enum withCloseTag {
+//   true'true'
+//   false = 'false'
+// }
 
 export enum ColorVariantEnum {
   Primary = 'primary',
+  Secondary = 'secondary',
   Success = 'success',
   Danger = 'danger',
   Warning = 'warning',
@@ -38,12 +44,11 @@ export type ColorVariant = {
 }
 export type ButtonType = {
   variant?: ButtonVariant
-  color?: ColorVariant
-  size?: ButtonSizeEnum
+  bgColor?: ColorVariantEnum
+  outline?: boolean
+  size?: SizeEnum
   disabled?: boolean
   active?: boolean
-  round?: {
-    start?: 'xl' | 'none'
-    end?: 'xl' | 'none'
-  }
+  loading?: boolean
+  closing?: boolean
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'color'>
