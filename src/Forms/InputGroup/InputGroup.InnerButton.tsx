@@ -8,7 +8,7 @@ const InnerButton: FC<InnerButtonProps> = ({position = InnerPositionEnum.Left, c
     <div
       className={twMerge(
         'absolute inset-y-0 flex items-center',
-        position === 'left' ? 'left-0 ps-2' : 'right-0 pe-2',
+        position === 'left' ? 'left-0' : 'right-0',
         className
       )}
       {...props}
