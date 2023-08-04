@@ -1,7 +1,9 @@
-import {InputHTMLAttributes} from 'react';
-import {SizeEnum} from '../../Components/Button/Button.types.tsx';
+import {InputProps} from '../Input/Input.types.ts';
 
-export type UnstyledInputProps = InputHTMLAttributes<HTMLInputElement>
-export type InputProps = {
-  size?: SizeEnum
-} & Omit<UnstyledInputProps, 'size'>
+export type InputNumberProps = {
+  min?: number,
+  max?: number,
+  step?: number,
+  precision?: number
+  value?: number
+} & Omit<InputProps, 'min' | 'max' | 'step' | 'value'>

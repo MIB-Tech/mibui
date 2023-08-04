@@ -10,7 +10,7 @@ import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, Pagina
 import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
-import {InputPage} from './pages/Forms';
+import {InputNumberPage, InputPage} from './pages/Forms';
 
 enum Lang {
   English = 'en'
@@ -36,6 +36,11 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
       [RouteEnum.ComponentsTooltip]: 'Tooltip',
       [RouteEnum.Form]: 'Form',
       [RouteEnum.FormInput]: 'Input',
+      [RouteEnum.FormInputGroup]: 'Input Group',
+      [RouteEnum.FormInputNumber]: 'Input Number',
+      [RouteEnum.FormInputPassword]: 'Input Password',
+      [RouteEnum.FormTextarea]: 'Textarea',
+      [RouteEnum.FormFormGroup]: 'Form Group',
       [RouteEnum.FormDateAndTimePicker]: 'Date & Time Pickers',
       [RouteEnum.FormSelect]: 'Select',
       [RouteEnum.FormAutocomplete]: 'Autocomplete',
@@ -129,6 +134,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.FormInput,
             path: 'input',
             element: <InputPage/>
+          },
+          {
+            id: RouteEnum.FormInputNumber,
+            path: 'input-number',
+            element: <InputNumberPage/>
           },
         ]
       }

@@ -39,6 +39,7 @@ export type ColorVariant = {
   weight?: WeightEnum
 }
 export type ButtonProps = {
+  icon?: boolean
   variant?: ButtonVariant
   color?: ColorVariantEnum
   outline?: boolean

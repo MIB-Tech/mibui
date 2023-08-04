@@ -18,6 +18,11 @@ export enum RouteEnum {
   //
   Form = 'FORM',
   FormInput = 'FORM.INPUT',
+  FormInputNumber = 'FORM.INPUT.NUMBER',
+  FormInputPassword = 'FORM.INPUT.PASSWORD',
+  FormTextarea = 'FORM.TEXT_AREA',
+  FormInputGroup = 'FORM.INPUT_GROUP',
+  FormFormGroup = 'FORM.FORM_GROUP',
   FormDateAndTimePicker = 'FORM.DATE_AND_TIME_PICKERS',
   FormSelect = 'FORM.SELECT',
   FormAutocomplete = 'FORM.AUTOCOMPLETE',
