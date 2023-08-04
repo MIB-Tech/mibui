@@ -16,7 +16,6 @@ const Page = () => {
         <InputNumber
           min={0}
           max={5}
-          value={10}
         />
       </Preview>
     </div>

@@ -11,6 +11,7 @@ import {AlertPage} from './pages/Components/Alert';
 import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
 import {InputNumberPage, InputPage} from './pages/Forms';
+import {ModalPage} from './pages/Components/Modal';
 
 enum Lang {
   English = 'en'
@@ -113,6 +114,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsDropdown,
             path: 'dropdown',
             element: <DropdownPage/>
+          },
+          {
+            id: RouteEnum.ComponentsModal,
+            path: 'modal',
+            element: <ModalPage/>
           },
           {
             id: RouteEnum.ComponentsPagination,
