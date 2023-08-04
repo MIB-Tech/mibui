@@ -1,0 +1,1 @@
+export {default as InputNumberPage} from './InputNumberPage.tsx'
