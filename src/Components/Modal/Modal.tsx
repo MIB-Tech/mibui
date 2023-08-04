@@ -4,7 +4,7 @@ import {ModalProps} from './Modal.types';
 import {SizeEnum} from "../Button/Button.types.tsx";
 import {twMerge} from "tailwind-merge";
 
-const Modal: React.FC<ModalProps> = ({open = false, onClose, size, children}) => {
+const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, children}) => {
     const sizeClassName = useMemo<string>(() => {
         switch (size) {
             case SizeEnum.Small:
@@ -36,12 +36,15 @@ const Modal: React.FC<ModalProps> = ({open = false, onClose, size, children}) =>
                                 sizeClassName
                             )}
                         >
-                            <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                                Payment successful
-                            </Dialog.Title>
-                            <div className="mt-4">
-                                <p className="text-sm text-gray-500">{children}</p>
-                            </div>
+                            {title && (
+                              <Dialog.Title as="h3" className={twMerge(
+                                'text-lg leading-6 text-gray-900',
+                                children && 'mb-4'
+                              )}>
+                                  {title}
+                              </Dialog.Title>
+                            )}
+                            {children}
                         </Dialog.Panel>
                     </div>
                 </div>
