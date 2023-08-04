@@ -1,4 +1,4 @@
-import {FC, forwardRef, useMemo} from 'react';
+import {forwardRef, useMemo} from 'react';
 import {ButtonProps, ButtonVariant, ColorVariantEnum, SizeEnum} from './Button.types.tsx';
 import {
   getColorClassName,
@@ -11,7 +11,7 @@ import {
 import {Spinner} from '../Spinner';
 import {twMerge} from 'tailwind-merge';
 
-const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>((
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   {
     outline,
     loading,
@@ -19,6 +19,7 @@ const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>((
     active,
     size,
     variant = ButtonVariant.Solid,
+    icon,
     color = ColorVariantEnum.Primary,
     ...props
   },
@@ -55,16 +56,26 @@ const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>((
   }, [solidColor, variant])
 
   const spacingClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `px-[8px] py-[4px]`
-
-      case SizeEnum.Large:
-        return `px-[12px] py-[8px]`
-      default:
-        return `px-[10px] py-[6px]`
+    if (icon) {
+      switch (size) {
+        case SizeEnum.Small:
+          return `p-[4px]`
+        case SizeEnum.Large:
+          return `p-[8px]`
+        default:
+          return `p-[6px]`
+      }
+    } else {
+      switch (size) {
+        case SizeEnum.Small:
+          return `px-[8px] py-[4px]`
+        case SizeEnum.Large:
+          return `px-[12px] py-[8px]`
+        default:
+          return `px-[10px] py-[6px]`
+      }
     }
-  }, [size])
+  }, [size, icon])
 
   return (
     <button

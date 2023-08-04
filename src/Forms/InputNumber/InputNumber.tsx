@@ -1,33 +1,60 @@
-import {FC, useMemo} from 'react';
-import {InputProps} from './Input.types.ts';
-import {UnstyledInput} from './index.ts';
+import {forwardRef, useImperativeHandle, useRef} from 'react';
+import {InputNumberProps} from './InputNumber.types.ts';
+import Input from '../Input/Input.tsx';
+import {Button} from '../../Components';
+import {ButtonVariant, SizeEnum} from '../../Components/Button/Button.types.tsx';
+import {MinusIcon, PlusIcon} from '@heroicons/react/20/solid';
+import {InputGroup} from '../InputGroup';
 import {twMerge} from 'tailwind-merge';
-import {SizeEnum} from '../../Components/Button/Button.types.tsx';
 
 
-const Input:FC<InputProps> = ({className, size, ...props}) => {
-  const sizeClassName = useMemo<string>(()=>{
-    switch (size) {
-      case SizeEnum.Small:
-        return 'py-1 px-2'
-      case SizeEnum.Large:
-        return 'p-4'
-      default:
-        return 'p-2.5'
-    }
-  }, [size])
+const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(({...props}, ref) => {
+  const {min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER, value, step = 1} = props
+  const internalRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => internalRef.current as HTMLInputElement, []);
+
+  const changeable = (value: number) => {
+
+    return value >= min && value <= max
+  }
 
   return (
-    <UnstyledInput
-      className={twMerge(
-        'rounded text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600',
-        sizeClassName,
-        size && `text-${size}`,
-        className
+    <InputGroup
+      leading={(
+        <Button
+          variant={ButtonVariant.Soft}
+          size={SizeEnum.Small}
+          icon
+          disabled={!!value && changeable(value - step)}
+          onClick={()=> internalRef.current?.stepUp()}
+        >
+          <MinusIcon className="w-4 h-4"/>
+        </Button>
       )}
-      {...props}
-    />
+      trailing={(
+        <Button
+          variant={ButtonVariant.Soft}
+          size={SizeEnum.Small}
+          icon
+          disabled={!!value && !changeable(value + step)}
+          onClick={()=> internalRef.current?.stepUp()}
+        >
+          <PlusIcon className="w-4 h-4"/>
+        </Button>
+      )}
+    >
+      <Input
+        className={twMerge(
+          'ps-10 pe-10 w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
+        )}
+        {...props}
+        type="number"
+        ref={internalRef}
+        value={value?.toFixed(1)}
+      />
+    </InputGroup>
   )
-}
+})
 
-export default Input
+export default InputNumber

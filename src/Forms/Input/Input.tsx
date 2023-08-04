@@ -1,12 +1,12 @@
-import {FC, useMemo} from 'react';
+import {forwardRef, useMemo} from 'react';
 import {InputProps} from './Input.types.ts';
 import {UnstyledInput} from './index.ts';
 import {twMerge} from 'tailwind-merge';
 import {SizeEnum} from '../../Components/Button/Button.types.tsx';
 
 
-const Input:FC<InputProps> = ({className, size, ...props}) => {
-  const sizeClassName = useMemo<string>(()=>{
+const Input = forwardRef<HTMLInputElement, InputProps>(({className, size, ...props}, ref) => {
+  const sizeClassName = useMemo<string>(() => {
     switch (size) {
       case SizeEnum.Small:
         return 'py-1 px-2'
@@ -19,8 +19,9 @@ const Input:FC<InputProps> = ({className, size, ...props}) => {
 
   return (
     <UnstyledInput
+      ref={ref}
       className={twMerge(
-        'rounded text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600',
+        'rounded text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600',
         sizeClassName,
         size && `text-${size}`,
         className
@@ -28,6 +29,6 @@ const Input:FC<InputProps> = ({className, size, ...props}) => {
       {...props}
     />
   )
-}
+})
 
 export default Input
