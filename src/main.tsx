@@ -6,8 +6,13 @@ import {RouteEnum} from './@types/Route';
 import App from './App.tsx';
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {BadgePage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
+import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
 import {AlertPage} from './pages/Components/Alert';
+import {SpinnerPage} from './pages/Components/Spinner';
+import {DropdownPage} from './pages/Components/Dropdown';
+import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
+import {ModalPage} from './pages/Components/Modal';
+
 enum Lang {
   English = 'en'
 }
@@ -17,7 +22,7 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
     translation: {
       [RouteEnum.Home]: 'Home',
       [RouteEnum.Components]: 'Components',
-      [RouteEnum.ComponentButton]: 'Button',
+      [RouteEnum.ComponentsButton]: 'Button',
       [RouteEnum.ComponentsAlert]: 'Alert',
       [RouteEnum.ComponentsBadge]: 'Badge',
       [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
@@ -32,6 +37,11 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
       [RouteEnum.ComponentsTooltip]: 'Tooltip',
       [RouteEnum.Form]: 'Form',
       [RouteEnum.FormInput]: 'Input',
+      [RouteEnum.FormInputGroup]: 'Input Group',
+      [RouteEnum.FormInputNumber]: 'Input Number',
+      [RouteEnum.FormInputPassword]: 'Input Password',
+      [RouteEnum.FormTextarea]: 'Textarea',
+      [RouteEnum.FormFormGroup]: 'Form Group',
       [RouteEnum.FormDateAndTimePicker]: 'Date & Time Pickers',
       [RouteEnum.FormSelect]: 'Select',
       [RouteEnum.FormAutocomplete]: 'Autocomplete',
@@ -81,9 +91,19 @@ export const router = createBrowserRouter([
             element: <BadgePage />
           },
           {
-            id: RouteEnum.ComponentButton,
+            id: RouteEnum.ComponentsBreadcrumb,
+            path: 'breadcrumb',
+            element: <BreadcrumbPage />
+          },
+          {
+            id: RouteEnum.ComponentsButton,
             path: 'button',
             element: <ButtonPage/>
+          },
+          {
+            id: RouteEnum.ComponentsButtonGroup,
+            path: 'button-group',
+            element: <ButtonGroupPage/>
           },
           {
             id: RouteEnum.ComponentsCard,
@@ -91,12 +111,48 @@ export const router = createBrowserRouter([
             element: <CardPage/>
           },
           {
+            id: RouteEnum.ComponentsDropdown,
+            path: 'dropdown',
+            element: <DropdownPage/>
+          },
+          {
+            id: RouteEnum.ComponentsModal,
+            path: 'modal',
+            element: <ModalPage/>
+          },
+          {
             id: RouteEnum.ComponentsPagination,
             path: 'pagination',
             element: <PaginationPage/>
           },
+          {
+            id: RouteEnum.ComponentsSpinner,
+            path: 'spinner',
+            element: <SpinnerPage/>
+          },
         ]
       },
+      {
+        id: RouteEnum.Form,
+        path: 'form',
+        children: [
+          {
+            id: RouteEnum.FormInput,
+            path: 'input',
+            element: <InputPage/>
+          },
+          {
+            id: RouteEnum.FormInputNumber,
+            path: 'input-number',
+            element: <InputNumberPage/>
+          },
+          {
+            id: RouteEnum.FormInputGroup,
+            path: 'input-group',
+            element: <InputGroupPage/>
+          },
+        ]
+      }
     ]
   }
 ]);

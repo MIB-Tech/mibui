@@ -1,7 +1,6 @@
 import colors = require('tailwindcss/colors');
 import flowbite = require('flowbite/plugin');
 import forms = require('@tailwindcss/forms');
-import plugin = require('tailwindcss/plugin');
 import {Config} from 'tailwindcss';
 
 const CONFIG:Config = {
@@ -16,21 +15,33 @@ const CONFIG:Config = {
         'Work Sans'
       ]
     },
-    extend: {},
+    extend: {
+    },
     colors: {
       primary: colors.violet,
+      secondary: colors.slate,
       success: colors.emerald,
       danger: colors.red,
       warning: colors.amber,
     },
+    borderRadius: {
+      DEFAULT: '10px'
+    }
   },
   safelist: [
     {
-      pattern: /(bg|ring|border|text)-(black|primary|danger|warning|success)/,
+      pattern: /(bg|ring|border|text)-(primary|secondary|danger|warning|success|black|gray)/,
       variants: ['hover', 'focus'],
     },
     {
-      pattern: /rounded-(s|e)/,
+      pattern: /(fill)-(primary|secondary|danger|warning|success|black)/,
+      variants: ['hover', 'focus'],
+    },
+    {
+      pattern: /rounded-[se]/,
+    },
+    {
+      pattern: /border-[se]/,
     }
   ],
   plugins: [

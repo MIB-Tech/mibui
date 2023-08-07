@@ -16,7 +16,6 @@ const Page = () => {
                                     variant={variant}
                                     color={color}
                                     className="capitalize"
-                                    closing
                                 >
                                     {color}
                                 </Badge>
@@ -43,13 +42,13 @@ const Page = () => {
             <div>
                 <Preview title="With closing" className="capitalize">
                     <div className="flex items-center justify-center gap-2">
-                        <Badge size={SizeEnum.Small} closing>
+                        <Badge size={SizeEnum.Small} onClose={()=>alert('You clicked on badge\'s closing icon')}>
                             Small
                         </Badge>
-                        <Badge closing>
+                        <Badge onClose={()=>alert('You clicked on badge\'s closing icon')}>
                             Default
                         </Badge>
-                        <Badge size={SizeEnum.Large} closing>
+                        <Badge size={SizeEnum.Large} onClose={()=>alert('You clicked on badge\'s closing icon')}>
                             Large
                         </Badge>
                     </div>

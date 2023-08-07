@@ -1,0 +1,1 @@
+export {default as BreadcrumbPage} from './Page.tsx'

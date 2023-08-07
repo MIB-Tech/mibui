@@ -8,5 +8,5 @@ export type BadgeProps = {
     color?: ColorVariantEnum
     outline?: boolean
     size?: SizeEnum
-    closing?: boolean
+    onClose?: () => void
 } & HTMLAttributes<HTMLSpanElement>

@@ -1,16 +1,18 @@
 import {ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from "../Button/Button.types.tsx";
 import {FC, useMemo} from "react";
 import {BadgeProps} from "./Badge.types.ts";
-import {getColorClassName} from "../Button/Button.utils.tsx";
+import {getColorClassName, SOFT_WEIGHT, SOLID_WEIGHT} from "../Button/Button.utils.tsx";
 import XMarkIcon from "@heroicons/react/20/solid/XMarkIcon";
+import {twMerge} from "tailwind-merge";
 
 
 export const Badge: FC<BadgeProps> = ({
-                                          // outline,
+                                          // outline,gt
                                           size,
-                                          variant = ButtonVariant.Hard,
+                                          variant = ButtonVariant.Solid,
                                           color = ColorVariantEnum.Primary,
-                                          closing = false,
+                                          onClose,
+                                          className,
                                           children,
                                           ...props
                                       }) => {
@@ -22,7 +24,7 @@ export const Badge: FC<BadgeProps> = ({
 
     const bgColor = useMemo<string>(() => {
         switch (variant) {
-            case ButtonVariant.Hard:
+            case ButtonVariant.Solid:
                 return hardColor
             case ButtonVariant.Soft:
                 return softColor
@@ -32,8 +34,9 @@ export const Badge: FC<BadgeProps> = ({
     }, [hardColor, softColor, variant])
 
     const textColor = useMemo<string>(() => {
-        return variant === ButtonVariant.Hard ? 'white' : hardColor;
+        return variant === ButtonVariant.Solid ? 'white' : hardColor;
     }, [hardColor, variant])
+
     const spacingClassName = useMemo<string>(() => {
         switch (size) {
             case SizeEnum.Small:
@@ -45,17 +48,32 @@ export const Badge: FC<BadgeProps> = ({
         }
     }, [size])
 
+    const hoverBgColor = useMemo<string>(() => {
+        switch (variant) {
+            case ButtonVariant.Solid:
+                return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: SOLID_WEIGHT + 100})
+            case ButtonVariant.Soft:
+                return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: SOFT_WEIGHT + 100})
+            case ButtonVariant.Clean:
+                return softColor
+        }
+    }, [color, softColor, variant])
+
 
     return (
         <span
             {...props}
-            className={
-                `inline-flex items-center justify-center rounded bg-${bgColor} ${spacingClassName} font-medium text-${textColor}`
-            }
+            className={twMerge(
+                `inline-flex items-center justify-center rounded bg-${bgColor} ${spacingClassName} text-${textColor}`,
+                className
+            )}
         >
             {children}
-            {closing && (
-                <XMarkIcon className={`w-4 h-4 ml-1 rounded hover:bg-${textColor} hover:text-${bgColor} cursor-pointer`}/>
+            {onClose && (
+                <XMarkIcon
+                    className={`w-4 h-4 ml-1 rounded hover:bg-${hoverBgColor} cursor-pointer`}
+                    onClick={onClose}
+                />
             )}
         </span>
     );

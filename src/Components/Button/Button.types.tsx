@@ -1,7 +1,7 @@
 import {HTMLAttributes} from 'react';
 
 export enum ButtonVariant {
-  Hard = 'hard',
+  Solid = 'solid',
   Soft = 'soft',
   Clean = 'clean'
 }
@@ -21,7 +21,7 @@ export enum ColorVariantEnum {
   Success = 'success',
   Danger = 'danger',
   Warning = 'warning',
-  Black = 'black',
+  Black = 'black'
 }
 
 export enum WeightEnum {
@@ -42,9 +42,10 @@ export type ColorVariant = {
   color: ColorVariantEnum
   weight?: WeightEnum
 }
-export type ButtonType = {
+export type ButtonProps = {
+  icon?: boolean
   variant?: ButtonVariant
-  bgColor?: ColorVariantEnum
+  color?: ColorVariantEnum
   outline?: boolean
   size?: SizeEnum
   disabled?: boolean

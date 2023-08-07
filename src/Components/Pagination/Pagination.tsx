@@ -1,33 +1,52 @@
-import {FC, HTMLAttributes} from 'react';
-import * as classNames from 'classnames';
-import PaginationButton from './Pagination.Button.tsx';
+import {FC} from 'react';
+import {Button} from '../Button';
+import ButtonGroup from '../ButtonGroup/ButtonGroup.tsx';
+import {PaginationProps} from './Pagination.types.tsx';
+import {ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from '@heroicons/react/20/solid';
 
-const Pagination: FC<HTMLAttributes<HTMLDivElement>> = ({className}) => {
+const Pagination: FC<PaginationProps> = ({pageLess, icon, ...props}) => {
 
   return (
-    <nav className={classNames(className)}>
-      <ul className="inline-flex -space-x-px text-sm">
-        <PaginationButton className="rounded-l-lg">
-          Previous
-        </PaginationButton>
-        {[...Array(5).keys()].map(index => {
-          const page = index + 1
-          const active = page === 1;
+    <ButtonGroup {...props}>
+      <Button>
+        {icon ? <ChevronDoubleLeftIcon className="w-4 h-4"/> : 'Previous'}
+      </Button>
+      {!pageLess && (
+        <>
+          {[...Array(5).keys()].map(index => {
+            const page = index + 1
+            const active = page === 3;
 
-          return (
-            <PaginationButton
-              key={page}
-              active={active}
-            >
-              {page}
-            </PaginationButton>
-          )
-        })}
-        <PaginationButton className="rounded-r-lg">
-          Previous
-        </PaginationButton>
-      </ul>
-    </nav>
+            return (
+              <Button
+                key={page}
+                active={active}
+              >
+                {page}
+              </Button>
+            )
+          })}
+          <Button>
+            ...
+          </Button>
+          {[...Array(2).keys()].map(index => {
+            const page = index + 1 + 5
+
+            return (
+              <Button
+                key={page}
+              >
+                {page}
+              </Button>
+            )
+          })}
+        </>
+      )}
+
+      <Button>
+        {icon ? <ChevronDoubleRightIcon className="w-4 h-4"/> : 'Next'}
+      </Button>
+    </ButtonGroup>
   )
 }
 

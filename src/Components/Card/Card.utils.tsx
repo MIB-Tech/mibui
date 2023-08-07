@@ -1,4 +1,5 @@
-import {ColorVariant, ColorVariantEnum, WeightEnum} from './Card.types.tsx';
+import {ColorVariant, ColorVariantEnum, WeightEnum} from '../Button/Button.types.tsx';
+
 
 export const cardUtils = ({color, weight = WeightEnum.W500}: ColorVariant) => {
   let className = color as string

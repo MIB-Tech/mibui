@@ -2,9 +2,9 @@ import './App.css'
 import {TopHeader} from './Layouts/Dashboard/TopHeader.tsx';
 import {HeaderMenu} from './Layouts/Dashboard/HeaderMenu.tsx';
 import {NavLink, Outlet} from 'react-router-dom';
-import * as classNames from 'classnames';
 import {Trans} from 'react-i18next';
 import {useActiveRouteContext} from './hooks/UseActiveRouteContext.tsx';
+import {twMerge} from 'tailwind-merge';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           {title}
         </h2>
         {/*<Breadcrumb />*/}
-        <div className={classNames(' pt-5', hasChild && 'grid grid-cols-8 gap-4')}>
+        <div className={twMerge(' pt-5', hasChild && 'grid grid-cols-8 gap-4')}>
           {hasChild && (
             <div>
               <div className="flex flex-col space-y-2 border-s border-gray-200">
@@ -29,7 +29,7 @@ function App() {
                   <NavLink
                     key={childRoute.id}
                     to={`${parent?.path}/${childRoute?.path}`}
-                    className={({isActive}) => classNames(
+                    className={({isActive}) => twMerge(
                       'dark:text-primary-500 border-s  hover:border-s-primary-500 ps-3',
                       isActive ?
                         'text-primary-600 border-s-primary-500 font-bold' :
@@ -43,7 +43,7 @@ function App() {
             </div>
           )}
 
-          <div className={classNames(hasChild && 'col-span-7')}>
+          <div className={twMerge(hasChild && 'col-span-7')}>
             <Outlet/>
           </div>
         </div>
