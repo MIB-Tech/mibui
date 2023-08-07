@@ -1,0 +1,1 @@
+export {default as BadgePage} from '../../pages/Components/Badge/Page.tsx'

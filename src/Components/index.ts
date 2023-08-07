@@ -1,1 +1,6 @@
 export * from './Button'
+export * from './Badge'
+export * from './Card'
+export * from './Pagination'
+export * from './Preview'
+export * from './Spinner'
