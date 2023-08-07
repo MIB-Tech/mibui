@@ -24,6 +24,8 @@ const Page = () => {
                     </Preview>
                 ))}
             </div>
+            <br/>
+            <br/>
             <div>
                 <Preview title="Size" className="capitalize">
                     <div className="flex items-center justify-center gap-2">
@@ -39,6 +41,8 @@ const Page = () => {
                     </div>
                 </Preview>
             </div>
+            <br/>
+            <br/>
             <div>
                 <Preview title="With closing" className="capitalize">
                     <div className="flex items-center justify-center gap-2">
