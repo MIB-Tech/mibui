@@ -3,13 +3,17 @@ import {HTMLAttributes} from 'react';
 export enum ButtonVariant {
   Solid = 'solid',
   Soft = 'soft',
-  Clean = 'clean',
+  Clean = 'clean'
 }
 
 export enum SizeEnum {
   Small = 'sm',
   Large = 'xl',
 }
+// export enum withCloseTag {
+//   true'true'
+//   false = 'false'
+// }
 
 export enum ColorVariantEnum {
   Primary = 'primary',
@@ -47,4 +51,5 @@ export type ButtonProps = {
   disabled?: boolean
   active?: boolean
   loading?: boolean
+  closing?: boolean
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'color'>
