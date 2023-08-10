@@ -4,14 +4,17 @@ import {ButtonVariant, ColorVariantEnum} from '../Button/Button.types.tsx';
 import {getSoftColor, getSolidColor} from '../Button/Button.utils.tsx';
 import {AiOutlineCloseCircle} from "react-icons/ai";
 import Button from "../Button/Button.tsx";
+import {twMerge} from "tailwind-merge";
 
 export const Alert: FC<AlertProps> = (
     {
         color = ColorVariantEnum.Primary,
-        variant = ButtonVariant.Solid, children,
+        variant = ButtonVariant.Solid,
+        children,
         icon,
         title,
-        dismissible
+        dismissible,
+        className
     }) => {
     const solidColor = getSolidColor(color);
     const softColor = getSoftColor(color);
@@ -39,7 +42,10 @@ export const Alert: FC<AlertProps> = (
 
     return (
         <div
-            className={`p-4 rounded flex items-start bg-${bgColor} text-${textColor}`}
+            className={twMerge(
+                `p-4 rounded flex items-start bg-${bgColor} text-${textColor}`,
+                className
+            )}
             role="alert"
         >
             {icon && (<div className="mr-4">{icon}</div>)}
@@ -50,6 +56,7 @@ export const Alert: FC<AlertProps> = (
             {dismissible && (
                 <Button
                     variant={variant}
+                    color={color}
                     onClick={() => setShow(!show)}
                     className='ml-auto'
                 >

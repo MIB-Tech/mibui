@@ -12,6 +12,7 @@ import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
 import {InputNumberPage, InputPage} from './pages/Forms';
 import {ModalPage} from './pages/Components/Modal';
+import {ToastPage} from "./pages/Components/Toast";
 
 enum Lang {
   English = 'en'
@@ -129,6 +130,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsSpinner,
             path: 'spinner',
             element: <SpinnerPage/>
+          },
+          {
+            id: RouteEnum.ComponentsToast,
+            path: 'toast',
+            element: <ToastPage/>
           },
         ]
       },
