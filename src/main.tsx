@@ -12,6 +12,7 @@ import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
 import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
 import {ModalPage} from './pages/Components/Modal';
+import {InputPasswordPage} from './pages/Forms/InputPassword';
 
 enum Lang {
   English = 'en'
@@ -145,6 +146,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.FormInputNumber,
             path: 'input-number',
             element: <InputNumberPage/>
+          },
+          {
+            id: RouteEnum.FormInputPassword,
+            path: 'input-password',
+            element: <InputPasswordPage/>
           },
           {
             id: RouteEnum.FormInputGroup,

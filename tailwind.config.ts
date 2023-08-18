@@ -42,6 +42,9 @@ const CONFIG:Config = {
     },
     {
       pattern: /border-[se]/,
+    },
+    {
+      pattern: /[wh]-[4]/,
     }
   ],
   plugins: [

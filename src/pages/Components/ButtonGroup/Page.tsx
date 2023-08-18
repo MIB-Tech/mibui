@@ -21,7 +21,7 @@ const Page = () => {
       <Preview title="Outline" className="capitalize">
         <div className="flex justify-center gap-10">
           {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
-            <div className="flex flex-col justify-center gap-2">
+            <div key={variant} className="flex flex-col justify-center gap-2">
               {(Object.values(ColorVariantEnum) as ColorVariantEnum[]).map(color => (
                 <ButtonGroup key={color} color={color} variant={variant} outline>
                   <Button>Option 1</Button>

@@ -1,23 +1,9 @@
-import {Children, cloneElement, FC, Fragment, isValidElement, ReactElement, ReactNode, useMemo} from 'react';
+import {Children, cloneElement, FC, ReactElement, useMemo} from 'react';
 import {ButtonGroupProps} from './ButtonGroup.types.tsx';
 import {twMerge} from 'tailwind-merge';
 import {SizeEnum} from '../Button/Button.types.tsx';
 import {getOutlineColor} from '../Button/Button.utils.tsx';
-
-
-function getChildren(children: ReactNode): ReactNode {
-  return Children.map(children, (child) => {
-    if (isValidElement(child)) {
-      if (child.type === Fragment) {
-        return getChildren(child.props.children);
-      }
-
-      return cloneElement(child, child.props);
-    }
-
-    return child;
-  });
-}
+import {getChildren} from './ButtonGroup.utils.tsx';
 
 const ButtonGroup: FC<ButtonGroupProps> = ({vertical, outline, children, ...props}) => {
   const outlineColor = getOutlineColor({color: props.color, variant: props.variant})

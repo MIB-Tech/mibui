@@ -1,4 +1,5 @@
 import {ColorVariant, ColorVariantEnum, WeightEnum} from '../Button/Button.types.tsx';
+import {Children, cloneElement, Fragment, isValidElement, ReactNode} from 'react';
 
 export const getColorClassName = ({color, weight = WeightEnum.W500}: ColorVariant) => {
   let className = color as string
@@ -11,3 +12,17 @@ export const getColorClassName = ({color, weight = WeightEnum.W500}: ColorVarian
 
   return className
 }
+export const getChildren = (children: ReactNode): ReactNode => {
+
+  return Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      if (child.type === Fragment) {
+        return getChildren(child.props.children);
+      }
+
+      return cloneElement(child);
+    }
+
+    return child;
+  })
+};

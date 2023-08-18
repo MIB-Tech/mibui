@@ -2,9 +2,16 @@ import {FC} from 'react';
 import {Menu} from '@headlessui/react';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
 import {DropdownToggleProps} from './Dropdown.types.tsx';
+import {twMerge} from 'tailwind-merge';
 
-const DropdownToggle: FC<DropdownToggleProps> = ({children, hideIcon, ...props}) => (
-  <Menu.Button className="inline-flex items-center" {...props}>
+const DropdownToggle: FC<DropdownToggleProps> = ({children, hideIcon, className, ...props}) => (
+  <Menu.Button
+    className={twMerge(
+      !hideIcon && 'flex items-center',
+      className
+    )}
+    {...props}
+  >
     {typeof children === 'function' ? children({open: false}) : children}
     {!hideIcon && (
       <ChevronDownIcon
