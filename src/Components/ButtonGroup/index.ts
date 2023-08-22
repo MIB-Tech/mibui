@@ -1,1 +1,1 @@
-export {default as Button} from './ButtonGroup.tsx'
+export {default as ButtonGroup} from './ButtonGroup.tsx';

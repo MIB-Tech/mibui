@@ -1,12 +1,14 @@
-import {HTMLAttributes} from "react";
-import {ButtonVariant, ColorVariantEnum, SizeEnum} from "../Button/Button.types.tsx";
+import {HTMLAttributes} from 'react';
+import {ColorType} from '../../@types/Color.ts';
+import {VariantType} from '../../@types/Variant.ts';
 
+import {SizingType} from '../../@types/Sizing.ts';
 
 
 export type BadgeProps = {
-    variant?: ButtonVariant
-    color?: ColorVariantEnum
-    outline?: boolean
-    size?: SizeEnum
-    onClose?: () => void
+  variant?: VariantType
+  color?: ColorType
+  outline?: boolean
+  size?: SizingType
+  onClose?: () => void
 } & HTMLAttributes<HTMLSpanElement>

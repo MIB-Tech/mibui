@@ -2,8 +2,10 @@ import {MenuButtonProps} from '@headlessui/react';
 import {ElementType} from 'react';
 
 export enum DropdownDirection {
-  Top = 'top',
-  Button = 'bottom',
+  TopStart = 'top-start',
+  TopEnd = 'top-end',
+  ButtonStart = 'bottom-start',
+  ButtonEnd = 'bottom-end',
 }
 
 export type DropdownToggleProps = {
