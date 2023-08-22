@@ -1,22 +1,17 @@
 import {forwardRef} from 'react';
 import {UnstyledInputProps} from './Input.types.ts';
-import {twMerge} from 'tailwind-merge';
+import {useInputStyles} from '../../hooks/UseInputStyles.ts';
 
-const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>(({className, ...props}, ref) => {
-
+const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>(({...props}, ref) => {
+  const inputStyles = useInputStyles(props);
 
   return (
     <input
       ref={ref}
-      type="text"
-      className={twMerge(
-        'border-0 focus:outline-none focus:ring-0 p-0 placeholder:text-gray-400 ',
-        props.disabled ? 'cursor-not-allowed opacity-60' : '',
-        className
-      )}
       {...props}
+      className={inputStyles.unstyled}
     />
-  )
-})
+  );
+});
 
 export default UnstyledInput

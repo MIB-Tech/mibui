@@ -1,17 +1,17 @@
 import {forwardRef} from 'react';
-import {InputProps} from './Input.types.ts';
-import {UnstyledInput} from './index.ts';
+import {InputProps} from './Textarea.types.ts';
+import {UnstyledTextarea} from './index.ts';
 import {twMerge} from 'tailwind-merge';
 import {useSizing} from '../../hooks/UseSizing.ts';
 import {useInputStyles} from '../../hooks/UseInputStyles.ts';
 
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({className, size, ...props}, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, InputProps>(({className, size, ...props}, ref) => {
   const sizing = useSizing(size);
   const inputStyles = useInputStyles(props);
 
   return (
-    <UnstyledInput
+    <UnstyledTextarea
       ref={ref}
       className={twMerge(
         inputStyles.className,
@@ -21,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({className, size, ...pro
       )}
       {...props}
     />
-  )
-})
+  );
+});
 
-export default Input
+export default Textarea;

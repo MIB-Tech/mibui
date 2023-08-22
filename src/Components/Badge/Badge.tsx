@@ -2,7 +2,7 @@ import {FC, useMemo} from 'react';
 import {BadgeProps} from './Badge.types.ts';
 import {XMarkIcon} from '@heroicons/react/20/solid';
 import {twMerge} from 'tailwind-merge';
-import {useVariant} from '../../hooks/UseVariant.ts';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
 import {Icon} from '../SvgIcon';
 
 
@@ -16,7 +16,7 @@ const Badge: FC<BadgeProps> = (
     ...props
   }
 ) => {
-  const classNames = useVariant({color, variant});
+  const classNames = useVariantStyles({color, variant});
 
   const spacingClassName = useMemo<string>(() => {
     switch (size) {

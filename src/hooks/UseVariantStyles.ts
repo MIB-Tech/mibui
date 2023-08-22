@@ -2,7 +2,11 @@ import {useVariantColor} from './UseVariantColor.ts';
 import {ColorType} from '../@types/Color.ts';
 import {VariantType} from '../@types/Variant.ts';
 
-export const useVariant = (props: { color?: ColorType, variant?: VariantType }) => {
+type UseVariantProps = {
+  color?: ColorType,
+  variant?: VariantType
+}
+export const useVariantStyles = (props: UseVariantProps) => {
   const {background, text, outline, hover, active} = useVariantColor(props);
 
   return {

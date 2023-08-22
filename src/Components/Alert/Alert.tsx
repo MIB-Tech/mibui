@@ -2,7 +2,7 @@ import {FC, useState} from 'react';
 import {AlertProps} from './Alert.types';
 import Button from '../Button/Button.tsx';
 import {twMerge} from 'tailwind-merge';
-import {useVariant} from '../../hooks/UseVariant.ts';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
 import {Icon} from '../SvgIcon';
 import {XMarkIcon} from '@heroicons/react/20/solid';
 
@@ -17,7 +17,7 @@ const Alert: FC<AlertProps> = (
     ...props
   }
 ) => {
-  const classNames = useVariant({color, variant});
+  const classNames = useVariantStyles({color, variant});
   const [dismissed, setDismissed] = useState<boolean>();
 
   if (dismissed) {
