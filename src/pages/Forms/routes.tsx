@@ -5,6 +5,7 @@ import {InputNumberPage} from './InputNumber';
 import {InputPasswordPage} from './InputPassword';
 import {InputGroupPage} from './InputGroup';
 import {TextareaPage} from './Textarea';
+import {SelectPage} from './Select';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -29,6 +30,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormTextarea,
       path: 'textarea',
       element: <TextareaPage/>
+    },
+    {
+      id: RouteEnum.FormSelect,
+      path: 'select',
+      element: <SelectPage/>
     },
     {
       id: RouteEnum.FormInputGroup,
