@@ -8,21 +8,10 @@ import {
   Preview
 } from '../../../Components';
 import {DropdownDirection} from '../../../Components/Dropdown/Dropdown.types.tsx';
-import {ChatBubbleLeftIcon, ClipboardIcon, Cog6ToothIcon} from '@heroicons/react/24/solid';
-import {ReactNode} from 'react';
+import {Cog6ToothIcon} from '@heroicons/react/24/solid';
 import DropdownHeader from '../../../Components/Dropdown/Dropdown.Header.tsx';
+import {DropdownOptions} from './DropdownOptions.tsx';
 
-export const DROPDOWN_OPTIONS: Array<{ label: string, icon?: ReactNode }> = [
-  {
-    label: 'Account Settings', icon: <Cog6ToothIcon className="mr-2 h-5 w-5"/>
-  },
-  {
-    label: 'Support', icon: <ChatBubbleLeftIcon className="mr-2 h-5 w-5"/>
-  },
-  {
-    label: 'License', icon: <ClipboardIcon className="mr-2 h-5 w-5"/>
-  }
-]
 const Page = () => {
 
   return (
@@ -33,11 +22,7 @@ const Page = () => {
             Dropdown
           </DropdownToggle>
           <DropdownMenu>
-            {DROPDOWN_OPTIONS.map(({label}) => (
-              <DropdownItem key={label}>
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
           </DropdownMenu>
         </Dropdown>
       </Preview>
@@ -48,11 +33,7 @@ const Page = () => {
               {direction}
             </DropdownToggle>
             <DropdownMenu direction={direction}>
-              {DROPDOWN_OPTIONS.map(({label}) => (
-                <DropdownItem key={label}>
-                  {label}
-                </DropdownItem>
-              ))}
+              <DropdownOptions/>
             </DropdownMenu>
           </Dropdown>
         ))}
@@ -63,11 +44,7 @@ const Page = () => {
             Dropdown
           </DropdownToggle>
           <DropdownMenu>
-            {DROPDOWN_OPTIONS.map(({label}) => (
-              <DropdownItem key={label}>
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
             <DropdownDivider/>
             <DropdownItem>Logout</DropdownItem>
           </DropdownMenu>
@@ -79,11 +56,7 @@ const Page = () => {
             Dropdown
           </DropdownToggle>
           <DropdownMenu>
-            {DROPDOWN_OPTIONS.map(({label}) => (
-              <DropdownItem key={label}>
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
             <DropdownItem active>Light Mode</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -94,11 +67,7 @@ const Page = () => {
             Dropdown
           </DropdownToggle>
           <DropdownMenu>
-            {DROPDOWN_OPTIONS.map(({label}) => (
-              <DropdownItem key={label}>
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
             <DropdownItem disabled>AEP (expired)</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -110,19 +79,14 @@ const Page = () => {
           </DropdownToggle>
           <DropdownMenu>
             <DropdownHeader>
-              <div className="font-bold">
-                Bonnie Green
+              <div className='font-bold'>
+                Elfannir Abderrahmane
               </div>
-              <a href='#' className="truncate text-sm font-medium hover:text-primary-500 hover:underline">
-                bonnie@flowbite.com
+              <a href='#' className='truncate text-sm font-medium hover:text-primary-500 hover:underline'>
+                a.elfannir@mibtech.ma
               </a>
             </DropdownHeader>
-            {DROPDOWN_OPTIONS.map(({label, icon}) => (
-              <DropdownItem key={label}>
-                {icon}
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
           </DropdownMenu>
         </Dropdown>
       </Preview>
@@ -135,12 +99,7 @@ const Page = () => {
             }}
           />
           <DropdownMenu>
-            {DROPDOWN_OPTIONS.map(({label, icon}) => (
-              <DropdownItem key={label}>
-                {icon}
-                {label}
-              </DropdownItem>
-            ))}
+            <DropdownOptions/>
           </DropdownMenu>
         </Dropdown>
       </Preview>

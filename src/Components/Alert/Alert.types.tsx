@@ -1,13 +1,11 @@
-// Alert.types.tsx
-
-import {ButtonVariant, ColorVariantEnum} from "../Button/Button.types.tsx";
-import {HTMLAttributes, ReactNode} from "react";
-
+import {HTMLAttributes, ReactNode} from 'react';
+import {ColorType} from '../../@types/Color.ts';
+import {VariantType} from '../../@types/Variant.ts';
 
 export type AlertProps = {
-    color?: ColorVariantEnum;
-    variant?: ButtonVariant;
-    icon?: ReactNode;
-    title: ReactNode;
-    dismissible?: boolean
+  color?: ColorType;
+  variant?: VariantType;
+  icon?: ReactNode;
+  title: ReactNode;
+  dismissible?: boolean
 } & Omit<HTMLAttributes<HTMLDivElement>, 'color' | 'title'>

@@ -1,7 +1,12 @@
-import * as React from 'react';
+import {ForwardRefExoticComponent, HTMLAttributes, PropsWithoutRef, RefAttributes, SVGProps} from 'react';
+import {ColorType} from '../../@types/Color.ts';
+import {SpacingType} from '../../@types/Spacing.ts';
 
 export type SvgIconProps = {
-  size?: 4
-  color?: 'gray'
-  icon: React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & { title?: string, titleId?: string } & React.RefAttributes<SVGSVGElement>>
-}
+  size?: SpacingType
+  color?: ColorType
+  icon: ForwardRefExoticComponent<PropsWithoutRef<SVGProps<SVGSVGElement>> & {
+    title?: string,
+    titleId?: string
+  } & RefAttributes<SVGSVGElement>>
+} & HTMLAttributes<SVGSVGElement>

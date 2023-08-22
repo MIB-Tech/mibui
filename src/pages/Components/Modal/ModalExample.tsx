@@ -2,7 +2,6 @@ import {FC, useState} from 'react';
 import Button from '../../../Components/Button/Button.tsx';
 import Modal from '../../../Components/Modal/Modal.tsx';
 import {ModalProps} from '../../../Components/Modal/Modal.types.tsx';
-import {ButtonVariant, ColorVariantEnum} from '../../../Components/Button/Button.types.tsx';
 
 export const ModalExample: FC<{ buttonLabel?: string } & ModalProps> = ({buttonLabel = 'Default', ...props}) => {
   const [open, setOpen] = useState(false);
@@ -28,7 +27,7 @@ export const ModalExample: FC<{ buttonLabel?: string } & ModalProps> = ({buttonL
           your order.
         </p>
         <div className="flex justify-end gap-2 mt-4">
-          <Button variant={ButtonVariant.Soft} color={ColorVariantEnum.Warning}>Refund</Button>
+          <Button variant='soft' color='warning'>Refund</Button>
           <Button onClick={onClose}>Close</Button>
         </div>
       </Modal>

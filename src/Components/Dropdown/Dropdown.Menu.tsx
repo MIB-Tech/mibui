@@ -7,7 +7,7 @@ import {DropdownDirection} from './Dropdown.types.tsx';
 const DropdownMenu: FC<MenuItemsProps<ElementType> & { direction?: DropdownDirection }> = (
   {
     className,
-    direction,
+    direction = DropdownDirection.ButtonStart,
     ...props
   }
 ) => {
@@ -15,17 +15,20 @@ const DropdownMenu: FC<MenuItemsProps<ElementType> & { direction?: DropdownDirec
   const directionClassname = useMemo<string>(() => {
     switch (direction) {
       case DropdownDirection.TopStart:
+        return 'bottom-full mb-2';
       case DropdownDirection.TopEnd:
-        return 'bottom-full'
-      default:
-        return 'right-0'
+        return 'bottom-full mb-2 right-0';
+      case DropdownDirection.ButtonStart:
+        return 'mt-2';
+      case DropdownDirection.ButtonEnd:
+        return 'mt-2 right-0';
     }
   }, [direction])
 
   return (
     <Menu.Items
       className={twMerge(
-        'absolute py-2 m-2 w-52 z-10 rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+        'absolute py-2 w-52 z-10 rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
         directionClassname,
         className
       )}

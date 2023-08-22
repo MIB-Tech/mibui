@@ -3,6 +3,7 @@ import {Menu} from '@headlessui/react';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
 import {DropdownToggleProps} from './Dropdown.types.tsx';
 import {twMerge} from 'tailwind-merge';
+import {Icon} from '../SvgIcon';
 
 const DropdownToggle: FC<DropdownToggleProps> = ({children, hideIcon, className, ...props}) => (
   <Menu.Button
@@ -14,8 +15,11 @@ const DropdownToggle: FC<DropdownToggleProps> = ({children, hideIcon, className,
   >
     {typeof children === 'function' ? children({open: false}) : children}
     {!hideIcon && (
-      <ChevronDownIcon
-        className="inline-block ml-1 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+      <Icon
+        icon={ChevronDownIcon}
+        size={5}
+        color='violet'
+        className='inline-block ml-1 -mr-1 --text-violet-200 hover:text-violet-100'
       />
     )}
   </Menu.Button>

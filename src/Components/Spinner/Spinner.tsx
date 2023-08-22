@@ -1,19 +1,26 @@
 import {FC, HTMLAttributes, useMemo} from 'react';
-import {ColorVariantEnum, SizeEnum} from '../Button/Button.types.tsx';
 import {getColorClassName} from '../Button/Button.utils.tsx';
 import {twMerge} from 'tailwind-merge';
+import {ColorType} from '../../@types/Color.ts';
+import {SizingType} from '../../@types/Sizing.ts';
 
-const Spinner: FC<{ color?: ColorVariantEnum, size?: SizeEnum } & HTMLAttributes<HTMLOrSVGElement>> = ({color = ColorVariantEnum.Primary, size, ...props}) => {
+const Spinner: FC<{ color?: ColorType, size?: SizingType } & HTMLAttributes<HTMLOrSVGElement>> = (
+  {
+    color = 'primary',
+    size,
+    ...props
+  }
+) => {
   const className = useMemo(() => {
     switch (size) {
-      case SizeEnum.Small:
+      case 'sm':
         return 'w-4 h-4';
-      case SizeEnum.Large:
-        return 'w-8 h-8'
+      case 'lg':
+        return 'w-8 h-8';
       default:
-        return 'w-6 h-6'
+        return 'w-6 h-6';
     }
-  }, [size])
+  }, [size]);
 
 
   return (

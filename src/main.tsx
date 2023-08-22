@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
 import App from './App.tsx';
@@ -13,6 +13,7 @@ import {DropdownPage} from './pages/Components/Dropdown';
 import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
 import {ModalPage} from './pages/Components/Modal';
 import {InputPasswordPage} from './pages/Forms/InputPassword';
+import {ToastPage} from './pages/Components/Toast';
 
 enum Lang {
   English = 'en'
@@ -130,6 +131,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsSpinner,
             path: 'spinner',
             element: <SpinnerPage/>
+          },
+          {
+            id: RouteEnum.ComponentsToast,
+            path: 'toast',
+            element: <ToastPage/>
           },
         ]
       },

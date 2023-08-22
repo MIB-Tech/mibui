@@ -1,46 +1,38 @@
 import {FC, useMemo} from 'react';
-import {ButtonProps, ButtonVariant, SizeEnum} from '../../Components/Button/Button.types.tsx';
-import {Button} from '../../Components';
+import {ButtonProps} from '../../Components/Button/Button.types.tsx';
+import {Button, Icon} from '../../Components';
 import {twMerge} from 'tailwind-merge';
 import {IconElement} from './InputGroup.types.ts';
 
+import {SpacingType} from '../../@types/Spacing.ts';
+
 export const InputGroupIconButton: FC<{
   iconElement: IconElement,
-} & ButtonProps> = ({className, size, iconElement: Icon, ...props}) => {
+} & ButtonProps> = ({size, iconElement: IconElement, ...props}) => {
 
-  const buttonClassName = useMemo<string>(() => {
+  const iconSize = useMemo<SpacingType>(() => {
     switch (size) {
-      case SizeEnum.Small:
-        return `mx-1 p-[1px]`
-      case SizeEnum.Large:
-        return `mx-3 p-[3px]`
+      case 'sm':
+        return 5;
+      case 'lg':
+        return 7;
       default:
-        return `mx-2 p-[2px]`
+        return 6;
     }
-  }, [size])
-
-  const iconClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `w-4 h-4`
-      case SizeEnum.Large:
-        return `w-6 h-6`
-      default:
-        return `w-5 h-5`
-    }
-  }, [size])
+  }, [size]);
 
   return (
     <Button
-      variant={ButtonVariant.Soft}
+      variant='soft'
       icon
-      className={twMerge(
-        buttonClassName,
-        className
-      )}
+      size={size}
       {...props}
+      className={twMerge(
+        'scale-[60%]',
+        props.className
+      )}
     >
-      <Icon className={iconClassName}/>
+      <Icon icon={IconElement} size={iconSize}/>
     </Button>
   )
 }

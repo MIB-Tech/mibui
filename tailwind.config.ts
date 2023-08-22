@@ -1,36 +1,35 @@
-import colors = require('tailwindcss/colors');
-import flowbite = require('flowbite/plugin');
-import forms = require('@tailwindcss/forms');
+import colors from 'tailwindcss/colors';
+import forms from '@tailwindcss/forms';
 import {Config} from 'tailwindcss';
+import {SPACING} from './src/@types/Spacing';
 
 const CONFIG:Config = {
   content: [
     './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+    './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    fontFamily: {
-      'sans': [
-        'Work Sans'
-      ]
-    },
     extend: {
+      fontFamily: {
+        'sans': [
+          'Work Sans'
+        ]
+      },
+      borderRadius: {
+        DEFAULT: '10px'
+      },
+      colors: {
+        primary: colors.violet,
+        secondary: colors.slate,
+        success: colors.emerald,
+        danger: colors.red,
+        warning: colors.amber,
+      },
     },
-    colors: {
-      primary: colors.violet,
-      secondary: colors.slate,
-      success: colors.emerald,
-      danger: colors.red,
-      warning: colors.amber,
-    },
-    borderRadius: {
-      DEFAULT: '10px'
-    }
   },
   safelist: [
     {
-      pattern: /(bg|ring|border|text)-(primary|secondary|danger|warning|success|black|gray)/,
+      pattern: /(bg|ring|border|text)-(primary|secondary|danger|warning|success|gray|black|white)/,
       variants: ['hover', 'focus'],
     },
     {
@@ -38,17 +37,18 @@ const CONFIG:Config = {
       variants: ['hover', 'focus'],
     },
     {
-      pattern: /rounded-[se]/,
+      pattern: /rounded-[setb]/,
     },
     {
       pattern: /border-[se]/,
     },
     {
-      pattern: /[wh]-[4]/,
-    }
+      pattern: /[wh]-./,
+    },
+    ...SPACING.map(value => `w-${value}`),
+    ...SPACING.map(value => `h-${value}`),
   ],
   plugins: [
-    flowbite,
     forms
   ]
 }

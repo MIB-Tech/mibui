@@ -2,9 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-    .header-icon {
-        @apply h-5 w-5;
-    }
-}

@@ -1,1 +1,1 @@
-export {default as SvgIcon} from './SvgIcon.tsx'
+export {default as Icon} from './Icon.tsx';

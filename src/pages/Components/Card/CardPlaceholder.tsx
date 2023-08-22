@@ -1,6 +1,6 @@
-import {CardProps} from 'flowbite-react';
 import {Card} from '../../../Components';
 import {twMerge} from 'tailwind-merge';
+import {CardProps} from '../../../Components/Card/Card.types.tsx';
 
 export const CardPlaceholder = ({className}: CardProps) => (
   <Card

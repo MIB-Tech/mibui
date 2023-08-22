@@ -1,5 +1,5 @@
 import {ElementType, FC} from 'react';
-import {ButtonProps, ButtonVariant, ColorVariantEnum} from '../Button/Button.types.tsx';
+import {ButtonProps} from '../Button/Button.types.tsx';
 import {Menu, MenuItemProps} from '@headlessui/react';
 import {Button} from '../Button';
 import {twMerge} from 'tailwind-merge';
@@ -10,9 +10,8 @@ const DropdownItem: FC<MenuItemProps<ElementType> & ButtonProps> = ({className, 
   return (
     <Menu.Item
       as={Button}
-      variant={ButtonVariant.Clean}
-      color={ColorVariantEnum.Secondary}
-      // size={SizeEnum.Small}
+      variant={'clean'}
+      color='secondary'
       className={twMerge(
         `group flex w-full text-start font-medium border-s-transparent rounded-none truncate`,
         !props.disabled && `border-s-2 hover:${activeClassName}`,

@@ -1,13 +1,13 @@
 import {Input, UnstyledInput} from '../../../Forms';
 import {Preview} from '../../../Components';
-import {SizeEnum} from '../../../Components/Button/Button.types.tsx';
+import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
 
 const InputPage = () => {
 
   return (
     <div className="flex flex-col gap-12">
       <Preview
-        title="Unstyled Input"
+        title='Unstyled Input'
         className='flex justify-center'
       >
         <UnstyledInput
@@ -15,7 +15,7 @@ const InputPage = () => {
         />
       </Preview>
       <Preview
-        title="Default Input"
+        title='Default Input'
         className='flex justify-center'
       >
         <Input
@@ -23,29 +23,17 @@ const InputPage = () => {
         />
       </Preview>
       <Preview
-        title="Input Sizes"
+        title='Input Sizing'
         className='flex justify-center items-center gap-6'
       >
-        <div>
-          <Input
-            size={SizeEnum.Small}
-            placeholder='Small'
-          />
-        </div>
-        <div>
-          <Input
-            placeholder='Base'
-          />
-        </div>
-        <div>
-          <Input
-            size={SizeEnum.Large}
-            placeholder='Large'
-          />
-        </div>
+        {SIZING.map(size => (
+          <div key={size}>
+            <Input size={size} placeholder={SIZING_CONFIG[size].label}/>
+          </div>
+        ))}
       </Preview>
       <Preview
-        title="Disabled/Readonly Input"
+        title='Disabled/Readonly Input'
         className='flex justify-center gap-6'
       >
         <Input

@@ -1,50 +1,22 @@
 import {HTMLAttributes} from 'react';
+import {ColorType} from '../../@types/Color.ts';
+import {VariantType} from '../../@types/Variant.ts';
 
-export enum ButtonVariant {
-  Solid = 'solid',
-  Soft = 'soft',
-  Clean = 'clean',
-}
-
-export enum SizeEnum {
-  Small = 'sm',
-  Large = 'xl',
-}
-
-export enum ColorVariantEnum {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Success = 'success',
-  Danger = 'danger',
-  Warning = 'warning',
-  Black = 'black'
-}
-
-export enum WeightEnum {
-  W50 = 50,
-  W100 = 100,
-  W200 = 200,
-  W300 = 300,
-  W400 = 400,
-  W500 = 500,
-  W600 = 600,
-  W700 = 700,
-  W800 = 800,
-  W900 = 900,
-  W950 = 950,
-}
+import {SizingType} from '../../@types/Sizing.ts';
+import {WeightType} from '../../@types/Weight.ts';
 
 export type ColorVariant = {
-  color: ColorVariantEnum
-  weight?: WeightEnum
+  color: ColorType
+  weight?: WeightType
 }
 export type ButtonProps = {
   icon?: boolean
-  variant?: ButtonVariant
-  color?: ColorVariantEnum
+  variant?: VariantType
+  color?: ColorType
   outline?: boolean
-  size?: SizeEnum
+  size?: SizingType
   disabled?: boolean
   active?: boolean
   loading?: boolean
+  closing?: boolean
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'color'>

@@ -1,54 +1,49 @@
-import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Preview} from '../../../Components';
+import {Button, Dropdown, DropdownMenu, DropdownToggle, Preview} from '../../../Components';
 import {Input, InputGroup, InputGroupAddon} from '../../../Forms';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
-import SvgIcon from '../../../Components/SvgIcon/SvgIcon.tsx';
-import {DROPDOWN_OPTIONS} from '../../Components/Dropdown/Page.tsx';
-import {SizeEnum} from '../../../Components/Button/Button.types.tsx';
+import Icon from '../../../Components/SvgIcon/Icon.tsx';
+import {DropdownOptions} from '../../Components/Dropdown/DropdownOptions.tsx';
+import {DropdownDirection} from '../../../Components/Dropdown/Dropdown.types.tsx';
+import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
 
 
 const Page = () => {
 
   return (
-    <div className="flex flex-col gap-12">
-      <Preview title="Text Addons" className="flex flex-col gap-2">
+    <div className='flex flex-col gap-12'>
+      <Preview title='Text Addons' className='flex flex-col gap-2'>
         <InputGroup>
           <InputGroupAddon>https://</InputGroupAddon>
-          <Input placeholder="mibtech.ma"/>
+          <Input placeholder='mibtech.ma'/>
         </InputGroup>
         <InputGroup>
-          <Input placeholder="username"/>
+          <Input placeholder='username'/>
           <InputGroupAddon>@mibtech.ma</InputGroupAddon>
         </InputGroup>
         <InputGroup>
-          <Input placeholder="username"/>
+          <Input placeholder='username'/>
           <InputGroupAddon>@</InputGroupAddon>
-          <Input placeholder="mibtech.ma"/>
+          <Input placeholder='mibtech.ma'/>
         </InputGroup>
       </Preview>
-      <Preview title="Sizes" className="flex flex-col gap-2">
-        <InputGroup>
-          <InputGroupAddon>https://</InputGroupAddon>
-          <Input size={SizeEnum.Small} placeholder="mibtech.ma"/>
-        </InputGroup>
-        <InputGroup>
-          <InputGroupAddon>https://</InputGroupAddon>
-          <Input placeholder="mibtech.ma"/>
-        </InputGroup>
-        <InputGroup>
-          <InputGroupAddon>https://</InputGroupAddon>
-          <Input size={SizeEnum.Large} placeholder="mibtech.ma"/>
-        </InputGroup>
+      <Preview title='Sizing' className='flex flex-col gap-2'>
+        {SIZING.map(size => (
+          <InputGroup key={size}>
+            <InputGroupAddon>{SIZING_CONFIG[size].label}</InputGroupAddon>
+            <Input size={size} placeholder='mibtech.ma'/>
+          </InputGroup>
+        ))}
       </Preview>
-      <Preview title="Icon Addons" className="flex flex-col gap-2">
+      <Preview title='Icon Addons' className='flex flex-col gap-2'>
         <InputGroup>
-          <Input placeholder="Search..."/>
+          <Input placeholder='Search...'/>
           <InputGroupAddon>
-            <SvgIcon icon={MagnifyingGlassIcon}/>
+            <Icon icon={MagnifyingGlassIcon}/>
           </InputGroupAddon>
         </InputGroup>
         <InputGroup>
           <InputGroupAddon>
-            <SvgIcon icon={MagnifyingGlassIcon}/>
+            <Icon icon={MagnifyingGlassIcon}/>
           </InputGroupAddon>
           <Input placeholder="Search..."/>
         </InputGroup>
@@ -70,15 +65,11 @@ const Page = () => {
             <DropdownToggle as={Button} className='rounded-none rounded-s'>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
-              {DROPDOWN_OPTIONS.map(({label}) => (
-                <DropdownItem key={label}>
-                  {label}
-                </DropdownItem>
-              ))}
+            <DropdownMenu direction={DropdownDirection.ButtonStart}>
+              <DropdownOptions/>
             </DropdownMenu>
           </Dropdown>
-          <Input placeholder="Search..."/>
+          <Input placeholder='Search...'/>
         </InputGroup>
         <InputGroup>
           <Dropdown>
@@ -86,36 +77,24 @@ const Page = () => {
               Dropdown
             </DropdownToggle>
             <DropdownMenu>
-              {DROPDOWN_OPTIONS.map(({label}) => (
-                <DropdownItem key={label}>
-                  {label}
-                </DropdownItem>
-              ))}
+              <DropdownOptions/>
             </DropdownMenu>
           </Dropdown>
-          <Input placeholder="Search..."/>
+          <Input placeholder='Search...'/>
           <Dropdown>
             <DropdownToggle as={Button} className='rounded-none'>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
-              {DROPDOWN_OPTIONS.map(({label}) => (
-                <DropdownItem key={label}>
-                  {label}
-                </DropdownItem>
-              ))}
+            <DropdownMenu direction={DropdownDirection.ButtonEnd}>
+              <DropdownOptions/>
             </DropdownMenu>
           </Dropdown>
           <Dropdown>
             <DropdownToggle as={Button} className='rounded-none rounded-e'>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
-              {DROPDOWN_OPTIONS.map(({label}) => (
-                <DropdownItem key={label}>
-                  {label}
-                </DropdownItem>
-              ))}
+            <DropdownMenu direction={DropdownDirection.ButtonEnd}>
+              <DropdownOptions/>
             </DropdownMenu>
           </Dropdown>
         </InputGroup>

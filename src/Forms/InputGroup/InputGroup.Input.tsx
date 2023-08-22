@@ -1,5 +1,4 @@
 import {forwardRef, useMemo} from 'react';
-import {SizeEnum} from '../../Components/Button/Button.types.tsx';
 import {twMerge} from 'tailwind-merge';
 import Input from '../Input/Input.tsx';
 import {InputGroupInputProps} from './InputGroup.types.ts';
@@ -12,23 +11,23 @@ export const InputGroupInput = forwardRef<
 
   const leadingInputClassName = useMemo<string>(() => {
     switch (size) {
-      case SizeEnum.Small:
-        return `ps-6`
-      case SizeEnum.Large:
-        return `ps-16`
+      case 'sm':
+        return `ps-6`;
+      case 'lg':
+        return `ps-16`;
       default:
-        return `ps-11`
+        return `ps-11`;
     }
   }, [size])
 
   const trailingInputClassName = useMemo<string>(() => {
     switch (size) {
-      case SizeEnum.Small:
-        return `pe-6`
-      case SizeEnum.Large:
-        return `pe-16`
+      case 'sm':
+        return `pe-6`;
+      case 'lg':
+        return `pe-16`;
       default:
-        return `pe-11`
+        return `pe-11`;
     }
   }, [size])
 
