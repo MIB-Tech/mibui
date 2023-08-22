@@ -2,7 +2,8 @@ import {forwardRef, useMemo} from 'react';
 import {ButtonProps} from './Button.types.tsx';
 import {Spinner} from '../Spinner';
 import {twMerge} from 'tailwind-merge';
-import {useVariant} from '../../hooks/UseVariant.ts';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
+import {useSizing} from '../../hooks/UseSizing.ts';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   {
@@ -18,7 +19,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   },
   ref
 ) => {
-  const classNames = useVariant({color, variant});
+  const variantStyles = useVariantStyles({color, variant});
+  const sizing = useSizing(size);
   const disabled = props.disabled || loading;
 
   const spacingClassName = useMemo<string>(() => {
@@ -32,16 +34,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
           return `p-[6px]`;
       }
     } else {
-      switch (size) {
-        case 'sm':
-          return `px-[8px] py-[4px]`;
-        case 'lg':
-          return `px-[12px] py-[8px]`;
-        default:
-          return `px-[10px] py-[6px]`;
-      }
+      return sizing.padding
     }
-  }, [size, icon])
+  }, [icon, size, sizing.padding])
 
   return (
     <button
@@ -53,12 +48,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
         spacingClassName,
         loading && 'relative',
         `rounded font-semibold`,
-        classNames.background,
-        classNames.text,
-        disabled ? `cursor-not-allowed opacity-60` : classNames.hover,
-        active && classNames.active,
-        size && `text-${size}`,
-        outline && classNames.outline,
+        variantStyles.background,
+        variantStyles.text,
+        disabled ? `cursor-not-allowed opacity-60` : variantStyles.hover,
+        active && variantStyles.active,
+        sizing.text,
+        outline && variantStyles.outline,
         props.className
       )}
     >

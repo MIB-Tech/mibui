@@ -1,3 +1,4 @@
+export {default as COMPONENT_ROUTES} from './routes.tsx'
 export * from './Alert'
 export * from './Badge'
 export * from './Breadcrumb'

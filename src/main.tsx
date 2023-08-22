@@ -3,17 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
-import App from './App.tsx';
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {BadgePage, BreadcrumbPage, ButtonGroupPage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
-import {AlertPage} from './pages/Components/Alert';
-import {SpinnerPage} from './pages/Components/Spinner';
-import {DropdownPage} from './pages/Components/Dropdown';
-import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
-import {ModalPage} from './pages/Components/Modal';
-import {InputPasswordPage} from './pages/Forms/InputPassword';
-import {ToastPage} from './pages/Components/Toast';
+import {ROUTES} from './pages';
 
 enum Lang {
   English = 'en'
@@ -66,108 +58,10 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
 i18next.use(initReactI18next).init({
   lng: Lang.English,
   debug: true,
-  resources: resources,
-  // if you see an error like: "Argument of type 'DefaultTFuncReturn' is not assignable to parameter of type xyz"
-  // set returnNull to false (and also in the i18next.d.ts options)
-  // returnNull: false,
-});
+  resources: resources
+}).then(() => {});
 
-export const router = createBrowserRouter([
-  {
-    id: RouteEnum.Home,
-    path: '/',
-    element: <App/>,
-    children: [
-      {
-        id: RouteEnum.Components,
-        path: 'components',
-        children: [
-          {
-            id: RouteEnum.ComponentsAlert,
-            path: 'alert',
-            element: <AlertPage />
-          },
-          {
-            id: RouteEnum.ComponentsBadge,
-            path: 'badge',
-            element: <BadgePage />
-          },
-          {
-            id: RouteEnum.ComponentsBreadcrumb,
-            path: 'breadcrumb',
-            element: <BreadcrumbPage />
-          },
-          {
-            id: RouteEnum.ComponentsButton,
-            path: 'button',
-            element: <ButtonPage/>
-          },
-          {
-            id: RouteEnum.ComponentsButtonGroup,
-            path: 'button-group',
-            element: <ButtonGroupPage/>
-          },
-          {
-            id: RouteEnum.ComponentsCard,
-            path: 'card',
-            element: <CardPage/>
-          },
-          {
-            id: RouteEnum.ComponentsDropdown,
-            path: 'dropdown',
-            element: <DropdownPage/>
-          },
-          {
-            id: RouteEnum.ComponentsModal,
-            path: 'modal',
-            element: <ModalPage/>
-          },
-          {
-            id: RouteEnum.ComponentsPagination,
-            path: 'pagination',
-            element: <PaginationPage/>
-          },
-          {
-            id: RouteEnum.ComponentsSpinner,
-            path: 'spinner',
-            element: <SpinnerPage/>
-          },
-          {
-            id: RouteEnum.ComponentsToast,
-            path: 'toast',
-            element: <ToastPage/>
-          },
-        ]
-      },
-      {
-        id: RouteEnum.Form,
-        path: 'form',
-        children: [
-          {
-            id: RouteEnum.FormInput,
-            path: 'input',
-            element: <InputPage/>
-          },
-          {
-            id: RouteEnum.FormInputNumber,
-            path: 'input-number',
-            element: <InputNumberPage/>
-          },
-          {
-            id: RouteEnum.FormInputPassword,
-            path: 'input-password',
-            element: <InputPasswordPage/>
-          },
-          {
-            id: RouteEnum.FormInputGroup,
-            path: 'input-group',
-            element: <InputGroupPage/>
-          },
-        ]
-      }
-    ]
-  }
-]);
+export const router = createBrowserRouter([ROUTES]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
