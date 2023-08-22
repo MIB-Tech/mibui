@@ -11,15 +11,19 @@ const Page = () => {
         title='Unstyled Textarea'
         className='flex justify-center'
       >
-        <UnstyledTextarea
-          placeholder='Text Textarea'
-        />
+        <UnstyledTextarea/>
       </Preview>
       <Preview
         title='Default Textarea'
         className='flex justify-center'
       >
-        <Textarea placeholder='Default Textarea'/>
+        <Textarea/>
+      </Preview>
+      <Preview
+        title='Resizable'
+        className='flex justify-center'
+      >
+        <Textarea resizable/>
       </Preview>
       <Preview
         title='Min/Max rows'
@@ -51,7 +55,6 @@ const Page = () => {
           disabled
         />
         <Textarea
-          placeholder='Disabled Textarea'
           value='Readonly'
           readOnly
         />

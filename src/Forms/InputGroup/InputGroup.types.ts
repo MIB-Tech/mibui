@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {HTMLAttributes} from 'react';
-import {InputProps} from '../Input/Textarea.types.ts';
+import {InputProps} from '../Input/Input.types.ts';
 
 export type IconElement = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
   title?: string,
