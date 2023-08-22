@@ -18,7 +18,6 @@ const DropdownToggle: FC<DropdownToggleProps> = ({children, hideIcon, className,
       <Icon
         icon={ChevronDownIcon}
         size={5}
-        color='violet'
         className='inline-block ml-1 -mr-1 --text-violet-200 hover:text-violet-100'
       />
     )}
