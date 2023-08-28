@@ -11,3 +11,4 @@ export * from './Preview';
 export * from './Spinner';
 export * from './SvgIcon';
 export * from './Toast';
+export * from './Tooltip';
