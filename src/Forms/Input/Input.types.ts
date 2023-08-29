@@ -1,9 +1,8 @@
-import {InputHTMLAttributes} from 'react';
-
-
 import {SizingType} from '../../@types/Sizing.ts';
+import {InputOwnProps} from '@mui/base/Input/Input.types';
 
-export type UnstyledInputProps = InputHTMLAttributes<HTMLInputElement>
-export type InputProps = {
+export type UnstyledInputProps = {
   size?: SizingType
-} & Omit<UnstyledInputProps, 'size'>
+} & InputOwnProps
+
+export type InputProps = UnstyledInputProps

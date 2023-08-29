@@ -1,7 +1,7 @@
 export type ValueUnion<T extends readonly number[]> = T[number];
 
 // Define color weight options
-const COLOR_WEIGHTS = [
+export const COLOR_WEIGHTS = [
   50,
   100,
   200,

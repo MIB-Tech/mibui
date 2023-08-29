@@ -4,8 +4,8 @@ import {InputPage} from './Input';
 import {InputNumberPage} from './InputNumber';
 import {InputPasswordPage} from './InputPassword';
 import {InputGroupPage} from './InputGroup';
-import {TextareaPage} from './Textarea';
 import {SelectPage} from './Select';
+import {AutocompletePage} from './Autocomplete';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -27,14 +27,14 @@ const ROUTES: RouteObject = {
       element: <InputPasswordPage/>
     },
     {
-      id: RouteEnum.FormTextarea,
-      path: 'textarea',
-      element: <TextareaPage/>
-    },
-    {
       id: RouteEnum.FormSelect,
       path: 'select',
       element: <SelectPage/>
+    },
+    {
+      id: RouteEnum.FormAutocomplete,
+      path: 'autocomplete',
+      element: <AutocompletePage/>
     },
     {
       id: RouteEnum.FormInputGroup,

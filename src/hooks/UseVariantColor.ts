@@ -28,7 +28,7 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
       case 'soft':
         return color === 'black' ?
           `gray-${variant === 'solid' ? 700 : 400}` :
-          getColorClassName({color, weight: 600})
+          getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
           ;
       case 'clean':
         return soft;
