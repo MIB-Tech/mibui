@@ -43,6 +43,7 @@ const Page = () => {
               <Badge
                 key={size}
                 size={size}
+                closable
                 onClose={() => alert('You clicked on badge\'s closing icon')}
               >
                 {SIZING_CONFIG[size].label}

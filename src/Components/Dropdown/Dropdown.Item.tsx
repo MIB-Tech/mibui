@@ -10,10 +10,10 @@ const DropdownItem: FC<MenuItemProps<ElementType> & ButtonProps> = ({className, 
   return (
     <Menu.Item
       as={Button}
-      variant={'clean'}
+      variant='clean'
       color='secondary'
       className={twMerge(
-        `group flex w-full text-start font-medium border-s-transparent rounded-none truncate`,
+        `flex w-full text-start font-medium border-s-transparent rounded-none truncate`,
         !props.disabled && `border-s-2 hover:${activeClassName}`,
         props.active && activeClassName,
         className

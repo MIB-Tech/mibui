@@ -11,21 +11,23 @@ const Badge: FC<BadgeProps> = (
     size,
     variant,
     color,
+    closable,
     onClose,
+    outline,
     children,
     ...props
   }
 ) => {
-  const classNames = useVariantStyles({color, variant});
+  const variantStyles = useVariantStyles({color, variant});
 
   const spacingClassName = useMemo<string>(() => {
     switch (size) {
       case 'sm':
-        return `text-xs px-1.5 py-0.5`;
+        return `text-xs px-1`;
       case 'lg':
-        return `px-3 py-1`;
+        return `text-base gap-1 px-2.5`;
       default:
-        return `text-sm px-2.5 py-0.5`;
+        return `text-sm gap-0.5 px-2`;
     }
   }, [size]);
 
@@ -34,19 +36,22 @@ const Badge: FC<BadgeProps> = (
     <span
       {...props}
       className={twMerge(
-        `inline-flex items-center justify-center rounded`,
-        classNames.background,
-        classNames.text,
+        `flex items-center justify-center rounded-sm`,
+        variantStyles.background,
+        variantStyles.text,
         spacingClassName,
+        outline && variantStyles.outline,
         props.className
       )}
     >
-      {children}
-      {onClose && (
+      <div className='truncate'>
+        {children}
+      </div>
+      {closable && (
         <Icon
           icon={XMarkIcon}
           onClick={onClose}
-          className={`cursor-pointer`}
+          className='cursor-pointer'
         />
       )}
     </span>

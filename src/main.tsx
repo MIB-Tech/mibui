@@ -34,7 +34,6 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
       [RouteEnum.FormInputGroup]: 'Input Group',
       [RouteEnum.FormInputNumber]: 'Input Number',
       [RouteEnum.FormInputPassword]: 'Input Password',
-      [RouteEnum.FormTextarea]: 'Textarea',
       [RouteEnum.FormFormGroup]: 'Form Group',
       [RouteEnum.FormDateAndTimePicker]: 'Date & Time Pickers',
       [RouteEnum.FormSelect]: 'Select',
@@ -57,8 +56,8 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
 }
 i18next.use(initReactI18next).init({
   lng: Lang.English,
-  debug: true,
-  resources: resources
+  // debug: true,
+  resources
 }).then(() => {});
 
 export const router = createBrowserRouter([ROUTES]);

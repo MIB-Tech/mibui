@@ -10,5 +10,6 @@ export type BadgeProps = {
   color?: ColorType
   outline?: boolean
   size?: SizingType
+  closable?: boolean
   onClose?: () => void
 } & HTMLAttributes<HTMLSpanElement>
