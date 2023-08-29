@@ -1,9 +1,4 @@
 import {InputProps} from '../Input/Input.types.ts';
+import {UseNumberInputParameters} from '@mui/base';
 
-export type InputNumberProps = {
-  min?: number,
-  max?: number,
-  step?: number,
-  precision?: number
-  value?: number
-} & Omit<InputProps, 'min' | 'max' | 'step' | 'value'>
+export type InputNumberProps = Omit<InputProps, 'onChange'|'maxRows'|'minRows'|'multiline'|'rows'|'type'> & UseNumberInputParameters
