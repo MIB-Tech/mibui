@@ -7,7 +7,7 @@ const InputPage = () => {
   return (
     <div className='flex flex-col gap-12'>
       <Preview
-        title='Basic '
+        title='Basic'
         className='flex justify-center'
       >
         <Input placeholder='Default input'/>

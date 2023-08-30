@@ -10,6 +10,7 @@ import {ModalPage} from './Modal';
 import {PaginationPage} from './Pagination';
 import {SpinnerPage} from './Spinner';
 import {ToastPage} from './Toast';
+import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
 
 const ROUTES: RouteObject = {
@@ -70,6 +71,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsToast,
       path: 'toast',
       element: <ToastPage/>
+    },
+    {
+      id: RouteEnum.ComponentsTooltip,
+      path: 'tooltip',
+      element: <TooltipPage/>
     },
   ]
 };

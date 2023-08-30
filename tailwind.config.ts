@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import colors from 'tailwindcss/colors';
 import {Config} from 'tailwindcss';
 import {SPACING} from './src/@types/Spacing';
