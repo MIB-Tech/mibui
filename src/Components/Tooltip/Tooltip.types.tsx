@@ -1,10 +1,10 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {PopupProps} from '@mui/base/Unstable_Popup/Popup.types';
 
 export type TooltipTrigger = 'hover' | 'click'
 export type TooltipProps = {
   children: ReactElement,
-  content: string,
+  content: ReactNode,
   trigger?: TooltipTrigger
   disableArrow?: boolean
-} & Omit<PopupProps, 'children'>
+} & Omit<PopupProps, 'children' | 'content'>
