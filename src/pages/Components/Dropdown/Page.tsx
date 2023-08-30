@@ -3,7 +3,7 @@ import {
   Dropdown,
   DropdownDivider,
   DropdownItem,
-  DropdownMenu,
+  PopoverMenu,
   DropdownToggle,
   Preview
 } from '../../../Components';
@@ -33,13 +33,13 @@ const Page = () => {
             <DropdownToggle as={Button}>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
+            <PopoverMenu>
               {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
               ))}
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>
@@ -50,13 +50,13 @@ const Page = () => {
               <DropdownToggle as={Button} className="capitalize">
                 {direction}
               </DropdownToggle>
-              <DropdownMenu direction={direction}>
+              <PopoverMenu direction={direction}>
                 {DROPDOWN_OPTIONS.map(({label}) => (
                   <DropdownItem key={label}>
                     {label}
                   </DropdownItem>
                 ))}
-              </DropdownMenu>
+              </PopoverMenu>
             </Dropdown>
           ))}
         </div>
@@ -67,7 +67,7 @@ const Page = () => {
             <DropdownToggle as={Button}>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
+            <PopoverMenu>
               {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
@@ -75,7 +75,7 @@ const Page = () => {
               ))}
               <DropdownDivider/>
               <DropdownItem>Logout</DropdownItem>
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>
@@ -85,14 +85,14 @@ const Page = () => {
             <DropdownToggle as={Button}>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
+            <PopoverMenu>
               {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
               ))}
               <DropdownItem active>Light Mode</DropdownItem>
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>
@@ -102,14 +102,14 @@ const Page = () => {
             <DropdownToggle as={Button}>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
+            <PopoverMenu>
               {DROPDOWN_OPTIONS.map(({label}) => (
                 <DropdownItem key={label}>
                   {label}
                 </DropdownItem>
               ))}
               <DropdownItem disabled>AEP (expired)</DropdownItem>
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>
@@ -119,7 +119,7 @@ const Page = () => {
             <DropdownToggle as={Button}>
               Dropdown
             </DropdownToggle>
-            <DropdownMenu>
+            <PopoverMenu>
               <DropdownHeader>
                 <div className="font-bold">
                   Bonnie Green
@@ -134,7 +134,7 @@ const Page = () => {
                   {label}
                 </DropdownItem>
               ))}
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>
@@ -147,14 +147,14 @@ const Page = () => {
                 return <Cog6ToothIcon {...props} className="mr-2 h-5 w-5"/>
               }}
             />
-            <DropdownMenu>
+            <PopoverMenu>
               {DROPDOWN_OPTIONS.map(({label, icon}) => (
                 <DropdownItem key={label}>
                   {icon}
                   {label}
                 </DropdownItem>
               ))}
-            </DropdownMenu>
+            </PopoverMenu>
           </Dropdown>
         </div>
       </Preview>

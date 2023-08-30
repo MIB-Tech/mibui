@@ -12,6 +12,7 @@ import {SpinnerPage} from './pages/Components/Spinner';
 import {DropdownPage} from './pages/Components/Dropdown';
 import {InputGroupPage, InputNumberPage, InputPage} from './pages/Forms';
 import {ModalPage} from './pages/Components/Modal';
+import {PopoverPage} from "./pages/Components/Popover";
 
 enum Lang {
   English = 'en'
@@ -89,6 +90,11 @@ export const router = createBrowserRouter([
             id: RouteEnum.ComponentsBadge,
             path: 'badge',
             element: <BadgePage />
+          },
+          {
+            id: RouteEnum.ComponentsPopover,
+            path: 'popover',
+            element: <PopoverPage />
           },
           {
             id: RouteEnum.ComponentsBreadcrumb,

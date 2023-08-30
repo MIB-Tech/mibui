@@ -4,7 +4,7 @@ import {twMerge} from 'tailwind-merge';
 import {DropdownDirection} from './Dropdown.types.tsx';
 
 
-const DropdownMenu: FC<MenuItemsProps<ElementType> & { direction?: DropdownDirection }> = (
+const  DropdownMenu: FC<MenuItemsProps<ElementType> & { direction?: DropdownDirection }> = (
   {
     className,
     direction,

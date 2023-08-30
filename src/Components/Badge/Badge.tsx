@@ -6,8 +6,8 @@ import XMarkIcon from "@heroicons/react/20/solid/XMarkIcon";
 import {twMerge} from "tailwind-merge";
 
 
-export const Badge: FC<BadgeProps> = ({
-                                          // outline,gt
+export const
+    Badge: FC<BadgeProps> = ({
                                           size,
                                           variant = ButtonVariant.Solid,
                                           color = ColorVariantEnum.Primary,
