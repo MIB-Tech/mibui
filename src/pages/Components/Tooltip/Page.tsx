@@ -48,6 +48,16 @@ const Page = () => {
           </Tooltip>
         ))}
       </Preview>
+      <Preview
+        title='Html content'
+        className='flex justify-center'
+      >
+        <Tooltip content={<><b>{`HTML `}</b> Tooltip content</>}>
+          <Button>
+            Default Tooltip
+          </Button>
+        </Tooltip>
+      </Preview>
     </div>
   );
 };
