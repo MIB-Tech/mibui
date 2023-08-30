@@ -1,6 +1,6 @@
 import {Button, Preview, Tooltip} from '../../../Components';
-import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.tsx';
 import {TooltipTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
+import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.utils.ts';
 
 const Page = () => {
   return (
