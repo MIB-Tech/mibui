@@ -39,6 +39,7 @@ const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>((
         input: {
           ...input,
           className: twMerge(
+            '',
             inputStyles.unstyled,
             input && 'className' in input && input.className
           ),

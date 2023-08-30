@@ -2,7 +2,7 @@ import {twMerge} from 'tailwind-merge';
 
 export const useInputStyles = () => {
   const unstyled = twMerge(
-    'focus:outline-none bg-white box-border flex-grow',
+    'focus:outline-none bg-white w-full',
     '[&.Mui-disabled]:opacity-80 [&.Mui-disabled]:ring-gray-300 [&.Mui-disabled]:cursor-not-allowed'
   )
 

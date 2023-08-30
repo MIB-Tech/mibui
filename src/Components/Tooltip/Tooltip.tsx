@@ -1,54 +1,64 @@
-import React, {FC} from 'react';
-import {Unstable_Popup as Popup} from '@mui/base/Unstable_Popup';
-import {ClickAwayListener} from '@mui/base/ClickAwayListener';
-import {TooltipType} from './Tooltip.types.tsx';
-import {twMerge} from "tailwind-merge";
-import {useVariantStyles} from "../../hooks/UseVariantStyles.ts";
+import {cloneElement, FC, HTMLAttributes, useMemo, useState} from 'react';
+import {TooltipProps} from './Tooltip.types.tsx';
+import {Popup} from '@mui/base/Unstable_Popup/Popup';
+import {ClickAwayListener, PopupPlacement} from '@mui/base';
+import {twMerge} from 'tailwind-merge';
 
-const Tooltip: FC<TooltipType> = ({
-                                      children,
-                                      content,
-                                      placement,
-                                      color,
-                                      variant,
-                                      ...props
-                                  }) => {
-    const classNames = useVariantStyles({color, variant});
-    const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
+export const POPUP_PLACEMENTS: PopupPlacement[] = [
+  'top', 'right', 'bottom', 'left',
+  'top-start', 'right-start', 'bottom-start', 'left-start',
+  'top-end', 'right-end', 'bottom-end', 'left-end',
+];
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchor(anchor ? null : event.currentTarget);
-    };
-    const handleClickAway = () => {
-        setAnchor(null);
-    };
+const Tooltip: FC<TooltipProps> = ({children, trigger = 'hover', disableArrow, content, ...props}) => {
+  // const {placement} = props;
+  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const open = Boolean(anchor);
 
-    const open = Boolean(anchor);
-    const id = open ? 'simple-popper' : undefined;
+  const child = useMemo(() => {
+    const childProps = {...props};
+    if (trigger === 'click') {
+      childProps.onClick = e => setAnchor(anchor ? null : e.currentTarget);
+    } else {
+      childProps.onMouseEnter = e => setAnchor(e.currentTarget);
+      childProps.onMouseLeave = () => setAnchor(null);
+    }
 
-    return (
-        <ClickAwayListener onClickAway={handleClickAway}>
-            <div>
-                <span aria-describedby={id} onClick={handleClick}>
-                    {children}
-                </span>
-                <Popup id={id}
-                       open={open}
-                       anchor={anchor}
-                       placement={placement}>
-                    <div className={twMerge(
-                            'p-1',
-                            classNames.background,
-                            classNames.text,
-                            props.className
-                        )}
-                         {...props}>
-                        {content}
-                    </div>
-                </Popup>
-            </div>
+    return cloneElement<HTMLAttributes<HTMLDivElement>>(children, childProps);
+  }, [children, props, trigger, anchor]);
+
+  return (
+    <>
+      {child}
+      <Popup
+        {...props}
+        open={open}
+        anchor={anchor}
+        className={twMerge(
+          'z-10 rounded text-sm px-3 py-2 border border-solid border-gray-200 shadow-md bg-white',
+          !disableArrow && 'relative'
+        )}
+        offset={5}
+      >
+        <ClickAwayListener
+          onClickAway={() => {
+            if (open) {
+              setAnchor(null);
+            }
+          }}
+        >
+          <div>
+            {content}
+            {/*{!disableArrow && (*/}
+            {/*  <TooltipArrow placement={placement}/>*/}
+            {/*)}*/}
+          </div>
         </ClickAwayListener>
-    );
-}
+      </Popup>
 
-export default Tooltip
+    </>
+  )
+    ;
+};
+
+export default Tooltip;

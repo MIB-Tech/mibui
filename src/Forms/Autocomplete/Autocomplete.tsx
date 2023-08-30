@@ -51,11 +51,14 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
           root: getRootProps(),
           input: {
             ...getInputProps(),
-            className: ''
+            className: 'w-auto',
+            style:{
+              maxWidth: '-webkit-fill-available'
+            }
           }
         }}
         size={size}
-        className='group  flex-wrap items-center gap-2'
+        className='group flex-wrap items-center gap-2'
         startAdornment={multiple && Array.isArray(value) && value.map((option, index) => {
           const {onDelete, ...tagProps} = getTagProps({index});
 
