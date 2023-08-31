@@ -4,6 +4,7 @@ import {Spinner} from '../Spinner';
 import {twMerge} from 'tailwind-merge';
 import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
 import {useSizing} from '../../hooks/UseSizing.ts';
+import {Button as MuiButton} from '@mui/base';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   {
@@ -38,8 +39,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
     }
   }, [icon, size, sizing.padding])
 
+
   return (
-    <button
+    <MuiButton
       ref={ref}
       type="button"
       {...props}
@@ -47,14 +49,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
       className={twMerge(
         spacingClassName,
         loading && 'relative',
-        `rounded font-semibold`,
+        `rounded font-medium`,
         variantStyles.background,
         variantStyles.text,
-        disabled ? `cursor-not-allowed opacity-60` : variantStyles.hover,
+        !disabled && variantStyles.hover,
         active && variantStyles.active,
         sizing.text,
         outline && variantStyles.outline,
-        props.className
+        props.className,
+        // Mui state
+        '[&.Mui-disabled]:cursor-not-allowed [&.Mui-disabled]:opacity-60',
+        // `[&.Mui-active]:${variantStyles.outline}`,
       )}
     >
       {loading && (
@@ -66,7 +71,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
         </div>
       )}
       {children}
-    </button>
+    </MuiButton>
   )
 })
 

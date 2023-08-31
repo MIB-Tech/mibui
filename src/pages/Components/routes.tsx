@@ -50,7 +50,7 @@ const ROUTES: RouteObject = {
     },
     {
       id: RouteEnum.ComponentsDropdown,
-      path: 'dropdown',
+      path: 'menu',
       element: <DropdownPage/>
     },
     {

@@ -1,107 +1,103 @@
-import {
-  Button,
-  Dropdown,
-  DropdownDivider,
-  DropdownItem,
-  DropdownToggle,
-  Preview
-} from '../../../Components';
-import {DropdownDirection} from '../../../Components/Dropdown/Dropdown.types.tsx';
-import {Cog6ToothIcon} from '@heroicons/react/24/solid';
-import DropdownHeader from '../../../Components/Dropdown/Dropdown.Header.tsx';
+import {Menu, MenuButton, MenuDivider, MenuHeader, MenuItem, MenuMenu, MenuToggle, Preview} from '../../../Components';
 import {DropdownOptions} from './DropdownOptions.tsx';
-import DropdownMenu from "../../../Components/Dropdown/Dropdown.Menu.tsx";
 
 const Page = () => {
 
   return (
-    <div className="flex flex-col gap-12">
-      <Preview title="Default" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle as={Button}>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
+    <div className='flex flex-col gap-12'>
+      <Preview title='Basic' className='flex justify-center'>
+        <Menu>
+          <MenuButton>
+            Menu
+          </MenuButton>
+          <MenuMenu>
             <DropdownOptions/>
-          </DropdownMenu>
-        </Dropdown>
+          </MenuMenu>
+        </Menu>
       </Preview>
-      <Preview title="Direction" className="flex justify-center gap-2">
-        {(Object.values(DropdownDirection) as DropdownDirection[]).map(direction => (
-          <Dropdown key={direction}>
-            <DropdownToggle as={Button} className="capitalize">
-              {direction}
-            </DropdownToggle>
-            <DropdownMenu direction={direction}>
-              <DropdownOptions/>
-            </DropdownMenu>
-          </Dropdown>
-        ))}
-      </Preview>
-      <Preview title="Divider" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle as={Button}>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
+      {/*<Preview title="Placement" className="flex justify-center flex-wrap gap-2">*/}
+      {/*  {POPUP_PLACEMENTS.map(placement => (*/}
+      {/*    <Menu key={placement}>*/}
+      {/*      <MenuButton>*/}
+      {/*        Dropdown*/}
+      {/*      </MenuButton>*/}
+      {/*      <MenuMenu>*/}
+      {/*        <DropdownOptions/>*/}
+      {/*      </MenuMenu>*/}
+      {/*    </Menu>*/}
+      {/*  ))}*/}
+      {/*</Preview>*/}
+      <Preview title='Divider' className='flex justify-center'>
+        <Menu>
+          <MenuButton>
+            Menu
+          </MenuButton>
+          <MenuMenu>
             <DropdownOptions/>
-            <DropdownDivider/>
-            <DropdownItem>Logout</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+            <MenuDivider/>
+            <MenuItem>Logout</MenuItem>
+          </MenuMenu>
+        </Menu>
       </Preview>
-      <Preview title="Active Option" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle as={Button}>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
+      <Preview title='Active Option' className='flex justify-center'>
+        <Menu>
+          <MenuButton>
+            Menu
+          </MenuButton>
+          <MenuMenu>
             <DropdownOptions/>
-            <DropdownItem active>Light Mode</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+            <MenuItem active>Light Mode</MenuItem>
+          </MenuMenu>
+        </Menu>
       </Preview>
-      <Preview title="Disabled Option" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle as={Button}>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
+      <Preview title='Disabled Option' className='flex justify-center'>
+        <Menu>
+          <MenuButton>
+            Menu
+          </MenuButton>
+          <MenuMenu>
             <DropdownOptions/>
-            <DropdownItem disabled>AEP (expired)</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+            <MenuItem disabled>AEP (expired)</MenuItem>
+          </MenuMenu>
+        </Menu>
       </Preview>
-      <Preview title="With Header" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle as={Button}>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownHeader>
+      <Preview title='Toggle icon' className='flex justify-center'>
+        <Menu>
+          <MenuButton withToggleIcon>
+            Menu
+          </MenuButton>
+          <MenuMenu>
+            <DropdownOptions/>
+          </MenuMenu>
+        </Menu>
+      </Preview>
+      <Preview title='Header' className='flex justify-center'>
+        <Menu>
+          <MenuButton>
+            Menu
+          </MenuButton>
+          <MenuMenu>
+            <MenuHeader>
               <div className='font-bold'>
                 Elfannir Abderrahmane
               </div>
               <a href='#' className='truncate text-sm font-medium hover:text-primary-500 hover:underline'>
                 a.elfannir@mibtech.ma
               </a>
-            </DropdownHeader>
+            </MenuHeader>
             <DropdownOptions/>
-          </DropdownMenu>
-        </Dropdown>
+          </MenuMenu>
+        </Menu>
       </Preview>
-      <Preview title="Customer Toggle" className="flex justify-center">
-        <Dropdown>
-          <DropdownToggle
-            as={(props, context) => {
-              console.log(context)
-              return <Cog6ToothIcon {...props} className="mr-2 h-5 w-5"/>
-            }}
-          />
-          <DropdownMenu>
+      <Preview title='Customer Toggle' className='flex justify-center'>
+        <Menu>
+          <MenuToggle slots={{root: 'a'}}>
+            Custom toggler
+          </MenuToggle>
+          <MenuMenu>
             <DropdownOptions/>
-          </DropdownMenu>
-        </Dropdown>
+          </MenuMenu>
+        </Menu>
       </Preview>
     </div>
   )

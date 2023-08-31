@@ -1,11 +1,10 @@
-import {Button, Dropdown, DropdownToggle, Preview} from '../../../Components';
+import {Button, Menu, MenuMenu, MenuToggle, Preview} from '../../../Components';
 import {Input, InputGroup, InputGroupAddon} from '../../../Forms';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import Icon from '../../../Components/SvgIcon/Icon.tsx';
 import {DropdownOptions} from '../../Components/Dropdown/DropdownOptions.tsx';
-import {DropdownDirection} from '../../../Components/Dropdown/Dropdown.types.tsx';
+import {DropdownDirection} from '../../../Components/Menu/Menu.types.tsx';
 import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
-import DropdownMenu from "../../../Components/Dropdown/Dropdown.Menu.tsx";
 
 
 const Page = () => {
@@ -60,44 +59,44 @@ const Page = () => {
           <Button>Action</Button>
         </InputGroup>
       </Preview>
-      <Preview title="Button with dropdowns" className="flex flex-col gap-2">
+      <Preview title="Button with menus" className="flex flex-col gap-2">
         <InputGroup>
-          <Dropdown>
-            <DropdownToggle as={Button} className='rounded-none rounded-s'>
+          <Menu>
+            <MenuToggle className='rounded-none rounded-s'>
               Dropdown
-            </DropdownToggle>
-            <DropdownMenu direction={DropdownDirection.ButtonStart}>
+            </MenuToggle>
+            <MenuMenu direction={DropdownDirection.ButtonStart}>
               <DropdownOptions/>
-            </DropdownMenu>
-          </Dropdown>
+            </MenuMenu>
+          </Menu>
           <Input placeholder='Search...'/>
         </InputGroup>
         <InputGroup>
-          <Dropdown>
-            <DropdownToggle as={Button} className='rounded-none rounded-s'>
+          <Menu>
+            <MenuToggle className='rounded-none rounded-s'>
               Dropdown
-            </DropdownToggle>
-            <DropdownMenu>
+            </MenuToggle>
+            <MenuMenu>
               <DropdownOptions/>
-            </DropdownMenu>
-          </Dropdown>
+            </MenuMenu>
+          </Menu>
           <Input placeholder='Search...'/>
-          <Dropdown>
-            <DropdownToggle as={Button} className='rounded-none'>
+          <Menu>
+            <MenuToggle className='rounded-none'>
               Dropdown
-            </DropdownToggle>
-            <DropdownMenu direction={DropdownDirection.ButtonEnd}>
+            </MenuToggle>
+            <MenuMenu direction={DropdownDirection.ButtonEnd}>
               <DropdownOptions/>
-            </DropdownMenu>
-          </Dropdown>
-          <Dropdown>
-            <DropdownToggle as={Button} className='rounded-none rounded-e'>
+            </MenuMenu>
+          </Menu>
+          <Menu>
+            <MenuToggle className='rounded-none rounded-e'>
               Dropdown
-            </DropdownToggle>
-            <DropdownMenu direction={DropdownDirection.ButtonEnd}>
+            </MenuToggle>
+            <MenuMenu direction={DropdownDirection.ButtonEnd}>
               <DropdownOptions/>
-            </DropdownMenu>
-          </Dropdown>
+            </MenuMenu>
+          </Menu>
         </InputGroup>
       </Preview>
     </div>

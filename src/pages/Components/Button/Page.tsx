@@ -9,7 +9,7 @@ const Page = () => {
     <div>
       <div className='flex flex-col gap-12'>
         {VARIANTS.map(variant => (
-          <Preview key={variant} title={variant} className='capitalize'>
+          <Preview key={variant} title={variant}>
             <div className='flex justify-center gap-2'>
               {COLORS.map(color => (
                 <Button
@@ -25,7 +25,7 @@ const Page = () => {
           </Preview>
         ))}
 
-        <Preview title="Outline" className="capitalize">
+        <Preview title="Outline">
           <div className="flex justify-center gap-2">
             {VARIANTS.map(variant => (
               <Button
@@ -40,7 +40,7 @@ const Page = () => {
           </div>
         </Preview>
 
-        <Preview title='Sizing' className='capitalize'>
+        <Preview title='Sizing'>
           <div className='flex items-center justify-center gap-2'>
             {SIZING.map(size => (
               <Button key={size} size={size}>
@@ -49,7 +49,7 @@ const Page = () => {
             ))}
           </div>
         </Preview>
-        <Preview title='Disbaled' className='capitalize'>
+        <Preview title='Disbaled'>
           <div className='flex justify-center gap-2'>
             {VARIANTS.map(variant => (
               <Button
@@ -63,14 +63,14 @@ const Page = () => {
             ))}
           </div>
         </Preview>
-        <Preview title="Active" className="capitalize">
+        <Preview title="Active">
           <div className="flex items-center justify-center gap-2">
             <Button active>
               Active
             </Button>
           </div>
         </Preview>
-        <Preview title="Loading" className="capitalize">
+        <Preview title="Loading">
           <div className="flex items-center justify-center gap-2">
             <Button className="capitalize" loading>
               Loading

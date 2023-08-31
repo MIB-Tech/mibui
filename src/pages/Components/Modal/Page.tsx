@@ -5,13 +5,12 @@ import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
 
 const Page: React.FC = () => {
 
-
   return (
     <div className='flex flex-col gap-12'>
-      <Preview title={'Default '} className='capitalize'>
+      <Preview title='Default'>
         <ModalExample/>
       </Preview>
-      <Preview title={'Sizing'} className='capitalize'>
+      <Preview title='Sizing'>
         <div className='flex items-center justify-center gap-2'>
           {SIZING.map(size => (
             <ModalExample

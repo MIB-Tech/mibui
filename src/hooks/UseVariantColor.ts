@@ -31,17 +31,17 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
           getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
           ;
       case 'clean':
-        return soft;
+        return 'gray-50';
     }
-  }, [color, soft, variant]);
+  }, [color, variant]);
 
   const text = useMemo<string>(() => {
     return variant === 'solid' ? 'white' : solid;
   }, [solid, variant]);
 
   const activeBackground = useMemo<string>(() => {
-    return hoverBackground;
-  }, [hoverBackground]);
+    return variant === 'clean' ? 'gray-100' : hoverBackground;
+  }, [hoverBackground, variant]);
 
   const outline = useMemo<string>(() => {
     switch (variant) {

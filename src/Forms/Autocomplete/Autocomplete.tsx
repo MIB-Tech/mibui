@@ -13,7 +13,7 @@ import {defaultGetOptionLabel} from './Autocomplete.utils.tsx';
 import {AutocompleteListbox} from './Autocomplete.Listbox.tsx';
 
 const Autocomplete = <Value, Multiple extends boolean | undefined>(
-  {renderOption, renderListbox, ...props}: AutocompleteProps<Value, Multiple>
+  {renderOption, renderListbox, searchDisabled, ...props}: AutocompleteProps<Value, Multiple>
 ) => {
   const {
     getRootProps,
@@ -46,7 +46,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
       <Input
         placeholder={placeholder}
         disabled={disabled}
-        readOnly={readOnly}
+        readOnly={searchDisabled || readOnly}
         slotProps={{
           root: getRootProps(),
           input: {
@@ -54,7 +54,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
             className: 'w-auto',
             style:{
               maxWidth: '-webkit-fill-available'
-            }
+            },
           }
         }}
         size={size}

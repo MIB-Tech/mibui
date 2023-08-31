@@ -525,12 +525,13 @@ const Page = () => {
       </Preview>
       <Preview
         title='Features'
-        className='grid grid-cols-4 gap-5'
+        className='grid grid-cols-5 gap-5'
       >
         <Autocomplete {...defaultProps} clearOnBlur placeholder='clearOnBlur'/>
         <Autocomplete {...defaultProps} clearOnEscape placeholder='clearOnEscape'/>
         <Autocomplete {...defaultProps} disableCloseOnSelect placeholder='disableCloseOnSelect'/>
         <Autocomplete {...defaultProps} filterSelectedOptions placeholder='filterSelectedOptions'/>
+        <Autocomplete {...defaultProps} searchDisabled placeholder='searchDisabled'/>
       </Preview>
       <Preview
         title='Sizing'
