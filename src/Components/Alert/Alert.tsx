@@ -31,6 +31,7 @@ const Alert: FC<AlertProps> = (
         `p-4 rounded flex items-start`,
         classNames.background,
         classNames.text,
+        variant === 'clean' && classNames.outline,
         props.className
       )}
       role='alert'
