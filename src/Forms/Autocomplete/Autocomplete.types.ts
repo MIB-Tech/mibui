@@ -7,6 +7,7 @@ export type AutocompleteProps<
   Value,
   Multiple extends boolean | undefined = false
 > = {
+  searchDisabled?: boolean,
   renderOption?: (props: HTMLAttributes<HTMLLIElement>, option: Value) => ReactNode
   renderListbox?: (props: Pick<UseAutocompleteReturnValue<Value>, 'getListboxProps' |'groupedOptions' | 'getOptionProps'>) => ReactNode
 } & UseAutocompleteProps<Value, Multiple, false, false>
