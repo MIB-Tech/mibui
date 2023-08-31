@@ -12,6 +12,7 @@ import {SpinnerPage} from './Spinner';
 import {ToastPage} from './Toast';
 import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
+import {PopoverPage} from "./Popover";
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -76,6 +77,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsTooltip,
       path: 'tooltip',
       element: <TooltipPage/>
+    },
+    {
+      id: RouteEnum.ComponentsPopover,
+      path: 'popover',
+      element: <PopoverPage/>
     },
   ]
 };

@@ -1,5 +1,5 @@
 import {Button, Preview, Tooltip} from '../../../Components';
-import {TooltipTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
+import {PopupTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
 import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.utils.ts';
 
 const Page = () => {
@@ -36,7 +36,7 @@ const Page = () => {
         title='Trigger'
         className='flex justify-center gap-2'
       >
-        {(['click', 'hover'] as TooltipTrigger[]).map(trigger => (
+        {(['click', 'hover'] as PopupTrigger[]).map(trigger => (
           <Tooltip
             key={trigger}
             content='Tooltip content'
