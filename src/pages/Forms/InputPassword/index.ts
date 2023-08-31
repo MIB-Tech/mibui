@@ -1,0 +1,1 @@
+export {default as InputPasswordPage} from './InputPasswordPage.tsx'

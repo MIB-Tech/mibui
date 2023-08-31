@@ -1,66 +1,61 @@
-import * as React from 'react';
-import { Unstable_Popup as Popup} from "@mui/base";
-import { Button } from "../Button";
-import { FC, MouseEvent } from "react";
-import { PopupOwnProps } from "@mui/base";
+import {cloneElement, FC, HTMLAttributes, useMemo, useState} from 'react';
+import {Popup} from '@mui/base/Unstable_Popup/Popup';
+import {ClickAwayListener} from '@mui/base';
+import {twMerge} from 'tailwind-merge';
+import {PopoverProps} from "./Popover.types.tsx";
 
-// Define a custom PopupBody component
-const PopupBody: FC = ({ children }) => {
-    return (
-        <div className="popup-body">
-            {children}
-        </div>
-    );
-};
+const Popover: FC<PopoverProps> = ({
+                                       children,
+                                       trigger ='click',
+                                       content,
+                                       ...props}) => {
 
-interface PopProps extends PopupOwnProps {
-    trigger: 'click' | 'mouseenter';
-    Content : string ;
-    Title :string ;
-}
-
-export const Popover: FC<PopProps> = ({
-                                          placement,
-                                          trigger,
-                                          Content,
-                                          Title,
-                                          children,
-                                          ...props
-                                      }) => {
-    const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
-
-    const handleClick = (event: MouseEvent<HTMLElement>) => {
-        if (trigger === 'click') {
-            setAnchor(anchor ? null : event.currentTarget);
-        }
-    };
-
-    const handleMouseEnter = (event: MouseEvent<HTMLElement>) => {
-        if (trigger === 'mouseenter') {
-            setAnchor(anchor ? null : event.currentTarget);
-        }
-    };
-
+    const [anchor, setAnchor] = useState<HTMLElement | null>(null);
     const open = Boolean(anchor);
 
-    return (
-        <div>
-            <Button
-                onClick={handleClick}
-                onMouseEnter={handleMouseEnter}
-            >
-                {Title}
-            </Button>
+    const child = useMemo(() => {
+        const childProps = {...props};
+        if (trigger === 'click') {
+            childProps.onClick = e => setAnchor(anchor ? null : e.currentTarget);
+        } else {
+            childProps.onMouseEnter = e => setAnchor(e.currentTarget);
+            childProps.onMouseLeave = () => setAnchor(null);
+        }
 
+        return cloneElement<HTMLAttributes<HTMLDivElement>>(children, childProps);
+    }, [children, props, trigger, anchor]);
+
+    return (
+        <>
+            {child}
             <Popup
+                {...props}
                 open={open}
                 anchor={anchor}
-                placement={placement}
-                className="bg-white"
-                {...props}
+                className={twMerge(
+                    'z-10 rounded text-sm px-3 py-2 border border-solid border-gray-200 shadow-md bg-white',
+                    // !disableArrow && 'relative'
+                )}
             >
-                <PopupBody>{Content}</PopupBody>
+                <ClickAwayListener
+                    onClickAway={() => {
+                        if (open) {
+                            setAnchor(null);
+                        }
+                    }}
+                >
+                    <div>
+                        {content}
+                        {/*{!disableArrow && (*/}
+                        {/*  <PopupArrow placement={placement}/>*/}
+                        {/*)}*/}
+                    </div>
+                </ClickAwayListener>
             </Popup>
-        </div>
-    );
+
+        </>
+    )
+        ;
 };
+
+export default Popover;

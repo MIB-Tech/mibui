@@ -1,41 +1,55 @@
-import {Preview} from "../../../Components";
-import {Popover} from "../../../Components/Popover/Popover.tsx";
+import {Button, Preview} from "../../../Components";
+import {Popover} from "../../../Components/Popover";
+import {PopoverTrigger, POPUP_PLACEMENTS} from "../../../Components/Popover/Popover.types.tsx";
 
 const Page = () => {
-
-    const directions = ['bottom-start', 'bottom', 'bottom-end', 'right-start', 'right', 'right-end', 'left-start', 'left', 'left-end', 'top', 'top-start', 'top-end'];
-
     return (
-        <>
-            <div className="flex flex-col gap-12">
-                <Preview title="Default">
-                    <div className="flex justify-center">
+        <div className='flex flex-col gap-12'>
+            <Preview
+                title='Default'
+                className='flex justify-center'
+            >
+                <Popover content='Popover content'>
+                    <Button>
+                        Default
+                    </Button>
+                </Popover>
+            </Preview>
+            <Preview
+                title='Placement'
+                className='grid grid-cols-4 gap-2'
+            >
+                {POPUP_PLACEMENTS.map(placement => (
+                    <div key={placement}>
                         <Popover
-                            trigger={"mouseenter"}
-                            Content={"Popup content"}
-                            Title={"Default Popup"}
-                        />
+                            content='Popover content'
+                            placement={placement}
+                        >
+                            <Button className='capitalize'>
+                                {placement.replace('-',' ')}
+                            </Button>
+                        </Popover>
                     </div>
-                </Preview>
-            </div>
-            <div className="flex flex-col gap-12">
-                <Preview title="direction">
-                    <div className="flex flex-col gap-12">
-                        {directions.map(placement => (
-                            <Popover
-                                key={placement}
-                                placement={placement}
-                                trigger={"mouseenter"}
-                                Title={placement}
-                                Content={"Popup content"}
-                            />
-
-                        ))}
-                    </div>
-                </Preview>
-            </div>
-        </>
+                ))}
+            </Preview>
+            <Preview
+                title='Trigger'
+                className='flex justify-center gap-2'
+            >
+                {(['click', 'hover'] as PopoverTrigger[]).map(trigger => (
+                    <Popover
+                        key={trigger}
+                        content='Popover content'
+                        trigger={trigger}
+                    >
+                        <Button className='capitalize'>
+                            {trigger}
+                        </Button>
+                    </Popover>
+                ))}
+            </Preview>
+        </div>
     );
-}
+};
 
-export default Page;
+export default Page

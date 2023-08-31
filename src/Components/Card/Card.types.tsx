@@ -1,7 +1,7 @@
 import {HTMLAttributes, ReactNode} from 'react';
 
 
-export type PropsType = {
+export type CardProps = {
   header?: ReactNode
   footer?: ReactNode
 } & HTMLAttributes<HTMLDivElement>

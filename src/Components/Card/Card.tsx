@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import {PropsType} from './Card.types.tsx';
+import {CardProps} from './Card.types.tsx';
 import {twMerge} from 'tailwind-merge';
 
-const Card: FC<PropsType> = ({header, footer, children, className, ...props}) => {
+const Card: FC<CardProps> = ({header, footer, children, className, ...props}) => {
 
 
   return (

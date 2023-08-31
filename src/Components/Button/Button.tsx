@@ -1,15 +1,9 @@
 import {forwardRef, useMemo} from 'react';
-import {ButtonProps, ButtonVariant, ColorVariantEnum, SizeEnum} from './Button.types.tsx';
-import {
-  getColorClassName,
-  getOutlineClassName,
-  getSoftColor,
-  getSolidColor,
-  SOFT_WEIGHT,
-  SOLID_WEIGHT
-} from './Button.utils.tsx';
+import {ButtonProps} from './Button.types.tsx';
 import {Spinner} from '../Spinner';
 import {twMerge} from 'tailwind-merge';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
+import {useSizing} from '../../hooks/UseSizing.ts';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   {
@@ -18,64 +12,31 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
     children,
     active,
     size,
-    variant = ButtonVariant.Solid,
+    variant = 'solid',
     icon,
-    color = ColorVariantEnum.Primary,
+    color = 'primary',
     ...props
   },
   ref
 ) => {
+  const variantStyles = useVariantStyles({color, variant});
+  const sizing = useSizing(size);
   const disabled = props.disabled || loading;
-  const solidColor = getSolidColor(color)
-  const softColor = getSoftColor(color)
-
-  const bgColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Solid:
-        return solidColor
-      case ButtonVariant.Soft:
-        return softColor
-      case ButtonVariant.Clean:
-        return 'white'
-    }
-  }, [solidColor, softColor, variant])
-
-  const hoverBgColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Solid:
-        return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: SOLID_WEIGHT + 100})
-      case ButtonVariant.Soft:
-        return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: SOFT_WEIGHT + 100})
-      case ButtonVariant.Clean:
-        return softColor
-    }
-  }, [color, softColor, variant])
-
-  const textColor = useMemo<string>(() => {
-    return variant === ButtonVariant.Solid ? 'white' : solidColor;
-  }, [solidColor, variant])
 
   const spacingClassName = useMemo<string>(() => {
     if (icon) {
       switch (size) {
-        case SizeEnum.Small:
-          return `p-[4px]`
-        case SizeEnum.Large:
-          return `p-[8px]`
+        case 'sm':
+          return `p-[4px]`;
+        case 'lg':
+          return `p-[8px]`;
         default:
-          return `p-[6px]`
+          return `p-[6px]`;
       }
     } else {
-      switch (size) {
-        case SizeEnum.Small:
-          return `px-[8px] py-[4px]`
-        case SizeEnum.Large:
-          return `px-[12px] py-[8px]`
-        default:
-          return `px-[10px] py-[6px]`
-      }
+      return sizing.padding
     }
-  }, [size, icon])
+  }, [icon, size, sizing.padding])
 
   return (
     <button
@@ -86,11 +47,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
       className={twMerge(
         spacingClassName,
         loading && 'relative',
-        `rounded font-semibold bg-${bgColor} text-${textColor}`,
-        disabled ? `cursor-not-allowed opacity-60` : `hover:bg-${hoverBgColor}`,
-        active && `bg-${hoverBgColor}`,
-        size && `text-${size}`,
-        outline && getOutlineClassName({color, variant}),
+        `rounded font-semibold`,
+        variantStyles.background,
+        variantStyles.text,
+        disabled ? `cursor-not-allowed opacity-60` : variantStyles.hover,
+        active && variantStyles.active,
+        sizing.text,
+        outline && variantStyles.outline,
         props.className
       )}
     >

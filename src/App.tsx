@@ -1,10 +1,11 @@
-import './App.css'
+import './App.css';
 import {TopHeader} from './Layouts/Dashboard/TopHeader.tsx';
 import {HeaderMenu} from './Layouts/Dashboard/HeaderMenu.tsx';
 import {NavLink, Outlet} from 'react-router-dom';
 import {Trans} from 'react-i18next';
 import {useActiveRouteContext} from './hooks/UseActiveRouteContext.tsx';
 import {twMerge} from 'tailwind-merge';
+import {Toaster} from 'react-hot-toast';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <Toaster/>
       <TopHeader/>
       <HeaderMenu/>
       <div className="max-w-[85%] mx-auto my-5">

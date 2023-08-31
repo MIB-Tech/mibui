@@ -1,82 +1,62 @@
-import {ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from "../Button/Button.types.tsx";
-import {FC, useMemo} from "react";
-import {BadgeProps} from "./Badge.types.ts";
-import {getColorClassName, SOFT_WEIGHT, SOLID_WEIGHT} from "../Button/Button.utils.tsx";
-import XMarkIcon from "@heroicons/react/20/solid/XMarkIcon";
-import {twMerge} from "tailwind-merge";
+import {FC, useMemo} from 'react';
+import {BadgeProps} from './Badge.types.ts';
+import {XMarkIcon} from '@heroicons/react/20/solid';
+import {twMerge} from 'tailwind-merge';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
+import {Icon} from '../SvgIcon';
 
 
-export const
-    Badge: FC<BadgeProps> = ({
-                                          size,
-                                          variant = ButtonVariant.Solid,
-                                          color = ColorVariantEnum.Primary,
-                                          onClose,
-                                          className,
-                                          children,
-                                          ...props
-                                      }) => {
+const Badge: FC<BadgeProps> = (
+  {
+    size,
+    variant,
+    color,
+    closable,
+    onClose,
+    outline,
+    children,
+    ...props
+  }
+) => {
+  const variantStyles = useVariantStyles({color, variant});
 
-    const hardColorWeight = WeightEnum.W500;
-    const softColorWeight = WeightEnum.W100;
-    const hardColor = getColorClassName({color, weight: hardColorWeight});
-    const softColor = color === ColorVariantEnum.Black ? 'gray-300' : getColorClassName({color, weight: softColorWeight})
-
-    const bgColor = useMemo<string>(() => {
-        switch (variant) {
-            case ButtonVariant.Solid:
-                return hardColor
-            case ButtonVariant.Soft:
-                return softColor
-            case ButtonVariant.Clean:
-                return 'white'
-        }
-    }, [hardColor, softColor, variant])
-
-    const textColor = useMemo<string>(() => {
-        return variant === ButtonVariant.Solid ? 'white' : hardColor;
-    }, [hardColor, variant])
-
-    const spacingClassName = useMemo<string>(() => {
-        switch (size) {
-            case SizeEnum.Small:
-                return `text-xs px-1.5 py-0.5`
-            case SizeEnum.Large:
-                return `px-3 py-1`
-            default:
-                return `text-sm px-2.5 py-0.5`
-        }
-    }, [size])
-
-    const hoverBgColor = useMemo<string>(() => {
-        switch (variant) {
-            case ButtonVariant.Solid:
-                return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: SOLID_WEIGHT + 100})
-            case ButtonVariant.Soft:
-                return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: SOFT_WEIGHT + 100})
-            case ButtonVariant.Clean:
-                return softColor
-        }
-    }, [color, softColor, variant])
+  const spacingClassName = useMemo<string>(() => {
+    switch (size) {
+      case 'sm':
+        return `text-xs px-1`;
+      case 'lg':
+        return `text-base gap-1 px-2.5`;
+      default:
+        return `text-sm gap-0.5 px-2`;
+    }
+  }, [size]);
 
 
-    return (
-        <span
-            {...props}
-            className={twMerge(
-                `inline-flex items-center justify-center rounded bg-${bgColor} ${spacingClassName} text-${textColor}`,
-                className
-            )}
-        >
-            {children}
-            {onClose && (
-                <XMarkIcon
-                    className={`w-4 h-4 ml-1 rounded hover:bg-${hoverBgColor} cursor-pointer`}
-                    onClick={onClose}
-                />
-            )}
-        </span>
-    );
+  return (
+    <span
+      {...props}
+      className={twMerge(
+        `flex items-center justify-center rounded-sm`,
+        variantStyles.background,
+        variantStyles.text,
+        spacingClassName,
+        outline && variantStyles.outline,
+        props.className
+      )}
+    >
+      <div className='truncate'>
+        {children}
+      </div>
+      {closable && (
+        <Icon
+          icon={XMarkIcon}
+          onClick={onClose}
+          className='cursor-pointer'
+        />
+      )}
+    </span>
+  );
 };
 
+export default Badge;
 

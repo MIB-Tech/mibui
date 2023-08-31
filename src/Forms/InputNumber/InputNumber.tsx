@@ -1,96 +1,81 @@
-import {forwardRef, useImperativeHandle, useMemo, useRef} from 'react';
+import {forwardRef} from 'react';
 import {InputNumberProps} from './InputNumber.types.ts';
-import Input from '../Input/Input.tsx';
-import {Button} from '../../Components';
-import {ButtonVariant, SizeEnum} from '../../Components/Button/Button.types.tsx';
 import {MinusIcon, PlusIcon} from '@heroicons/react/20/solid';
-import {InputGroup} from '../InputGroup';
-import {twMerge} from 'tailwind-merge';
+import {AdornmentIconButton} from '../InputGroup/AdornmentIconButton.tsx';
+import {Input} from '../Input';
+import {unstable_useNumberInput as useNumberInput} from '@mui/base';
+import {unstable_useForkRef as useForkRef} from '@mui/utils';
 
+const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
+  {
+    size,
+    shiftMultiplier,
+    ...props
+  },
+  ref
+) => {
+  const {
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    getInputProps,
+    getRootProps
+  } = useNumberInput({
+    shiftMultiplier,
+    ...props
+  });
 
-const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(({...props}, ref) => {
-  const {min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER, value, step = 1, size} = props
-  const internalRef = useRef<HTMLInputElement>(null);
-
-  useImperativeHandle(ref, () => internalRef.current as HTMLInputElement, []);
-
-  const changeable = (value: number) => {
-
-    return value >= min && value <= max
-  }
-
-  const buttonClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `mx-2 p-[0.5px]`
-      case SizeEnum.Large:
-        return `mx-4 p-[6px]`
-      default:
-        return `mx-3 p-[4px]`
-    }
-  }, [size])
-
-  const inputClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `px-6`
-      case SizeEnum.Large:
-        return `px-16`
-      default:
-        return `px-11`
-    }
-  }, [size])
-
-  const iconClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `w-3 h-3`
-      case SizeEnum.Large:
-        return `w-5 h-5`
-      default:
-        return `w-4 h-4`
-    }
-  }, [size])
+  const inputProps = getInputProps();
+  inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <InputGroup
-      leading={(
-        <Button
-          variant={ButtonVariant.Soft}
-          size={SizeEnum.Small}
-          icon
-          disabled={!!value && changeable(value - step)}
-          onClick={()=> internalRef.current?.stepDown()}
-          className={buttonClassName}
-        >
-          <MinusIcon className={iconClassName}/>
-        </Button>
-      )}
-      trailing={(
-        <Button
-          variant={ButtonVariant.Soft}
-          size={SizeEnum.Small}
-          icon
-          disabled={!!value && !changeable(value + step)}
-          onClick={()=> internalRef.current?.stepUp()}
-          className={buttonClassName}
-        >
-          <PlusIcon className={iconClassName}/>
-        </Button>
-      )}
-    >
-      <Input
-        className={twMerge(
-          'w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
-          inputClassName
-        )}
-        {...props}
-        type="number"
-        ref={internalRef}
-        value={value?.toFixed(1)}
-      />
-    </InputGroup>
-  )
-})
+    <Input
+      //{...props}
+      {...inputProps}
+      {...getRootProps()}
+      // ref={ref}
+      size={size}
+      startAdornment={
+        <AdornmentIconButton
+          size={size}
+          iconElement={MinusIcon}
+          {...getDecrementButtonProps()}
+        />
+      }
+      endAdornment={
+        <AdornmentIconButton
+          size={size}
+          iconElement={PlusIcon}
+          {...getIncrementButtonProps()}
+        />
+      }
+    />
+  );
+  // return (
+  //   <div className='relative' {...getRootProps()}>
+  //     <div className='absolute inset-y-0 left-0'>
+  //       <InputGroupIconButton
+  //         size={size}
+  //         iconElement={MinusIcon}
+  //         {...getDecrementButtonProps()}
+  //       />
+  //     </div>
+  //     <Input
+  //       ref={ref}
+  //       className={twMerge(
+  //         spacingClassName
+  //       )}
+  //       type='number'
+  //       {...getInputProps()}
+  //     />
+  //     <div className='absolute inset-y-0 right-0'>
+  //       <InputGroupIconButton
+  //         size={size}
+  //         iconElement={PlusIcon}
+  //         {...getIncrementButtonProps()}
+  //       />
+  //     </div>
+  //   </div>
+  // )
+});
 
 export default InputNumber

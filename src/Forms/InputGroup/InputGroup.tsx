@@ -1,33 +1,35 @@
-import {FC} from 'react';
+import {Children, cloneElement, FC, ReactElement, useMemo} from 'react';
 import {twMerge} from 'tailwind-merge';
-import {InnerPositionEnum, InputGroupProps} from './InputGroup.types.ts';
-import InnerButton from './InputGroup.InnerButton.tsx';
+import {InputGroupProps} from './InputGroup.types.ts';
 
-const InputGroup: FC<InputGroupProps> = (
-  {
-    leading,
-    trailing,
-    className,
-    children,
-    ...props
-  }
-) => {
+import {getChildren} from '../../Components/ButtonGroup/ButtonGroup.utils.tsx';
+
+
+const InputGroup: FC<InputGroupProps> = ({className, ...props}) => {
+
+  const children = useMemo(() => {
+      const _children = getChildren(props.children) as ReactElement[];
+      const count = Children.count(_children)
+
+      return Children.map(_children, (child, index) => {
+        const first = index === 0;
+        const last = index === count - 1;
+
+        return cloneElement(child, {
+          ...child.props,
+          className: twMerge(
+            'rounded-none',
+            first && `rounded-s`,
+            last && `rounded-e`,
+            child.props.className
+          )
+        })
+      })
+    }, [props.children],
+  );
 
   return (
-    <div
-      className={twMerge('relative', className)}
-      {...props}
-    >
-      {leading && (
-        <InnerButton>
-          {leading}
-        </InnerButton>
-      )}
-      {trailing && (
-        <InnerButton position={InnerPositionEnum.Right}>
-          {trailing}
-        </InnerButton>
-      )}
+    <div className={twMerge('flex', className)}>
       {children}
     </div>
   )

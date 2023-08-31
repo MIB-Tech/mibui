@@ -1,8 +1,14 @@
 import {BellIcon, Cog6ToothIcon, QuestionMarkCircleIcon, UserIcon} from '@heroicons/react/20/solid';
 import {FC, HTMLAttributes} from 'react';
-import {Tooltip} from 'flowbite-react';
 import {Link} from 'react-router-dom';
 import {twMerge} from 'tailwind-merge';
+import {Icon} from '../../Components';
+
+const Tooltip = ({...props}) => {
+  return (
+    <div {...props} />
+  );
+};
 
 const IconButton: FC<HTMLAttributes<HTMLButtonElement>> = ({className, ...props}) => (
   <button
@@ -12,7 +18,7 @@ const IconButton: FC<HTMLAttributes<HTMLButtonElement>> = ({className, ...props}
     )}
     {...props}
   />
-)
+);
 
 export const TopHeader = () => (
   <nav className="bg-gray-50 dark:bg-gray-700 border-b border-inherit">
@@ -27,22 +33,22 @@ export const TopHeader = () => (
         </span>
       </Link>
       <div className="flex items-center">
-        <IconButton className="mr-5">
-          <QuestionMarkCircleIcon className="header-icon me-1"/> Help
+        <IconButton className='mr-5'>
+          <Icon icon={QuestionMarkCircleIcon} className='me-1'/> Help
         </IconButton>
-        <IconButton className="mr-5">
-          <Tooltip content="Notifications">
-            <BellIcon className="header-icon me-1"/>
+        <IconButton className='mr-5'>
+          <Tooltip content='Notifications'>
+            <Icon icon={BellIcon} className='me-1'/>
           </Tooltip>
         </IconButton>
         <IconButton className="mr-5">
           <Tooltip content="Settings">
-            <Cog6ToothIcon className="header-icon me-1"/>
+            <Icon icon={Cog6ToothIcon} className='me-1'/>
           </Tooltip>
         </IconButton>
         <IconButton className="mr-5">
           <Tooltip content="Profile">
-            <UserIcon className="header-icon me-1"/>
+            <Icon icon={UserIcon} className='me-1'/>
           </Tooltip>
         </IconButton>
       </div>
