@@ -1,9 +1,11 @@
 import {forwardRef, useMemo} from 'react';
 import {UnstyledInputProps} from './Input.types.ts';
-import {Input as MuiInput, TextareaAutosize} from '@mui/base';
+import {Input as MuiInput, prepareForSlot, TextareaAutosize} from '@mui/base';
 import {twMerge} from 'tailwind-merge';
 import {useInputStyles} from '../../hooks/UseInputStyles.ts';
 import {useSizing} from '../../hooks/UseSizing.ts';
+
+const TextareaSlot = prepareForSlot(TextareaAutosize);
 
 const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>((
   {
@@ -56,7 +58,7 @@ const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>((
         }
       }}
       slots={{
-        textarea: TextareaAutosize,
+        textarea: TextareaSlot,
         ...props.slots
       }}
     />

@@ -4,7 +4,7 @@ export * from './Breadcrumb';
 export * from './Button';
 export * from './ButtonGroup';
 export * from './Card';
-export * from './Dropdown';
+export * from './Menu';
 export * from './Modal';
 export * from './Pagination';
 export * from './Preview';
