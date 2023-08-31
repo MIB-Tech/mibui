@@ -11,6 +11,7 @@ import {AutocompleteOptionWrapper} from './Autocomplete.Option.Wrapper.tsx';
 import {AutocompleteGroupedOption} from '@mui/base/useAutocomplete/useAutocomplete';
 import {defaultGetOptionLabel} from './Autocomplete.utils.tsx';
 import {AutocompleteListbox} from './Autocomplete.Listbox.tsx';
+import {twMerge} from 'tailwind-merge';
 
 const Autocomplete = <Value, Multiple extends boolean | undefined>(
   {renderOption, renderListbox, searchDisabled, ...props}: AutocompleteProps<Value, Multiple>
@@ -51,14 +52,17 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
           root: getRootProps(),
           input: {
             ...getInputProps(),
-            className: 'w-auto',
+            className: twMerge('w-auto', searchDisabled && 'cursor-pointer'),
             style:{
               maxWidth: '-webkit-fill-available'
             },
           }
         }}
         size={size}
-        className='group flex-wrap items-center gap-2'
+        className={twMerge(
+          'group flex-wrap items-center gap-2',
+          searchDisabled && 'cursor-pointer'
+        )}
         startAdornment={multiple && Array.isArray(value) && value.map((option, index) => {
           const {onDelete, ...tagProps} = getTagProps({index});
 
@@ -97,7 +101,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
         )}
       />
       {popupOpen && (
-        <AutocompletePopper>
+        <AutocompletePopper className={twMerge(searchDisabled && 'w-full')}>
           {renderListbox ?
             renderListbox({
               getListboxProps,
