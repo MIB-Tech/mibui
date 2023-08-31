@@ -1,55 +1,52 @@
 import {Button, Preview} from "../../../Components";
 import {Popover} from "../../../Components/Popover";
-import {PopoverTrigger, POPUP_PLACEMENTS} from "../../../Components/Popover/Popover.types.tsx";
+import {POPUP_PLACEMENTS} from "../../../Components/Tooltip/Tooltip.utils.ts";
+import {PopupTrigger} from "../../../Components/Tooltip/Tooltip.types.tsx";
 
 const Page = () => {
     return (
-        <div className='flex flex-col gap-12'>
-            <Preview
-                title='Default'
-                className='flex justify-center'
-            >
-                <Popover content='Popover content'>
-                    <Button>
-                        Default
-                    </Button>
-                </Popover>
-            </Preview>
-            <Preview
-                title='Placement'
-                className='grid grid-cols-4 gap-2'
-            >
-                {POPUP_PLACEMENTS.map(placement => (
-                    <div key={placement}>
+        <>
+            <div className="flex flex-col gap-12">
+                <Preview title="Default" className="flex justify-center">
+                    <Popover content="some" placement={'right'}>
+                        <Button>Click Me</Button>
+                    </Popover>
+                </Preview>
+            </div>
+
+            <div>
+                <Preview title='Placement' className='grid grid-cols-4 gap-2'>
+                    {POPUP_PLACEMENTS.map(placement => (
+                        <div key={placement}>
+                            <Popover
+                                content='popover content'
+                                placement={placement}
+                            >
+                                <Button className='capitalize'>
+                                    {placement.replace('-', ' ')}
+                                </Button>
+                            </Popover>
+                        </div>
+                    ))}
+                </Preview>
+            </div>
+            <div>
+                <Preview  title='Trigger'  className='flex justify-center gap-2'>
+                    {(['click', 'hover'] as PopupTrigger[]).map(trigger => (
                         <Popover
+                            key={trigger}
                             content='Popover content'
-                            placement={placement}
+                            trigger={trigger}
                         >
                             <Button className='capitalize'>
-                                {placement.replace('-',' ')}
+                                {trigger}
                             </Button>
                         </Popover>
-                    </div>
-                ))}
-            </Preview>
-            <Preview
-                title='Trigger'
-                className='flex justify-center gap-2'
-            >
-                {(['click', 'hover'] as PopoverTrigger[]).map(trigger => (
-                    <Popover
-                        key={trigger}
-                        content='Popover content'
-                        trigger={trigger}
-                    >
-                        <Button className='capitalize'>
-                            {trigger}
-                        </Button>
-                    </Popover>
-                ))}
-            </Preview>
-        </div>
+                    ))}
+                </Preview>
+            </div>
+        </>
     );
 };
 
-export default Page
+export default Page;
