@@ -65,4 +65,4 @@ const UnstyledInput = forwardRef<HTMLInputElement, UnstyledInputProps>((
   );
 });
 
-export default UnstyledInput
+export default UnstyledInput;

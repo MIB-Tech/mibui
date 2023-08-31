@@ -1,4 +1,4 @@
-import {Button, Menu, MenuMenu, MenuToggle, Preview} from '../../../Components';
+import {Button, Menu, MenuButton, MenuMenu, Preview} from '../../../Components';
 import {Input, InputGroup, InputGroupAddon} from '../../../Forms';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import Icon from '../../../Components/SvgIcon/Icon.tsx';
@@ -62,9 +62,9 @@ const Page = () => {
       <Preview title="Button with menus" className="flex flex-col gap-2">
         <InputGroup>
           <Menu>
-            <MenuToggle className='rounded-none rounded-s'>
+            <MenuButton className='rounded-none rounded-s'>
               Dropdown
-            </MenuToggle>
+            </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonStart}>
               <DropdownOptions/>
             </MenuMenu>
@@ -73,26 +73,26 @@ const Page = () => {
         </InputGroup>
         <InputGroup>
           <Menu>
-            <MenuToggle className='rounded-none rounded-s'>
+            <MenuButton className='rounded-none rounded-s'>
               Dropdown
-            </MenuToggle>
+            </MenuButton>
             <MenuMenu>
               <DropdownOptions/>
             </MenuMenu>
           </Menu>
           <Input placeholder='Search...'/>
           <Menu>
-            <MenuToggle className='rounded-none'>
+            <MenuButton className='rounded-none'>
               Dropdown
-            </MenuToggle>
+            </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonEnd}>
               <DropdownOptions/>
             </MenuMenu>
           </Menu>
           <Menu>
-            <MenuToggle className='rounded-none rounded-e'>
+            <MenuButton className='rounded-none rounded-e'>
               Dropdown
-            </MenuToggle>
+            </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonEnd}>
               <DropdownOptions/>
             </MenuMenu>

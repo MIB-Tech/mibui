@@ -16,4 +16,4 @@ export const AutocompleteGroupOption = <Value, >({option, ...props}: Autocomplet
   >
     {option.group}
   </li>
-)
+);

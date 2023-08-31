@@ -7,7 +7,7 @@ export const InputGroupInput = forwardRef<
   HTMLInputElement,
   InputGroupInputProps
 >(({className, leading, trailing, ...props}, ref) => {
-  const {size} = props
+  const {size} = props;
 
   const leadingInputClassName = useMemo<string>(() => {
     switch (size) {
@@ -18,7 +18,7 @@ export const InputGroupInput = forwardRef<
       default:
         return `ps-11`;
     }
-  }, [size])
+  }, [size]);
 
   const trailingInputClassName = useMemo<string>(() => {
     switch (size) {
@@ -29,7 +29,7 @@ export const InputGroupInput = forwardRef<
       default:
         return `pe-11`;
     }
-  }, [size])
+  }, [size]);
 
   return (
     <Input
@@ -41,5 +41,5 @@ export const InputGroupInput = forwardRef<
       {...props}
       ref={ref}
     />
-  )
-})
+  );
+});

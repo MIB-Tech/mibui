@@ -14,5 +14,5 @@ export const AutocompleteOption = ({...props}: AutocompleteOptionProps) => (
       props.className
     )}
   />
-)
+);
 

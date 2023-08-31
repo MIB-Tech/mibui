@@ -1,1 +1,1 @@
-export {default as InputPassword} from './InputPassword.tsx'
+export {default as InputPassword} from './InputPassword.tsx';

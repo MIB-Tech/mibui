@@ -1,15 +1,15 @@
-import {Button, Preview} from "../../../Components";
-import {Popover} from "../../../Components/Popover";
-import {POPUP_PLACEMENTS} from "../../../Components/Tooltip/Tooltip.utils.ts";
-import {PopupTrigger} from "../../../Components/Tooltip/Tooltip.types.tsx";
+import {Button, Preview} from '../../../Components';
+import {Popover} from '../../../Components/Popover';
+import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.utils.ts';
+import {PopupTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
 
 const Page = () => {
   return (
     <div className='flex flex-col gap-12'>
       <Preview title="Default" className="flex justify-center">
         <Popover
-          content="some"
-          placement={'right'}
+          content='Popover content'
+          placement='right'
         >
           <Button>Click Me</Button>
         </Popover>
@@ -19,7 +19,7 @@ const Page = () => {
         {POPUP_PLACEMENTS.map(placement => (
           <div key={placement}>
             <Popover
-              content='popover content'
+              content='Popover content'
               placement={placement}
             >
               <Button className='capitalize'>

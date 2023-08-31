@@ -11,7 +11,7 @@ export const useInputStyles = () => {
     className: twMerge(
       unstyled,
       'rounded text-gray-900 ring-1 ring-inset ring-gray-300 bg-white',
-      '[&.Mui-error]:!ring-error-600',
+      '[&.Mui-error]:!ring-error-400',
       '[&.Mui-focused]:ring-2 [&.Mui-focused]:ring-primary-600',
       'hover:ring-primary-600',
     )

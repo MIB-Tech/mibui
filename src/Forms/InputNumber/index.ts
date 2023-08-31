@@ -1,1 +1,1 @@
-export {default as InputNumber} from './InputNumber.tsx'
+export {default as InputNumber} from './InputNumber.tsx';

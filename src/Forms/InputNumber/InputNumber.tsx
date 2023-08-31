@@ -78,4 +78,4 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   // )
 });
 
-export default InputNumber
+export default InputNumber;

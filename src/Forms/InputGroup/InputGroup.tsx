@@ -9,7 +9,7 @@ const InputGroup: FC<InputGroupProps> = ({className, ...props}) => {
 
   const children = useMemo(() => {
       const _children = getChildren(props.children) as ReactElement[];
-      const count = Children.count(_children)
+      const count = Children.count(_children);
 
       return Children.map(_children, (child, index) => {
         const first = index === 0;
@@ -23,8 +23,8 @@ const InputGroup: FC<InputGroupProps> = ({className, ...props}) => {
             last && `rounded-e`,
             child.props.className
           )
-        })
-      })
+        });
+      });
     }, [props.children],
   );
 
@@ -32,8 +32,8 @@ const InputGroup: FC<InputGroupProps> = ({className, ...props}) => {
     <div className={twMerge('flex', className)}>
       {children}
     </div>
-  )
-}
+  );
+};
 
 
-export default InputGroup
+export default InputGroup;

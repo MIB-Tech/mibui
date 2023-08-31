@@ -53,7 +53,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
           input: {
             ...getInputProps(),
             className: twMerge('w-auto', searchDisabled && 'cursor-pointer'),
-            style:{
+            style: {
               maxWidth: '-webkit-fill-available'
             },
           }
@@ -152,7 +152,7 @@ const Option = <Value, >(
         <ul>
           <AutocompleteGroupOption option={option}/>
           {option.options.map((option2, index2) => {
-            const key = option.index + index2
+            const key = option.index + index2;
 
             return (
               <Option
@@ -161,7 +161,7 @@ const Option = <Value, >(
                 index={key}
                 option={option2}
               />
-            )
+            );
           })}
         </ul>
       </li>

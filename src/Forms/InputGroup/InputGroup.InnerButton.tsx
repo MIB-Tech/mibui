@@ -13,7 +13,7 @@ const InnerButton: FC<InnerButtonProps> = ({position = InnerPositionEnum.Left, c
       )}
       {...props}
     />
-  )
-}
+  );
+};
 
-export default InnerButton
+export default InnerButton;

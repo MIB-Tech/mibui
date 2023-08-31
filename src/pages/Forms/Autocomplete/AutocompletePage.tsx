@@ -452,7 +452,7 @@ const Page = () => {
         title='Combobox'
         className='flex justify-center'
       >
-        <Autocomplete {...defaultProps}/>
+        <Autocomplete {...defaultProps} />
       </Preview>
 
       <Preview

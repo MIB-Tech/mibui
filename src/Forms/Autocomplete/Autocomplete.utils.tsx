@@ -1,7 +1,7 @@
 export const defaultGetOptionLabel = <Value, >(option: Value) => {
   switch (typeof option) {
     case 'boolean':
-      return option ? 'True': 'False';
+      return option ? 'True' : 'False';
     case 'number':
       return option.toString();
     case 'string':

@@ -6,7 +6,7 @@ import {useInputStyles} from '../../hooks/UseInputStyles.ts';
 
 
 const Input = forwardRef<HTMLInputElement, InputProps>((
-  { className, ...props},
+  {className, ...props},
   ref
 ) => {
   const inputStyles = useInputStyles();
@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
       ref={ref}
       className={twMerge(inputStyles.className, className)}
     />
-  )
-})
+  );
+});
 
-export default Input
+export default Input;

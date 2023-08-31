@@ -6,7 +6,7 @@ import {Input} from '../Input';
 
 
 const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(({...props}, ref) => {
-  const [show, setShow] = useState<boolean>()
+  const [show, setShow] = useState<boolean>();
 
   return (
     <Input
@@ -21,7 +21,7 @@ const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(({...prop
         />
       )}
     />
-  )
-})
+  );
+});
 
-export default InputPassword
+export default InputPassword;
