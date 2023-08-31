@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <div className='flex flex-col gap-12'>
       {VARIANTS.map(variant => (
-        <Preview key={variant} title={variant} className='capitalize'>
+        <Preview key={variant} title={variant}>
           <div className='flex flex-col items-center justify-center gap-2'>
             {COLORS.map(color => (
               <ButtonGroup key={color} color={color} variant={variant}>
@@ -20,7 +20,7 @@ const Page = () => {
           </div>
         </Preview>
       ))}
-      <Preview title='Outline' className='capitalize'>
+      <Preview title='Outline'>
         <div className='flex justify-center gap-10'>
           {VARIANTS.map(variant => (
             <div key={variant} className='flex flex-col justify-center gap-2'>
@@ -35,7 +35,7 @@ const Page = () => {
           ))}
         </div>
       </Preview>
-      <Preview title="Vertical" className="capitalize">
+      <Preview title="Vertical">
         <div className="flex justify-center gap-10">
           {VARIANTS.map(variant => (
             <ButtonGroup key={variant} variant={variant} vertical>
@@ -53,7 +53,7 @@ const Page = () => {
           ))}
         </div>
       </Preview>
-      <Preview title='Sizing' className='capitalize'>
+      <Preview title='Sizing'>
         <div className='flex justify-center items-center gap-10'>
           {SIZING.map(size => (
             <div key={size}>
@@ -66,7 +66,7 @@ const Page = () => {
           ))}
         </div>
       </Preview>
-      <Preview title='Active' className='capitalize'>
+      <Preview title='Active'>
         <div className='flex justify-center items-center gap-10'>
           <ButtonGroup>
             <Button>Option 1</Button>
@@ -75,7 +75,7 @@ const Page = () => {
           </ButtonGroup>
         </div>
       </Preview>
-      <Preview title="Disabled" className="capitalize">
+      <Preview title="Disabled">
         <div className="flex justify-center items-center gap-10">
           <ButtonGroup>
             <Button>Option 1</Button>
