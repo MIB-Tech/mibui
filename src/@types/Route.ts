@@ -22,7 +22,7 @@ export enum RouteEnum {
   FormInputPassword = 'FORM.INPUT.PASSWORD',
   FormInputGroup = 'FORM.INPUT_GROUP',
   FormFormGroup = 'FORM.FORM_GROUP',
-  FormDateAndTimePicker = 'FORM.DATE_AND_TIME_PICKERS',
+  FormDatePicker = 'FORM.DATE_PICKER',
   FormSelect = 'FORM.SELECT',
   FormAutocomplete = 'FORM.AUTOCOMPLETE',
   FormCheckAndRadio = 'FORM.CHECK_RADIO',

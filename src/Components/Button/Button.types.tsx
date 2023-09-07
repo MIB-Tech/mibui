@@ -10,7 +10,7 @@ export type ColorVariant = {
   weight?: WeightType
 }
 export type ButtonProps = {
-  icon?: boolean
+  square?: boolean
   variant?: VariantType
   color?: ColorType
   outline?: boolean

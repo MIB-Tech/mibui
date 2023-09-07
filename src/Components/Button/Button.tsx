@@ -14,7 +14,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
     active,
     size,
     variant = 'solid',
-    icon,
+    square,
     color = 'primary',
     ...props
   },
@@ -25,7 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
   const disabled = props.disabled || loading;
 
   const spacingClassName = useMemo<string>(() => {
-    if (icon) {
+    if (square) {
       switch (size) {
         case 'sm':
           return `p-[4px]`;
@@ -35,9 +35,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
           return `p-[6px]`;
       }
     } else {
-      return sizing.padding
+      return sizing.padding;
     }
-  }, [icon, size, sizing.padding])
+  }, [square, size, sizing.padding])
 
 
   return (

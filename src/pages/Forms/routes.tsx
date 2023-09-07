@@ -6,6 +6,7 @@ import {InputPasswordPage} from './InputPassword';
 import {InputGroupPage} from './InputGroup';
 import {SelectPage} from './Select';
 import {AutocompletePage} from './Autocomplete';
+import DatePage from './DatePicker/DatePage.tsx';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -25,6 +26,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputPassword,
       path: 'input-password',
       element: <InputPasswordPage/>
+    },
+    {
+      id: RouteEnum.FormDatePicker,
+      path: 'date-picker',
+      element: <DatePage/>
     },
     {
       id: RouteEnum.FormSelect,

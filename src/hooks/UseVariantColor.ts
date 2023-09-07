@@ -9,29 +9,29 @@ type UseVariantColorProps = {
 }
 export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVariantColorProps) => {
   const solid = getColorClassName({color});
-  const soft = color === 'black' ? 'gray-300' : getColorClassName({color, weight: 100});
+  const light = color === 'black' ? 'gray-300' : getColorClassName({color, weight: 100});
 
   const background = useMemo<string>(() => {
     switch (variant) {
       case 'solid':
         return solid;
-      case 'soft':
-        return soft;
+      case 'light':
+        return light;
       case 'clean':
         return 'white';
     }
-  }, [solid, soft, variant]);
+  }, [solid, light, variant]);
 
   const hoverBackground = useMemo<string>(() => {
     switch (variant) {
       case 'solid':
-      case 'soft':
+      case 'light':
         return color === 'black' ?
           `gray-${variant === 'solid' ? 700 : 400}` :
           getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
           ;
       case 'clean':
-        return 'gray-50';
+        return 'gray-100';
     }
   }, [color, variant]);
 

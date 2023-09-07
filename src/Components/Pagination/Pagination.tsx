@@ -5,17 +5,17 @@ import {PaginationProps} from './Pagination.types.tsx';
 import {ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from '@heroicons/react/20/solid';
 import {Icon} from '../SvgIcon';
 
-const Pagination: FC<PaginationProps> = ({pageLess, icon, ...props}) => {
+const Pagination: FC<PaginationProps> = ({pageLess, square, ...props}) => {
 
   return (
     <ButtonGroup {...props}>
       <Button>
-        {icon ? <Icon icon={ChevronDoubleLeftIcon}/> : 'Previous'}
+        {square ? <Icon icon={ChevronDoubleLeftIcon}/> : 'Previous'}
       </Button>
       {!pageLess && (
         <>
           {[...Array(5).keys()].map(index => {
-            const page = index + 1
+            const page = index + 1;
             const active = page === 3;
 
             return (
@@ -45,7 +45,7 @@ const Pagination: FC<PaginationProps> = ({pageLess, icon, ...props}) => {
       )}
 
       <Button>
-        {icon ? <Icon icon={ChevronDoubleRightIcon}/> : 'Next'}
+        {square ? <Icon icon={ChevronDoubleRightIcon}/> : 'Next'}
       </Button>
     </ButtonGroup>
   )

@@ -1,7 +1,8 @@
 import {Button, Preview} from '../../../Components';
 import {Popover} from '../../../Components/Popover';
-import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.utils.ts';
-import {PopupTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
+
+import {PopupTrigger} from '../../../Components/Popup/Popup.types.tsx';
+import {POPUP_PLACEMENTS} from '../../../Components/Popup/Popup.utils.ts';
 
 const Page = () => {
   return (
@@ -9,9 +10,10 @@ const Page = () => {
       <Preview title="Default" className="flex justify-center">
         <Popover
           content='Popover content'
+          header={<span className='font-bold text-lg'>Popover Header</span>}
           placement='right'
         >
-          <Button>Click Me</Button>
+          <Button>Default</Button>
         </Popover>
       </Preview>
 

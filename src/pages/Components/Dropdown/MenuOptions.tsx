@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {MenuItem, Icon} from '../../../Components';
 import {ChatBubbleLeftIcon, ClipboardIcon, Cog6ToothIcon} from '@heroicons/react/24/solid';
 
-export const DropdownOptions: FC<{ icon?: boolean }> = ({icon}) => {
+export const MenuOptions: FC<{ icon?: boolean }> = ({icon}) => {
 
   return (
     <>

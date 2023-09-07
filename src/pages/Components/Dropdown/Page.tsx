@@ -1,5 +1,5 @@
 import {Menu, MenuButton, MenuDivider, MenuHeader, MenuItem, MenuMenu, MenuToggle, Preview} from '../../../Components';
-import {DropdownOptions} from './DropdownOptions.tsx';
+import {MenuOptions} from './MenuOptions.tsx';
 
 const Page = () => {
 
@@ -11,7 +11,7 @@ const Page = () => {
             Menu
           </MenuButton>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
           </MenuMenu>
         </Menu>
       </Preview>
@@ -33,7 +33,7 @@ const Page = () => {
             Menu
           </MenuButton>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
             <MenuDivider/>
             <MenuItem>Logout</MenuItem>
           </MenuMenu>
@@ -45,7 +45,7 @@ const Page = () => {
             Menu
           </MenuButton>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
             <MenuItem active>Light Mode</MenuItem>
           </MenuMenu>
         </Menu>
@@ -56,7 +56,7 @@ const Page = () => {
             Menu
           </MenuButton>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
             <MenuItem disabled>AEP (expired)</MenuItem>
           </MenuMenu>
         </Menu>
@@ -67,7 +67,7 @@ const Page = () => {
             Menu
           </MenuButton>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
           </MenuMenu>
         </Menu>
       </Preview>
@@ -85,17 +85,17 @@ const Page = () => {
                 a.elfannir@mibtech.ma
               </a>
             </MenuHeader>
-            <DropdownOptions/>
+            <MenuOptions/>
           </MenuMenu>
         </Menu>
       </Preview>
       <Preview title='Customer Toggle' className='flex justify-center'>
         <Menu>
           <MenuToggle slots={{root: 'a'}}>
-            Custom toggler
+            Custom Toggler
           </MenuToggle>
           <MenuMenu>
-            <DropdownOptions/>
+            <MenuOptions/>
           </MenuMenu>
         </Menu>
       </Preview>
