@@ -3,14 +3,13 @@ import {Button} from '../Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup.tsx';
 import {PaginationProps} from './Pagination.types.tsx';
 import {ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from '@heroicons/react/20/solid';
-import {Icon} from '../SvgIcon';
 
 const Pagination: FC<PaginationProps> = ({pageLess, icon, ...props}) => {
 
   return (
     <ButtonGroup {...props}>
       <Button>
-        {icon ? <Icon icon={ChevronDoubleLeftIcon}/> : 'Previous'}
+        {icon ? <ChevronDoubleLeftIcon className="w-4 h-4"/> : 'Previous'}
       </Button>
       {!pageLess && (
         <>
@@ -45,7 +44,7 @@ const Pagination: FC<PaginationProps> = ({pageLess, icon, ...props}) => {
       )}
 
       <Button>
-        {icon ? <Icon icon={ChevronDoubleRightIcon}/> : 'Next'}
+        {icon ? <ChevronDoubleRightIcon className="w-4 h-4"/> : 'Next'}
       </Button>
     </ButtonGroup>
   )

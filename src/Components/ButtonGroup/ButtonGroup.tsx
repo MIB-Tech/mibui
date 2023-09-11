@@ -1,59 +1,72 @@
-import {Children, cloneElement, FC, ReactElement, useMemo} from 'react';
+import {Children, cloneElement, FC, Fragment, isValidElement, ReactElement, ReactNode, useMemo} from 'react';
 import {ButtonGroupProps} from './ButtonGroup.types.tsx';
 import {twMerge} from 'tailwind-merge';
-import {getChildren} from './ButtonGroup.utils.tsx';
-import {useVariantColor} from '../../hooks/UseVariantColor.ts';
+import {SizeEnum} from '../Button/Button.types.tsx';
+import {getOutlineColor} from '../Button/Button.utils.tsx';
+
+function getChildren(children: ReactNode): ReactNode {
+	return Children.map(children, (child) => {
+		if (isValidElement(child)) {
+			if (child.type === Fragment) {
+				return getChildren(child.props.children);
+			}
+
+			return cloneElement(child, child.props);
+		}
+
+		return child;
+	});
+}
 
 const ButtonGroup: FC<ButtonGroupProps> = ({vertical, outline, children, ...props}) => {
-  const colors = useVariantColor(props);
+	const outlineColor = getOutlineColor({color: props.color, variant: props.variant})
 
-  const spacingClassName = useMemo<string>(() => {
-    switch (props.size) {
-      case 'sm':
-        return `px-[7.5px] py-[3.5px]`;
-      case 'lg':
-        return `px-[11.5px] py-[7.5px]`;
-      default:
-        return `px-[9.5px] py-[5.5px]`;
-    }
-  }, [props.size])
-  
-  const items = useMemo(() => {
-      const _children = getChildren(children) as ReactElement<ButtonGroupProps>[];
+	const spacingClassName = useMemo<string>(() => {
+		switch (props.size) {
+			case SizeEnum.Small:
+				return `px-[7.5px] py-[3.5px]`
+			case SizeEnum.Large:
+				return `px-[11.5px] py-[7.5px]`
+			default:
+				return `px-[9.5px] py-[5.5px]`
+		}
+	}, [props.size])
 
-      return Children.map(_children, (child, index) => {
-        const first = index === 0;
-        const last = index === Children.count(_children) - 1;
+	const items = useMemo(() => {
+			const _children = getChildren(children) as ReactElement<ButtonGroupProps>[];
 
-        return cloneElement(child, {
-          ...props,
-          className: twMerge(
-            'rounded-none',
-            first && `rounded-${vertical ? 't' : 's'}`,
-            last && `rounded-${vertical ? 'b' : 'e'}`,
-            outline && twMerge(
-              'p-10',
-              !last && `border-${vertical ? 'b' : 'e'} border-${colors.outline}`,
-              spacingClassName
-            ),
-          )
-        })
-      })
-    }, [children, outline, colors.outline, props, spacingClassName, vertical],
-  );
+			return Children.map(_children, (child, index) => {
+				const first = index === 0;
+				const last = index === Children.count(_children) - 1;
 
-  return (
-    <div
-      className={twMerge(
-        'flex rounded',
-        vertical && 'flex-col',
-        outline && `border border-${colors.outline}`
-      )}
-      role="group"
-    >
-      {items}
-    </div>
-  )
+				return cloneElement(child, {
+					...props,
+					className: twMerge(
+						'rounded-none',
+						first && `rounded-${vertical ? 't' : 's'}`,
+						last && `rounded-${vertical ? 'b' : 'e'}`,
+						outline && twMerge(
+							'p-10',
+							!last && `border-${vertical ? 'b' : 'e'} border-${outlineColor}`,
+							spacingClassName
+						),
+					)
+				})
+			})
+		}, [children, outline, outlineColor, props, spacingClassName, vertical]);
+
+	return (
+		<div
+			className={twMerge(
+				'flex rounded',
+				vertical && 'flex-col',
+				outline && `border border-${getOutlineColor({color: props.color, variant: props.variant})}`
+			)}
+			role="group"
+		>
+			{items}
+		</div>
+	)
 }
 
 export default ButtonGroup

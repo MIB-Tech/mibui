@@ -1,1 +1,0 @@
-export {default as TooltipPage} from './Page.tsx'

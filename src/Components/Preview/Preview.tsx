@@ -7,7 +7,7 @@ const Preview: FC<HTMLAttributes<HTMLDivElement>> = ({title, children, className
   return (
     <div>
       {title && (
-        <h3 className="text-2xl mb-4 capitalize">
+        <h3 className="text-2xl mb-4">
           {title}
         </h3>
       )}

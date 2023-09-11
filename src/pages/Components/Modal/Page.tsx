@@ -1,28 +1,31 @@
 import React from 'react';
 import {Preview} from '../../../Components';
-import {ModalExample} from './ModalExample.tsx';
-import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
+import {ModalExample} from "./ModalExample.tsx";
+import {SizeEnum} from "../../../Components/Button/Button.types.tsx";
 
 const Page: React.FC = () => {
 
-  return (
-    <div className='flex flex-col gap-12'>
-      <Preview title='Default'>
-        <ModalExample/>
-      </Preview>
-      <Preview title='Sizing'>
-        <div className='flex items-center justify-center gap-2'>
-          {SIZING.map(size => (
-            <ModalExample
-              key={size}
-              size={size}
-              buttonLabel={SIZING_CONFIG[size].label}
-            />
-          ))}
+
+    return (
+        <div className="flex flex-col gap-12">
+            <Preview title={'Default '} className="capitalize">
+                <ModalExample/>
+            </Preview>
+            <Preview title={'Sizes'} className="capitalize">
+                <div className="flex items-center justify-center gap-2">
+                    <ModalExample
+                        buttonLabel={'Default Modal'}
+                        size={SizeEnum.Small}
+                    />
+                    <ModalExample  buttonLabel={'Small Modal'}/>
+                    <ModalExample
+                        buttonLabel={'Large Modal'}
+                        size={SizeEnum.Large}
+                    />
+                </div>
+            </Preview>
         </div>
-      </Preview>
-    </div>
-  );
+    );
 };
 
 export default Page;
