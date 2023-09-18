@@ -23,11 +23,11 @@ To reproduce this project, follow these steps:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/MIB-Tech/your-project.git
+git clone https://github.com/MIB-Tech/mibui.git
 ```
 2. Change into the project directory:
 ```bash
-git clone https://github.com/MIB-Tech/your-project.git
+cd mibui
 ```
 3. Install project dependencies:
 ```bash
