@@ -6,6 +6,7 @@ import {InputPasswordPage} from './InputPassword';
 import {InputGroupPage} from './InputGroup';
 import {SelectPage} from './Select';
 import {AutocompletePage} from './Autocomplete';
+import { SwitchPage } from './Switch/index.ts';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -41,6 +42,11 @@ const ROUTES: RouteObject = {
       path: 'input-group',
       element: <InputGroupPage/>
     },
+    {
+      id: RouteEnum.FormSwitch,
+      path: 'switch',
+      element: <SwitchPage />
+    }
   ]
 };
 

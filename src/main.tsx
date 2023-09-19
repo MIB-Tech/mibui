@@ -40,6 +40,7 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
       [RouteEnum.FormAutocomplete]: 'Autocomplete',
       [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
       [RouteEnum.FormValidation]: 'Validation',
+      [RouteEnum.FormSwitch]: 'Switch',
       [RouteEnum.Content]: 'Content',
       [RouteEnum.ContentTypography]: 'Typography',
       [RouteEnum.ContentTable]: 'Table',
