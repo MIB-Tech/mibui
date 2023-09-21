@@ -12,3 +12,4 @@ export * from './Spinner';
 export * from './SvgIcon';
 export * from './Toast';
 export * from './Tooltip';
+export * from './TabComp';
