@@ -4,11 +4,8 @@ import {twMerge} from "tailwind-merge";
 import {Tab} from "@mui/base";
 
 
-export interface MyTabProps extends TabsOwnProps {
-  color: "primary" | "secondary" | "danger" | "success" | "warning";
-}
 
-const MyTab: FC<MyTabProps> = ({className, color, ...props}) => {
+const MyTab: FC<TabsOwnProps> = ({className, color, ...props}) => {
   return (
     <Tab
       {...props}

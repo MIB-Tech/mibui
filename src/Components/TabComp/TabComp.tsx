@@ -2,7 +2,8 @@ import {FC} from "react";
 import {MyTabs} from "./MyTabs";
 import MyTabslist from "./MyTabList";
 import MyTabPanel from "./MyTabPanel";
-import MyTab, {MyTabProps} from "./MyTab";
+import MyTab from "./MyTab";
+import {TabsOwnProps} from "@mui/base/Tabs/Tabs.types";
 
 interface TabData {
   label: JSX.Element;
@@ -10,11 +11,11 @@ interface TabData {
   value: number;
 }
 
-interface TabCompProps extends MyTabProps {
+interface TabCompProps extends TabsOwnProps {
   tabs: TabData[];
 }
 
-const TabComp: FC<TabCompProps> = ({tabs, orientation, color}) => {
+const TabComp: FC<TabCompProps> = ({tabs, orientation, color,...props}) => {
   const Orient = () => {
     if (orientation === "vertical") {
       return "flex-row";
@@ -50,7 +51,9 @@ const TabComp: FC<TabCompProps> = ({tabs, orientation, color}) => {
 
   return (
     <div>
-      <MyTabs className={`flex ${Orient()}`}>
+      <MyTabs
+        {...props}
+        className={`flex ${Orient()}`}>
         <MyTabslist className={`flex ${Orient2()}`}>
           {tabComponents}
         </MyTabslist>
