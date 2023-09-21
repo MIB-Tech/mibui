@@ -14,7 +14,7 @@ interface TabCompProps extends MyTabProps {
   tabs: TabData[];
 }
 
-const TabComp: FC<TabCompProps> = ({tabs, orientation, color, ...props}) => {
+const TabComp: FC<TabCompProps> = ({tabs, orientation, color}) => {
   const Orient = () => {
     if (orientation === "vertical") {
       return "flex-row";

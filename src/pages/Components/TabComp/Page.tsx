@@ -18,7 +18,8 @@ const Page = () => {
       </Preview>
       <Preview title="Color">
         {colors.map((color) => (
-          <TabComp color={color} orientation="vertical"
+          <TabComp
+            color={color} orientation="vertical"
                    tabs={[
                      {
                        label: <h1>Tab 1</h1>, content: <h1>Aucun accès à Internet
