@@ -1,0 +1,82 @@
+/* .switch {
+    position: relative;
+    display: inline-block;
+}
+.switch > .control {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.switch > .control:checked + .slider {
+    background-color: #2196F3;
+}
+.switch > .control:focus + .slider {
+    box-shadow: 2px 2px 2px #aaa;
+}
+.control:disabled + .slider {
+    cursor: not-allowed;
+}
+.slider.round {
+    border-radius: 20px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+.switch.sz-1 {
+    width: 40px;
+    height: 20px;
+}
+.switch.sz-2 {
+    width: 56px;
+    height: 28px;
+}
+.switch.sz-3 {
+    width: 72px;
+    height: 36px;
+}
+.switch.sz-1 > .slider:before {
+    width: 16px;
+    height: 16px;
+}
+.switch.sz-2 > .slider:before {
+    width: 24px;
+    height: 24px;
+}
+.switch.sz-3 > .slider:before {
+    height: 32px;
+    width: 32px;
+}
+.switch.sz-1 > input:checked + .slider:before {
+    transform: translateX(20px);
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+}
+.switch.sz-2 > input:checked + .slider:before {
+    transform: translateX(28px);
+    -webkit-transform: translateX(28px);
+    -ms-transform: translateX(28px);
+}
+.switch.sz-3 > input:checked + .slider:before {
+    transform: translateX(36px);
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+} */
