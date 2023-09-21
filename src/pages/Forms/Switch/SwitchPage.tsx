@@ -1,3 +1,4 @@
+import { COLORS } from "../../../@types/Color";
 import { Preview } from "../../../Components";
 import { Switch } from '../../../Components/Switch';
 // import { useState } from "react";
@@ -27,7 +28,12 @@ const Page = () => {
                 <Switch size="lg" />
             </Preview>
             <Preview title="Colors" className="grid grid-cols-3 gap-6 justify-items-center">
-                
+                {COLORS.map((color, index) => (
+                    <Switch
+                        key={index}
+                        color={color}
+                    />
+                ))}
             </Preview>
         </div>
     )
