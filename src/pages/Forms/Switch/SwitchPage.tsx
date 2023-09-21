@@ -19,7 +19,7 @@ const Page = () => {
                 <Switch />
             </Preview>
             <Preview title="Disabled State" className="flex justify-center">
-                
+                <Switch disabled />
             </Preview>
             <Preview title="Sizing" className="grid grid-cols-3 items-center justify-items-center">
                 
