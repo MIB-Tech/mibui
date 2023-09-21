@@ -1,5 +1,6 @@
-import {Preview, TabComp} from "../../../Components";
+import {Preview} from "../../../Components";
 import {COLORS} from "../../../@types/Color.ts";
+import TabComp from "../../../Components/TabComp/TabComp.tsx";
 const Page = () => {
   return (
     <div>
