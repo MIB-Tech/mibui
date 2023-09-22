@@ -1,12 +1,14 @@
 import {Preview} from "../../../Components";
+/*
 import {COLORS} from "../../../@types/Color.ts";
+*/
 import TabComp from "../../../Components/TabComp/TabComp.tsx";
 const Page = () => {
   return (
     <div>
       <Preview title="Orientation">
         <TabComp
-          color='primary'
+          //color='primary'
           orientation="vertical"
           tabs={[
             {label: <h1>Tab 1</h1>, content: <h1>Content 1</h1>, value: 1},
@@ -14,7 +16,7 @@ const Page = () => {
           ]}
         />
         <TabComp
-          color='primary'
+          //color='primary'
           orientation="horizontal"
           tabs={[
             {label: <h1>Tab 1</h1>, content: <h1>Content 1</h1>, value: 1},
@@ -24,8 +26,8 @@ const Page = () => {
 
       </Preview>
       <Preview title="Color">
-        {COLORS.map((color) =>(<TabComp
-          color={color}
+        {/*{COLORS.map((color) =>(*/}<TabComp
+          //color={color}
           orientation={"vertical"}
           tabs={[
             {
@@ -66,7 +68,8 @@ const Page = () => {
               value: 2
             },
           ]}
-        />))}
+        />
+
 
       </Preview>
       <Preview title="Orientation">
@@ -76,7 +79,7 @@ const Page = () => {
             {label: <h1>Tab 1</h1>, content: <h1>Content 1</h1>, value: 1},
             {label: <h1>Tab 2</h1>, content: <h1>Content 2</h1>, value: 2},
           ]}
-          color={"primary"}
+          //color={"primary"}
         />
       </Preview>
     </div>
