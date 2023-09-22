@@ -6,16 +6,16 @@ import {twMerge} from "tailwind-merge";
 
 const TableRow: React.FC<TableRowProps> = ({className, ...props}) => {
 
-	const {borderClassName, showHover} = useTableContext();	//const hoverClassName = showHover ? "hover:bg-gray-200" : "";
-	const hoverClassName = showHover ? "hover:bg-gray-200 bg-white cursor-pointer  " : "";
+	const {borderClassName, Hoverable} = useTableContext();	//const hoverClassName = showHover ? "hover:bg-gray-200" : "";
+	const hoverClassName = Hoverable ? " " : "";
 	return (
-
 		<tr
 			{...props}
-			className={twMerge(
+				className={twMerge(
 				borderClassName,
 				hoverClassName,
-				className)}
-		/>)
+				className,"group")}
+		/>
+	)
 };
 export default TableRow;

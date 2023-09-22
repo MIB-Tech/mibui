@@ -4,18 +4,20 @@ import {useTableContext} from "../Table.utils.tsx";
 import {twMerge} from "tailwind-merge";
 import {CellProps} from "../Table.types.tsx";
 
-	const TableHeadCell: React.FC<CellProps> = ({className, ...props}) => {
-	const {cellClassName,showBorder, borderClassName, stickyHeader} = useTableContext();
-/*
-	const borderClassNames = showBorder ? borderClassName : "";
-*/
-		const border = showBorder ? "border" : "";
-		const borderClassNames =  borderClassName ;
+const TableHeadCell: React.FC<CellProps> = ({className, ...props}) => {
+	const {cellClassName, borderLess, borderClassName,stickyColumn} = useTableContext();
 
-		const stickyClassNames = props["data-first"] && stickyHeader ? " border-r sticky  z-3 left-0 bg-white " : "";
-	return (<th
+
+	return (
+		<th
 		{...props}
-		className={twMerge( `${border}`,cellClassName,borderClassNames, stickyClassNames, className)}
+		className={twMerge(
+			stickyColumn &&  "first:sticky left-0 z-10 bg-white first:border-r-2" ,
+			borderLess && "border-r border-t first:border-l",
+			cellClassName,
+			borderClassName,
+			className
+		)}
 	/>);
 };
 export default TableHeadCell;

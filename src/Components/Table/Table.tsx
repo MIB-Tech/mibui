@@ -4,24 +4,27 @@ import {TableProps} from "./Table.types.tsx";
 import {twMerge} from "tailwind-merge";
 
 
-const Table: React.FC<TableProps> = ({size, borderLess, showHover, showBorder, stickyHeader, ...props}) => {
+const Table: React.FC<TableProps> = ({size, borderStyle, Hoverable, borderLess, stickyHeader,stickyColumn, ...props}) => {
 
-	const stickyClassNames = stickyHeader ? "max-h-80 overflow-hidden hover:overflow-auto" : "";
+	const Header = stickyHeader ? " max-h-80 overflow-y-scroll" : ""; // max-h-80 generic !!!
+	const Column = stickyColumn ? "overflow-x-scroll" : "";// max-h-80 generic !!!
+
 	return (
 		<TableSizeProvider
 		size={size}
+		borderStyle={borderStyle}
+		Hoverable={Hoverable}
 		borderLess={borderLess}
-		showHover={showHover}
-		showBorder={showBorder}
 		stickyHeader={stickyHeader}
+		stickyColumn={stickyColumn}
 	>
-		<div className={`${stickyClassNames}`}>
+		<div className={`${Header} ${Column}`}>
 			<table
 				{...props}
-				className={twMerge(
-					'bg-white border-separate border-spacing-0 border',props.className)}
+				className={twMerge("border-separate border-spacing-0 bg-white", props.className)}
 			>
 			</table>
+
 		</div>
 	</TableSizeProvider>);
 };

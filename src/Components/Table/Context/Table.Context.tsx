@@ -5,33 +5,36 @@ import {SizingType} from "../../../@types/Sizing.ts";
 
 export const TableContext = createContext<{
 	size?: SizingType,
-	borderTypeClassName?:undefined,
-	border?:BorderEnum,
-	showHover?:boolean,
-	showBorder?:boolean,
+	borderStyle?:BorderEnum,
+	Hoverable?:boolean,
+	borderLess?:boolean,
 	stickyHeader?:boolean,
-	"data-first"?:boolean}>
+	stickyColumn?:boolean,
+	}>
 ({size: undefined,
-	border:BorderEnum.Solid,
-	showHover:undefined,
-	showBorder:undefined,
-	stickyHeader:undefined});
+	borderStyle:BorderEnum.Solid,
+	Hoverable:undefined,
+	borderLess:undefined,
+	stickyHeader:undefined,
+	stickyColumn:undefined});
 
 export const TableSizeProvider: FC<TableProps> = ({
 																										size,
+																										borderStyle,
+																										Hoverable,
 																										borderLess,
-																										showHover,
-																										showBorder,
 																										stickyHeader,
+																										stickyColumn,
 																										children}) => {
 
 	return (
 		<TableContext.Provider value={{
 			size,
-			border: borderLess,
-			showHover,
-			showBorder,
-			stickyHeader}}>
+			borderStyle: borderStyle,
+			Hoverable: Hoverable,
+			borderLess: borderLess,
+			stickyHeader,
+			stickyColumn}}>
 			{children}
 		</TableContext.Provider>
 	);

@@ -50,17 +50,17 @@ export const useTableContext = () => {
     }
 
     const cellClassName = getSizeClass(context.size);
-    const borderClassName = borderClass(context.border);
-
+    const borderClassName = borderClass(context.borderStyle);
 
     return {
         ...context,
 
         cellClassName,
         borderClassName,
-        showHover: context.showHover ?? false,
-        showBorder: context.showBorder ?? false,
-        stickyHeader:context.stickyHeader ?? false
+        Hoverable: context.Hoverable ?? false,
+        borderLess: context.borderLess ?? false,
+        stickyHeader:context.stickyHeader ?? false,
+        stickyColumn:context.stickyColumn ?? false
 
 
     };

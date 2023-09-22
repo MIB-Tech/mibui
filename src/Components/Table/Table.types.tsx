@@ -2,21 +2,18 @@ import {HTMLAttributes} from "react";
 import {SizingType} from "../../@types/Sizing.ts";
 
 export type TableProps = {
-	className?: string;
 	size?: SizingType;
-	borderLess?:BorderEnum;
-	showHover?: boolean;
-	showBorder?: boolean;
+	borderStyle?:BorderEnum;
+	Hoverable?: boolean;
+	borderLess?: boolean;
 	stickyHeader?:boolean;
-
-
-
+	stickyColumn?:boolean;
 } & HTMLAttributes<HTMLTableElement>
 
 
 export type TableHeadProps = HTMLAttributes<HTMLTableSectionElement>
 
-export type CellProps ={"data-first"?: boolean;}&HTMLAttributes<HTMLTableCellElement>
+export type CellProps = & HTMLAttributes<HTMLTableCellElement>
 export enum BorderEnum {
 	None = "none",
 	Solid = "solid",
@@ -24,14 +21,7 @@ export enum BorderEnum {
 	Dotted = "dotted",
 }
 
-/*
-export type TableBodyProps = NonNullable<unknown> & HTMLAttributes<HTMLTableSectionElement>
-*/
 
-export type TableRowProps = {
-	//hoverClassName?:"hover:bg-gray-200" ;
-	//showHover?: boolean;
-
-} & HTMLAttributes<HTMLTableRowElement>
+export type TableRowProps = & HTMLAttributes<HTMLTableRowElement>
 
 
