@@ -1,7 +1,7 @@
 import {Preview, Tab, TabPanel, Tabs, TabsList} from "../../../Components";
 
 const Page = () => (
-  <>
+  <div className="flex gap-12 flex-col">
     <Preview title="Default">
       <div className='flex items-center justify-center gap-2'>
         <Tabs defaultValue={1}>
@@ -44,7 +44,7 @@ const Page = () => (
         </Tabs>
       </div>
     </Preview>
-  </>
+  </div>
 )
 
 export default Page;
