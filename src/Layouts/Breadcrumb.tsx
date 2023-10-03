@@ -13,7 +13,7 @@ const Breadcrumb = () => {
           <li key={match.id} className="inline-flex items-center">
             <NavLink
               to={match.pathname}
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
+              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600"
             >
               {index > 0 && <Icon icon={ArrowRightIcon} size={3} className='me-2'/>}
               <Trans i18nKey={match.id}/>

@@ -1,7 +1,8 @@
 import {Button, Preview} from '../../../Components';
 import {Popover} from '../../../Components/Popover';
-import {POPUP_PLACEMENTS} from '../../../Components/Tooltip/Tooltip.utils.ts';
-import {PopupTrigger} from '../../../Components/Tooltip/Tooltip.types.tsx';
+
+import {PopupTrigger} from '../../../Components/Popup/Popup.types.tsx';
+import {POPUP_PLACEMENTS} from '../../../Components/Popup/Popup.utils.ts';
 
 const Page = () => {
   return (
@@ -11,7 +12,7 @@ const Page = () => {
           content='Popover content'
           placement='right'
         >
-          <Button>Click Me</Button>
+          <Button>Default</Button>
         </Popover>
       </Preview>
 

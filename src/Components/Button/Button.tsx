@@ -14,18 +14,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
     active,
     size,
     variant = 'solid',
-    icon,
     color = 'primary',
+    activeVariant = variant,
+    activeColor = color,
+    square,
     ...props
   },
   ref
 ) => {
   const variantStyles = useVariantStyles({color, variant});
+  const activeStyles = useVariantStyles({color: activeColor, variant: activeVariant});
   const sizing = useSizing(size);
   const disabled = props.disabled || loading;
 
+  const style = active ? activeStyles: variantStyles
+
   const spacingClassName = useMemo<string>(() => {
-    if (icon) {
+    if (square) {
       switch (size) {
         case 'sm':
           return `p-[4px]`;
@@ -35,9 +40,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
           return `p-[6px]`;
       }
     } else {
-      return sizing.padding
+      return sizing.padding;
     }
-  }, [icon, size, sizing.padding])
+  }, [square, size, sizing.padding])
 
 
   return (
@@ -50,16 +55,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
         spacingClassName,
         loading && 'relative',
         `rounded font-medium`,
-        variantStyles.background,
-        variantStyles.text,
-        !disabled && variantStyles.hover,
-        active && variantStyles.active,
+        style.background,
+        style.text,
+        !disabled && style.hover,
+        active && style.active,
         sizing.text,
-        outline && variantStyles.outline,
+        outline && style.outline,
         props.className,
         // Mui state
         '[&.Mui-disabled]:cursor-not-allowed [&.Mui-disabled]:opacity-60',
-        // `[&.Mui-active]:${variantStyles.outline}`,
+        // `[&.Mui-active]:${style.outline}`,
       )}
     >
       {loading && (

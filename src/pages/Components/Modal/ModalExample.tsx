@@ -27,7 +27,7 @@ export const ModalExample: FC<{ buttonLabel?: string } & ModalProps> = ({buttonL
           your order.
         </p>
         <div className="flex justify-end gap-2 mt-4">
-          <Button variant='soft' color='warning'>Refund</Button>
+          <Button variant='light' color='warning'>Refund</Button>
           <Button onClick={onClose}>Close</Button>
         </div>
       </Modal>

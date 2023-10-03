@@ -11,7 +11,7 @@ export const MenuItem = (props: { route: AgnosticRouteObject }) => {
       to={path}
       className={({isActive}) =>
         twMerge(
-          'flex items-end text-gray-900 dark:text-white rounded [&.active]:bg-primary-500 [&.active]:text-white hover:bg-gray-100 px-3 py-0.5',
+          'flex items-end text-gray-900 rounded [&.active]:bg-primary-500 [&.active]:text-white hover:bg-gray-100 px-3 py-0.5',
           isActive && 'active'
         )
       }
