@@ -1,11 +1,11 @@
 import {FC} from "react";
 import {twMerge} from "tailwind-merge";
-import {Tab as BaseTab} from "@mui/base";
+import {Tab as MuiTab} from "@mui/base";
 import {ButtonSlot} from "../Menu/Menu.Button.tsx";
 import {TabProps} from "./Tabs.types.ts";
 
 const Tab: FC<TabProps> = ({className, ...props}) => (
-  <BaseTab
+  <MuiTab
     slots={{
       root: props => (
         <ButtonSlot

@@ -8,7 +8,7 @@ const Tabs: FC<TabsProps> = ({className, vertical, ...props}) => (
     {...props}
     orientation={vertical ? 'vertical' : undefined}
     className={twMerge(
-      `flex`,
+      `flex gap-2`,
       '[&.MuiTabs-horizontal]:flex-col [&.MuiTabs-vertical]:flex-row',
       className
     )}
