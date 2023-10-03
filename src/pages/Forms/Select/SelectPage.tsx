@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <div className='flex flex-col gap-12'>
       <Alert
-        variant='soft'
+        variant='light'
         color='primary'
         title={(
           <div>

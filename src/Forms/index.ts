@@ -1,4 +1,5 @@
 export * from './Autocomplete';
+export * from './DatePicker';
 export * from './InputGroup';
 export * from './Input';
 export * from './InputNumber';

@@ -5,7 +5,7 @@ export const COLORS = [
   'info',
   'error',
   'warning',
-  'black',
+  // 'black',
   // 'slate',
   // 'gray',
   // 'zinc',

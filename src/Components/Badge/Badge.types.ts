@@ -1,4 +1,4 @@
-import {HTMLAttributes} from 'react';
+import {HTMLAttributes, MouseEventHandler} from 'react';
 import {ColorType} from '../../@types/Color.ts';
 import {VariantType} from '../../@types/Variant.ts';
 
@@ -11,5 +11,5 @@ export type BadgeProps = {
   outline?: boolean
   size?: SizingType
   closable?: boolean
-  onClose?: () => void
+  onClose?: MouseEventHandler<SVGSVGElement> | undefined
 } & HTMLAttributes<HTMLSpanElement>

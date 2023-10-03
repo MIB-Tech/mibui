@@ -25,7 +25,7 @@ const Spinner: FC<{ color?: ColorType, size?: SizingType } & HTMLAttributes<HTML
 
   return (
     <svg
-      className={twMerge('text-gray-200 animate-spin dark:text-gray-600', className, props.className)}
+      className={twMerge('text-gray-200 animate-spin', className, props.className)}
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
