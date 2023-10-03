@@ -1,1 +1,0 @@
-export {default as TabComp} from "./TabComp.tsx"

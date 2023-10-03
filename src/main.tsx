@@ -26,7 +26,7 @@ const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
       [RouteEnum.ComponentsModal]: 'Modal',
       [RouteEnum.ComponentsPagination]: 'Pagination',
       [RouteEnum.ComponentsPopover]: 'Popover',
-      [RouteEnum.ComponentsTabComp]: 'TabComp',
+      [RouteEnum.ComponentsTabs]: 'Tabs',
       [RouteEnum.ComponentsSpinner]: 'Spinner',
       [RouteEnum.ComponentsToast]: 'Toast',
       [RouteEnum.ComponentsTooltip]: 'Tooltip',

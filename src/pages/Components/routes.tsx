@@ -13,7 +13,7 @@ import {ToastPage} from './Toast';
 import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
-import {TabCompPage} from "./TabComp";
+import {TabsPage} from "./Tabs";
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -85,9 +85,9 @@ const ROUTES: RouteObject = {
       element: <PopoverPage/>
     },
     {
-      id: RouteEnum.ComponentsTabComp,
-      path: 'tabcomp',
-      element: <TabCompPage/>
+      id: RouteEnum.ComponentsTabs,
+      path: 'tabs',
+      element: <TabsPage/>
     },
   ]
 };
