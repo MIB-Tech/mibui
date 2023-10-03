@@ -6,7 +6,7 @@ import {TabPanelProps} from "./Tabs.types.ts";
 const TabPanel: FC<TabPanelProps> = ({className, ...props}) => (
   <MuiTabPanel
     {...props}
-    className={twMerge(`p-1`, className)}
+    className={twMerge(`p-2.5`, className)}
   />
 )
 
