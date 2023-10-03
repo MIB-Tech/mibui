@@ -10,5 +10,6 @@ export * from './Pagination';
 export * from './Preview';
 export * from './Spinner';
 export * from './SvgIcon';
+export * from './Tabs';
 export * from './Toast';
 export * from './Tooltip';
