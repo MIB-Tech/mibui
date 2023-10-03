@@ -13,6 +13,8 @@ export type ButtonProps = {
   square?: boolean
   variant?: VariantType
   color?: ColorType
+  activeVariant?: VariantType
+  activeColor?: ColorType
   outline?: boolean
   size?: SizingType
   disabled?: boolean

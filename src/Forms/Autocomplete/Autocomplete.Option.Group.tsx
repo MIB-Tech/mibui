@@ -10,7 +10,7 @@ export const AutocompleteGroupOption = <Value, >({option, ...props}: Autocomplet
   <li
     {...props}
     className={twMerge(
-      'sticky top-0 ps-3 py-2 backdrop-blur-sm bg-gray-50/30 ring-1 ring-slate-900/10 dark:ring-black/10 overflow-hidden',
+      'sticky top-0 ps-3 py-2 backdrop-blur-sm bg-gray-50/30 ring-1 ring-slate-900/10 overflow-hidden',
       props.className
     )}
   >

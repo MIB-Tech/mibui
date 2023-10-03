@@ -1,9 +1,9 @@
-import {FC, useState} from 'react';
-import {DatePickerProps, View} from './DatePicker.types.ts';
-import {Popover} from '../../Components/Popover';
+import {FC} from 'react';
+import {DatePickerProps} from './DatePicker.types.ts';
 import {DatePickerProvider} from './Datepicker.Context.tsx';
 import DatePickerInput from './DatePicker.Input.tsx';
-import {DatePickerContent} from './DatePicker.Content.tsx';
+import {DatepickerContent} from './Datepicker.Content.tsx';
+import {Popup} from '../../Components';
 
 const DatePicker: FC<DatePickerProps> = (
   {
@@ -14,28 +14,34 @@ const DatePicker: FC<DatePickerProps> = (
     includeTime,
     timeFormat,
     mode,
+    inline,
     ...props
-  }) => {
-  const [view, setView] = useState<View>(View.Day);
+  }
+) => {
+  const {disabled, readOnly} = props;
 
   return (
     <DatePickerProvider
-      view={view}
-      setView={setView}
       value={value}
       onChange={onChange}
       format={format}
       includeTime={includeTime}
       timeFormat={timeFormat}
       mode={mode}
+      disabled={disabled}
     >
-      <Popover
-        {...slotProps?.popup}
-        content={<DatePickerContent/>}
-        className='p-2'
-      >
-        <DatePickerInput {...props}/>
-      </Popover>
+      {inline ?
+        <DatepickerContent/> :
+        <Popup
+          trigger='click'
+          {...slotProps?.popup}
+          content={<DatepickerContent/>}
+          open={(disabled || readOnly) ? false : undefined}
+        >
+          <DatePickerInput {...props}/>
+        </Popup>
+      }
+
     </DatePickerProvider>
   );
 };

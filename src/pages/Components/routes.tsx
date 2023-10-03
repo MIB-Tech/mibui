@@ -21,7 +21,8 @@ const ROUTES: RouteObject = {
     {
       id: RouteEnum.ComponentsAlert,
       path: 'alert',
-      element: <AlertPage/>
+      element: <AlertPage/>,
+      index: true
     },
     {
       id: RouteEnum.ComponentsBadge,

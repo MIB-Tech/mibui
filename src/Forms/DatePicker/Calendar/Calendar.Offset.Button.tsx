@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/20/solid';
 import {IconButton, IconButtonProps} from '../../../Components/IconButton/IconButton.tsx';
 
-export const OffsetButton: FC<IconButtonProps> = ({...props}) => (
+export const CalendarOffsetButton: FC<IconButtonProps> = ({...props}) => (
   <IconButton
     size='sm'
     variant='light'
@@ -12,13 +12,13 @@ export const OffsetButton: FC<IconButtonProps> = ({...props}) => (
 );
 type OffsetButtonProps = Omit<IconButtonProps, 'iconElement'>
 export const BackOffsetButton: FC<OffsetButtonProps> = props => (
-  <OffsetButton
+  <CalendarOffsetButton
     {...props}
     iconElement={ChevronLeftIcon}
   />
 );
 export const ForwardOffsetButton: FC<OffsetButtonProps> = props => (
-  <OffsetButton
+  <CalendarOffsetButton
     {...props}
     iconElement={ChevronRightIcon}
   />

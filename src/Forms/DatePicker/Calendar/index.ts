@@ -1,3 +1,3 @@
-export {default as CalendarHeader} from './Header.tsx'
-export {default as CalendarBody} from './Body.tsx'
-export {default as CalendarFooter} from './Footer.tsx'
+export {default as CalendarHeader} from './Calendar.Header.tsx'
+export {default as CalendarBody} from './Calendar.Body.tsx'
+export {default as CalendarFooter} from './Calendar.Footer.tsx'

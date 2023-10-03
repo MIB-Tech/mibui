@@ -8,7 +8,7 @@ import {
   TimeFormat
 } from '../../../Forms/DatePicker/DatePicker.types.ts';
 
-const DatePickerExample: FC<Omit<DatePickerProps, 'value' | 'onChange'>> = (props) => {
+export const DatePickerExample: FC<Omit<DatePickerProps, 'value' | 'onChange'>> = (props) => {
   const [value, setValue] = useState<Date[]>([]);
 
   return (
@@ -37,24 +37,6 @@ const Page = () => {
         <DatePickerExample includeTime/>
       </Preview>
       <Preview
-        title='Date Range'
-        className='flex justify-center'
-      >
-        <DatePickerExample
-          includeTime
-          mode='range'
-        />
-      </Preview>
-      <Preview
-        title='Date Multiple'
-        className='flex justify-center'
-      >
-        <DatePickerExample
-          includeTime
-          mode='multiple'
-        />
-      </Preview>
-      <Preview
         title='Date Format'
         className='grid grid-cols-3 gap-4'
       >
@@ -62,25 +44,35 @@ const Page = () => {
           <DatePickerExample
             key={format}
             format={format}
-            slotProps={{
-              input: {
-                placeholder: DATE_FORMAT_CONFIG[format].label
-              }
-            }}
+            placeholder={DATE_FORMAT_CONFIG[format].label}
           />
         ))}
+      </Preview>
+      <Preview
+        title='Time Format'
+        className='flex space-x-4'
+      >
         {Object.values(TimeFormat).map(format => (
           <DatePickerExample
             key={format}
             includeTime
             timeFormat={format}
-            slotProps={{
-              input: {
-                placeholder: DATE_FORMAT_CONFIG[format].label
-              }
-            }}
+            placeholder={DATE_FORMAT_CONFIG[format].label}
           />
         ))}
+      </Preview>
+      <Preview
+        title='Form props'
+        className='flex justify-center space-x-4'
+      >
+        <DatePickerExample disabled placeholder='Disabled'/>
+        <DatePickerExample readOnly placeholder='ReadOnly'/>
+      </Preview>
+      <Preview
+        title='Inline Calendar'
+        className='flex justify-center space-x-4'
+      >
+        <DatePickerExample inline/>
       </Preview>
     </div>
   );

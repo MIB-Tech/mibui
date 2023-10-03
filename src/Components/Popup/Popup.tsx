@@ -3,39 +3,44 @@ import {PopupProps} from './Popup.types.tsx';
 import {Popup as BasePopup} from '@mui/base/Unstable_Popup/Popup';
 import {ClickAwayListener} from '@mui/base';
 import {twMerge} from 'tailwind-merge';
-import {Card} from '../Card';
+import {useControlledState} from './Popup.utils.ts';
+
 
 const Popup: FC<PopupProps> = (
   {
     children,
     trigger = 'hover',
     content,
-    header,
-    footer,
     className,
+    open: controlledOpen,
+    setOpen: setControlledOpen,
     ...props
   }
 ) => {
-  // const {placement} = props;
-  const [open, setOpen] = useState<boolean>(!!props.open);
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  // const open = Boolean(anchor) || props.open;
+  const [open, setOpen] = useControlledState({
+    open: controlledOpen,
+    setOpen: setControlledOpen,
+  });
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    if (open) setOpen(false);
+  };
+
+  const eventHandlers = trigger === 'click'
+    ? {onClick: handleOpen}
+    : {onMouseEnter: handleOpen, onMouseLeave: handleClose};
 
   const child = useMemo(() => {
     const childProps = {
       ...props,
-      ref: setAnchor
+      ref: setAnchor,
+      ...eventHandlers,
     };
 
-    if (trigger === 'click') {
-      childProps.onClick = () => setOpen((o) => !o);
-    } else {
-      childProps.onMouseEnter = () => setOpen(true);
-      childProps.onMouseLeave = () => setOpen(false);
-    }
-
     return cloneElement<HTMLAttributes<HTMLDivElement>>(children, childProps);
-  }, [children, props, trigger, anchor]);
+  }, [children, props, eventHandlers]);
 
   return (
     <>
@@ -44,35 +49,17 @@ const Popup: FC<PopupProps> = (
         {...props}
         open={open}
         anchor={anchor}
-        className={twMerge(
-          'z-10 rounded text-sm shadow',
-          // !disableArrow && 'relative'
-        )}
+        className={twMerge('z-10 rounded shadow-lg bg-white', className)}
         offset={5}
       >
-        <ClickAwayListener
-          onClickAway={() => {
-            if (open) {
-              setOpen(false);
-            }
-          }}
-        >
-          <Card
-            header={header}
-            footer={footer}
-            className={twMerge('p-0', className)}
-          >
+        <ClickAwayListener onClickAway={handleClose}>
+          <div>
             {content}
-            {/*{!disableArrow && (*/}
-            {/*  <PopupArrow placement={placement}/>*/}
-            {/*)}*/}
-          </Card>
+          </div>
         </ClickAwayListener>
       </BasePopup>
-
     </>
-  )
-    ;
+  );
 };
 
 export default Popup;

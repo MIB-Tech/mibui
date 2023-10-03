@@ -4,12 +4,11 @@ import {Button} from '../../Components';
 import {twMerge} from 'tailwind-merge';
 import {ArrowIcon} from './ArrowIcon.tsx';
 
-export const ViewButton: FC<ButtonProps> = ({children, className, active, ...props}) => {
+export const ViewButton: FC<ButtonProps> = ({children, className, ...props}) => {
 
   return (
     <Button
-      variant='light'
-      color={active ? 'primary' : 'secondary'}
+      color='secondary'
       size='sm'
       {...props}
       className={twMerge('flex items-center space-x-1 font-semibold capitalize tabular-nums', className)}

@@ -10,17 +10,14 @@ const Tooltip: FC<TooltipProps> = (
     trigger = 'hover',
     ...props
   }
-) => {
-
-  return (
-    <Popup
-      trigger={trigger}
-      {...props}
-      className={twMerge('px-3 py-2', className)}
-    >
-      {children}
-    </Popup>
-  );
-};
+) => (
+  <Popup
+    trigger={trigger}
+    {...props}
+    className={twMerge('px-3 py-2 text-sm', className)}
+  >
+    {children}
+  </Popup>
+)
 
 export default Tooltip;

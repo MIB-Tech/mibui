@@ -1,22 +1,16 @@
-import {createContext, Dispatch, FC, HTMLAttributes, SetStateAction, useContext} from 'react';
-import {DateFormat, DatePickerProps, View} from './DatePicker.types.ts';
+import {createContext, FC, HTMLAttributes, useContext} from 'react';
+import {DateFormat, DatePickerProps} from './DatePicker.types.ts';
 import {DatePickerProvider as BaseDatePickerProvider} from '@rehookify/datepicker';
 import {useLocale} from '../../main.tsx';
 
-type DatepickerContextType = {
-  view?: View
-  setView: Dispatch<SetStateAction<View>>
-} & Omit<DatePickerProps, 'popupProps'>
+type DatepickerContextType = Omit<DatePickerProps, 'popupProps'>
 
 export const DatePickerContext = createContext<DatepickerContextType>({
   mode: 'single',
   onChange: () => {
   },
   value: [],
-  format: DateFormat.Local,
-  view: View.Day,
-  setView: () => {
-  }
+  format: DateFormat.Local
 });
 
 export const useDatePicker = () => {

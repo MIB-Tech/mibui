@@ -7,15 +7,14 @@ export type DatePickerInputProps = Omit<InputProps, 'onChange' | 'maxRows' | 'mi
 
 export type DatePickerProps = {
   format?: DateFormat
-  //
   includeTime?: boolean
   timeFormat?: TimeFormat
   slotProps?: {
     popup?: Omit<PopoverProps, 'content' | 'children'>
   }
-  //
   value: Date[]
   onChange: (value: Date[]) => void
+  inline?: boolean
 } & Partial<Pick<DPDatesConfig, 'mode'>>
  & DatePickerInputProps
 

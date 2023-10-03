@@ -10,7 +10,6 @@ const Page = () => {
       <Preview title="Default" className="flex justify-center">
         <Popover
           content='Popover content'
-          header={<span className='font-bold text-lg'>Popover Header</span>}
           placement='right'
         >
           <Button>Default</Button>

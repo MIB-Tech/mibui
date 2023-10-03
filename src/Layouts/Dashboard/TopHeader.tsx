@@ -13,7 +13,7 @@ const Tooltip = ({...props}) => {
 const IconButton: FC<HTMLAttributes<HTMLButtonElement>> = ({className, ...props}) => (
   <button
     className={twMerge(
-      'flex items-center text-sm text-gray-600 hover:text-gray-700 dark:text-white',
+      'flex items-center text-sm text-gray-600 hover:text-gray-700',
       className
     )}
     {...props}
@@ -21,14 +21,14 @@ const IconButton: FC<HTMLAttributes<HTMLButtonElement>> = ({className, ...props}
 );
 
 export const TopHeader = () => (
-  <nav className="bg-gray-50 dark:bg-gray-700 border-b border-inherit">
+  <nav className="bg-gray-50 border-b border-inherit">
     <div className="flex items-center flex-wrap justify-between mx-auto max-w-[85%] py-3">
       <Link
         to='/'
         className="flex items-center"
       >
         {/*<img src="https://flowbite.com/docs/images/logo.svg" className="h-6 mr-3" alt="Flowbite Logo"/>*/}
-        <span className="self-center font-semibold whitespace-nowrap dark:text-white">
+        <span className="self-center font-semibold whitespace-nowrap">
           MIBUI
         </span>
       </Link>

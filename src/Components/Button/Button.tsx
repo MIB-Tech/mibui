@@ -14,15 +14,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
     active,
     size,
     variant = 'solid',
-    square,
     color = 'primary',
+    activeVariant = variant,
+    activeColor = color,
+    square,
     ...props
   },
   ref
 ) => {
   const variantStyles = useVariantStyles({color, variant});
+  const activeStyles = useVariantStyles({color: activeColor, variant: activeVariant});
   const sizing = useSizing(size);
   const disabled = props.disabled || loading;
+
+  const style = active ? activeStyles: variantStyles
 
   const spacingClassName = useMemo<string>(() => {
     if (square) {
@@ -50,16 +55,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
         spacingClassName,
         loading && 'relative',
         `rounded font-medium`,
-        variantStyles.background,
-        variantStyles.text,
-        !disabled && variantStyles.hover,
-        active && variantStyles.active,
+        style.background,
+        style.text,
+        !disabled && style.hover,
+        active && style.active,
         sizing.text,
-        outline && variantStyles.outline,
+        outline && style.outline,
         props.className,
         // Mui state
         '[&.Mui-disabled]:cursor-not-allowed [&.Mui-disabled]:opacity-60',
-        // `[&.Mui-active]:${variantStyles.outline}`,
+        // `[&.Mui-active]:${style.outline}`,
       )}
     >
       {loading && (

@@ -1,18 +1,19 @@
-import {BackOffsetButton, ForwardOffsetButton} from '../Views/OffsetButton.tsx';
+import {BackOffsetButton, ForwardOffsetButton} from './Calendar.Offset.Button.tsx';
 import {View} from '../DatePicker.types.ts';
 import {DPCalendar, useDatePickerContext as useRehookifyDatePicker} from '@rehookify/datepicker';
-import {useDatePicker} from '../Datepicker.Context.tsx';
 import {ViewButton} from '../ViewButton.tsx';
 import {FC} from 'react';
+
+import {useCalendarContext} from './Calendar.Context.tsx';
 
 export type DatePickerCalendarHeaderProps = {
   calendar: DPCalendar
 }
-const Header: FC<DatePickerCalendarHeaderProps> = ({calendar}) => {
+const CalendarHeader: FC<DatePickerCalendarHeaderProps> = ({calendar}) => {
   const {
     view,
     setView
-  } = useDatePicker();
+  } = useCalendarContext();
   const {propGetters} = useRehookifyDatePicker();
   const {month, year} = calendar;
   const {
@@ -51,4 +52,4 @@ const Header: FC<DatePickerCalendarHeaderProps> = ({calendar}) => {
   );
 };
 
-export default Header
+export default CalendarHeader;

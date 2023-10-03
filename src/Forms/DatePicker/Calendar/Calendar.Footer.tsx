@@ -6,14 +6,12 @@ import moment from 'moment';
 import {ViewButton} from '../ViewButton.tsx';
 import {FC} from 'react';
 
+import {useCalendarContext} from './Calendar.Context.tsx';
+
 export type DatePickerCalendarFooterProps = {}
-const Footer: FC<DatePickerCalendarFooterProps> = () => {
-  const {
-    includeTime,
-    view,
-    setView,
-    onChange
-  } = useDatePicker();
+const CalendarFooter: FC<DatePickerCalendarFooterProps> = () => {
+  const {includeTime, onChange} = useDatePicker();
+  const {view, setView} = useCalendarContext()
   const {data, propGetters} = useRehookifyDatePicker();
   const {selectedDates, time} = data;
   const {setOffset} = propGetters;
@@ -59,4 +57,4 @@ const Footer: FC<DatePickerCalendarFooterProps> = () => {
   );
 };
 
-export default Footer;
+export default CalendarFooter;

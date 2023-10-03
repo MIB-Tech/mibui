@@ -9,7 +9,7 @@ type UseVariantColorProps = {
 }
 export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVariantColorProps) => {
   const solid = getColorClassName({color});
-  const light = color === 'black' ? 'gray-300' : getColorClassName({color, weight: 100});
+  const light = getColorClassName({color, weight: 100});
 
   const background = useMemo<string>(() => {
     switch (variant) {
@@ -26,17 +26,23 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
     switch (variant) {
       case 'solid':
       case 'light':
-        return color === 'black' ?
-          `gray-${variant === 'solid' ? 700 : 400}` :
-          getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
-          ;
+        switch (color) {
+          case 'secondary':
+            return `gray-100`
+          default:
+            return getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
+        }
       case 'clean':
         return 'gray-100';
     }
   }, [color, variant]);
 
-  const text = useMemo<string>(() => {
-    return variant === 'solid' ? 'white' : solid;
+  const text = useMemo<string|undefined>(() => {
+    if (color === 'secondary') {
+      return undefined
+    }
+
+    return variant === 'solid' ? 'white' : solid
   }, [solid, variant]);
 
   const activeBackground = useMemo<string>(() => {
@@ -44,9 +50,13 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
   }, [hoverBackground, variant]);
 
   const outline = useMemo<string>(() => {
+    if (color === 'secondary') {
+      return 'gray-500'
+    }
+
     switch (variant) {
       case 'solid':
-        return color === 'black' ? 'gray-400' : getColorClassName({color, weight: 300});
+        return getColorClassName({color, weight: 300});
       default:
         return solid;
     }

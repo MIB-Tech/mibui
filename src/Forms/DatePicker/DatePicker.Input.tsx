@@ -14,7 +14,8 @@ const DatePickerInput = forwardRef<HTMLInputElement, DatePickerInputProps>((prop
     includeTime,
     format = defaultDateFormat,
     timeFormat = defaultTimeFormat,
-    mode
+    mode,
+    disabled
   } = useDatePicker();
   const {data} = useRehookifyDatePicker();
   const {selectedDates} = data;
@@ -35,7 +36,12 @@ const DatePickerInput = forwardRef<HTMLInputElement, DatePickerInputProps>((prop
       ref={ref}
       value={isRange && selectedDates.length === 1 ? `${inputLabel}${separator}...`: inputLabel}
       slotProps={{input: {className: 'tabular-nums'}}}
-      endAdornment={<AdornmentIconButton iconElement={CalendarDaysIcon}/>}
+      endAdornment={(
+        <AdornmentIconButton
+          disabled={disabled}
+          iconElement={CalendarDaysIcon}
+        />
+      )}
     />
   );
 });
