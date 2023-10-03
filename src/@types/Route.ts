@@ -12,6 +12,7 @@ export enum RouteEnum {
   ComponentsModal = 'COMPONENTS.MODAL',
   ComponentsPagination = 'COMPONENTS.PAGINATION',
   ComponentsPopover = 'COMPONENTS.Popover',
+  ComponentsTabs = 'COMPONENTS.TABS',
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',

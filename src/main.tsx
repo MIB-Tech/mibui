@@ -31,6 +31,7 @@ const en = {
     [RouteEnum.ComponentsPagination]: 'Pagination',
     [RouteEnum.ComponentsPopover]: 'Popover',
     [RouteEnum.ComponentsSpinner]: 'Spinner',
+    [RouteEnum.ComponentsTabs]: 'Tabs',
     [RouteEnum.ComponentsToast]: 'Toast',
     [RouteEnum.ComponentsTooltip]: 'Tooltip',
     [RouteEnum.Form]: 'Form',
@@ -72,12 +73,9 @@ i18next.use(initReactI18next).init({
 });
 
 export const router = createBrowserRouter([ROUTES]);
-export const useLocale = () => {
-
-  return {
-    locale: Lang.French
-  };
-};
+export const useLocale = () => ({
+  locale: Lang.French
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
