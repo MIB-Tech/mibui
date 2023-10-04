@@ -12,6 +12,7 @@ export * from './Popup';
 export * from './Preview';
 export * from './Spinner';
 export * from './SvgIcon';
+export * from './Table';
 export * from './Tabs';
 export * from './Toast';
 export * from './Tooltip';

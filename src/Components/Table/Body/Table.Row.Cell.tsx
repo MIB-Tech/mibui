@@ -1,33 +1,30 @@
-import {getSizeClass, useTableContext} from "../Table.utils.tsx";
-import {CellProps} from "../Table.types.tsx";
-import React from "react";
-import {twMerge} from "tailwind-merge";
+import {useTableContext} from '../Table.utils.tsx';
+import {CellProps} from '../Table.types.tsx';
+import React from 'react';
+import {twMerge} from 'tailwind-merge';
 
 const TableRowCell: React.FC<CellProps> = ({className, ...props}) => {
 	const {
-		size,
 		borderClassName,
-		borderLess,
-		Hoverable,
+		bordered,
+		hoverable,
 		stickyColumn,
+		cellClassName,
 	} = useTableContext();
-	const sizeClass = getSizeClass(size);
-	const border = borderLess ? "border-r first:border-l" : "";
-	const hoverClassName = Hoverable ? "group-hover:bg-gray-50 bg-white cursor-pointer" : "";
-	const borderClassNames = borderClassName;
-	const stickyClassNames = stickyColumn  ? "first:sticky left-0 first:border-r-2" : "";
-
-//const column = 	stickyColumn ? "":"";
 
 	return (
 		<td
-			className={twMerge(`${sizeClass}
-			${borderClassNames}
-			${stickyClassNames}`,
-				hoverClassName,
-				border,
-				className,"group-last:border-b-0  ")}
 			{...props}
-		/>);
+			className={twMerge(
+				'group-last:border-b-0',
+				cellClassName,
+				borderClassName,
+				stickyColumn && 'first:sticky first:backdrop-blur-md first:bg-gray-50/30 left-0 first:border-r-2',
+				hoverable && 'group-hover:bg-gray-50 cursor-pointer',
+				bordered && 'border-r first:border-l',
+				className
+			)}
+		/>
+	);
 };
 export default TableRowCell;

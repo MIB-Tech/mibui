@@ -1,2 +1,3 @@
-export {default as Body} from './Table.Body.tsx'
-export {default as Row} from './Table.Row.tsx'
+export {default as TableBody} from './Table.Body.tsx';
+export {default as TableRow} from './Table.Row.tsx';
+export {default as TableRowCell} from './Table.Row.Cell.tsx';

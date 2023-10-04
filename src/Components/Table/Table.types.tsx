@@ -1,26 +1,21 @@
-import {HTMLAttributes} from "react";
-import {SizingType} from "../../@types/Sizing.ts";
+import {HTMLAttributes} from 'react';
+import {Context} from './Context/Table.Context.tsx';
 
-export type TableProps = {
-	size?: SizingType;
-	borderStyle?:BorderEnum;
-	Hoverable?: boolean;
-	borderLess?: boolean;
-	stickyHeader?:boolean;
-	stickyColumn?:boolean;
-} & HTMLAttributes<HTMLTableElement>
+export const BORDER_STYLES = [
+	'none',
+	'solid',
+	'dashed',
+	'dotted'
+] as const;
+
+export type BorderStyle = typeof BORDER_STYLES[number]
+
+export type TableProps = Context & HTMLAttributes<HTMLTableElement>
 
 
 export type TableHeadProps = HTMLAttributes<HTMLTableSectionElement>
 
 export type CellProps = & HTMLAttributes<HTMLTableCellElement>
-export enum BorderEnum {
-	None = "none",
-	Solid = "solid",
-	Dashed = "dashed",
-	Dotted = "dotted",
-}
-
 
 export type TableRowProps = & HTMLAttributes<HTMLTableRowElement>
 
