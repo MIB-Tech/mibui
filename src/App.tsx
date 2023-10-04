@@ -9,8 +9,8 @@ import {Toaster} from 'react-hot-toast';
 
 
 function App() {
-  const {parent, title} = useActiveRouteContext()
-  const childRoutes = parent?.children || []
+  const {contextRoute, parentRoute, title} = useActiveRouteContext()
+  const childRoutes = parentRoute?.children || []
   const hasChild = childRoutes.length > 0
 
   return (
@@ -30,9 +30,9 @@ function App() {
                 {childRoutes.map(childRoute => (
                   <NavLink
                     key={childRoute.id}
-                    to={`${parent?.path}/${childRoute?.path}`}
+                    to={`${contextRoute?.path}/${parentRoute?.path}/${childRoute?.path}`}
                     className={({isActive}) => twMerge(
-                      'dark:text-primary-500 border-s  hover:border-s-primary-500 ps-3',
+                      'border-s  hover:border-s-primary-500 ps-3',
                       isActive ?
                         'text-primary-600 border-s-primary-500 font-bold' :
                         'border-s-transparent'
@@ -44,7 +44,6 @@ function App() {
               </div>
             </div>
           )}
-
           <div className={twMerge(hasChild && 'col-span-7')}>
             <Outlet/>
           </div>

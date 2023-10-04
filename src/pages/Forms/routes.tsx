@@ -6,6 +6,9 @@ import {InputPasswordPage} from './InputPassword';
 import {InputGroupPage} from './InputGroup';
 import {SelectPage} from './Select';
 import {AutocompletePage} from './Autocomplete';
+import DatePage from './DatePicker/DatePage.tsx';
+import DateRangePage from './DatePicker/DateRangePage.tsx';
+import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
 import { SwitchPage } from './Switch/index.ts';
 
 const ROUTES: RouteObject = {
@@ -15,7 +18,8 @@ const ROUTES: RouteObject = {
     {
       id: RouteEnum.FormInput,
       path: 'input',
-      element: <InputPage/>
+      element: <InputPage/>,
+      index: true
     },
     {
       id: RouteEnum.FormInputNumber,
@@ -26,6 +30,28 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputPassword,
       path: 'input-password',
       element: <InputPasswordPage/>
+    },
+    {
+      id: RouteEnum.FormDatePicker,
+      path: 'date-picker',
+      // element: <Navigate to='single'/>,
+      children: [
+        {
+          id: RouteEnum.FormDatePickerSingle,
+          path: 'single',
+          element: <DatePage/>
+        },
+        {
+          id: RouteEnum.FormDatePickerRange,
+          path: 'range',
+          element: <DateRangePage/>
+        },
+        {
+          id: RouteEnum.FormDatePickerMultiple,
+          path: 'multiple',
+          element: <DateMultiplePage/>
+        }
+      ]
     },
     {
       id: RouteEnum.FormSelect,

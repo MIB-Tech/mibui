@@ -37,7 +37,7 @@ const Page = () => {
             color={'primary'}
             icon={<CheckIcon className='h-5 w-5 mt-1'/>}
             title={'Title & icon'}
-            variant='soft'
+            variant='light'
           />
 
           <Alert
@@ -58,7 +58,7 @@ const Page = () => {
           <Alert
             color={'primary'}
             title={'Title nly'}
-            variant='soft'
+            variant='light'
           />
 
           <Alert
@@ -80,7 +80,7 @@ const Page = () => {
           <Alert
             color={'primary'}
             title={'Dismiss Button'}
-            variant='soft'
+            variant='light'
             dismissible
           />
 

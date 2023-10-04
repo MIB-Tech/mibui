@@ -9,34 +9,40 @@ type UseVariantColorProps = {
 }
 export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVariantColorProps) => {
   const solid = getColorClassName({color});
-  const soft = color === 'black' ? 'gray-300' : getColorClassName({color, weight: 100});
+  const light = getColorClassName({color, weight: 100});
 
   const background = useMemo<string>(() => {
     switch (variant) {
       case 'solid':
         return solid;
-      case 'soft':
-        return soft;
+      case 'light':
+        return light;
       case 'clean':
         return 'white';
     }
-  }, [solid, soft, variant]);
+  }, [solid, light, variant]);
 
   const hoverBackground = useMemo<string>(() => {
     switch (variant) {
       case 'solid':
-      case 'soft':
-        return color === 'black' ?
-          `gray-${variant === 'solid' ? 700 : 400}` :
-          getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
-          ;
+      case 'light':
+        switch (color) {
+          case 'secondary':
+            return `gray-100`
+          default:
+            return getColorClassName({color, weight: variant === 'solid' ? 600 : 200})
+        }
       case 'clean':
-        return 'gray-50';
+        return 'gray-100';
     }
   }, [color, variant]);
 
-  const text = useMemo<string>(() => {
-    return variant === 'solid' ? 'white' : solid;
+  const text = useMemo<string|undefined>(() => {
+    if (color === 'secondary') {
+      return undefined
+    }
+
+    return variant === 'solid' ? 'white' : solid
   }, [solid, variant]);
 
   const activeBackground = useMemo<string>(() => {
@@ -44,9 +50,13 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
   }, [hoverBackground, variant]);
 
   const outline = useMemo<string>(() => {
+    if (color === 'secondary') {
+      return 'gray-500'
+    }
+
     switch (variant) {
       case 'solid':
-        return color === 'black' ? 'gray-400' : getColorClassName({color, weight: 300});
+        return getColorClassName({color, weight: 300});
       default:
         return solid;
     }

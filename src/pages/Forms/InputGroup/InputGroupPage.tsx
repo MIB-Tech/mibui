@@ -2,7 +2,7 @@ import {Button, Menu, MenuButton, MenuMenu, Preview} from '../../../Components';
 import {Input, InputGroup, InputGroupAddon} from '../../../Forms';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import Icon from '../../../Components/SvgIcon/Icon.tsx';
-import {DropdownOptions} from '../../Components/Dropdown/DropdownOptions.tsx';
+import {MenuOptions} from '../../Components/Dropdown/MenuOptions.tsx';
 import {DropdownDirection} from '../../../Components/Menu/Menu.types.tsx';
 import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
 
@@ -66,7 +66,7 @@ const Page = () => {
               Dropdown
             </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonStart}>
-              <DropdownOptions/>
+              <MenuOptions/>
             </MenuMenu>
           </Menu>
           <Input placeholder='Search...'/>
@@ -77,7 +77,7 @@ const Page = () => {
               Dropdown
             </MenuButton>
             <MenuMenu>
-              <DropdownOptions/>
+              <MenuOptions/>
             </MenuMenu>
           </Menu>
           <Input placeholder='Search...'/>
@@ -86,7 +86,7 @@ const Page = () => {
               Dropdown
             </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonEnd}>
-              <DropdownOptions/>
+              <MenuOptions/>
             </MenuMenu>
           </Menu>
           <Menu>
@@ -94,7 +94,7 @@ const Page = () => {
               Dropdown
             </MenuButton>
             <MenuMenu direction={DropdownDirection.ButtonEnd}>
-              <DropdownOptions/>
+              <MenuOptions/>
             </MenuMenu>
           </Menu>
         </InputGroup>
