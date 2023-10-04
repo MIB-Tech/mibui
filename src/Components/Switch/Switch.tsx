@@ -1,6 +1,6 @@
-import { useVariantStyles } from "../../hooks/UseVariantStyles";
-import { SwitchProps } from "./Switch.types";
-import { FC, useMemo } from "react";
+import {useVariantStyles} from '../../hooks/UseVariantStyles';
+import {SwitchProps} from './Switch.types';
+import {FC, useMemo} from 'react';
 
 const Switch: FC<SwitchProps> = ({ size, color, ...props }) => {
     const classNames = useVariantStyles({color});

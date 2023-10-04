@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
-import i18next from 'i18next';
+import i18next, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {ROUTES} from './pages';
 import moment from 'moment/moment';
@@ -45,6 +45,7 @@ const en = {
     [RouteEnum.FormDatePickerRange]: 'Date Range',
     [RouteEnum.FormDatePickerMultiple]: 'Date Multiple',
     [RouteEnum.FormSelect]: 'Select',
+    [RouteEnum.FormSwitch]: 'Select',
     [RouteEnum.FormAutocomplete]: 'Autocomplete',
     [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
     [RouteEnum.FormValidation]: 'Validation',
@@ -61,7 +62,7 @@ const en = {
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
   }
 };
-const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
+const resources: Record<Lang, Resource> = {
   [Lang.English]: en,
   [Lang.French]: en,
 };
