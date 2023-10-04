@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    ::-webkit-scrollbar {
+        @apply w-1.5 h-1.5 left-5;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-200 rounded;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-300;
+    }
+}

@@ -7,9 +7,7 @@ const Page = () => {
   return (
     <div className='flex flex-col gap-12'>
       <Preview title='Basic'>
-        <Card
-          className='bg-white'
-        >
+        <Card className='bg-white'>
           <CardPlaceholder className='h-48'/>
         </Card>
       </Preview>
