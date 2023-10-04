@@ -9,7 +9,7 @@ const BreadcrumbItem: FC<BreadcrumbItemProps> = ({to, className, ...props}) => {
       <Link
         to={to}
         className={twMerge(
-          `inline-flex items-center hover:text-primary-600 dark:text-gray-400 dark:hover:text-white`,
+          `inline-flex items-center hover:text-primary-600`,
           className
         )}
         {...props}

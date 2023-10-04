@@ -1,8 +1,8 @@
-import {TooltipProps} from './Tooltip.types.tsx';
+import {PopupProps} from './Popup.types.tsx';
 import {useMemo} from 'react';
 import {twMerge} from 'tailwind-merge';
 
-export const TooltipArrow = ({placement}: Pick<TooltipProps, 'placement'>) => {
+export const PopupArrow = ({placement}: Pick<PopupProps, 'placement'>) => {
   const arrowPlacementClassName = useMemo<string>(() => {
     switch (placement) {
       case 'top':

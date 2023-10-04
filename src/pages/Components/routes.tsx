@@ -14,6 +14,7 @@ import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
 import {TablePage} from "./Table";
+import {TabsPage} from "./Tabs";
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -22,7 +23,8 @@ const ROUTES: RouteObject = {
     {
       id: RouteEnum.ComponentsAlert,
       path: 'alert',
-      element: <AlertPage/>
+      element: <AlertPage/>,
+      index: true
     },
     {
       id: RouteEnum.ComponentsBadge,
@@ -88,6 +90,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ContentTable,
       path: 'table',
       element: <TablePage/>
+    },
+    {
+      id: RouteEnum.ComponentsTabs,
+      path: 'tabs',
+      element: <TabsPage/>
     },
   ]
 };

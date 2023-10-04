@@ -1,6 +1,6 @@
 export const VARIANTS = [
   'solid',
-  'soft',
+  'light',
   'clean'
 ] as const;
 export type VariantType = typeof VARIANTS[number]

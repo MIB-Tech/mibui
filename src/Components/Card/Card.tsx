@@ -1,34 +1,23 @@
-import {FC} from 'react';
+import {forwardRef} from 'react';
 import {CardProps} from './Card.types.tsx';
 import {twMerge} from 'tailwind-merge';
 
-const Card: FC<CardProps> = ({header, footer, children, className, ...props}) => {
-
+const Card = forwardRef<HTMLDivElement, CardProps>((
+  {header, footer, children, className, ...props},
+  ref
+) => {
 
   return (
     <div
+      ref={ref}
       {...props}
-      className={twMerge('border border-gray-200 rounded p-5', className)}
+      className={twMerge('bg-white grid gap-y-4 border border-gray-200 rounded p-4', className)}
     >
-      {header && (
-        <div className='border-b pb-5'>
-          {header}
-        </div>
-      )}
-      {header || footer ?
-        <div className='py-5'>
-          {children}
-        </div>:
-        children
-      }
-
-      {footer && (
-        <div className='pt-5 border-t'>
-          {footer}
-        </div>
-      )}
+      {header && <div>{header}</div>}
+      {children}
+      {footer && <div className='mt-auto'>{footer}</div>}
     </div>
   )
-}
+})
 
 export default Card

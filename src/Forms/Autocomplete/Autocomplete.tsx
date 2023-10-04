@@ -70,7 +70,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
             <div key={tagProps.key}>
               <Badge
                 {...tagProps}
-                variant='soft'
+                variant='light'
                 closable={!disabled && !readOnly}
                 onClose={() => onDelete(null)}
                 size={size}

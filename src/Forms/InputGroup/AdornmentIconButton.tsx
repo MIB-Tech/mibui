@@ -31,8 +31,8 @@ export const AdornmentIconButton: FC<IconButtonProps> = ({size, iconElement, ...
   return (
     <div className='flex items-center justify-center'>
       <Button
-        variant='soft'
-        icon
+        variant='light'
+        square
         size={size}
         {...props}
         className={twMerge(

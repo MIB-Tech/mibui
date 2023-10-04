@@ -45,7 +45,7 @@ const Page = () => {
       </Preview>
       <Preview title='With icons'>
         <div className='flex flex-col items-center justify-center gap-10'>
-          <Pagination icon/>
+          <Pagination square/>
         </div>
       </Preview>
     </div>
