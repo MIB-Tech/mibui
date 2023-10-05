@@ -1,11 +1,12 @@
 import {SwitchProps} from './Switch.types';
-import {FC} from 'react';
+import {FC, useMemo} from 'react';
 import { Switch as MuiSwitch, SwitchOwnerState, switchClasses } from "@mui/base/Switch";
 import { styled } from "@mui/system";
 import { useVariantStyles } from '../../hooks/UseVariantStyles';
 import { twMerge } from 'tailwind-merge';
 
 const Switch: FC<SwitchProps> = ({
+    size,
     color = 'primary',
     ...props
     }) => {
@@ -19,12 +20,33 @@ const Switch: FC<SwitchProps> = ({
         }),
     };
 
+    const sizing = useMemo(() => {
+        const base_qtz = 4, base_oct = 8;
+        let multiplier = 1;
+        if (size === 'sm') multiplier = 0;
+        if (size === 'lg') multiplier = 2;
+        const switchProps = {
+            root: {
+                width: ((multiplier * base_oct) + 40), // 40
+                height: ((multiplier * base_qtz) + 24) // 24
+            },
+            thumb: {
+                width: ((multiplier * base_qtz) + 16), // 16
+                height: ((multiplier * base_qtz) + 16), // 16
+            },
+            checked_thumb: {
+                left: ((multiplier * base_qtz) + 20), // 20
+            }
+        };
+        return switchProps;
+    }, [size]);
+
     const Root = styled('span')(() => `
         font-size: 0;
         position: relative;
         display: inline-block;
-        width: 40px;
-        height: 24px;
+        width: ${sizing.root.width}px;
+        height: ${sizing.root.height}px;
         margin: 10px;
         cursor: pointer;
         &.${switchClasses.disabled} {
@@ -40,8 +62,8 @@ const Switch: FC<SwitchProps> = ({
         }
         & .${switchClasses.thumb} {
             display: block;
-            width: 16px;
-            height: 16px;
+            width: ${sizing.thumb.width}px;
+            height: ${sizing.thumb.height}px;
             top: 4px;
             left: 4px;
             border-radius: 16px;
@@ -56,7 +78,7 @@ const Switch: FC<SwitchProps> = ({
         }
         &.${switchClasses.checked} {
             .${switchClasses.thumb} {
-                left: 20px;
+                left: ${sizing.checked_thumb.left}px;
                 top: 4px;
                 background-color: #fff;
             }
@@ -77,7 +99,6 @@ const Switch: FC<SwitchProps> = ({
 
     return(
         <MuiSwitch
-            id="defaultSwitch"
             slots={{ root: Root }}
             slotProps={slotProps}
             {...props}
