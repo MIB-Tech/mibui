@@ -1,18 +1,11 @@
-import {SwitchProps} from './Switch.types';
-import {FC, useMemo} from 'react';
-import { Switch as MuiSwitch, SwitchOwnerState, switchClasses } from "@mui/base/Switch";
-import { styled } from "@mui/system";
-import { useVariantStyles } from '../../hooks/UseVariantStyles';
+import { forwardRef, useMemo } from 'react';
+import { Switch as BaseSwitch } from '@mui/base/Switch';
 import { twMerge } from 'tailwind-merge';
+import { SwitchProps } from './Switch.types';
 
-const Switch: FC<SwitchProps> = ({ size, color = 'primary', ...props }) => {
-    const classNames = useVariantStyles({color});
-    const slotProps = {
-        track: (ownerState: SwitchOwnerState) => ({
-            className: twMerge(
-                ownerState.checked ? classNames.background : classNames.background.replace('500', '300'))
-        })
-    };
+const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary', ...props}, ref) => {
+    console.log(size);
+    console.log(color);
     const sizing = useMemo(() => {
         const base_qtz = 4, base_oct = 8;
         let multiplier = 1;
@@ -32,74 +25,63 @@ const Switch: FC<SwitchProps> = ({ size, color = 'primary', ...props }) => {
             }
         };
     }, [size]);
-
-    const Root = styled('span')(() => `
-        font-size: 0;
-        position: relative;
-        display: inline-block;
-        width: ${sizing.root.width}px;
-        height: ${sizing.root.height}px;
-        margin: 10px;
-        cursor: pointer;
-        &.${switchClasses.disabled} {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        & .${switchClasses.track} {
-            border-radius: 16px;
-            display: block;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            border: 1px solid rgb(200, 200, 200);
-            box-shadow: 2px 2px 2px rgb(225, 225, 225);
-        }
-        & .${switchClasses.thumb} {
-            display: block;
-            width: ${sizing.thumb.width}px;
-            height: ${sizing.thumb.height}px;
-            top: 4px;
-            left: 4px;
-            border: 1px solid rgb(225, 225, 225);
-            border-radius: 16px;
-            background-color: #fff;
-            position: relative;
-            box-shadow: 1px 1px 1px rgb(120, 120, 120);
-            transition-property: all;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 120ms;
-        }
-        &.${switchClasses.focusVisible} .${switchClasses.thumb} {
-            box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
-        }
-        &.${switchClasses.checked} {
-            .${switchClasses.thumb} {
-                left: ${sizing.checked_thumb.left}px;
-                top: 4px;
-                background-color: #fff;
-            }
-        }
-        & .${switchClasses.input} {
-            cursor: inherit;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            z-index: 1;
-            margin: 0;
-        }
-        `
-    );
-
-    return(
-        <MuiSwitch
-            slots={{ root: Root }}
-            slotProps={slotProps}
+    console.log(sizing);
+    return (
+        <BaseSwitch
+            ref={ref}
             {...props}
+            slotProps={{
+                ...props.slotProps,
+                root: (ownerState) => {
+                    props.slotProps?.root,
+                    ownerState
+                    return {
+                        className: twMerge(
+                            `relative inline-block w-10 h-6 m-2.5 ${ownerState.disabled
+                                ? 'cursor-not-allowed opacity-40'
+                                : 'cursor-pointer'
+                            }`,
+                        )
+                    };
+                },
+                input: (ownerState) => {
+                    props.slotProps?.input,
+                    ownerState
+                    return {
+                        className: twMerge(
+                            'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+                        )
+                    };
+                },
+                track: (ownerState) => {
+                    props.slotProps?.track,
+                    ownerState
+                    return {
+                        className: twMerge(
+                            `absolute block w-full h-full rounded-2xl ${ownerState.checked
+                                ? 'bg-purple-500'
+                                : 'bg-slate-400 dark:bg-slate-600'
+                            }`,
+                        )
+                    };
+                },
+                thumb: (ownerState) => {
+                    props.slotProps?.thumb,
+                    ownerState
+                    return {
+                        className: twMerge(
+                            `block w-4 h-4 top-1 ${ownerState.checked ? 'left-5' : 'left-1'
+                            } rounded-2xl ${ownerState.focusVisible
+                                ? `${ownerState.checked ? 'bg-white' : 'bg-slate-500'
+                                } shadow-outline-switch`
+                                : 'bg-white'
+                            } relative transition-all`,
+                        )
+                    };
+                }
+            }}
         />
     );
-}
+});
 
 export default Switch;
