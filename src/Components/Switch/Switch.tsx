@@ -2,9 +2,10 @@ import { forwardRef, useMemo } from 'react';
 import { Switch as BaseSwitch } from '@mui/base/Switch';
 import { twMerge } from 'tailwind-merge';
 import { SwitchProps } from './Switch.types';
+import { useVariantStyles } from '../../hooks/UseVariantStyles';
 
 const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary', ...props}, ref) => {
-    console.log(color);
+    const classNames = useVariantStyles({color});
     const sizing = useMemo(() => {
         const base_qtz = 1, base_oct = 2;
         let multiplier = 1;
@@ -61,8 +62,8 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     return {
                         className: twMerge(
                             `absolute block w-full h-full rounded-2xl ${ownerState.checked
-                                ? 'bg-purple-500'
-                                : 'bg-slate-400 dark:bg-slate-600'
+                                ? classNames.background
+                                : `${classNames.background.replace('500', '300')} dark:bg-slate-600`
                             }`,
                         )
                     };
