@@ -49,7 +49,10 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     ownerState
                     return {
                         className: twMerge(
-                            'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+                            `${ownerState.disabled
+                                ? 'cursor-not-allowed opacity-40'
+                                : 'cursor-pointer'
+                            } absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0`,
                         )
                     };
                 },
