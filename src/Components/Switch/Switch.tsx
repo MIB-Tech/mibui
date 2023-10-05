@@ -4,28 +4,27 @@ import { twMerge } from 'tailwind-merge';
 import { SwitchProps } from './Switch.types';
 
 const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary', ...props}, ref) => {
-    console.log(size);
     console.log(color);
     const sizing = useMemo(() => {
-        const base_qtz = 4, base_oct = 8;
+        const base_qtz = 1, base_oct = 2;
         let multiplier = 1;
         if (size === 'sm') multiplier = 0;
         if (size === 'lg') multiplier = 2;
         return {
             root: {
-                width: ((multiplier * base_oct) + 40), // 40
-                height: ((multiplier * base_qtz) + 24) // 24
+                width: ((multiplier * base_oct) + 10), // 10
+                height: ((multiplier * base_qtz) + 6) // 6
             },
             thumb: {
-                width: ((multiplier * base_qtz) + 16), // 16
-                height: ((multiplier * base_qtz) + 16) // 16
+                width: ((multiplier * base_qtz) + 4), // 4
+                height: ((multiplier * base_qtz) + 4) // 4
             },
             checked_thumb: {
-                left: ((multiplier * base_qtz) + 20) // 20
+                left: ((multiplier * base_qtz) + 5) // 5
             }
         };
     }, [size]);
-    console.log(sizing);
+    
     return (
         <BaseSwitch
             ref={ref}
@@ -37,7 +36,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     ownerState
                     return {
                         className: twMerge(
-                            `relative inline-block w-10 h-6 m-2.5 ${ownerState.disabled
+                            `relative inline-block w-${sizing.root.width} h-${sizing.root.height} m-2.5 ${ownerState.disabled
                                 ? 'cursor-not-allowed opacity-40'
                                 : 'cursor-pointer'
                             }`,
@@ -73,7 +72,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     ownerState
                     return {
                         className: twMerge(
-                            `block w-4 h-4 top-1 ${ownerState.checked ? 'left-5' : 'left-1'
+                            `block w-${sizing.thumb.width} h-${sizing.thumb.height} top-1 ${ownerState.checked ? `left-${sizing.checked_thumb.left}` : 'left-1'
                             } rounded-2xl ${ownerState.focusVisible
                                 ? `${ownerState.checked ? 'bg-white' : 'bg-slate-500'
                                 } shadow-outline-switch`

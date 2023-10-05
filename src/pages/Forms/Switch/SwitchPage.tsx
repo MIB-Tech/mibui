@@ -11,6 +11,9 @@ const Page = () => {
                 <Switch disabled />
             </Preview>
             <Preview title="Sizing" className="grid grid-cols-3 items-center justify-items-center">
+                <Switch size="sm" />
+                <Switch size="md" />
+                <Switch size="lg" />
             </Preview>
             <Preview title="Colors" className="grid grid-cols-3 gap-6 justify-items-center">
             </Preview>
