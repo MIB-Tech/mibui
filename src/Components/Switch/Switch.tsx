@@ -5,40 +5,32 @@ import { styled } from "@mui/system";
 import { useVariantStyles } from '../../hooks/UseVariantStyles';
 import { twMerge } from 'tailwind-merge';
 
-const Switch: FC<SwitchProps> = ({
-    size,
-    color = 'primary',
-    ...props
-    }) => {
+const Switch: FC<SwitchProps> = ({ size, color = 'primary', ...props }) => {
     const classNames = useVariantStyles({color});
-
     const slotProps = {
         track: (ownerState: SwitchOwnerState) => ({
             className: twMerge(
-                ownerState.checked ? classNames.background : classNames.background.replace('500', '300')
-            )
-        }),
+                ownerState.checked ? classNames.background : classNames.background.replace('500', '300'))
+        })
     };
-
     const sizing = useMemo(() => {
         const base_qtz = 4, base_oct = 8;
         let multiplier = 1;
         if (size === 'sm') multiplier = 0;
         if (size === 'lg') multiplier = 2;
-        const switchProps = {
+        return {
             root: {
                 width: ((multiplier * base_oct) + 40), // 40
                 height: ((multiplier * base_qtz) + 24) // 24
             },
             thumb: {
                 width: ((multiplier * base_qtz) + 16), // 16
-                height: ((multiplier * base_qtz) + 16), // 16
+                height: ((multiplier * base_qtz) + 16) // 16
             },
             checked_thumb: {
-                left: ((multiplier * base_qtz) + 20), // 20
+                left: ((multiplier * base_qtz) + 20) // 20
             }
         };
-        return switchProps;
     }, [size]);
 
     const Root = styled('span')(() => `
@@ -59,6 +51,8 @@ const Switch: FC<SwitchProps> = ({
             height: 100%;
             width: 100%;
             position: absolute;
+            border: 1px solid rgb(200, 200, 200);
+            box-shadow: 2px 2px 2px rgb(225, 225, 225);
         }
         & .${switchClasses.thumb} {
             display: block;
@@ -66,9 +60,11 @@ const Switch: FC<SwitchProps> = ({
             height: ${sizing.thumb.height}px;
             top: 4px;
             left: 4px;
+            border: 1px solid rgb(225, 225, 225);
             border-radius: 16px;
             background-color: #fff;
             position: relative;
+            box-shadow: 1px 1px 1px rgb(120, 120, 120);
             transition-property: all;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 120ms;
