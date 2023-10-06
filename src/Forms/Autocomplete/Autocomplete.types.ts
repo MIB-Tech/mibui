@@ -11,4 +11,4 @@ export type AutocompleteProps<
   renderOption?: (props: HTMLAttributes<HTMLLIElement>, option: Value) => ReactNode
   renderListbox?: (props: Pick<UseAutocompleteReturnValue<Value>, 'getListboxProps' | 'groupedOptions' | 'getOptionProps'>) => ReactNode
 } & UseAutocompleteProps<Value, Multiple, false, false>
-  & Pick<InputProps, 'placeholder' | 'size'>
+  & Pick<InputProps, 'placeholder' | 'size' | 'className'>

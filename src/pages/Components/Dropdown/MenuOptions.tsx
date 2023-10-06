@@ -7,15 +7,15 @@ export const MenuOptions: FC<{ icon?: boolean }> = ({icon}) => {
   return (
     <>
       <MenuItem>
-        {icon && (<Icon icon={Cog6ToothIcon} className='mr-2 h-5 w-5'/>)}
+        {icon && (<Icon icon={Cog6ToothIcon} size={5} className='mr-2'/>)}
         Account Settings
       </MenuItem>
       <MenuItem>
-        {icon && (<Icon icon={ChatBubbleLeftIcon} className='mr-2 h-5 w-5'/>)}
+        {icon && (<Icon icon={ChatBubbleLeftIcon} size={5} className='mr-2'/>)}
         Support
       </MenuItem>
       <MenuItem>
-        {icon && (<Icon icon={ClipboardIcon} className='mr-2 h-5 w-5'/>)}
+        {icon && (<Icon icon={ClipboardIcon} size={5} className='mr-2'/>)}
         License
       </MenuItem>
     </>

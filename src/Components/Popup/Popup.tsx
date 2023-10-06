@@ -1,8 +1,7 @@
 import {cloneElement, FC, HTMLAttributes, useMemo, useState} from 'react';
 import {PopupProps} from './Popup.types.tsx';
-import {Popup as BasePopup} from '@mui/base/Unstable_Popup/Popup';
+import {Popup as MuiPopup} from '@mui/base/Unstable_Popup/Popup';
 import {ClickAwayListener} from '@mui/base';
-import {twMerge} from 'tailwind-merge';
 import {useControlledState} from './Popup.utils.ts';
 
 
@@ -45,19 +44,19 @@ const Popup: FC<PopupProps> = (
   return (
     <>
       {child}
-      <BasePopup
+      <MuiPopup
         {...props}
         open={open}
         anchor={anchor}
-        className={twMerge('z-10 rounded shadow-lg bg-white', className)}
+
         offset={5}
       >
         <ClickAwayListener onClickAway={handleClose}>
-          <div>
+          <div className={className}>
             {content}
           </div>
         </ClickAwayListener>
-      </BasePopup>
+      </MuiPopup>
     </>
   );
 };

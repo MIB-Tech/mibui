@@ -61,7 +61,8 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
         size={size}
         className={twMerge(
           'group flex-wrap items-center gap-2',
-          searchDisabled && 'cursor-pointer'
+          searchDisabled && 'cursor-pointer',
+          props.className
         )}
         startAdornment={multiple && Array.isArray(value) && value.map((option, index) => {
           const {onDelete, ...tagProps} = getTagProps({index});

@@ -23,7 +23,6 @@ const InputPage = () => {
         <Input placeholder='Password' type='password'/>
         <Input placeholder='Number' type='number'/>
         <Input placeholder='Search' type='search'/>
-        <Input placeholder='Search' type='search'/>
       </Preview>
       <Preview
         title='Input Adornments'
