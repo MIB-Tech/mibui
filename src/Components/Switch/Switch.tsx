@@ -1,30 +1,38 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { Switch as BaseSwitch } from '@mui/base/Switch';
 import { twMerge } from 'tailwind-merge';
 import { SwitchProps } from './Switch.types';
 import { useVariantStyles } from '../../hooks/UseVariantStyles';
 
-const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary', ...props}, ref) => {
+const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size = 'md', color = 'primary', ...props}, ref) => {
     const classNames = useVariantStyles({color});
-    const sizing = useMemo(() => {
-        const base_qtz = 1, base_oct = 2;
-        let multiplier = 1;
-        if (size === 'sm') multiplier = 0;
-        if (size === 'lg') multiplier = 2;
-        return {
-            root: {
-                width: ((multiplier * base_oct) + 10), // 10
-                height: ((multiplier * base_qtz) + 6) // 6
-            },
-            thumb: {
-                width: ((multiplier * base_qtz) + 4), // 4
-                height: ((multiplier * base_qtz) + 4) // 4
-            },
-            checked_thumb: {
-                left: ((multiplier * base_qtz) + 5) // 5
-            }
-        };
-    }, [size]);
+    const sizeProps = {
+        root_width: {
+            sm: 'w-10',
+            md: 'w-12',
+            lg: 'w-14'
+        },
+        root_height: {
+            sm: 'h-6',
+            md: 'h-7',
+            lg: 'h-8'
+        },
+        thumb_width: {
+            sm: 'w-4',
+            md: 'w-5',
+            lg: 'w-6'
+        },
+        thumb_height: {
+            sm: 'h-4',
+            md: 'h-5',
+            lg: 'h-6'
+        },
+        thumb_checked: {
+            sm: 'left-5',
+            md: 'left-6',
+            lg: 'left-7'
+        }
+    };
     
     return (
         <BaseSwitch
@@ -37,7 +45,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     ownerState
                     return {
                         className: twMerge(
-                            `relative inline-block w-${sizing.root.width} h-${sizing.root.height} m-2.5 ${ownerState.disabled
+                            `relative inline-block ${sizeProps.root_width[size]} ${sizeProps.root_height[size]} m-2.5 ${ownerState.disabled
                                 ? 'cursor-not-allowed opacity-40'
                                 : 'cursor-pointer'
                             }`,
@@ -63,7 +71,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                         className: twMerge(
                             `absolute block w-full h-full rounded-2xl ${ownerState.checked
                                 ? classNames.background
-                                : `${classNames.background.replace('500', '300')} dark:bg-slate-600`
+                                : 'bg-slate-300 dark:bg-slate-600'
                             }`,
                         )
                     };
@@ -73,7 +81,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size, color = 'primary
                     ownerState
                     return {
                         className: twMerge(
-                            `block w-${sizing.thumb.width} h-${sizing.thumb.height} top-1 ${ownerState.checked ? `left-${sizing.checked_thumb.left}` : 'left-1'
+                            `block ${sizeProps.thumb_width[size]} ${sizeProps.thumb_height[size]} top-1 ${ownerState.checked ? sizeProps.thumb_checked[size] : 'left-1'
                             } rounded-2xl ${ownerState.focusVisible
                                 ? `${ownerState.checked ? 'bg-white' : 'bg-slate-500'
                                 } shadow-outline-switch`
