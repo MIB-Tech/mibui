@@ -1,98 +1,120 @@
-import { forwardRef } from 'react';
-import { Switch as BaseSwitch } from '@mui/base/Switch';
-import { twMerge } from 'tailwind-merge';
-import { SwitchProps } from './Switch.types';
-import { useVariantStyles } from '../../hooks/UseVariantStyles';
+import {forwardRef, useMemo} from 'react';
+import {Switch as BaseSwitch} from '@mui/base/Switch';
+import {twMerge} from 'tailwind-merge';
+import {SwitchProps} from './Switch.types';
+import {useVariantStyles} from '../../hooks/UseVariantStyles';
 
-const Switch = forwardRef<HTMLSpanElement, SwitchProps>(({size = 'md', color = 'primary', ...props}, ref) => {
-    const classNames = useVariantStyles({color});
-    const sizeProps = {
-        root_width: {
-            sm: 'w-10',
-            md: 'w-12',
-            lg: 'w-14'
+const resolveSlotProps = (fn: any, args: any) => typeof fn === 'function' ? fn(args) : fn;
+
+const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
+  {
+    size = 'md',
+    color = 'primary',
+    slotProps,
+    ...props
+  },
+  ref
+) => {
+  const classNames = useVariantStyles({color});
+  const rootSlotProps = slotProps?.root;
+
+  const rootSizingClassName = useMemo<string>(() => {
+    switch (size) {
+      case 'sm':
+        return 'w-10 h-6';
+      case 'md':
+        return 'w-12 h-7';
+      case 'lg':
+        return 'w-14 h-8';
+    }
+  }, [size]);
+
+  const thumbSizingClassName = useMemo<string>(() => {
+    switch (size) {
+      case 'sm':
+        return 'w-4 h-4';
+      case 'md':
+        return 'w-5 h-5';
+      case 'lg':
+        return 'w-6 h-6';
+    }
+  }, [size]);
+
+  const thumbPositionClassName = useMemo<string>(() => {
+    switch (size) {
+      case 'sm':
+        return 'left-5';
+      case 'md':
+        return 'left-6';
+      case 'lg':
+        return 'left-7';
+    }
+  }, [size]);
+
+  return (
+    <BaseSwitch
+      ref={ref}
+      {...props}
+      slotProps={{
+        ...slotProps,
+        root: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(rootSlotProps, ownerState);
+
+          return {
+            ...resolvedSlotProps,
+            className: twMerge(
+              'relative inline-block m-2.5',
+              rootSizingClassName,
+              ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
+              resolvedSlotProps?.className
+            )
+          };
         },
-        root_height: {
-            sm: 'h-6',
-            md: 'h-7',
-            lg: 'h-8'
+        input: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(rootSlotProps, ownerState);
+
+          return {
+            ...resolvedSlotProps,
+            className: twMerge(
+              'absolute w-full h-full top-0 left-0 opacity-0 z-10',
+              ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
+              resolvedSlotProps?.className
+            )
+          };
         },
-        thumb_width: {
-            sm: 'w-4',
-            md: 'w-5',
-            lg: 'w-6'
+        track: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(rootSlotProps, ownerState);
+
+          return {
+            ...resolvedSlotProps,
+            className: twMerge(
+              'absolute block w-full h-full rounded-2xl',
+              ownerState.checked ?
+                color === 'secondary' ? 'bg-gray-400' : classNames.background :
+                'bg-gray-300 dark:bg-gray-600',
+              resolvedSlotProps?.className
+            )
+          };
         },
-        thumb_height: {
-            sm: 'h-4',
-            md: 'h-5',
-            lg: 'h-6'
-        },
-        thumb_checked: {
-            sm: 'left-5',
-            md: 'left-6',
-            lg: 'left-7'
+        thumb: (ownerState) => {
+          const resolvedSlotProps = resolveSlotProps(rootSlotProps, ownerState);
+
+          return {
+            ...resolvedSlotProps,
+            className: twMerge(
+              'block top-1 rounded-2xl relative transition-all',
+              ownerState.checked ? thumbPositionClassName : 'left-1',
+              ownerState.focusVisible ?
+                `${ownerState.checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` :
+                'bg-white',
+              thumbSizingClassName,
+              resolvedSlotProps?.className
+            )
+          };
         }
-    };
-    
-    return (
-        <BaseSwitch
-            ref={ref}
-            {...props}
-            slotProps={{
-                ...props.slotProps,
-                root: (ownerState) => {
-                    props.slotProps?.root,
-                    ownerState
-                    return {
-                        className: twMerge(
-                            `relative inline-block ${sizeProps.root_width[size]} ${sizeProps.root_height[size]} m-2.5 ${ownerState.disabled
-                                ? 'cursor-not-allowed opacity-40'
-                                : 'cursor-pointer'
-                            }`,
-                        )
-                    };
-                },
-                input: (ownerState) => {
-                    props.slotProps?.input,
-                    ownerState
-                    return {
-                        className: twMerge(
-                            `${ownerState.disabled
-                                ? 'cursor-not-allowed opacity-40'
-                                : 'cursor-pointer'
-                            } absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0`,
-                        )
-                    };
-                },
-                track: (ownerState) => {
-                    props.slotProps?.track,
-                    ownerState
-                    return {
-                        className: twMerge(
-                            `absolute block w-full h-full rounded-2xl ${ownerState.checked
-                                ? classNames.background
-                                : 'bg-slate-300 dark:bg-slate-600'
-                            }`,
-                        )
-                    };
-                },
-                thumb: (ownerState) => {
-                    props.slotProps?.thumb,
-                    ownerState
-                    return {
-                        className: twMerge(
-                            `block ${sizeProps.thumb_width[size]} ${sizeProps.thumb_height[size]} top-1 ${ownerState.checked ? sizeProps.thumb_checked[size] : 'left-1'
-                            } rounded-2xl ${ownerState.focusVisible
-                                ? `${ownerState.checked ? 'bg-white' : 'bg-slate-500'
-                                } shadow-outline-switch`
-                                : 'bg-white'
-                            } relative transition-all`,
-                        )
-                    };
-                }
-            }}
-        />
-    );
+      }}
+    />
+  );
 });
 
 export default Switch;

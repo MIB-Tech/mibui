@@ -11,11 +11,8 @@
   },
   "dependencies": {
     "@ams-js/headless": "^0.0.5",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.18",
     "@mui/base": "^5.0.0-beta.17",
-    "@mui/system": "^5.14.11",
     "@rehookify/datepicker": "^6.2.0",
     "formik": "^2.4.5",
     "i18next": "^23.5.1",
