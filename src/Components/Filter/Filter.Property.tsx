@@ -14,7 +14,7 @@ const Property = <T extends {}>({filter}: { filter: PropertyFilter<T> }) => {
           placeholder='Field'
           value={property}
         >
-          {([] as Array<keyof T>).map(option=>(
+          {([] as Array<keyof T>).map(option => (
             <Option key={option.toString()} value={option}>{option.toString()}</Option>
           ))}
         </Select>
@@ -22,8 +22,11 @@ const Property = <T extends {}>({filter}: { filter: PropertyFilter<T> }) => {
           size='sm'
           placeholder='Operator'
           value={operator}
+          // onChange={(event, value)=>{
+          //
+          // }}
         >
-          {Object.values(PropertyFilterOperator).map(option=>(
+          {Object.values(PropertyFilterOperator).map(option => (
             <Option key={option.toString()} value={option}>{option.toString()}</Option>
           ))}
         </Select>

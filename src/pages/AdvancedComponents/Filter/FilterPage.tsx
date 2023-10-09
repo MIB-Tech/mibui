@@ -8,9 +8,20 @@ type User = {
 }
 const Page = () => (
   <div className='flex flex-col gap-9'>
-    <Preview title=''>
+    <Preview title='Property Filter'>
       <Filter<User>
-        className='bg-white py-2 px-3 rounded'
+        defaultProperty='id'
+        value={{
+          property: 'id',
+          operator: PropertyFilterOperator.Equal,
+          value: ''
+        }}
+        onChange={console.log}
+      />
+    </Preview>
+    <Preview title='Coumpound Filter'>
+      <Filter<User>
+        className='bg-white rounded'
         defaultProperty='id'
         value={{
           operator: CompoundFilterOperator.And,
@@ -48,7 +59,6 @@ const Page = () => (
       {/*    <Button>Filter</Button>*/}
       {/*  </Popup>*/}
       {/*</div>*/}
-
     </Preview>
   </div>
 );

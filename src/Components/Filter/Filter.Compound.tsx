@@ -41,8 +41,8 @@ const Compound = <T extends {}>({name, filter, defaultProperty, setParentHover}:
   return (
     <div
       className={twMerge(
-        'space-y-1 px-2 py-1 border rounded',
-        hover && 'shadow-lg'
+        'space-y-1 px-2 py-1 ring-1  ring-gray-200 rounded cursor-pointer',
+        hover && 'ring-2 ring-primary-500'
       )}
       onMouseEnter={() => {
         setParentHover?.(false)
@@ -57,7 +57,10 @@ const Compound = <T extends {}>({name, filter, defaultProperty, setParentHover}:
         {({push}) => (
           <div className='flex justify-between items-center'>
             <div className='text-sm text-gray-500'>Any of the following are true…</div>
-            <div className='flex space-x-2'>
+            <div className={twMerge(
+              'flex space-x-2 invisible',
+              hover && 'visible'
+            )}>
               <ButtonField
                 onClick={() => {
                   push(defaultPropertyFilter);
