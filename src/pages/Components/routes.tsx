@@ -15,7 +15,6 @@ import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
 import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
-import {CheckboxPage} from "./Checkbox";
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -51,11 +50,6 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsCard,
       path: 'card',
       element: <CardPage/>
-    },
-    {
-      id: RouteEnum.ComponentsCheckbox,
-      path: 'checkbox',
-      element: <CheckboxPage/>
     },
     {
       id: RouteEnum.ComponentsDropdown,
