@@ -1,6 +1,6 @@
 import {Preview} from "../../../Components";
-import Checkbox from "../../../Components/Checkbox/Checkbox.tsx";
 import {COLORS} from "../../../@types/Color.ts";
+import {Checkbox} from "../../../Forms";
 
 const Page = () => {
   return (

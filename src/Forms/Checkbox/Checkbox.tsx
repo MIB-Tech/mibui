@@ -18,7 +18,8 @@ const Checkbox: FC<CheckboxProps> = ({color = 'primary', size, className, ...pro
       {...props}
       type="checkbox"
       className={twMerge(
-        `${checkboxSize} ${color === 'secondary' ?'accent-secondary':`accent-${color}-500`} checked`,
+        checkboxSize,
+        color === 'secondary' ?'accent-secondary':`accent-${color}-500`,
         className
       )}
     />
