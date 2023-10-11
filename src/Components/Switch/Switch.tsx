@@ -65,7 +65,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
             className: twMerge(
               'relative inline-block m-2.5',
               rootSizingClassName,
-              ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
+              ownerState.disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer',
               resolvedSlotProps?.className
             )
           };
@@ -77,7 +77,6 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
             ...resolvedSlotProps,
             className: twMerge(
               'absolute w-full h-full top-0 left-0 opacity-0 z-10',
-              ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
               resolvedSlotProps?.className
             )
           };
@@ -98,14 +97,15 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
         },
         thumb: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(rootSlotProps, ownerState);
+          const {checked, focusVisible} = ownerState;
 
           return {
             ...resolvedSlotProps,
             className: twMerge(
               'block top-1 rounded-2xl relative transition-all',
-              ownerState.checked ? thumbPositionClassName : 'left-1',
-              ownerState.focusVisible ?
-                `${ownerState.checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` :
+              checked ? thumbPositionClassName : 'left-1',
+              focusVisible ?
+                `${checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` :
                 'bg-white',
               thumbSizingClassName,
               resolvedSlotProps?.className
