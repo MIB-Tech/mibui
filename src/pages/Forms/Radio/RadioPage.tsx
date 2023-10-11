@@ -22,6 +22,10 @@ const Page = () => {
                 <Radio size="md" defaultChecked />
                 <Radio size="lg" defaultChecked />
             </Preview>
+            <Preview title="States" className="flex items-center justify-center gap-10">
+                <Radio disabled />
+                <Radio disabled defaultChecked />
+            </Preview>
         </div>
     )
 }
