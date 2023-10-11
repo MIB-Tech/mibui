@@ -26,6 +26,7 @@ const en = {
     [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
     [RouteEnum.ComponentsButtonGroup]: 'Button Group',
     [RouteEnum.ComponentsCard]: 'Card',
+    [RouteEnum.ComponentsCheckbox]: 'Checkbox',
     [RouteEnum.ComponentsDropdown]: 'Dropdown',
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',

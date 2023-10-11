@@ -3,6 +3,7 @@
 import colors from 'tailwindcss/colors';
 import {Config} from 'tailwindcss';
 import {SPACING} from './src/@types/Spacing';
+import {COLORS} from "./src/@types/Color";
 
 const CONFIG:Config = {
   content: [
@@ -59,7 +60,7 @@ const CONFIG:Config = {
     },
     ...[1,2,3].map(number => `gap-x-${number}`),
     ...SPACING.map(value => `w-${value}`),
-    ...SPACING.map(value => `h-${value}`),
+    ...COLORS.map(color => `accent-${color}-500`),
   ],
   plugins: [
     // forms

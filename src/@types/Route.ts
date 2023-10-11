@@ -8,6 +8,7 @@ export enum RouteEnum {
   ComponentsButton = 'COMPONENTS.BUTTON',
   ComponentsButtonGroup = 'COMPONENTS.BUTTON_GROUP',
   ComponentsCard = 'COMPONENTS.CARD',
+  ComponentsCheckbox = 'COMPONENTS.CHECKBOX',
   ComponentsDropdown = 'COMPONENTS.DROPDOWN',
   ComponentsModal = 'COMPONENTS.MODAL',
   ComponentsPagination = 'COMPONENTS.PAGINATION',
