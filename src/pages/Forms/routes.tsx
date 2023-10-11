@@ -10,6 +10,7 @@ import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
 import { SwitchPage } from './Switch/index.ts';
+import { RadioPage } from './Radio/index.ts';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -72,6 +73,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormSwitch,
       path: 'switch',
       element: <SwitchPage />
+    },
+    {
+      id: RouteEnum.FormRadio,
+      path: 'radio',
+      element: <RadioPage />
     }
   ]
 };

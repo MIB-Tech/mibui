@@ -46,6 +46,7 @@ const en = {
     [RouteEnum.FormDatePickerMultiple]: 'Date Multiple',
     [RouteEnum.FormSelect]: 'Select',
     [RouteEnum.FormSwitch]: 'Switch',
+    [RouteEnum.FormRadio]: 'Radio',
     [RouteEnum.FormAutocomplete]: 'Autocomplete',
     [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
     [RouteEnum.FormValidation]: 'Validation',
