@@ -12,8 +12,9 @@
   "dependencies": {
     "@ams-js/headless": "^0.0.5",
     "@heroicons/react": "^2.0.18",
-    "@mui/base": "^5.0.0-beta.17",
+    "@mui/base": "^5.0.0-beta.18",
     "@rehookify/datepicker": "^6.2.0",
+    "bootstrap": "^5.3.2",
     "formik": "^2.4.5",
     "i18next": "^23.5.1",
     "moment": "^2.29.4",

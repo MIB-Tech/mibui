@@ -1,40 +1,24 @@
-import {Filter, Preview} from '../../../Components';
-import {CompoundFilterOperator, PropertyFilterOperator} from '../../../Components/Filter/Filter.types.ts';
+import {Preview} from '../../../Components';
+import {ConditionFilterExample} from './ConditionFilterExample.tsx';
+import {CompoundFilterExample} from './CompoundFilterExample.tsx';
 
-type User = {
-  id: string
-  username: string
-  email: string
-}
+
 const Page = () => (
   <div className='flex flex-col gap-9'>
     <Preview title='Property Filter'>
-      <Filter<User>
-        defaultProperty='id'
-        value={{
-          property: 'id',
-          operator: PropertyFilterOperator.Equal,
-          value: ''
-        }}
-        onChange={console.log}
-      />
+      <ConditionFilterExample/>
     </Preview>
     <Preview title='Coumpound Filter'>
-      <Filter<User>
+      <CompoundFilterExample
         className='bg-white rounded'
-        defaultProperty='id'
-        value={{
-          operator: CompoundFilterOperator.And,
-          filters: [
-            {
-              property: 'id',
-              operator: PropertyFilterOperator.Equal,
-              value: ''
-            }
-          ]
-        }}
-        onChange={console.log}
       />
+      {/*<ConditionFilterExample*/}
+      {/*  className='bg-white rounded'*/}
+      {/*  value={{*/}
+      {/*    operator: CompoundFilterOperator.And,*/}
+      {/*    filters: [PROPERTY_FILTER]*/}
+      {/*  }}*/}
+      {/*/>*/}
       {/*<div>*/}
       {/*  <Popup*/}
       {/*    open*/}
@@ -61,6 +45,5 @@ const Page = () => (
       {/*</div>*/}
     </Preview>
   </div>
-);
-
+)
 export default Page;

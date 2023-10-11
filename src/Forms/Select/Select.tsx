@@ -1,4 +1,4 @@
-import {DefaultComponent, SelectProps} from './Select.types.ts';
+import {DefaultSelectRootComponent, SelectProps} from './Select.types.ts';
 import {prepareForSlot, Select as MuiSelect} from '@mui/base';
 import {ElementType} from 'react';
 import {PopupBox} from '../../Components';
@@ -13,7 +13,7 @@ import {resolveSlotProps} from './Select.Option.tsx';
 const Select = <
   OptionValue extends {},
   Multiple extends boolean,
-  RootComponentType extends ElementType = DefaultComponent<OptionValue, Multiple>
+  RootComponentType extends ElementType = DefaultSelectRootComponent<OptionValue, Multiple>
 >({className, slots, ...props}: SelectProps<OptionValue, Multiple, RootComponentType>) => {
   const inputStyles = useInputStyles();
 
