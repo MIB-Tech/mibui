@@ -32,6 +32,7 @@ export enum RouteEnum {
   FormAutocomplete = 'FORM.AUTOCOMPLETE',
   FormCheckAndRadio = 'FORM.CHECK_RADIO',
   FormValidation = 'FORM.VALIDATION',
+  FormSwitch = 'FORM.SWITCH',
   //
   Content = 'CONTENT',
   ContentTypography = 'CONTENT.TYPOGRAPHY',
