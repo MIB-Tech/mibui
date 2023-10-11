@@ -5,7 +5,7 @@ import Radio from "../../../Components/Radio/Radio";
 const Page = () => {
     return(
         <div className="flex flex-col gap-12">
-            <Preview title="Default" className="grid grid-cols-2 gap-6 justify-items-center">
+            <Preview title="Default" className="flex items-center justify-center gap-10">
                 <Radio />
                 <Radio defaultChecked />
             </Preview>
@@ -16,6 +16,11 @@ const Page = () => {
                     color={color} 
                     defaultChecked
                 />)}
+            </Preview>
+            <Preview title="Sizing" className="flex items-center justify-center gap-10">
+                <Radio defaultChecked />
+                <Radio size="md" defaultChecked />
+                <Radio size="lg" defaultChecked />
             </Preview>
         </div>
     )
