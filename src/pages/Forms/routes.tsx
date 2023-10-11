@@ -9,6 +9,7 @@ import {AutocompletePage} from './Autocomplete';
 import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
+import { SwitchPage } from './Switch/index.ts';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -67,6 +68,11 @@ const ROUTES: RouteObject = {
       path: 'input-group',
       element: <InputGroupPage/>
     },
+    {
+      id: RouteEnum.FormSwitch,
+      path: 'switch',
+      element: <SwitchPage />
+    }
   ]
 };
 

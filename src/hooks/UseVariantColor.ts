@@ -43,7 +43,7 @@ export const useVariantColor = ({color = 'primary', variant = 'solid'}: UseVaria
     }
 
     return variant === 'solid' ? 'white' : solid
-  }, [solid, variant]);
+  }, [color, solid, variant]);
 
   const activeBackground = useMemo<string>(() => {
     return variant === 'clean' ? 'gray-100' : hoverBackground;

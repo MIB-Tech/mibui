@@ -16,7 +16,7 @@ enum Lang {
 
 moment.locale(Lang.French);
 
-const en = {
+const en:{translation: Record<RouteEnum, string>} = {
   translation: {
     [RouteEnum.Home]: 'Home',
     [RouteEnum.Components]: 'Components',
@@ -47,6 +47,7 @@ const en = {
     [RouteEnum.FormSelect]: 'Select',
     [RouteEnum.FormAutocomplete]: 'Autocomplete',
     [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
+    [RouteEnum.FormSwitch]: 'Switch',
     [RouteEnum.FormValidation]: 'Validation',
     [RouteEnum.Content]: 'Content',
     [RouteEnum.ContentTypography]: 'Typography',
