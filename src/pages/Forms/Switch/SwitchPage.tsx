@@ -19,6 +19,7 @@ const Page = () => {
           <Switch
             key={size}
             size={size}
+            defaultChecked
           />
         ))}
       </Preview>
