@@ -65,7 +65,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
             className: twMerge(
               'relative inline-block m-2.5',
               rootSizingClassName,
-              ownerState.disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer',
+              ownerState.disabled ? 'opacity-50' : 'cursor-pointer',
               resolvedSlotProps?.className
             )
           };
@@ -77,6 +77,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
             ...resolvedSlotProps,
             className: twMerge(
               'absolute w-full h-full top-0 left-0 opacity-0 z-10',
+              ownerState.disabled && 'cursor-not-allowed',
               resolvedSlotProps?.className
             )
           };
