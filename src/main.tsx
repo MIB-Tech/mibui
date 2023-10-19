@@ -22,6 +22,7 @@ const en = {
     [RouteEnum.Components]: 'Components',
     [RouteEnum.ComponentsButton]: 'Button',
     [RouteEnum.ComponentsAlert]: 'Alert',
+    [RouteEnum.ComponentsAvatar]: 'Avatar',
     [RouteEnum.ComponentsBadge]: 'Badge',
     [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
     [RouteEnum.ComponentsButtonGroup]: 'Button Group',
@@ -61,6 +62,7 @@ const en = {
     [RouteEnum.AdvancedFilter]: 'Filter',
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
+
   }
 };
 const resources: Record<Lang, Resource> = {
