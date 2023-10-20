@@ -14,13 +14,24 @@ const Avatar: FC<AvatarProps> = ({size, className, src, placeholder, style, ...p
     }
   }, [size]);
 
+  const placeSize = useMemo<string>(() => {
+    switch (size) {
+      case "sm":
+        return "w-6 h-6 text-xs ";
+      default:
+        return "w-9 h-9 text-base ";
+      case "lg":
+        return "w-12 h-12 text-3xl";
+    }
+  }, [size]);
+
   return (
     <div
       {...props}
       className={twMerge(
         "rounded bg-gray-100",
         avatarSize,
-        placeholder && 'flex items-center justify-center uppercase font-medium text-gray-500',
+        placeholder && `flex items-center justify-center uppercase font-medium text-gray-500 ${placeSize}`,
         src && 'bg-cover',
         className
       )}
