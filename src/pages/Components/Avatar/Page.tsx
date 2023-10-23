@@ -1,58 +1,113 @@
 import {Avatar, Preview} from "../../../Components";
 
 const Page = () => {
-  return (
-    <div className="flex-col space-y-8">
-      <Preview title="Default" className="flex items-center justify-center bg-white">
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-        />
-      </Preview>
-      <Preview title="Placeholder" className="flex items-center justify-center bg-white">
-        <Avatar
-          placeholder="MB"
-        />
-      </Preview>
-      <Preview title="Shape" className="flex items-center justify-center bg-white gap-6">
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-          className="rounded-none"
-        />
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-        />
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-          className="rounded-full"
-        />
-      </Preview>
-      <Preview title="Default Sizing" className="flex items-center justify-center bg-white gap-6">
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-          size="sm"
-        />
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-        />
-        <Avatar
-          src="https://www.w3schools.com/images/picture.jpg"
-          size="lg"
-        />
-      </Preview>
-      <Preview title="Placeholder Sizing" className="flex items-center justify-center bg-white flex-row gap-6">
-        <Avatar
-          placeholder="MB"
-          size="sm"
-        />
-        <Avatar
-          placeholder="MB"
-        />
-        <Avatar
-          placeholder="MB"
-          size="lg"
-        />
-      </Preview>
-    </div>
-  )
+    return (
+        <div className="flex-col space-y-8">
+            <Preview title="Default" className="flex items-center justify-center bg-white">
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                />
+            </Preview>
+            <Preview title="Placeholder" className="flex items-center justify-center bg-white">
+                <Avatar
+                    placeholder="MB"
+                />
+            </Preview>
+            <Preview title="Shape" className="flex items-center justify-center bg-white gap-6">
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                    className="rounded-none"
+                />
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                />
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                    className="rounded-full"
+                />
+            </Preview>
+            <Preview title="Default Sizing" className="flex items-center justify-center bg-white gap-6">
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                    size="sm"
+                />
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                />
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
+                    size="lg"
+                />
+            </Preview>
+            <Preview title="Placeholder Sizing" className="flex items-center justify-center bg-white flex-row gap-6">
+                <Avatar
+                    placeholder="MB"
+                    size="sm"
+                />
+                <Avatar
+                    placeholder="MB"
+                />
+                <Avatar
+                    placeholder="MB"
+                    size="lg"
+                />
+            </Preview>
+            <Preview title='PlaceHolder Sizing' className='bg-white'>
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"xs"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"sm"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"md"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"lg"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"2xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"3xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"4xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"5xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"6xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"7xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"8xl"}
+                />
+                <Avatar
+                    placeholder='MB'
+                    sizePlaceholder={"9xl"}
+                />
+            </Preview>
+        </div>
+    )
 }
 export default Page
+
