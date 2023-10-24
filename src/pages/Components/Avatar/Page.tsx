@@ -23,87 +23,68 @@ const Page = () => {
                 />
                 <Avatar
                     src="https://www.w3schools.com/images/picture.jpg"
+                    className="rounded-md"
+                /><Avatar
+                src="https://www.w3schools.com/images/picture.jpg"
+                className="rounded-lg"
+            />
+                <Avatar
+                    src="https://www.w3schools.com/images/picture.jpg"
                     className="rounded-full"
                 />
             </Preview>
-            <Preview title="Default Sizing" className="flex items-center justify-center bg-white gap-6">
-                <Avatar
-                    src="https://www.w3schools.com/images/picture.jpg"
-                    size="sm"
-                />
-                <Avatar
-                    src="https://www.w3schools.com/images/picture.jpg"
-                />
-                <Avatar
-                    src="https://www.w3schools.com/images/picture.jpg"
-                    size="lg"
-                />
-            </Preview>
-            <Preview title="Placeholder Sizing" className="flex items-center justify-center bg-white flex-row gap-6">
-                <Avatar
-                    placeholder="MB"
-                    size="sm"
-                />
-                <Avatar
-                    placeholder="MB"
-                />
-                <Avatar
-                    placeholder="MB"
-                    size="lg"
-                />
-            </Preview>
-            <Preview title='PlaceHolder Sizing' className='bg-white'>
+            <Preview title='Sizing' className='bg-white'>
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"xs"}
+                    size={"xs"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"sm"}
+                    size={"sm"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"md"}
+                    size={"md"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"lg"}
+                    size={"lg"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"xl"}
+                    size={"xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"2xl"}
+                    size={"2xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"3xl"}
+                    size={"3xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"4xl"}
+                    size={"4xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"5xl"}
+                    size={"5xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"6xl"}
+                    size={"6xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"7xl"}
+                    size={"7xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"8xl"}
+                    size={"8xl"}
                 />
                 <Avatar
                     placeholder='MB'
-                    sizePlaceholder={"9xl"}
+                    size={"9xl"}
                 />
             </Preview>
         </div>

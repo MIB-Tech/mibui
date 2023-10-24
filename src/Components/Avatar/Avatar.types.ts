@@ -1,10 +1,8 @@
 import {HTMLAttributes, ImgHTMLAttributes} from "react";
-import {SizingType} from "../../@types/Sizing.ts";
 
-export type SizingTypePlaceholder = typeof SIZING[number]
+export type SizingType = typeof SIZING[number]
 export type AvatarProps = {
-    sizePlaceholder?: SizingTypePlaceholder;
-    size?: SizingType
+    size?: SizingType;
 } & (
     {
         src: string
