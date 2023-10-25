@@ -8,7 +8,7 @@ const Avatar: FC<AvatarProps> = ({ size, className, src, placeholder, style, ...
     const avatarSize = useMemo<string>(() => {
         switch (size) {
             case "xs":
-                return "w-6 h-6 ";
+                return "w-7 h-7 ";
             case "sm":
                 return "w-8 h-8 ";
             default:
@@ -28,11 +28,11 @@ const Avatar: FC<AvatarProps> = ({ size, className, src, placeholder, style, ...
             case "6xl":
                 return "w-32 h-32  ";
             case "7xl":
-                return "w-36 h-36 ";
+                return "w-40 h-40 ";
             case "8xl":
-                return "w-48 h-48 ";
+                return "w-52 h-52 ";
             case "9xl":
-                return "w-64 h-64 ";
+                return "w-72 h-72 ";
         }
     }, [size]);
 
