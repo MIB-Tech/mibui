@@ -3,12 +3,12 @@ import {SIZING} from "../../../Components/Avatar/Avatar.types.ts";
 
 const Page = () => {
 const shapes=["rounded-none","","rounded-md","rounded-lg","rounded-full"]
-
+const image='\'/cartoon-avatar-of-smiling-beard-man-profile-icon-vector.jpg\''
     return (
         <div className="flex-col space-y-8">
             <Preview title="Default" className="flex items-center justify-center bg-white">
                 <Avatar
-                    src="https://www.w3schools.com/images/picture.jpg"
+                    src={image}
                 />
             </Preview>
             <Preview title="Placeholder" className="flex items-center justify-center bg-white">
@@ -18,7 +18,7 @@ const shapes=["rounded-none","","rounded-md","rounded-lg","rounded-full"]
             </Preview>
             <Preview title="Shape" className="flex items-center justify-center bg-white gap-6">
                 {shapes.map(shape => (<Avatar
-                    src="https://www.w3schools.com/images/picture.jpg"
+                    src={image}
                     className={shape}
                 />))}
 
@@ -32,7 +32,7 @@ const shapes=["rounded-none","","rounded-md","rounded-lg","rounded-full"]
                     </div>
                     <div className="flex flex-col gap-5">
                         {SIZING.map(size => (
-                            <Avatar className="m-auto" src="https://www.w3schools.com/images/picture.jpg" key={size} size={size}/>
+                            <Avatar className="m-auto" src={image} key={size} size={size}/>
                         ))}
                     </div>
                 </div>
