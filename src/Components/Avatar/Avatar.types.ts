@@ -3,13 +3,12 @@ import {HTMLAttributes, ImgHTMLAttributes} from "react";
 export type SizingType = typeof SIZING[number]
 export type AvatarProps = {
     size?: SizingType;
-} & (
-    {
-        src: string
-    } | {
+} & HTMLAttributes<HTMLDivElement> & Pick<ImgHTMLAttributes<HTMLImageElement>, 'src'>
+    & ({
+    src: string
+} | {
     placeholder: string
-}
-    ) & HTMLAttributes<HTMLDivElement> & Pick<ImgHTMLAttributes<HTMLImageElement>, 'src'>
+})
 
 
 export const SIZING = [

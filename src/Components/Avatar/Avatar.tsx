@@ -42,7 +42,7 @@ const Avatar: FC<AvatarProps> = ({ size, className, src, placeholder, style, ...
             className={twMerge(
                 "rounded bg-gray-100",
                 avatarSize,
-                placeholder && `flex items-center justify-center uppercase m-auto font-medium text-gray-500 ${avatarSize} text-${size}`,
+                placeholder && `flex items-center justify-center uppercase text-${size}`,
                 src && 'bg-cover',
                 className
             )}
