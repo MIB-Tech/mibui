@@ -58,6 +58,9 @@ const CONFIG:Config = {
       pattern: /p([se])-(7|9|11)/,
       variants: ['group-[.MuiInput-adornedStart]']
     },
+    {
+      pattern: /text-(xs|sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)/,
+    },
     ...[1,2,3].map(number => `gap-x-${number}`),
     ...SPACING.map(value => `w-${value}`),
     ...COLORS.map(color => `accent-${color}-500`),
