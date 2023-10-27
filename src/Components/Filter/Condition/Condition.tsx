@@ -1,18 +1,22 @@
-import {Input, InputGroup, Option} from '../../../Forms';
+import {InputGroup} from '../../../Forms';
 import {IconButton} from '../../IconButton/IconButton.tsx';
 import {TrashIcon} from '@heroicons/react/20/solid';
 import {twMerge} from 'tailwind-merge';
-import {Select} from '../../../Formik';
-import {ConditionProps, PropertyFilter, PropertyFilterOperator} from './Condition.types.ts';
+import {ConditionProps, PropertyFilter} from './Condition.types.ts';
 import {FormikProvider, useFormik} from 'formik';
 import {useEffect} from 'react';
+import {ConditionProperty} from './Condition.Property.tsx';
+import {FilterContext} from '../Filter.Context.tsx';
+import {ConditionOperator} from './Condition.Operator.tsx';
+import {ConditionValue} from './Condition.Value.tsx';
 
 const Condition = <T extends {}>(
   {
+    size,
+    fieldsMapping,
     value,
     onChange,
     className,
-    fieldsMapping,
     ...props
   }: ConditionProps<T>
 ) => {
@@ -25,48 +29,30 @@ const Condition = <T extends {}>(
   const {values} = formik;
 
   useEffect(() => {
-    onChange(values)
+    onChange(values);
   }, [values]);
 
   return (
     <FormikProvider value={formik}>
-      <div
-        {...props}
-        className={twMerge('flex space-x-1', className)}
-      >
-        <InputGroup className='grid grid-cols-3 grow'>
-          <Select
-            name='property'
-            size='sm'
-            placeholder='Field'
-          >
-            {Object.keys(fieldsMapping).map(option => (
-              <Option key={option.toString()} value={option}>{option.toString()}</Option>
-            ))}
-          </Select>
-          <Select
-            name='operator'
-            size='sm'
-            placeholder='Operator'
-          >
-            {Object.values(PropertyFilterOperator).map(option => (
-              <Option key={option.toString()} value={option}>{option.toString()}</Option>
-            ))}
-          </Select>
-          <Input
-            name='value'
-            size='sm'
-            placeholder='Value'
-          />
-        </InputGroup>
-        <IconButton
-          size='sm'
-          iconElement={TrashIcon}
-          onClick={() => {
+      <FilterContext.Provider value={{size, fieldsMapping}}>
+        <div
+          {...props}
+          className={twMerge('flex space-x-1', className)}
+        >
+          <InputGroup className='grid grid-cols-3 grow'>
+            <ConditionProperty/>
+            <ConditionOperator/>
+            <ConditionValue/>
+          </InputGroup>
+          <IconButton
+            size={size}
+            iconElement={TrashIcon}
+            onClick={() => {
 
-          }}
-        />
-      </div>
+            }}
+          />
+        </div>
+      </FilterContext.Provider>
     </FormikProvider>
   );
 };

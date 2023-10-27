@@ -5,7 +5,7 @@ import {CompoundFilterExample} from './CompoundFilterExample.tsx';
 
 const Page = () => (
   <div className='flex flex-col gap-9'>
-    <Preview title='Property Filter'>
+    <Preview title='Confition Filter'>
       <ConditionFilterExample/>
     </Preview>
     <Preview title='Coumpound Filter'>

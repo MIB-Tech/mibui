@@ -23,9 +23,9 @@ export const ConditionFilterExample: FC<Partial<ConditionProps<User>>> = ({...pr
     value={PROPERTY_FILTER}
     onChange={console.log}
     fieldsMapping={{
-      id: {},
-      email: {},
-      username: {}
+      id: true,
+      email: true,
+      username: true
     }}
     {...props}
   />

@@ -27,7 +27,7 @@ const CONFIG:Config = {
         '3xl': '3rem',
       },
       colors: {
-        primary: colors.violet,
+        primary: colors.purple,
         secondary: colors.white,
         success: colors.emerald,
         info: colors.blue,

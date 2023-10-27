@@ -1,5 +1,6 @@
 import {PropertyFilter, ConditionProps} from '../Condition/Condition.types.ts';
 import {HTMLAttributes} from 'react';
+import {SizingType} from '../../../@types/Sizing.ts';
 
 export type CompoundFilter<T extends {}> = {
   operator: CompoundFilterOperator
@@ -7,6 +8,7 @@ export type CompoundFilter<T extends {}> = {
 }
 
 export type CompoundFilterProps<T extends {}> = {
+  size?: SizingType
   setParentHover?: (hover?: boolean) => void
   value: CompoundFilter<T>
   onChange: (value: CompoundFilter<T>) => any

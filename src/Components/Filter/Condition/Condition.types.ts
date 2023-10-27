@@ -1,4 +1,6 @@
 import {HTMLAttributes} from 'react';
+import {SelectProps} from '../../../Formik';
+import {FilterContextValue} from '../Filter.Context.tsx';
 
 export enum PropertyFilterOperator {
   Equal = 'EQ',
@@ -33,12 +35,20 @@ export type PropertyFilter<T extends {}> = {
   value?: PropertyFilterValue
 }
 
-export type FieldMapping = {
+export enum FieldType {
+  String = 'STRING',
+  Number = 'NUMBER',
+  Array = 'ARRAY',
+}
+export type FieldMapping<Type extends FieldType> = {
   title?: string
+  type?: Type
 }
 export type ConditionProps<T extends {}> = {
-  fieldsMapping: Partial<Record<keyof T, FieldMapping>>
   value: PropertyFilter<T>
   onChange: (value: PropertyFilter<T>) => any
 } & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
+  & FilterContextValue<T>
 
+
+export type FilterSelectProps<T extends {}> = Omit<SelectProps<keyof T, false>, 'name'>

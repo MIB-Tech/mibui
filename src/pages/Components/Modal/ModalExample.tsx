@@ -9,6 +9,7 @@ export const ModalExample: FC<{ buttonLabel?: string } & ModalProps> = ({buttonL
   const onClose = () => {
     setOpen(false);
   };
+  
   return (
     <>
       <div className="inset-0 flex items-center justify-center">

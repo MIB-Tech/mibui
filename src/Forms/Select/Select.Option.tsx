@@ -10,7 +10,7 @@ export const resolveSlotProps = (fn: any, args: any) =>
 const Option = <
   OptionValue extends {},
   RootComponentType extends ElementType
->({...props}: OptionProps<OptionValue, RootComponentType>) => (
+>({className, ...props}: OptionProps<OptionValue, RootComponentType>) => (
   <MuiOption
     {...props}
     slots={{
@@ -18,27 +18,27 @@ const Option = <
     }}
     variant='clean'
     color={props.active ? 'primary' : 'secondary'}
-    slotProps={{
-      root: ownerState => {
-        const resolvedSlotProps = resolveSlotProps(
-          props.slotProps?.root,
-          ownerState,
-        );
-
-        return {
-          ...resolvedSlotProps,
-          className: twMerge(
-            '',
-            resolvedSlotProps?.className
-          )
-        }
-      }
-    }}
+    // slotProps={{
+    //   root: ownerState => {
+    //     const resolvedSlotProps = resolveSlotProps(
+    //       props.slotProps?.root,
+    //       ownerState,
+    //     );
+    //
+    //     return {
+    //       ...resolvedSlotProps,
+    //       className: twMerge(
+    //         '',
+    //         resolvedSlotProps?.className
+    //       )
+    //     }
+    //   }
+    // }}
     className={twMerge(
       `flex w-full text-start rounded-none truncate first:rounded-t last:rounded-b`,
       // !props.disabled && `hover:${activeClassName}`,
       // props.active && activeClassName,
-      // className
+      className
     )}
   />
 );
