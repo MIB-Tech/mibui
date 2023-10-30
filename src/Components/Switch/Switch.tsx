@@ -14,7 +14,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
     ...props
   },
   ref
-) => {
+  ) => {
   const classNames = useVariantStyles({color});
   const rootSlotProps = slotProps?.root;
 

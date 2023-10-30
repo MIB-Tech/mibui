@@ -10,7 +10,8 @@ import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
 import {CheckboxPage} from './Checkbox';
-import {RadioPage} from './Radio/index.ts';
+import { SwitchPage } from './Switch';
+import { RadioPage } from './Radio';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,

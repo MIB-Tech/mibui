@@ -34,11 +34,7 @@ const Radio: FC<RadioProps> = ({ color = 'primary', size, className, ...props })
     return(
         <input
             type="radio"
-            className={twMerge(
-                className,
-                radioSize,
-                radioColors
-            )}
+            className={twMerge(className, radioSize, radioColors)}
             {...props}
         />
     )
