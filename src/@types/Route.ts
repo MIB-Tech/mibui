@@ -3,11 +3,13 @@ export enum RouteEnum {
   //
   Components = 'COMPONENTS',
   ComponentsAlert = 'COMPONENTS.ALERT',
+  ComponentsAvatar = 'COMPONENTS.AVATAR',
   ComponentsBadge = 'COMPONENTS.BADGE',
   ComponentsBreadcrumb = 'COMPONENTS.BREADCRUMB',
   ComponentsButton = 'COMPONENTS.BUTTON',
   ComponentsButtonGroup = 'COMPONENTS.BUTTON_GROUP',
   ComponentsCard = 'COMPONENTS.CARD',
+  ComponentsCheckbox = 'COMPONENTS.CHECKBOX',
   ComponentsDropdown = 'COMPONENTS.DROPDOWN',
   ComponentsModal = 'COMPONENTS.MODAL',
   ComponentsPagination = 'COMPONENTS.PAGINATION',

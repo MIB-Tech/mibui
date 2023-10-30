@@ -22,10 +22,12 @@ const en = {
     [RouteEnum.Components]: 'Components',
     [RouteEnum.ComponentsButton]: 'Button',
     [RouteEnum.ComponentsAlert]: 'Alert',
+    [RouteEnum.ComponentsAvatar]: 'Avatar',
     [RouteEnum.ComponentsBadge]: 'Badge',
     [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
     [RouteEnum.ComponentsButtonGroup]: 'Button Group',
     [RouteEnum.ComponentsCard]: 'Card',
+    [RouteEnum.ComponentsCheckbox]: 'Checkbox',
     [RouteEnum.ComponentsDropdown]: 'Dropdown',
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',
@@ -61,6 +63,7 @@ const en = {
     [RouteEnum.AdvancedFilter]: 'Filter',
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
+
   }
 };
 const resources: Record<Lang, Resource> = {

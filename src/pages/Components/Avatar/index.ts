@@ -1,0 +1,1 @@
+export {default as AvatarPage} from './Page.tsx'

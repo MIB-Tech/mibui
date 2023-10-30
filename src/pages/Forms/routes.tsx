@@ -9,8 +9,8 @@ import {AutocompletePage} from './Autocomplete';
 import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
-import { SwitchPage } from './Switch/index.ts';
-import { RadioPage } from './Radio/index.ts';
+import {CheckboxPage} from './Checkbox';
+import {RadioPage} from './Radio/index.ts';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -31,6 +31,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputPassword,
       path: 'input-password',
       element: <InputPasswordPage/>
+    },
+    {
+      id: RouteEnum.ComponentsCheckbox,
+      path: 'checkbox',
+      element: <CheckboxPage/>
     },
     {
       id: RouteEnum.FormDatePicker,

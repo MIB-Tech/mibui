@@ -1,1 +1,1 @@
-export { default as SwitchPage } from './SwitchPage.tsx';
+export {default as SwitchPage} from './SwitchPage.tsx';
