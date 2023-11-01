@@ -13,6 +13,7 @@ import {ToastPage} from './Toast';
 import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
+import {ProgressPage} from "./Progress";
 import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
 import {AvatarPage} from "./Avatar";
@@ -91,6 +92,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsPopover,
       path: 'popover',
       element: <PopoverPage/>
+    },
+    {
+      id: RouteEnum.ComponentsProgress,
+      path: 'progress',
+      element: <ProgressPage/>
     },
     {
       id: RouteEnum.ContentTable,
