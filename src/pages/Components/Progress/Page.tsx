@@ -17,17 +17,15 @@ const Page = () => {
       </Preview>
       <Preview title="size">
         {SIZING.map(size => (
-          <Progress state={50} size={size}/>
+          <Progress key={size} state={50} size={size}/>
         ))}
       </Preview>
       <Preview title='with label'>
-        {SIZING.map(size => (
-          <Progress state={50} size={size} label/>
-        ))}
+        <Progress state={50} label/>
       </Preview>
       <Preview title='color'>
         {COLORS.map(color => (
-          <Progress state={50} color={color}/>
+          <Progress key={color} state={50} color={color}/>
         ))}
       </Preview>
     </div>
