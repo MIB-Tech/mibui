@@ -14,3 +14,12 @@
         @apply bg-gray-300;
     }
 }
+/*
+input[type="range"]::-webkit-slider-thumb {
+    !* Styles spécifiques au "thumb" *!
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #4CAF50; !* Couleur de fond du "thumb" *!
+    cursor: pointer; !* Curseur personnalisé lorsque l'utilisateur passe dessus *!
+}*/

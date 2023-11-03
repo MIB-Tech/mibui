@@ -16,6 +16,7 @@ export enum RouteEnum {
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',
+  ComponentsSlider='COMPONENTS.SLIDER',
   //
   Form = 'FORM',
   FormInput = 'FORM.INPUT',

@@ -23,7 +23,7 @@ function App() {
           {title}
         </h2>
         {/*<Breadcrumb />*/}
-        <div className={twMerge(' pt-5', hasChild && 'grid grid-cols-8 gap-4')}>
+        <div className={twMerge('pt-5', hasChild && 'grid grid-cols-8 gap-4')}>
           {hasChild && (
             <div>
               <div className="flex flex-col space-y-2 border-s border-gray-200">
