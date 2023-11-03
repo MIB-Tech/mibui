@@ -1,5 +1,5 @@
 
-import {Slider} from "../../../Components/Slider";
+import {Slider} from "../../../Forms/Slider";
 
  function SliderExample() {
 	return (

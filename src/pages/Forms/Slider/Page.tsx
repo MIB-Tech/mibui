@@ -1,7 +1,7 @@
 import {Preview} from "../../../Components";
 import {SIZING} from "../../../@types/Sizing.ts";
 import {COLORS} from "../../../@types/Color.ts";
-import {Slider} from "../../../Components/Slider";
+import {Slider} from "../../../Forms/Slider";
 
 const ex1 = [{value: 0, label: "0"}, {value: 25, label: "25"}, {value: 50, label: "50"}, {
 	value: 75,

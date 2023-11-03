@@ -15,7 +15,6 @@ import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
 import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
-import {SliderPage} from "./Slider";
 
 
 const ROUTES: RouteObject = {
@@ -97,12 +96,7 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsTabs,
       path: 'tabs',
       element: <TabsPage/>
-    },
-    {
-      id: RouteEnum.ComponentsSlider,
-      path: 'slider',
-      element: <SliderPage/>
-    },
+    }
   ]
 };
 

@@ -16,7 +16,6 @@ export enum RouteEnum {
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',
-  ComponentsSlider='COMPONENTS.SLIDER',
   //
   Form = 'FORM',
   FormInput = 'FORM.INPUT',
@@ -29,6 +28,7 @@ export enum RouteEnum {
   FormDatePickerRange = 'FORM.DATE_PICKER.RANGE',
   FormDatePickerMultiple = 'FORM.DATE_PICKER.MULTIPLE',
   FormSelect = 'FORM.SELECT',
+  FormSlider = 'FORM.SLIDER',
   FormAutocomplete = 'FORM.AUTOCOMPLETE',
   FormCheckAndRadio = 'FORM.CHECK_RADIO',
   FormValidation = 'FORM.VALIDATION',

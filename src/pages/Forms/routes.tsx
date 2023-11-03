@@ -9,6 +9,7 @@ import {AutocompletePage} from './Autocomplete';
 import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
+import {SliderPage} from './Slider';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -66,6 +67,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputGroup,
       path: 'input-group',
       element: <InputGroupPage/>
+    },
+    {
+      id: RouteEnum.FormSlider,
+      path: 'slider',
+      element: <SliderPage/>
     },
   ]
 };
