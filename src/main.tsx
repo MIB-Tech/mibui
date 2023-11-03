@@ -32,6 +32,7 @@ const en = {
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',
     [RouteEnum.ComponentsPopover]: 'Popover',
+    [RouteEnum.ComponentsProgress]: 'Progress',
     [RouteEnum.ComponentsSpinner]: 'Spinner',
     [RouteEnum.ComponentsTabs]: 'Tabs',
     [RouteEnum.ComponentsToast]: 'Toast',
