@@ -6,6 +6,6 @@ export type ProgressProps = {
   state: number;
   size?: SizingType;
   color?: ColorType;
-  label?: boolean;
+  showLabel?: boolean;
 } & HTMLAttributes<HTMLDivElement>
 

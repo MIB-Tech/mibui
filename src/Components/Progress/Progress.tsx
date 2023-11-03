@@ -1,42 +1,33 @@
-import {FC, useMemo} from "react";
-import {ProgressProps} from "./Progress.types.ts";
-import {twMerge} from "tailwind-merge";
+import {FC, useMemo} from 'react';
+import {ProgressProps} from './Progress.types.ts';
+import {twMerge} from 'tailwind-merge';
 
-const Progress: FC<ProgressProps> = ({state, size = "md", label = false, color = "primary", className}) => {
-  const progressSize = useMemo(() => {
+const Progress: FC<ProgressProps> = ({state, size, showLabel , color = 'primary', className, ...props}) => {
+  const sizeClassName = useMemo(() => {
     switch (size) {
       case 'sm':
-        return 'h-4';
+        return 'h-4 text-xs';
       case 'lg':
-        return 'h-6';
+        return 'h-6 text-md';
       default:
-        return 'h-5';
+        return 'h-5 text-sm';
     }
   }, [size]);
-  
-  const textSize = useMemo(() => {
-    switch (size) {
-      case 'sm':
-        return `text-xs`;
-      case 'lg':
-        return `text-md`;
-      default:
-        return `text-sm`;
-    }
-  }, [size]);
-  
+
   return (
-    <div className="w-full bg-gray-200 rounded-full">
+    <div
+      {...props}
+      className={twMerge('w-full bg-gray-200 rounded-full', className)}
+    >
       <div
         className={twMerge(
-          `bg-${color === 'secondary' ? 'gray' : color}-500 rounded-full text-secondary flex justify-center items-center`,
-          textSize,
-          progressSize,
-          className
+          'rounded-full text-secondary flex justify-center items-center',
+          `bg-${color === 'secondary' ? 'gray' : color}-500`,
+          sizeClassName
         )}
         style={{width: `${state}%`}}
       >
-        {label && `${state}%`}
+        {showLabel && `${state}%`}
       </div>
     </div>
   );
