@@ -1,15 +1,10 @@
 import {Slider as MuiSlider} from '@mui/base/Slider';
-import {CustomSliderProps} from "./Slider.types.tsx";
-import {useMemo} from "react";
-import {twMerge} from "tailwind-merge";
+import {CustomSliderProps} from './Slider.types.tsx';
+import {useMemo} from 'react';
+import {twMerge} from 'tailwind-merge';
 
-const Slider = ({	size,
-									color = "primary",
-									valueLabelDisplay = 'hover',
-									...props
-								}: CustomSliderProps) => {
-
-	const sliderClasses = useMemo<string>(() => {
+const Slider = ({size, color = 'primary', valueLabelDisplay = 'hover', ...props}: CustomSliderProps) => {
+	const sliderClassName = useMemo<string>(() => {
 		switch (size) {
 			case 'sm':
 				return 'h-1';
@@ -39,33 +34,39 @@ const Slider = ({	size,
 				return 'w-3 h-3';
 		}
 	}, [size]);
-	const displayValueClassName = useMemo<string>(() => {
-		switch (valueLabelDisplay) {
-			case 'always':
-				return 'visible';
-			case 'hover':
-				return 'invisible';
-			case 'none':
-				return 'hidden';
-		}
-	}, [valueLabelDisplay]);
 
 	return (
 		<MuiSlider
 			slots={{
-				valueLabel: ({children}) => {
-					//console.log(props);
-					return (
+				valueLabel: ({children, ownerState}) => {
 
-						<span className={twMerge(
-							`w-full h-full transform -translate-y-6 translate-x-0 scale-1 
-							 absolute inset-0 flex justify-center items-center  group-hover:visible `)}>
-							<div
-								className={twMerge(displayValueClassName,`group-hover:visible  group-active:visible `)}>
-								{`${children}`}
-							</div>
-						</span>);
+					return (
+						<div
+							className={twMerge(
+								'relative -top-8',
+								valueLabelDisplay === 'none' && 'invisible',
+								valueLabelDisplay === 'hover' && twMerge(
+									'invisible group-hover:visible',
+									ownerState?.dragging && 'visible'
+								),
+							)}
+						>
+							{children}
+						</div>
+					);
 				}
+				// valueLabel: ({children}) => (
+				// 	<div
+				// 		className={twMerge(
+				// 			'w-full h-full flex justify-center items-center transform -translate-y-6 translate-x-0 scale-1 absolute inset-0 group-hover:visible',
+				// 			''
+				// 		)}
+				// 	>
+				// 		<div className={twMerge(displayValueClassName, `group-hover:visible group-active:visible `)}>
+				// 			{children}
+				// 		</div>
+				// 	</div>
+				// )
 			}}
 			//defaultValue={50} vers documentation
 			{...props}
@@ -73,18 +74,18 @@ const Slider = ({	size,
 				root: (ownerState) => {
 					return {
 						...props.slotProps?.root,
-						className: twMerge(sliderClasses, ` w-full py-0.5 px-1 inline-block relative touch-none`,
+						className: twMerge(sliderClassName, ` w-full py-0.5 px-1 inline-block relative touch-none`,
 							ownerState.disabled ? 'opacity-50 cursor-default cursor-not-allowed text-current group-hover:hidden ' :
 								`hover:opacity-100 cursor-pointer text-${color}-600`)
 					};
 				}, rail: () => {
 					return {
 						...props.slotProps?.rail,
-						className: twMerge(sliderClasses, `block absolute w-full rounded-sm bg-current opacity-50 `),
+						className: twMerge(sliderClassName, `block absolute w-full rounded-sm bg-current opacity-50 `),
 					};
 				}, track: () => {
 					return {
-						...props.slotProps?.track, className: twMerge(sliderClasses, `block absolute rounded-s bg-current `),
+						...props.slotProps?.track, className: twMerge(sliderClassName, `block absolute rounded-s bg-current `),
 					};
 				}, thumb: () => {
 					return {
@@ -105,12 +106,20 @@ const Slider = ({	size,
 					return {
 						...props.slotProps?.markLabel, className: `group absolute mt-5 -ml-2 text-sm`,
 					};
-				}, valueLabel: () => {
-					return {
-						...props.slotProps?.valueLabel,
-					};
 				},
+				valueLabel: ({dragging}) => ({
+					...props.slotProps?.valueLabel,
+					className: twMerge(
+						'relative -top-8',
+						valueLabelDisplay === 'none' && 'invisible',
+						valueLabelDisplay === 'hover' && twMerge(
+							'invisible group-hover:visible',
+							dragging && 'visible',
+						),
+						props.slotProps?.valueLabel?.className
+					)
+				}),
 			}}
-		/>)
-}
-export default Slider
+		/>);
+};
+export default Slider;
