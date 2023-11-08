@@ -3,8 +3,7 @@ import {CustomSliderProps} from "./Slider.types.tsx";
 import {useMemo} from "react";
 import {twMerge} from "tailwind-merge";
 
-const Slider = ({
-									size,
+const Slider = ({	size,
 									color = "primary",
 									valueLabelDisplay = 'hover',
 									...props
@@ -51,34 +50,30 @@ const Slider = ({
 		}
 	}, [valueLabelDisplay]);
 
-
 	return (
-
 		<MuiSlider
 			slots={{
 				valueLabel: ({children}) => {
 					//console.log(props);
-
 					return (
 
-						<span className={twMerge(displayValueClassName, `absolute  text-center group-hover:visible -ml-1.5`)}>
-
+						<span className={twMerge(
+							`w-full h-full transform -translate-y-6 translate-x-0 scale-1 
+							 absolute inset-0 flex justify-center items-center  group-hover:visible `)}>
 							<div
-								className={"group-hover:text-center group-hover: -mt-8"}>
+								className={twMerge(displayValueClassName,`group-hover:visible  group-active:visible `)}>
 								{`${children}`}
 							</div>
 						</span>);
 				}
-
 			}}
 			//defaultValue={50} vers documentation
 			{...props}
 			slotProps={{
 				root: (ownerState) => {
-
 					return {
 						...props.slotProps?.root,
-						className: twMerge(sliderClasses, `  w-full py-0.5 px-1 inline-block relative touch-none`,
+						className: twMerge(sliderClasses, ` w-full py-0.5 px-1 inline-block relative touch-none`,
 							ownerState.disabled ? 'opacity-50 cursor-default cursor-not-allowed text-current group-hover:hidden ' :
 								`hover:opacity-100 cursor-pointer text-${color}-600`)
 					};
@@ -99,24 +94,23 @@ const Slider = ({
 						 active:shadow-${color}-400/50`, ''),
 					};
 				}, mark: () => {
-
 					return {
 						...props.slotProps?.mark,
-						className: twMerge(markClassName, `absolute  inset-0 rounded-full bg-${color}-400 [&.MuiSlider-markActive]:bg-current `)
+						className: twMerge(markClassName,
+							`absolute  inset-0 rounded-full bg-${color}-400
+						 [&.MuiSlider-markActive]:bg-current `
+						)
 					};
-
 				}, markLabel: () => {
 					return {
-						...props.slotProps?.markLabel, className: `absolute mt-3 text-sm  `,
+						...props.slotProps?.markLabel, className: `group absolute mt-5 -ml-2 text-sm`,
 					};
 				}, valueLabel: () => {
 					return {
-						...props.slotProps?.valueLabel, className: twMerge(`absolute mt-5 text-lg bg-warning-900`)
+						...props.slotProps?.valueLabel,
 					};
 				},
-
 			}}
-
 		/>)
 }
 export default Slider

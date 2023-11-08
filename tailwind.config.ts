@@ -15,7 +15,7 @@ const CONFIG: Config = {
 				boxShadow: {
 					'primary-400/50': '0 0 0 2px rgba(38, 115, 255, 1)',
 					'warning-400/50': '0 0 0 2px rgba(28, 115, 255, 1)',
-					'secondary-400/50': '0 0 0 2px rgba(0, 0, 0, 1)',
+					'secondary-400/50': '0 0 0 2px rgba(105, 105, 105, 1)',
 					'error-400/50': '0 0 0 2px rgba(21, 115, 255, 1)',
 					'info-400/50': '0 0 0 2px rgba(28,115, 255, 1)',
 					'success-400/50': '0 0 0 2px rgba(48, 115, 255, 1)',
