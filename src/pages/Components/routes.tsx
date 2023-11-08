@@ -15,6 +15,7 @@ import {RouteObject} from 'react-router/dist/lib/context';
 import {PopoverPage} from "./Popover";
 import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
+import {AvatarPage} from "./Avatar";
 
 
 const ROUTES: RouteObject = {
@@ -26,6 +27,11 @@ const ROUTES: RouteObject = {
       path: 'alert',
       element: <AlertPage/>,
       index: true
+    },
+    {
+      id: RouteEnum.ComponentsAvatar,
+      path: 'avatar',
+      element: <AvatarPage/>,
     },
     {
       id: RouteEnum.ComponentsBadge,

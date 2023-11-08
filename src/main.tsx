@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
-import i18next from 'i18next';
+import i18next, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {ROUTES} from './pages';
 import moment from 'moment/moment';
@@ -22,10 +22,12 @@ const en = {
     [RouteEnum.Components]: 'Components',
     [RouteEnum.ComponentsButton]: 'Button',
     [RouteEnum.ComponentsAlert]: 'Alert',
+    [RouteEnum.ComponentsAvatar]: 'Avatar',
     [RouteEnum.ComponentsBadge]: 'Badge',
     [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
     [RouteEnum.ComponentsButtonGroup]: 'Button Group',
     [RouteEnum.ComponentsCard]: 'Card',
+    [RouteEnum.ComponentsCheckbox]: 'Checkbox',
     [RouteEnum.ComponentsDropdown]: 'Dropdown',
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',
@@ -45,6 +47,7 @@ const en = {
     [RouteEnum.FormDatePickerRange]: 'Date Range',
     [RouteEnum.FormDatePickerMultiple]: 'Date Multiple',
     [RouteEnum.FormSelect]: 'Select',
+    [RouteEnum.FormSwitch]: 'Switch',
     [RouteEnum.FormAutocomplete]: 'Autocomplete',
     [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
     [RouteEnum.FormValidation]: 'Validation',
@@ -62,7 +65,7 @@ const en = {
     [RouteEnum.FormSlider]: 'Slider',
   }
 };
-const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
+const resources: Record<Lang, Resource> = {
   [Lang.English]: en,
   [Lang.French]: en,
 };

@@ -2,8 +2,16 @@ import {Slider as MuiSlider} from '@mui/base/Slider';
 import {CustomSliderProps} from './Slider.types.tsx';
 import {useMemo} from 'react';
 import {twMerge} from 'tailwind-merge';
+import {resolveSlotProps} from '../../Components/Switch/Switch.tsx';
 
-const Slider = ({size, color = 'primary', valueLabelDisplay = 'hover', ...props}: CustomSliderProps) => {
+const Slider = ({
+									size,
+									color = 'primary',
+									valueLabelDisplay = 'hover',
+									slots,
+									slotProps,
+									...props
+								}: CustomSliderProps) => {
 	const sliderClassName = useMemo<string>(() => {
 		switch (size) {
 			case 'sm':
@@ -37,88 +45,107 @@ const Slider = ({size, color = 'primary', valueLabelDisplay = 'hover', ...props}
 
 	return (
 		<MuiSlider
-			slots={{
-				valueLabel: ({children, ownerState}) => {
-
-					return (
-						<div
-							className={twMerge(
-								'relative -top-8',
-								valueLabelDisplay === 'none' && 'invisible',
-								valueLabelDisplay === 'hover' && twMerge(
-									'invisible group-hover:visible',
-									ownerState?.dragging && 'visible'
-								),
-							)}
-						>
-							{children}
-						</div>
-					);
-				}
-				// valueLabel: ({children}) => (
-				// 	<div
-				// 		className={twMerge(
-				// 			'w-full h-full flex justify-center items-center transform -translate-y-6 translate-x-0 scale-1 absolute inset-0 group-hover:visible',
-				// 			''
-				// 		)}
-				// 	>
-				// 		<div className={twMerge(displayValueClassName, `group-hover:visible group-active:visible `)}>
-				// 			{children}
-				// 		</div>
-				// 	</div>
-				// )
-			}}
-			//defaultValue={50} vers documentation
 			{...props}
+			slots={{
+				valueLabel: ownerState => <span {...ownerState}/>,
+				...slots
+			}}
 			slotProps={{
-				root: (ownerState) => {
+				root: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.root, ownerState);
+
 					return {
-						...props.slotProps?.root,
-						className: twMerge(sliderClassName, ` w-full py-0.5 px-1 inline-block relative touch-none`,
-							ownerState.disabled ? 'opacity-50 cursor-default cursor-not-allowed text-current group-hover:hidden ' :
-								`hover:opacity-100 cursor-pointer text-${color}-600`)
-					};
-				}, rail: () => {
-					return {
-						...props.slotProps?.rail,
-						className: twMerge(sliderClassName, `block absolute w-full rounded-sm bg-current opacity-50 `),
-					};
-				}, track: () => {
-					return {
-						...props.slotProps?.track, className: twMerge(sliderClassName, `block absolute rounded-s bg-current `),
-					};
-				}, thumb: () => {
-					return {
-						...props.slotProps?.thumb, className: twMerge(thumbClassName, `group absolute  
-						 -ml-1 -top-1 box-border rounded-full outline-0 border-2 border-solid
-						 border-current bg-white hover:shadow-${color}-400/50 
-						 active:shadow-${color}-400/50`, ''),
-					};
-				}, mark: () => {
-					return {
-						...props.slotProps?.mark,
-						className: twMerge(markClassName,
-							`absolute  inset-0 rounded-full bg-${color}-400
-						 [&.MuiSlider-markActive]:bg-current `
+						...resolvedSlotProps,
+						className: twMerge(
+							'w-full px-1 inline-block relative touch-none',
+							sliderClassName,
+							ownerState.disabled ?
+								'opacity-50 cursor-not-allowed' :
+								`hover:opacity-100 cursor-pointer text-${color}-600`,
+							resolvedSlotProps?.className
 						)
 					};
-				}, markLabel: () => {
+				},
+				rail: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.rail, ownerState);
+
 					return {
-						...props.slotProps?.markLabel, className: `group absolute mt-5 -ml-2 text-sm`,
+						...ownerState,
+						className: twMerge(
+							'block absolute w-full rounded-sm bg-current opacity-50',
+							sliderClassName,
+							resolvedSlotProps?.className
+						),
 					};
 				},
-				valueLabel: ({dragging}) => ({
-					...props.slotProps?.valueLabel,
-					className: twMerge(
-						'relative -top-8',
-						valueLabelDisplay === 'none' && 'invisible',
-						valueLabelDisplay === 'hover' && twMerge(
-							'invisible group-hover:visible',
-							dragging && 'visible',
+				track: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.track, ownerState);
+
+					return {
+						...resolvedSlotProps,
+						className: twMerge(
+							'block absolute rounded-s bg-current',
+							sliderClassName,
+							resolvedSlotProps?.className
 						),
-						props.slotProps?.valueLabel?.className
-					)
-				}),
+					};
+				},
+				thumb: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.thumb, ownerState);
+
+					return {
+						...resolvedSlotProps,
+						className: twMerge(
+							'relative absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
+							`group bg-white rounded-full border-2 border-${color}-500`,
+							`hover:ring-2 hover:ring-${color}-300 active:ring-${color}-300`,
+							thumbClassName,
+							resolvedSlotProps?.className
+						),
+					};
+				},
+				mark: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.mark, ownerState);
+
+					return {
+						...resolvedSlotProps,
+						className: twMerge(
+							'absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
+							`rounded-full bg-${color}-400 [&.MuiSlider-markActive]:bg-current`,
+							markClassName,
+							resolvedSlotProps?.className
+						)
+					};
+				},
+				markLabel: ownerState => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.markLabel, ownerState);
+
+					return {
+						...resolvedSlotProps,
+						className: twMerge(
+							'absolute top-5 left-1/2 -translate-x-1/2',
+							'group text-sm',
+							resolvedSlotProps?.className
+						),
+					};
+				},
+				valueLabel: (ownerState) => {
+					const resolvedSlotProps = resolveSlotProps(slotProps?.valueLabel, ownerState);
+
+					return {
+						...resolvedSlotProps,
+						className: twMerge(
+							'absolute -left-1/2 -translate-x-1/2',
+							'relative -top-8',
+							valueLabelDisplay === 'none' && 'invisible',
+							valueLabelDisplay === 'hover' && twMerge(
+								'invisible group-hover:visible',
+								ownerState?.dragging && 'visible'
+							),
+							resolvedSlotProps?.className
+						)
+					};
+				},
 			}}
 		/>);
 };

@@ -10,6 +10,8 @@ import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
 import {SliderPage} from './Slider';
+import {SwitchPage} from './Switch/index.ts';
+import {CheckboxPage} from './Checkbox';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -30,6 +32,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputPassword,
       path: 'input-password',
       element: <InputPasswordPage/>
+    },
+    {
+      id: RouteEnum.ComponentsCheckbox,
+      path: 'checkbox',
+      element: <CheckboxPage/>
     },
     {
       id: RouteEnum.FormDatePicker,
@@ -67,6 +74,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.FormInputGroup,
       path: 'input-group',
       element: <InputGroupPage/>
+    },
+    {
+      id: RouteEnum.FormSwitch,
+      path: 'switch',
+      element: <SwitchPage />
     },
     {
       id: RouteEnum.FormSlider,
