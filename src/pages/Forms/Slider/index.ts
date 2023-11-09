@@ -1,1 +1,1 @@
-export {default as SliderPage} from './Page.tsx'
+export {default as SliderPage} from './Page.tsx';

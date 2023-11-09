@@ -2,46 +2,28 @@ import {Slider as MuiSlider} from '@mui/base/Slider';
 import {CustomSliderProps} from './Slider.types.tsx';
 import {useMemo} from 'react';
 import {twMerge} from 'tailwind-merge';
-import {resolveSlotProps} from '../../Components/Switch/Switch.tsx';
+import {getColorClassName} from '../../Components/Button/Button.utils.tsx';
+import {resolveSlotProps, useThumb} from '../../Components/Switch/Switch.utils.ts';
 
-const Slider = ({
-									size,
-									color = 'primary',
-									valueLabelDisplay = 'hover',
-									slots,
-									slotProps,
-									...props
-								}: CustomSliderProps) => {
-	const sliderClassName = useMemo<string>(() => {
+const Slider = ({size, color, display = 'hover', slots, slotProps, ...props}: CustomSliderProps) => {
+	const solid = color === 'secondary' ? 'gray-600' : getColorClassName({color, weight: 600});
+	const light = color === 'secondary' ? 'gray-300' : getColorClassName({color, weight: 300});
+	const thumb = useThumb({size});
+	const sliderSizing = useMemo<number>(() => {
 		switch (size) {
 			case 'sm':
-				return 'h-1';
+				return 1;
 			case 'lg':
-				return 'h-3';
+				return 3;
 			default:
-				return 'h-2';
-		}
-	}, [size]);
-	const thumbClassName = useMemo<string>(() => {
-		switch (size) {
-			case 'sm':
-				return 'w-4 h-4';
-			case 'lg':
-				return 'w-6 h-6';
-			default:
-				return 'w-5 h-5';
+				return 2;
 		}
 	}, [size]);
 	const markClassName = useMemo<string>(() => {
-		switch (size) {
-			case 'sm':
-				return 'w-2 h-2';
-			case 'lg':
-				return 'w-4 h-4';
-			default:
-				return 'w-3 h-3';
-		}
-	}, [size]);
+		const markSizing = sliderSizing + 1;
+
+		return `w-${markSizing} h-${markSizing}`;
+	}, [sliderSizing]);
 
 	return (
 		<MuiSlider
@@ -57,11 +39,8 @@ const Slider = ({
 					return {
 						...resolvedSlotProps,
 						className: twMerge(
-							'w-full px-1 inline-block relative touch-none',
-							sliderClassName,
-							ownerState.disabled ?
-								'opacity-50 cursor-not-allowed' :
-								`hover:opacity-100 cursor-pointer text-${color}-600`,
+							`relative w-full inline-block cursor-pointer rounded-full text-${solid} bg-${light} h-${sliderSizing}`,
+							ownerState.disabled && 'opacity-50 cursor-not-allowed',
 							resolvedSlotProps?.className
 						)
 					};
@@ -72,8 +51,7 @@ const Slider = ({
 					return {
 						...ownerState,
 						className: twMerge(
-							'block absolute w-full rounded-sm bg-current opacity-50',
-							sliderClassName,
+							'block absolute w-full',
 							resolvedSlotProps?.className
 						),
 					};
@@ -84,8 +62,7 @@ const Slider = ({
 					return {
 						...resolvedSlotProps,
 						className: twMerge(
-							'block absolute rounded-s bg-current',
-							sliderClassName,
+							`h-full block absolute rounded-s bg-${solid} `,
 							resolvedSlotProps?.className
 						),
 					};
@@ -97,9 +74,9 @@ const Slider = ({
 						...resolvedSlotProps,
 						className: twMerge(
 							'absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
-							`group bg-white rounded-full border-2 border-${color}-500`,
-							`hover:ring-2 hover:ring-${color}-300 active:ring-${color}-300`,
-							thumbClassName,
+							`group bg-white rounded-full border-2 border-${solid}`,
+							!ownerState.disabled && `hover:ring-2 hover:ring-${light} active:ring-${light}`,
+							thumb.sizingClassName,
 							resolvedSlotProps?.className
 						),
 					};
@@ -111,7 +88,7 @@ const Slider = ({
 						...resolvedSlotProps,
 						className: twMerge(
 							'absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
-							`rounded-full bg-${color}-400 [&.MuiSlider-markActive]:bg-current`,
+							`rounded-full bg-${light} [&.MuiSlider-markActive]:bg-current`,
 							markClassName,
 							resolvedSlotProps?.className
 						)
@@ -129,17 +106,18 @@ const Slider = ({
 						),
 					};
 				},
-				valueLabel: (ownerState) => {
+				valueLabel: ownerState => {
 					const resolvedSlotProps = resolveSlotProps(slotProps?.valueLabel, ownerState);
+					const {disabled, dragging} = ownerState;
 
 					return {
 						...resolvedSlotProps,
 						className: twMerge(
-							'absolute -translate-y-6 translate-x-0 inset-0 flex justify-center items-center',
-							valueLabelDisplay === 'none' && 'invisible',
-							valueLabelDisplay === 'hover' && twMerge(
+							'absolute -translate-y-8 inset-0 flex justify-center',
+							(disabled || display === 'none') && 'invisible',
+							!disabled && display === 'hover' && twMerge(
 								'invisible group-hover:visible',
-								ownerState?.dragging && 'visible '
+								dragging && 'visible'
 							),
 							resolvedSlotProps?.className
 						)
