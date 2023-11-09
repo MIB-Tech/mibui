@@ -9,16 +9,7 @@ const Slider = ({size, color, display = 'hover', slots, slotProps, ...props}: Cu
 	const solid = color === 'secondary' ? 'gray-600' : getColorClassName({color, weight: 600});
 	const light = color === 'secondary' ? 'gray-300' : getColorClassName({color, weight: 300});
 	const thumb = useThumb({size});
-	const sliderSizing = useMemo<number>(() => {
-		switch (size) {
-			case 'sm':
-				return 1;
-			case 'lg':
-				return 3;
-			default:
-				return 2;
-		}
-	}, [size]);
+	const sliderSizing = useMemo<number>(() => thumb.sizing / 2, [size]);
 	const markClassName = useMemo<string>(() => {
 		const markSizing = sliderSizing + 1;
 
@@ -75,7 +66,8 @@ const Slider = ({size, color, display = 'hover', slots, slotProps, ...props}: Cu
 						className: twMerge(
 							'absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
 							`group bg-white rounded-full border-2 border-${solid}`,
-							!ownerState.disabled && `hover:ring-2 hover:ring-${light} active:ring-${light}`,
+							!ownerState.disabled && `hover:ring-2 hover:ring-${light}`,
+							ownerState.dragging && `ring-2 ring-${light}`,
 							thumb.sizingClassName,
 							resolvedSlotProps?.className
 						),
