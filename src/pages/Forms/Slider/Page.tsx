@@ -9,7 +9,7 @@ function Page() {
 	return (
 		<div className='flex flex-col gap-12'>
 			<Preview title='Default' className='flex justify-center'>
-				<Slider defaultValue={10} />
+				<Slider defaultValue={10} valueLabelDisplay='always'/>
 			</Preview>
 			<Preview title='Disabled' className='flex justify-center'>
 				<Slider disabled valueLabelDisplay="none"/>

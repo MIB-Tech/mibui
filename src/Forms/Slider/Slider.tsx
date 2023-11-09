@@ -96,7 +96,7 @@ const Slider = ({
 					return {
 						...resolvedSlotProps,
 						className: twMerge(
-							'relative absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
+							'absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2',
 							`group bg-white rounded-full border-2 border-${color}-500`,
 							`hover:ring-2 hover:ring-${color}-300 active:ring-${color}-300`,
 							thumbClassName,
@@ -135,18 +135,18 @@ const Slider = ({
 					return {
 						...resolvedSlotProps,
 						className: twMerge(
-							'absolute -left-1/2 -translate-x-1/2',
-							'relative -top-8',
+							'absolute -translate-y-6 translate-x-0 inset-0 flex justify-center items-center',
 							valueLabelDisplay === 'none' && 'invisible',
 							valueLabelDisplay === 'hover' && twMerge(
 								'invisible group-hover:visible',
-								ownerState?.dragging && 'visible'
+								ownerState?.dragging && 'visible '
 							),
 							resolvedSlotProps?.className
 						)
 					};
 				},
 			}}
-		/>);
+		/>
+	);
 };
 export default Slider;
