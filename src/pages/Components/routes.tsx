@@ -17,6 +17,7 @@ import {ProgressPage} from "./Progress";
 import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
 import {AvatarPage} from "./Avatar";
+import {SkeletonPage} from "./Skeleton";
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -72,6 +73,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsPagination,
       path: 'pagination',
       element: <PaginationPage/>
+    },
+    {
+      id: RouteEnum.ComponentsSkeleton,
+      path: 'skeleton',
+      element: <SkeletonPage/>
     },
     {
       id: RouteEnum.ComponentsSpinner,
