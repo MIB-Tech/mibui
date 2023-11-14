@@ -12,6 +12,7 @@ export * from './Popover';
 export * from './Popup';
 export * from './Preview';
 export * from './Progress';
+export * from './Skeleton';
 export * from './Spinner';
 export * from './SvgIcon';
 export * from './Table';

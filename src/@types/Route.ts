@@ -16,6 +16,7 @@ export enum RouteEnum {
   ComponentsPopover = 'COMPONENTS.Popover',
   ComponentsProgress = 'COMPONENTS.Progress',
   ComponentsTabs = 'COMPONENTS.TABS',
+  ComponentsSkeleton = 'COMPONENTS.Skeleton',
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',
@@ -41,7 +42,6 @@ export enum RouteEnum {
   ContentTable = 'CONTENT.TABLE',
   //
   ComponentsPopper = 'COMPONENTS.POPPER',
-  ComponentSkeleton = 'COMPONENTS.SKELETON',
   //
   Utils = 'UTILS',
   UtilsClickAway = 'UTILS.CLICK_AWAY',
