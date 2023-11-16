@@ -19,6 +19,7 @@ import {TabsPage} from "./Tabs";
 import {AvatarPage} from "./Avatar";
 import {SkeletonPage} from "./Skeleton";
 
+
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
   path: 'components',
@@ -113,7 +114,7 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsTabs,
       path: 'tabs',
       element: <TabsPage/>
-    },
+    }
   ]
 };
 

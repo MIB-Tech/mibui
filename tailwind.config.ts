@@ -38,12 +38,12 @@ const CONFIG:Config = {
   },
   safelist: [
     {
-      pattern: /(bg|ring|border|text)-(primary|secondary|error|warning|success|info|gray|white)/,
-      variants: ['hover', 'focus'],
+      pattern: /(bg|ring|border|text|shadow)-(primary|secondary|error|warning|success|info|gray|white)/,
+      variants: ['hover', 'focus','active'],
     },
     {
       pattern: /(fill)-(primary|secondary|error|warning|success|black)/,
-      variants: ['hover', 'focus'],
+      variants: ['hover', 'focus','active'],
     },
     {
       pattern: /rounded-[setb]/,

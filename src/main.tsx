@@ -63,7 +63,7 @@ const en = {
     [RouteEnum.AdvancedFilter]: 'Filter',
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
-
+    [RouteEnum.FormSlider]: 'Slider',
   }
 };
 const resources: Record<Lang, Resource> = {
