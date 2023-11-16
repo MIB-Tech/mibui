@@ -11,6 +11,6 @@ export type DisplayType = typeof DISPLAYS[number]
 export type CustomSliderProps = SliderProps & {
 	size?: SizingType;
 	color?: ColorType;
-	display?: DisplayType;
+	tooltipDisplay?: DisplayType;
 };
 
