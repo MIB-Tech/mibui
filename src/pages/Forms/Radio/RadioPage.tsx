@@ -7,8 +7,12 @@ const Page = () => {
     return(
         <div className="flex flex-col gap-12">
             <Preview title="Default" className="flex items-center justify-center gap-10 px-0">
-                <Radio />
-                <Radio defaultChecked />
+                <Radio name="default-radio" />
+                <Radio  name="default-radio" defaultChecked />
+            </Preview>
+            <Preview title="States" className="flex items-center justify-center gap-10 px-0">
+                <Radio disabled />
+                <Radio disabled defaultChecked />
             </Preview>
             <Preview title="Colors" className="grid grid-flow-col justify-center gap-10">
                 {COLORS.map((color, index) => (
@@ -16,7 +20,7 @@ const Page = () => {
                         key={index}
                         color={color}
                         id={`radio-color-${index}`}
-                        defaultChecked
+                        name="colors-radio"
                     />
                 ))}
             </Preview>
@@ -25,11 +29,8 @@ const Page = () => {
                 <Radio
                     key={index}
                     size={size}
+                    name="sizing-radio"
                 />)}
-            </Preview>
-            <Preview title="States" className="flex items-center justify-center gap-10 px-0">
-                <Radio disabled />
-                <Radio disabled defaultChecked />
             </Preview>
         </div>
     )
