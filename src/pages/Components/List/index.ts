@@ -1,0 +1,1 @@
+export {default as ListPage} from './Page.tsx'
