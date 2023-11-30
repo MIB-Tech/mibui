@@ -64,6 +64,8 @@ const en = {
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
     [RouteEnum.FormSlider]: 'Slider',
+    [RouteEnum.ComponentsDataGrid]: 'DataGrid',
+
   }
 };
 const resources: Record<Lang, Resource> = {

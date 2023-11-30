@@ -20,6 +20,7 @@ export enum RouteEnum {
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',
+  ComponentsDataGrid='COMPONENTS.DATAGRID',
   //
   Form = 'FORM',
   FormInput = 'FORM.INPUT',
@@ -51,6 +52,10 @@ export enum RouteEnum {
   AdvancedFilter = 'AdvancedFilter',
   AdvancedEditor = 'AdvancedEditor',
   AdvancedViewBuilder = 'AdvancedViewBuilder',
+  //
+  Examples='Examples',
+  ExamplesTablesheet='Examples TablesSheet'
+
 }
 
 export type RouteType = {

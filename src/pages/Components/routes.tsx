@@ -18,6 +18,8 @@ import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
 import {AvatarPage} from "./Avatar";
 import {SkeletonPage} from "./Skeleton";
+import {DataGridPage} from "./DataGrid";
+
 
 
 const ROUTES: RouteObject = {
@@ -114,6 +116,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsTabs,
       path: 'tabs',
       element: <TabsPage/>
+    },
+    {
+      id: RouteEnum.ComponentsDataGrid,
+      path: 'datagrid',
+      element: <DataGridPage/>
     }
   ]
 };
