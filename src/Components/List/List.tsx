@@ -9,4 +9,4 @@ const List: FC<ListProps> = ({className, ...props}) => (
   />
 );
 
-export default Li
+export default List;
