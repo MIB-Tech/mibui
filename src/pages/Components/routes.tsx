@@ -18,6 +18,8 @@ import {TablePage} from "./Table";
 import {TabsPage} from "./Tabs";
 import {AvatarPage} from "./Avatar";
 import {SkeletonPage} from "./Skeleton";
+import {SidebarPage} from './Sidebar';
+import {ListPage} from './List';
 
 
 const ROUTES: RouteObject = {
@@ -66,6 +68,11 @@ const ROUTES: RouteObject = {
       element: <DropdownPage/>
     },
     {
+      id: RouteEnum.ComponentsList,
+      path: 'list',
+      element: <ListPage/>
+    },
+    {
       id: RouteEnum.ComponentsModal,
       path: 'modal',
       element: <ModalPage/>
@@ -74,6 +81,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsPagination,
       path: 'pagination',
       element: <PaginationPage/>
+    },
+    {
+      id: RouteEnum.ComponentsSidebar,
+      path: 'sidebar',
+      element: <SidebarPage/>
     },
     {
       id: RouteEnum.ComponentsSkeleton,

@@ -16,7 +16,7 @@ enum Lang {
 
 moment.locale(Lang.French);
 
-const en = {
+const en:Record<'translation', Record<RouteEnum, string>> = {
   translation: {
     [RouteEnum.Home]: 'Home',
     [RouteEnum.Components]: 'Components',
@@ -29,10 +29,12 @@ const en = {
     [RouteEnum.ComponentsCard]: 'Card',
     [RouteEnum.ComponentsCheckbox]: 'Checkbox',
     [RouteEnum.ComponentsDropdown]: 'Dropdown',
+    [RouteEnum.ComponentsList]: 'List',
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',
     [RouteEnum.ComponentsPopover]: 'Popover',
     [RouteEnum.ComponentsProgress]: 'Progress',
+    [RouteEnum.ComponentsSidebar]: 'Sidebar',
     [RouteEnum.ComponentsSkeleton]: 'Skeleton',
     [RouteEnum.ComponentsSpinner]: 'Spinner',
     [RouteEnum.ComponentsTabs]: 'Tabs',
@@ -43,7 +45,7 @@ const en = {
     [RouteEnum.FormInputGroup]: 'Input Group',
     [RouteEnum.FormInputNumber]: 'Input Number',
     [RouteEnum.FormInputPassword]: 'Input Password',
-    [RouteEnum.FormFormGroup]: 'Form Group',
+    [RouteEnum.FormFormControl]: 'Form Group',
     [RouteEnum.FormDatePicker]: 'Date Picker',
     [RouteEnum.FormDatePickerSingle]: 'Date Picker',
     [RouteEnum.FormDatePickerRange]: 'Date Range',
@@ -64,9 +66,11 @@ const en = {
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
     [RouteEnum.FormSlider]: 'Slider',
+    [RouteEnum.ApplicationUI]: 'Application UI',
+    [RouteEnum.ApplicationUIFormLayout]: "Saisie un Commande d'achat",
   }
 };
-const resources: Record<Lang, Resource> = {
+const resources: Resource = {
   [Lang.English]: en,
   [Lang.French]: en,
 };

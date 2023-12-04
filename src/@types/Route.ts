@@ -11,8 +11,10 @@ export enum RouteEnum {
   ComponentsCard = 'COMPONENTS.CARD',
   ComponentsCheckbox = 'COMPONENTS.CHECKBOX',
   ComponentsDropdown = 'COMPONENTS.DROPDOWN',
+  ComponentsList = 'COMPONENTS.LIST',
   ComponentsModal = 'COMPONENTS.MODAL',
   ComponentsPagination = 'COMPONENTS.PAGINATION',
+  ComponentsSidebar = 'COMPONENTS.SIDEBAR',
   ComponentsPopover = 'COMPONENTS.Popover',
   ComponentsProgress = 'COMPONENTS.Progress',
   ComponentsTabs = 'COMPONENTS.TABS',
@@ -26,7 +28,7 @@ export enum RouteEnum {
   FormInputNumber = 'FORM.INPUT.NUMBER',
   FormInputPassword = 'FORM.INPUT.PASSWORD',
   FormInputGroup = 'FORM.INPUT_GROUP',
-  FormFormGroup = 'FORM.FORM_GROUP',
+  FormFormControl = 'FORM.FORM_CONTROL',
   FormDatePicker = 'FORM.DATE_PICKER',
   FormDatePickerSingle = 'FORM.DATE_PICKER.SINGLE',
   FormDatePickerRange = 'FORM.DATE_PICKER.RANGE',
@@ -51,6 +53,9 @@ export enum RouteEnum {
   AdvancedFilter = 'AdvancedFilter',
   AdvancedEditor = 'AdvancedEditor',
   AdvancedViewBuilder = 'AdvancedViewBuilder',
+  //
+  ApplicationUI = 'APPLICATION_UI',
+  ApplicationUIFormLayout = 'APPLICATION_UI.FORM_LAYOUT'
 }
 
 export type RouteType = {
