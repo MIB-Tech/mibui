@@ -3,7 +3,7 @@ import {TableHeadProps} from '../Table.types.tsx';
 import {twMerge} from 'tailwind-merge';
 import {useTableContext} from '../Table.utils.tsx';
 
-const TableHead: React.FC<TableHeadProps> = ({className, children, ...props}) => {
+const Head: React.FC<TableHeadProps> = ({className, children, ...props}) => {
   const {borderClassName, stickyHeader} = useTableContext();
 
   return (
@@ -21,4 +21,4 @@ const TableHead: React.FC<TableHeadProps> = ({className, children, ...props}) =>
   );
 };
 
-export default TableHead;
+export default Head;

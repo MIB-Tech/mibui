@@ -10,6 +10,7 @@ export enum RouteEnum {
   ComponentsButtonGroup = 'COMPONENTS.BUTTON_GROUP',
   ComponentsCard = 'COMPONENTS.CARD',
   ComponentsCheckbox = 'COMPONENTS.CHECKBOX',
+  ComponentsDataGrid = 'COMPONENTS.DATA_GRID',
   ComponentsDropdown = 'COMPONENTS.DROPDOWN',
   ComponentsList = 'COMPONENTS.LIST',
   ComponentsModal = 'COMPONENTS.MODAL',
@@ -55,7 +56,9 @@ export enum RouteEnum {
   AdvancedViewBuilder = 'AdvancedViewBuilder',
   //
   ApplicationUI = 'APPLICATION_UI',
-  ApplicationUIFormLayout = 'APPLICATION_UI.FORM_LAYOUT'
+  ApplicationUIFormLayout = 'APPLICATION_UI.FORM_LAYOUT',
+  ApplicationUIAuth = 'APPLICATION_UI.AUTH',
+  ApplicationUIAuthLoginForm = 'APPLICATION_UI.AUTH.LOGIN_FORM',
 }
 
 export type RouteType = {

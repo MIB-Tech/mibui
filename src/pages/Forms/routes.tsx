@@ -91,6 +91,13 @@ const ROUTES: RouteObject = {
       path: 'slider',
       element: <SliderPage/>
     },
+/*
+    {
+      id: RouteEnum.FormSlider,
+      path: 'slider',
+      element: <SliderPage/>
+    },
+*/
   ]
 };
 

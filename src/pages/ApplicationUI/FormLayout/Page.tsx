@@ -2,7 +2,7 @@ import {Autocomplete, FormControl, Input, Label, Select} from '../../../Forms';
 import {twMerge} from 'tailwind-merge';
 import {DatePickerExample} from '../../Forms/DatePicker/DatePage.tsx';
 import {Button, ButtonGroup, Card} from '../../../Components';
-import {TableExample} from '../../Components/Table/TableExample.tsx';
+import {PurchaseOrderProductDataGridExample} from './Examples/PurchaseOrderProductDataGridExample.tsx';
 
 const Page = () => (
 	<div className='flex flex-col space-y-10'>
@@ -18,7 +18,7 @@ const Page = () => (
 				</div>
 			)}
 		>
-			<div className='grid grid-cols-4 gap-5'>
+			<div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
 				<FormControl disabled value='CF BDX000001'>
 					<Label>N° Pièce</Label>
 					<Input/>
@@ -66,23 +66,28 @@ const Page = () => (
 				<FormControl>
 					<Label>Devise</Label>
 					<Select
-						defaultValue={{id: 1, code: 'MAD'}}
-						options={[
-							{id: 1, code: 'MAD'},
-							{id: 2, code: 'EUR'},
-						]}
-						getOptionLabel={option => option.code}
-					/>
-				</FormControl>
-			</div>
-		</Card>
-		<div>
-			<div className='text-2xl'>
-				Produits
-			</div>
-			<TableExample />
-		</div>
-	</div>
+            defaultValue={{id: 1, code: 'MAD'}}
+            options={[
+              {id: 1, code: 'MAD'},
+              {id: 2, code: 'EUR'},
+            ]}
+            getOptionLabel={option => option.code}
+          />
+        </FormControl>
+      </div>
+    </Card>
+    <div className='flex flex-col space-y-4'>
+      <div className='font-semibold text-2xl'>
+        Produits
+      </div>
+      <PurchaseOrderProductDataGridExample/>
+      <div>
+        <Button>
+          Ajouter
+        </Button>
+      </div>
+    </div>
+  </div>
 );
 
 

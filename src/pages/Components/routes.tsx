@@ -12,14 +12,15 @@ import {SpinnerPage} from './Spinner';
 import {ToastPage} from './Toast';
 import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
-import {PopoverPage} from "./Popover";
-import {ProgressPage} from "./Progress";
-import {TablePage} from "./Table";
-import {TabsPage} from "./Tabs";
-import {AvatarPage} from "./Avatar";
-import {SkeletonPage} from "./Skeleton";
+import {PopoverPage} from './Popover';
+import {ProgressPage} from './Progress';
+import {TablePage} from './Table';
+import {TabsPage} from './Tabs';
+import {AvatarPage} from './Avatar';
+import {SkeletonPage} from './Skeleton';
 import {SidebarPage} from './Sidebar';
 import {ListPage} from './List';
+import {DataGridPage} from './DataGrid';
 
 
 const ROUTES: RouteObject = {
@@ -126,6 +127,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsTabs,
       path: 'tabs',
       element: <TabsPage/>
+    },
+    {
+      id: RouteEnum.ComponentsDataGrid,
+      path: 'datagrid',
+      element: <DataGridPage/>
     }
   ]
 };
