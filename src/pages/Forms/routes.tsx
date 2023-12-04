@@ -36,7 +36,7 @@ const ROUTES: RouteObject = {
     },
     {
       id: RouteEnum.FormFormControl,
-      path: 'form-group',
+      path: 'form-control',
       element: <FormControlPage/>
     },
     {

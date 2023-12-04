@@ -44,7 +44,7 @@ const en:Record<'translation', Record<RouteEnum, string>> = {
     [RouteEnum.FormInputGroup]: 'Input Group',
     [RouteEnum.FormInputNumber]: 'Input Number',
     [RouteEnum.FormInputPassword]: 'Input Password',
-    [RouteEnum.FormFormControl]: 'Form Group',
+    [RouteEnum.FormFormControl]: 'Form Control',
     [RouteEnum.FormDatePicker]: 'Date Picker',
     [RouteEnum.FormDatePickerSingle]: 'Date Picker',
     [RouteEnum.FormDatePickerRange]: 'Date Range',

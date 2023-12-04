@@ -36,8 +36,6 @@ export const PurchaseOrderProductDataGridExample = () => {
           </Button>
         )
       },
-      {field: 'group1', headerName: 'Grp. 1', editable: true},
-      {field: 'group2', headerName: 'Grp. 2', editable: true},
       {headerName: 'N°', editable: true, renderCell: (_, index) => index + 1},
       {field: 'product', headerName: 'Produit', editable: true, renderCell: ({product}) => product?.code},
       {field: 'designation', headerName: 'Designation', editable: true},

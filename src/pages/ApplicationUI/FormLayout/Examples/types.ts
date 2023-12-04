@@ -32,8 +32,6 @@ type User = {
   lastName: string
 } & AbstractModel
 export type PurchaseOrderProduct = {
-  group1?: string
-  group2?: string
   quantity: number
   grossPrice: number
   netPrice: number
@@ -49,8 +47,6 @@ export type PurchaseOrderProduct = {
 export const PURCHASE_ORDER_PRODUCT_1 = {
   id: 1,
   designation: 'Product 1',
-  group1: '',
-  group2: '',
   quantity: 10,
   grossPrice: 3,
   netPrice: 11,
@@ -68,8 +64,6 @@ export const PURCHASE_ORDER_PRODUCT_1 = {
 export const PURCHASE_ORDER_PRODUCT_2 = {
   id: 2,
   designation: 'Product 2',
-  group1: '',
-  group2: '',
   quantity: 15,
   grossPrice: 5,
   netPrice: 11,
