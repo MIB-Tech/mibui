@@ -3,7 +3,7 @@ import {TableHeadProps} from '../Table.types.tsx';
 import {useTableContext} from '../Table.utils.tsx';
 import {twMerge} from 'tailwind-merge';
 
-const TableBody: React.FC<TableHeadProps> = ({className, ...props}) => {
+const Body: React.FC<TableHeadProps> = ({className, ...props}) => {
   const {cellClassName} = useTableContext();
 
   return (
@@ -14,4 +14,4 @@ const TableBody: React.FC<TableHeadProps> = ({className, ...props}) => {
   );
 };
 
-export default TableBody;
+export default Body;

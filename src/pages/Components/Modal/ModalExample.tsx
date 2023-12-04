@@ -4,11 +4,12 @@ import Modal from '../../../Components/Modal/Modal.tsx';
 import {ModalProps} from '../../../Components/Modal/Modal.types.tsx';
 
 export const ModalExample: FC<{ buttonLabel?: string } & ModalProps> = ({buttonLabel = 'Default', ...props}) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>();
 
   const onClose = () => {
     setOpen(false);
   };
+
   return (
     <>
       <div className="inset-0 flex items-center justify-center">

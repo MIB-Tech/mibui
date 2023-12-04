@@ -1,4 +1,3 @@
-import {router} from '../../main.tsx';
 import {twMerge} from 'tailwind-merge';
 import {useMatch, useNavigate} from 'react-router-dom';
 import {Popup} from '../../Components/Popup';
@@ -8,6 +7,7 @@ import {ArrowRightIcon, ChevronDownIcon} from '@heroicons/react/20/solid';
 import {FC, useState} from 'react';
 import {AgnosticRouteObject} from '@remix-run/router/dist/utils';
 import {ButtonProps} from '../../Components/Button/Button.types.tsx';
+import {PRIVATE_ROUTES} from '../../pages';
 
 const MegaMenuItem: FC<Pick<AgnosticRouteObject, 'id' | 'path'> & Pick<ButtonProps, 'onClick'>> = (
   {
@@ -94,7 +94,7 @@ const HeaderMenuItem: FC<AgnosticRouteObject> = ({id, path = '/', children}) => 
 
 
 export const HeaderMenu = () => {
-  const routes = router.routes[0].children;
+  const routes = PRIVATE_ROUTES.children;
 
   return (
     <nav className=''>

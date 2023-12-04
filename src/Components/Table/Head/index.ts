@@ -1,2 +1,2 @@
-export {default as TableHead} from './Table.Head.tsx';
-export {default as TableHeadCell} from './Table.Head.Cell.tsx';
+export {default as TableHead} from './Head.tsx';
+export {default as TableHeadCell} from './Head.Cell.tsx';

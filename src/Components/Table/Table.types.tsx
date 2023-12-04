@@ -15,8 +15,8 @@ export type TableProps = Context & HTMLAttributes<HTMLTableElement>
 
 export type TableHeadProps = HTMLAttributes<HTMLTableSectionElement>
 
-export type CellProps = & HTMLAttributes<HTMLTableCellElement>
+export type CellProps = HTMLAttributes<HTMLTableCellElement>
 
-export type TableRowProps = & HTMLAttributes<HTMLTableRowElement>
+export type TableRowProps = HTMLAttributes<HTMLTableRowElement>
 
 

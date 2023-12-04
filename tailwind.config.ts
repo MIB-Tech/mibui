@@ -17,17 +17,17 @@ const CONFIG:Config = {
           'Work Sans'
         ]
       },
-      borderRadius: {
-        sm: '0.5rem',
-        DEFAULT: '0.75rem',
-        md: '1rem',
-        lg: '1.5rem',
-        xl: '2rem',
-        '2xl': '2.5rem',
-        '3xl': '3rem',
-      },
+      // borderRadius: {
+      //   sm: '0.5rem',
+      //   DEFAULT: '0.75rem',
+      //   md: '1rem',
+      //   lg: '1.5rem',
+      //   xl: '2rem',
+      //   '2xl': '2.5rem',
+      //   '3xl': '3rem',
+      // },
       colors: {
-        primary: colors.violet,
+        primary: colors.blue,
         secondary: colors.white,
         success: colors.emerald,
         info: colors.blue,

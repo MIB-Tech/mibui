@@ -3,7 +3,7 @@ import {useTableContext} from '../Table.utils.tsx';
 import {twMerge} from 'tailwind-merge';
 import {CellProps} from '../Table.types.tsx';
 
-const TableHeadCell: React.FC<CellProps> = ({className, ...props}) => {
+const HeadCell: React.FC<CellProps> = ({className, ...props}) => {
   const {cellClassName, bordered, borderClassName, stickyColumn} = useTableContext();
 
   return (
@@ -19,4 +19,4 @@ const TableHeadCell: React.FC<CellProps> = ({className, ...props}) => {
     />
   );
 };
-export default TableHeadCell;
+export default HeadCell;

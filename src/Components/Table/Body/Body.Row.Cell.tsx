@@ -3,20 +3,20 @@ import {CellProps} from '../Table.types.tsx';
 import React from 'react';
 import {twMerge} from 'tailwind-merge';
 
-const TableRowCell: React.FC<CellProps> = ({className, ...props}) => {
-	const {
-		borderClassName,
-		bordered,
-		hoverable,
-		stickyColumn,
-		cellClassName,
-	} = useTableContext();
+const BodyRowCell: React.FC<CellProps> = ({className, ...props}) => {
+  const {
+    borderClassName,
+    bordered,
+    hoverable,
+    stickyColumn,
+    cellClassName,
+  } = useTableContext();
 
-	return (
-		<td
+  return (
+    <td
 			{...props}
 			className={twMerge(
-				'group-last:border-b-0',
+        // 'group-last:border-b-0',
 				cellClassName,
 				borderClassName,
 				stickyColumn && 'first:sticky first:backdrop-blur-md first:bg-gray-50/30 left-0 first:border-r-2',
@@ -27,4 +27,4 @@ const TableRowCell: React.FC<CellProps> = ({className, ...props}) => {
 		/>
 	);
 };
-export default TableRowCell;
+export default BodyRowCell;

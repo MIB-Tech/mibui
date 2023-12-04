@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
 import i18next, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {ROUTES} from './pages';
 import moment from 'moment/moment';
 import 'moment/dist/locale/fr';
+import App from './App.tsx';
 
 enum Lang {
   English = 'en',
@@ -66,13 +65,16 @@ const en:Record<'translation', Record<RouteEnum, string>> = {
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
     [RouteEnum.FormSlider]: 'Slider',
+    [RouteEnum.ComponentsDataGrid]: 'DataGrid',
     [RouteEnum.ApplicationUI]: 'Application UI',
-    [RouteEnum.ApplicationUIFormLayout]: "Saisie un Commande d'achat",
+    [RouteEnum.ApplicationUIFormLayout]: 'Saisie une commande d\'achat',
+    [RouteEnum.ApplicationUIAuth]: 'Authentication',
+    [RouteEnum.ApplicationUIAuthLoginForm]: 'Login Form',
   }
 };
 const resources: Resource = {
   [Lang.English]: en,
-  [Lang.French]: en,
+  [Lang.French]: en
 };
 i18next.use(initReactI18next).init({
   lng: Lang.English,
@@ -81,13 +83,12 @@ i18next.use(initReactI18next).init({
 }).then(() => {
 });
 
-export const router = createBrowserRouter([ROUTES]);
 export const useLocale = () => ({
   locale: Lang.French
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <App/>
   </React.StrictMode>,
 )

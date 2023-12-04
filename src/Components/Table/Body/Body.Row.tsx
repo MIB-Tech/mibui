@@ -4,7 +4,7 @@ import {TableRowProps} from '../Table.types.tsx';
 import {twMerge} from 'tailwind-merge';
 
 
-const TableRow: React.FC<TableRowProps> = ({className, ...props}) => {
+const BodyRow: React.FC<TableRowProps> = ({className, ...props}) => {
   const {borderClassName} = useTableContext();
 
   return (
@@ -18,4 +18,4 @@ const TableRow: React.FC<TableRowProps> = ({className, ...props}) => {
     />
   );
 };
-export default TableRow;
+export default BodyRow;
