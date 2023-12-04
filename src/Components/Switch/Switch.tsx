@@ -13,8 +13,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
     ...props
   },
   ref
-) => {
-  const thumb = useThumb({size});
+  ) => {
   const classNames = useVariantStyles({color});
   const rootSlotProps = slotProps?.root;
 

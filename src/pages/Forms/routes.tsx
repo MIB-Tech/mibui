@@ -9,10 +9,9 @@ import {AutocompletePage} from './Autocomplete';
 import DatePage from './DatePicker/DatePage.tsx';
 import DateRangePage from './DatePicker/DateRangePage.tsx';
 import DateMultiplePage from './DatePicker/DateMultiplePage.tsx';
-import {SliderPage} from './Slider';
-import {SwitchPage} from './Switch/index.ts';
 import {CheckboxPage} from './Checkbox';
-import {FormControlPage} from './FormControl';
+import { SwitchPage } from './Switch';
+import { RadioPage } from './Radio';
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Form,
@@ -87,17 +86,10 @@ const ROUTES: RouteObject = {
       element: <SwitchPage />
     },
     {
-      id: RouteEnum.FormSlider,
-      path: 'slider',
-      element: <SliderPage/>
-    },
-/*
-    {
-      id: RouteEnum.FormSlider,
-      path: 'slider',
-      element: <SliderPage/>
-    },
-*/
+      id: RouteEnum.FormRadio,
+      path: 'radio',
+      element: <RadioPage />
+    }
   ]
 };
 
