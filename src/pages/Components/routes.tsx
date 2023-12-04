@@ -21,17 +21,12 @@ import {SkeletonPage} from './Skeleton';
 import {SidebarPage} from './Sidebar';
 import {ListPage} from './List';
 import {DataGridPage} from './DataGrid';
-import {Navigate} from 'react-router-dom';
 
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
   path: 'components',
   children: [
-    {
-      index: true,
-      element: <Navigate to='alert' replace />
-    },
     {
       id: RouteEnum.ComponentsAlert,
       path: 'alert',

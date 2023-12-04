@@ -39,9 +39,7 @@ const App = () => {
   const isAuthenticated = true;
   const router = createBrowserRouter(isAuthenticated ? [PRIVATE_ROUTES] : [PUBLIC_ROUTES]);
 
-  return (
-    <RouterProvider router={router}/>
-  );
+  return <RouterProvider router={router}/>
 };
 
 export default App;
