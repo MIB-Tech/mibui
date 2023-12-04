@@ -33,7 +33,7 @@ export const LoginFormExample = () => (
 
 const Page = () => (
 	<div className='flex flex-col gap-12'>
-		<Preview title='Default' className='justify-center'>
+		<Preview title='Sign In' className='justify-center'>
 			<LoginFormExample/>
 		</Preview>
 	</div>
