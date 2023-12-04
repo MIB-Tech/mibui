@@ -15,7 +15,13 @@ const CONFIG:Config = {
       fontFamily: {
         'sans': [
           'Work Sans'
-        ]
+        ],
+        'poppins': [
+          'Poppins'
+        ],
+        'karla': [
+          'Karla'
+        ],
       },
       // borderRadius: {
       //   sm: '0.5rem',

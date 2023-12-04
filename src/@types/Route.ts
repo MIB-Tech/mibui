@@ -59,6 +59,10 @@ export enum RouteEnum {
   ApplicationUIFormLayout = 'APPLICATION_UI.FORM_LAYOUT',
   ApplicationUIAuth = 'APPLICATION_UI.AUTH',
   ApplicationUIAuthLoginForm = 'APPLICATION_UI.AUTH.LOGIN_FORM',
+
+  ApplicationUIAuthRegisterForm = 'APPLICATION_UI.AUTH.REGISTER_FORM',
+
+  
 }
 
 export type RouteType = {

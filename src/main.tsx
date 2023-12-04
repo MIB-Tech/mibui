@@ -70,6 +70,7 @@ const en:Record<'translation', Record<RouteEnum, string>> = {
     [RouteEnum.ApplicationUIFormLayout]: 'Saisie une commande d\'achat',
     [RouteEnum.ApplicationUIAuth]: 'Authentication',
     [RouteEnum.ApplicationUIAuthLoginForm]: 'Login Form',
+    [RouteEnum.ApplicationUIAuthRegisterForm]: 'Register Form',
   }
 };
 const resources: Resource = {
