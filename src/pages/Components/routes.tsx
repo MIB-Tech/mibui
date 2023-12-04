@@ -12,10 +12,16 @@ import {SpinnerPage} from './Spinner';
 import {ToastPage} from './Toast';
 import {TooltipPage} from './Tooltip';
 import {RouteObject} from 'react-router/dist/lib/context';
-import {PopoverPage} from "./Popover";
-import {TablePage} from "./Table";
-import {TabsPage} from "./Tabs";
-import {AvatarPage} from "./Avatar";
+import {PopoverPage} from './Popover';
+import {ProgressPage} from './Progress';
+import {TablePage} from './Table';
+import {TabsPage} from './Tabs';
+import {AvatarPage} from './Avatar';
+import {SkeletonPage} from './Skeleton';
+import {SidebarPage} from './Sidebar';
+import {ListPage} from './List';
+import {DataGridPage} from './DataGrid';
+
 
 const ROUTES: RouteObject = {
   id: RouteEnum.Components,
@@ -63,6 +69,11 @@ const ROUTES: RouteObject = {
       element: <DropdownPage/>
     },
     {
+      id: RouteEnum.ComponentsList,
+      path: 'list',
+      element: <ListPage/>
+    },
+    {
       id: RouteEnum.ComponentsModal,
       path: 'modal',
       element: <ModalPage/>
@@ -71,6 +82,16 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsPagination,
       path: 'pagination',
       element: <PaginationPage/>
+    },
+    {
+      id: RouteEnum.ComponentsSidebar,
+      path: 'sidebar',
+      element: <SidebarPage/>
+    },
+    {
+      id: RouteEnum.ComponentsSkeleton,
+      path: 'skeleton',
+      element: <SkeletonPage/>
     },
     {
       id: RouteEnum.ComponentsSpinner,
@@ -93,6 +114,11 @@ const ROUTES: RouteObject = {
       element: <PopoverPage/>
     },
     {
+      id: RouteEnum.ComponentsProgress,
+      path: 'progress',
+      element: <ProgressPage/>
+    },
+    {
       id: RouteEnum.ContentTable,
       path: 'table',
       element: <TablePage/>
@@ -102,6 +128,11 @@ const ROUTES: RouteObject = {
       path: 'tabs',
       element: <TabsPage/>
     },
+    {
+      id: RouteEnum.ComponentsDataGrid,
+      path: 'datagrid',
+      element: <DataGridPage/>
+    }
   ]
 };
 

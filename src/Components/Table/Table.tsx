@@ -17,6 +17,7 @@ const Table: React.FC<TableProps> = (
   }
 ) => (
   <TableSizeProvider
+
     size={size}
     borderStyle={borderStyle}
     hoverable={hoverable}

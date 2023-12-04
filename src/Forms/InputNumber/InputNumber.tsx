@@ -10,6 +10,7 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   {
     size,
     shiftMultiplier,
+    autoFocus,
     ...props
   },
   ref
@@ -30,6 +31,7 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   return (
     <Input
       //{...props}
+      autoFocus={autoFocus}
       {...inputProps}
       {...getRootProps()}
       // ref={ref}

@@ -49,7 +49,7 @@ const Popup: FC<PopupProps> = (
         {...props}
         open={open}
         anchor={anchor}
-        className={twMerge('z-10 rounded shadow-lg bg-white', className)}
+        className={twMerge('z-10 rounded bg-white border drop-shadow', className)}
         offset={5}
       >
         <ClickAwayListener onClickAway={handleClose}>

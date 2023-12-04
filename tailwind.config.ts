@@ -17,17 +17,17 @@ const CONFIG:Config = {
           'Work Sans'
         ]
       },
-      borderRadius: {
-        sm: '0.5rem',
-        DEFAULT: '0.75rem',
-        md: '1rem',
-        lg: '1.5rem',
-        xl: '2rem',
-        '2xl': '2.5rem',
-        '3xl': '3rem',
-      },
+      // borderRadius: {
+      //   sm: '0.5rem',
+      //   DEFAULT: '0.75rem',
+      //   md: '1rem',
+      //   lg: '1.5rem',
+      //   xl: '2rem',
+      //   '2xl': '2.5rem',
+      //   '3xl': '3rem',
+      // },
       colors: {
-        primary: colors.violet,
+        primary: colors.blue,
         secondary: colors.white,
         success: colors.emerald,
         info: colors.blue,
@@ -38,12 +38,12 @@ const CONFIG:Config = {
   },
   safelist: [
     {
-      pattern: /(bg|ring|border|text)-(primary|secondary|error|warning|success|info|gray|white)/,
-      variants: ['hover', 'focus'],
+      pattern: /(bg|ring|border|text|shadow)-(primary|secondary|error|warning|success|info|gray|white)/,
+      variants: ['hover', 'focus','active'],
     },
     {
       pattern: /(fill)-(primary|secondary|error|warning|success|black)/,
-      variants: ['hover', 'focus'],
+      variants: ['hover', 'focus','active'],
     },
     {
       pattern: /rounded-[setb]/,

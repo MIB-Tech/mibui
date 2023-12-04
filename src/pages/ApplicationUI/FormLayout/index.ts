@@ -1,0 +1,1 @@
+export {default as FormLayoutPage} from './Page.tsx';

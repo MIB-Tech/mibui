@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {RouteEnum} from './@types/Route';
 import i18next, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {ROUTES} from './pages';
 import moment from 'moment/moment';
 import 'moment/dist/locale/fr';
+import App from './App.tsx';
 
 enum Lang {
   English = 'en',
@@ -16,7 +15,7 @@ enum Lang {
 
 moment.locale(Lang.French);
 
-const en = {
+const en:Record<'translation', Record<RouteEnum, string>> = {
   translation: {
     [RouteEnum.Home]: 'Home',
     [RouteEnum.Components]: 'Components',
@@ -29,9 +28,13 @@ const en = {
     [RouteEnum.ComponentsCard]: 'Card',
     [RouteEnum.ComponentsCheckbox]: 'Checkbox',
     [RouteEnum.ComponentsDropdown]: 'Dropdown',
+    [RouteEnum.ComponentsList]: 'List',
     [RouteEnum.ComponentsModal]: 'Modal',
     [RouteEnum.ComponentsPagination]: 'Pagination',
     [RouteEnum.ComponentsPopover]: 'Popover',
+    [RouteEnum.ComponentsProgress]: 'Progress',
+    [RouteEnum.ComponentsSidebar]: 'Sidebar',
+    [RouteEnum.ComponentsSkeleton]: 'Skeleton',
     [RouteEnum.ComponentsSpinner]: 'Spinner',
     [RouteEnum.ComponentsTabs]: 'Tabs',
     [RouteEnum.ComponentsToast]: 'Toast',
@@ -41,7 +44,7 @@ const en = {
     [RouteEnum.FormInputGroup]: 'Input Group',
     [RouteEnum.FormInputNumber]: 'Input Number',
     [RouteEnum.FormInputPassword]: 'Input Password',
-    [RouteEnum.FormFormGroup]: 'Form Group',
+    [RouteEnum.FormFormControl]: 'Form Control',
     [RouteEnum.FormDatePicker]: 'Date Picker',
     [RouteEnum.FormDatePickerSingle]: 'Date Picker',
     [RouteEnum.FormDatePickerRange]: 'Date Range',
@@ -56,19 +59,23 @@ const en = {
     [RouteEnum.ContentTypography]: 'Typography',
     [RouteEnum.ContentTable]: 'Table',
     [RouteEnum.ComponentsPopper]: 'Popper',
-    [RouteEnum.ComponentSkeleton]: 'Skeleton',
     [RouteEnum.Utils]: 'Utils',
     [RouteEnum.UtilsClickAway]: 'Click Away Listener',
     [RouteEnum.Advanced]: 'Advanced',
     [RouteEnum.AdvancedFilter]: 'Filter',
     [RouteEnum.AdvancedEditor]: 'Editor',
     [RouteEnum.AdvancedViewBuilder]: 'View Builder',
-
+    [RouteEnum.FormSlider]: 'Slider',
+    [RouteEnum.ComponentsDataGrid]: 'DataGrid',
+    [RouteEnum.ApplicationUI]: 'Application UI',
+    [RouteEnum.ApplicationUIFormLayout]: 'Saisie une commande d\'achat',
+    [RouteEnum.ApplicationUIAuth]: 'Authentication',
+    [RouteEnum.ApplicationUIAuthLoginForm]: 'Login Form',
   }
 };
-const resources: Record<Lang, Resource> = {
+const resources: Resource = {
   [Lang.English]: en,
-  [Lang.French]: en,
+  [Lang.French]: en
 };
 i18next.use(initReactI18next).init({
   lng: Lang.English,
@@ -77,13 +84,12 @@ i18next.use(initReactI18next).init({
 }).then(() => {
 });
 
-export const router = createBrowserRouter([ROUTES]);
 export const useLocale = () => ({
   locale: Lang.French
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <App/>
   </React.StrictMode>,
 )

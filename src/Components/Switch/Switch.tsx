@@ -1,10 +1,9 @@
 import {forwardRef, useMemo} from 'react';
 import {Switch as BaseSwitch} from '@mui/base/Switch';
 import {twMerge} from 'tailwind-merge';
-import {SwitchProps} from './Switch.types';
+import {SwitchProps} from './Switch.types.ts';
 import {useVariantStyles} from '../../hooks/UseVariantStyles';
-
-const resolveSlotProps = (fn: any, args: any) => typeof fn === 'function' ? fn(args) : fn;
+import {resolveSlotProps, useThumb} from './Switch.utils.ts';
 
 const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
   {
@@ -26,17 +25,6 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
         return 'w-12 h-7';
       case 'lg':
         return 'w-14 h-8';
-    }
-  }, [size]);
-
-  const thumbSizingClassName = useMemo<string>(() => {
-    switch (size) {
-      case 'sm':
-        return 'w-4 h-4';
-      case 'md':
-        return 'w-5 h-5';
-      case 'lg':
-        return 'w-6 h-6';
     }
   }, [size]);
 
@@ -108,7 +96,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
               focusVisible ?
                 `${checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` :
                 'bg-white',
-              thumbSizingClassName,
+              thumb.sizingClassName,
               resolvedSlotProps?.className
             )
           };

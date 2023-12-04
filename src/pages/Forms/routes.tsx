@@ -34,6 +34,11 @@ const ROUTES: RouteObject = {
       element: <InputPasswordPage/>
     },
     {
+      id: RouteEnum.FormFormControl,
+      path: 'form-control',
+      element: <FormControlPage/>
+    },
+    {
       id: RouteEnum.ComponentsCheckbox,
       path: 'checkbox',
       element: <CheckboxPage/>

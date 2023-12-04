@@ -13,6 +13,7 @@ export const useVariantStyles = (props: UseVariantProps) => {
     background: `bg-${background}`,
     text: text && `text-${text}`,
     outline: `ring-1 ring-inset ring-${outline}`,
+    border: `border-${outline}`,
     hover: `hover:bg-${hover.background}`,
     active: `bg-${active.background}`,
   };
