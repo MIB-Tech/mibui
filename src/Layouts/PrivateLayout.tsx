@@ -1,6 +1,6 @@
 import '../App.css';
 import {TopHeader} from './Dashboard/TopHeader.tsx';
-import {Outlet, useMatch, useNavigate} from 'react-router-dom';
+import {Link, Outlet, useMatch, useNavigate} from 'react-router-dom';
 import {Trans} from 'react-i18next';
 import {twMerge} from 'tailwind-merge';
 import {Sidebar, SidebarAccordion} from '../Components';
@@ -56,9 +56,11 @@ const ChildMenuItem: FC<AgnosticRouteObject> = ({id, path = '/'}) => {
   );
 };
 export const TextLogo: FC<HTMLAttributes<HTMLDivElement>> = ({className, ...props}) => (
-  <div className={twMerge('text-3xl font-semibold tracking-wide', className)} {...props}>
-    MIB<span className='text-primary-500'>UI</span>
-  </div>
+    <div className={twMerge('text-3xl font-semibold tracking-wide', className)} {...props}>
+      <Link to={'/'}> MIB<span className='text-primary-500'>
+        UI</span>
+      </Link>
+    </div>
 );
 
 function PrivateLayout() {

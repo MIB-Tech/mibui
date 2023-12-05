@@ -29,6 +29,7 @@ const Sidebar: FC<SidebarProps> = ({className, children, ...props}) => (
         <List className='space-y-2 font-medium'>
           {children}
         </List>
+        <h1 className='sr-only'>Test</h1>
       </div>
     </aside>
   </>

@@ -1,6 +1,8 @@
 import {Button, Preview} from '../../../../Components';
 import {TextLogo} from '../../../../Layouts/PrivateLayout.tsx';
 import {FormControl, Input, InputPassword, Label} from '../../../../Forms';
+import RegisterFormExample from '../RegisterForm/Page.tsx';
+
 
 export const LoginFormExample = () => (
 	<div>
@@ -35,6 +37,9 @@ const Page = () => (
 	<div className='flex flex-col gap-12'>
 		<Preview title='Sign In' className='justify-center'>
 			<LoginFormExample/>
+		</Preview>
+		<Preview title='Sign Up' className='justify-center'>
+			<RegisterFormExample/>
 		</Preview>
 	</div>
 );

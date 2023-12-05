@@ -21,6 +21,7 @@ import {SkeletonPage} from './Skeleton';
 import {SidebarPage} from './Sidebar';
 import {ListPage} from './List';
 import {DataGridPage} from './DataGrid';
+import {Accordion} from "../../Components";
 
 
 const ROUTES: RouteObject = {
@@ -132,6 +133,11 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ComponentsDataGrid,
       path: 'datagrid',
       element: <DataGridPage/>
+    },
+    {
+      id: RouteEnum.ComponentsAccordion,
+      path: 'accordion',
+      element: <Accordion/>
     }
   ]
 };

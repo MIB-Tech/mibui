@@ -17,7 +17,12 @@ const ROUTES: RouteObject = {
       id: RouteEnum.ApplicationUIAuth,
       path: 'auth',
       element: <LoginFormPage/>
-    }
+    },
+     // {
+    //   id: RouteEnum.ApplicationUIAuth,
+    //   path: 'auth',
+    //   element: <RegisterFormPage/>
+    // }
   ]
 };
 
