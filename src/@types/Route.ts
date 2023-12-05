@@ -23,6 +23,7 @@ export enum RouteEnum {
   ComponentsSpinner = 'COMPONENTS.SPINNER',
   ComponentsToast = 'COMPONENTS.TOAST',
   ComponentsTooltip = 'COMPONENTS.TOOLTIP',
+  ComponentsAccordion = 'COMPONENTS.ACCORDION',
   //
   Form = 'FORM',
   FormInput = 'FORM.INPUT',

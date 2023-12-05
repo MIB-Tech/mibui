@@ -39,6 +39,8 @@ const en:Record<'translation', Record<RouteEnum, string>> = {
     [RouteEnum.ComponentsTabs]: 'Tabs',
     [RouteEnum.ComponentsToast]: 'Toast',
     [RouteEnum.ComponentsTooltip]: 'Tooltip',
+    [RouteEnum.ComponentsAccordion]: 'Accordion',
+
     [RouteEnum.Form]: 'Form',
     [RouteEnum.FormInput]: 'Input',
     [RouteEnum.FormInputGroup]: 'Input Group',

@@ -1,0 +1,5 @@
+
+
+## Use the accordion component to show hidden information based on the collapse and expand state of the child elements using data attribute options
+
+## The accordion component is a collection of vertically collapsing header and body elements that can be used to show and hide information based on the Tailwind CSS utility classes and React and much more.
