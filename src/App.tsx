@@ -5,6 +5,7 @@ import {RouteObject} from 'react-router/dist/lib/context';
 import {RouteEnum} from './@types/Route.ts';
 import PublicLayout from './Layouts/PublicLayout.tsx';
 import {LoginFormExample} from './pages/ApplicationUI/Auth/LoginForm/Page.tsx';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const PUBLIC_ROUTES: RouteObject = {
   id: RouteEnum.Home,
@@ -34,12 +35,17 @@ const PUBLIC_ROUTES: RouteObject = {
   ]
 };
 
+const queryClient = new QueryClient()
 
 const App = () => {
   const isAuthenticated = true;
   const router = createBrowserRouter(isAuthenticated ? [PRIVATE_ROUTES] : [PUBLIC_ROUTES]);
 
-  return <RouterProvider router={router}/>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}/>
+    </QueryClientProvider>
+  )
 };
 
 export default App;

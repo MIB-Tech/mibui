@@ -3,11 +3,17 @@ import DataGrid from '../../../../Components/DataGrid/DataGrid.tsx';
 import {Button} from '../../../../Components';
 import Modal from '../../../../Components/Modal/Modal.tsx';
 import {DesiredProductDataGridExample} from './DesiredProductDataGridExample.tsx';
-import {DiscountType, PURCHASE_ORDER_PRODUCT_1, PURCHASE_ORDER_PRODUCT_2, PurchaseOrderProduct} from './types.ts';
+import {
+  AbstractProduct,
+  DiscountType,
+  PURCHASE_ORDER_PRODUCT_1,
+  PURCHASE_ORDER_PRODUCT_2,
+  PurchaseOrderProduct
+} from './types.ts';
 import {Column, ColumnType} from '../../../../Components/DataGrid/Column/Column.types.ts';
 import {StringColumnFormat} from '../../../../Components/DataGrid/Column/String/String.types.ts';
 import {NumberFormat} from '../../../../Components/DataGrid/Column/Number/Number.types.ts';
-import {Autocomplete, InputNumber, Select} from '../../../../Forms';
+import {InputNumber, RemoteAutocomplete, Select} from '../../../../Forms';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon} from '@heroicons/react/20/solid';
 import {Unit} from '../../../../Components/DataGrid/Column/Column.Cell.Content.tsx';
@@ -29,9 +35,7 @@ export const PurchaseOrderProductDataGridExample = () => {
             variant='clean'
             size='sm'
             onClick={() => setOpen(true)}
-          >
-            Détail réception
-          </IconButton>
+          />
         )
       },
       {headerName: 'N°', editable: true, renderCell: (_, index) => index + 1},
@@ -43,15 +47,12 @@ export const PurchaseOrderProductDataGridExample = () => {
         renderCell: ({product}) => product?.code,
         slots: {
           control: () => (
-            <Autocomplete
+            <RemoteAutocomplete<{ 'hydra:member': Array<AbstractProduct & {"@title": string}> }, AbstractProduct & {"@title": string}, false>
+              endpoint='http://localhost:84/products/base'
+              getOptions={response => response['hydra:member']}
+              getOptionLabel={option => option['@title']}
               autoFocus
               openOnFocus
-              options={[
-                {id: 1, designation: 'Produit 1'},
-                {id: 2, designation: 'Produit 2'},
-                {id: 3, designation: 'Produit 3'},
-              ]}
-              getOptionLabel={option => option.designation}
             />
           )
         }
