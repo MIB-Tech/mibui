@@ -1,71 +1,131 @@
-import {FC, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 import DataGrid from '../../../../Components/DataGrid/DataGrid.tsx';
 import {Button} from '../../../../Components';
 import Modal from '../../../../Components/Modal/Modal.tsx';
 import {DesiredProductDataGridExample} from './DesiredProductDataGridExample.tsx';
-import {PURCHASE_ORDER_PRODUCT_1, PURCHASE_ORDER_PRODUCT_2, PurchaseOrderProduct} from './types.ts';
+import {DiscountType, PURCHASE_ORDER_PRODUCT_1, PURCHASE_ORDER_PRODUCT_2, PurchaseOrderProduct} from './types.ts';
 import {Column, ColumnType} from '../../../../Components/DataGrid/Column/Column.types.ts';
-import {StringColumnFormat} from '../../../../Components/DataGrid/Column/StringColumn/StringColumn.types.ts';
+import {StringColumnFormat} from '../../../../Components/DataGrid/Column/String/String.types.ts';
+import {NumberFormat} from '../../../../Components/DataGrid/Column/Number/Number.types.ts';
+import {Autocomplete, InputNumber, Select} from '../../../../Forms';
+import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
+import {ListBulletIcon} from '@heroicons/react/20/solid';
+import {Unit} from '../../../../Components/DataGrid/Column/Column.Cell.Content.tsx';
 
 const initialValues: Array<PurchaseOrderProduct> = [
   PURCHASE_ORDER_PRODUCT_1,
   PURCHASE_ORDER_PRODUCT_2,
 ];
 
-type UnitProps = { value: number, measure?: string, precision?: number }
-const Unit: FC<UnitProps> = ({value, measure = 'MAD', precision = 2}) => (
-  <span className='truncate'>{value.toFixed(precision)} <span className='text-gray-500 text-sm'>{measure}</span></span>
-);
-
 export const PurchaseOrderProductDataGridExample = () => {
   const [value, setValue] = useState<Array<PurchaseOrderProduct>>(initialValues);
   const [open, setOpen] = useState<boolean>();
   const columns = useMemo<Array<Column<PurchaseOrderProduct>>>(() => {
-
-    return [
+    const COLUMNS: Array<Column<PurchaseOrderProduct>> = [
       {
-        headerName: 'Action',
-        renderCell: ({}) => (
-          <Button
+        renderCell: () => (
+          <IconButton
+            iconElement={ListBulletIcon}
             variant='clean'
-            className='truncate'
             size='sm'
             onClick={() => setOpen(true)}
           >
             Détail réception
-          </Button>
+          </IconButton>
         )
       },
       {headerName: 'N°', editable: true, renderCell: (_, index) => index + 1},
-      {field: 'product', headerName: 'Produit', editable: true, renderCell: ({product}) => product?.code},
+      {
+        field: 'product',
+        type: ColumnType.Object,
+        headerName: 'Produit',
+        editable: true,
+        renderCell: ({product}) => product?.code,
+        slots: {
+          control: () => (
+            <Autocomplete
+              autoFocus
+              openOnFocus
+              options={[
+                {id: 1, designation: 'Produit 1'},
+                {id: 2, designation: 'Produit 2'},
+                {id: 3, designation: 'Produit 3'},
+              ]}
+              getOptionLabel={option => option.designation}
+            />
+          )
+        }
+      },
       {field: 'designation', headerName: 'Designation', editable: true},
-      {field: 'quantity', headerName: 'Qte acheté', editable: true, type: ColumnType.Number},
+      {
+        field: 'quantity',
+        type: ColumnType.Number,
+        format: NumberFormat.Amount,
+        headerName: 'Qte acheté',
+        editable: true
+      },
       {
         field: 'discount',
         headerName: 'Remise',
-        // editable: true,
-        renderCell: ({discount}) => discount && <Unit value={discount.value} measure='%' precision={0}/>
+        type: ColumnType.Object,
+        editable: true,
+        renderCell: ({discount}) => discount && (
+          <Unit
+            value={discount.value}
+            measure={discount.discountType === DiscountType.Amount ? 'MAD' : '%'}
+          />
+        ),
+        slots: {
+          control: () => (
+            <div className='grid gap-3'>
+              <InputNumber autoFocus placeholder='Valeur'/>
+              <Select
+                options={Object.values(DiscountType)}
+                getOptionLabel={option => option === DiscountType.Amount ? 'MAD' : '%'}
+              />
+            </div>
+          )
+        }
       },
       {
         field: 'grossPrice',
         headerName: 'Prix brut',
         editable: true,
         type: ColumnType.Number,
-        renderCell: ({grossPrice}) => <Unit value={grossPrice}/>
+        format: NumberFormat.Amount
       },
       {
         field: 'netPrice',
         headerName: 'Prix net',
         editable: true,
         type: ColumnType.Number,
-        renderCell: ({netPrice}) => <Unit value={netPrice}/>
+        format: NumberFormat.Amount
       },
       {
         field: 'vatRate',
         headerName: 'Taux TVA',
         editable: true,
         type: ColumnType.Number,
-        renderCell: ({vatRate}) => <Unit value={vatRate} measure='%'/>
+        format: NumberFormat.Percent,
+        slots: {
+          control: () => (
+            // <div className='w-64 px-3 pb-5'>
+            //   <Slider
+            //     autoFocus
+            //     tooltipDisplay='none'
+            //     step={null}
+            //     max={20}
+            //     marks={[0, 7, 10, 14, 20].map(value => ({value, label: `${value}%`}))}
+            //   />
+            // </div>
+            <Select
+              autoFocus
+              openOnFocus
+              options={[0, 7, 10, 14, 20]}
+              getOptionLabel={option => `${option} %`}
+            />
+          )
+        }
       },
       {
         headerName: 'Acheteur',
@@ -73,16 +133,20 @@ export const PurchaseOrderProductDataGridExample = () => {
       },
       {
         headerName: 'Mnt brut HT',
-        renderCell: ({netPrice, vatRate}) => <Unit value={netPrice * (1 + (vatRate / 100))}/>
+        type: ColumnType.Number,
+        format: NumberFormat.Amount,
+        getValue: ({netPrice, vatRate}) => netPrice * (1 + (vatRate / 100))
       },
       {
-        headerName: 'Mnt net HT',
-        renderCell: ({grossPrice, vatRate}) => <Unit value={grossPrice / (1 + (vatRate / 100))}/>,
+        headerName: 'Mnt TTC',
+        type: ColumnType.Number,
+        format: NumberFormat.Amount,
+        getValue: ({netPrice, vatRate}) => netPrice * (1 + (vatRate / 100))
       },
       {field: 'note', headerName: 'Commentaire', editable: true, format: StringColumnFormat.Text},
-      {headerName: 'Mnt tenu de Compte (DH)', renderCell: ({}) => ''},
-      {headerName: 'Mnt tenu de Transaction', renderCell: ({}) => ''},
-    ];
+    ]
+
+    return COLUMNS;
   }, []);
 
   return (

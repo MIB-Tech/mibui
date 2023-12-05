@@ -1,7 +1,7 @@
 import {ColumnType} from '../Column.types.ts';
 
 export enum NumberFormat {
-  Currency = 'CURRENCY',
+  Amount = 'AMOUNT',
   Percent = 'PERCENT'
 }
 

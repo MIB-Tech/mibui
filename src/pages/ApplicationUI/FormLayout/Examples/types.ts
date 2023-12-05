@@ -14,6 +14,7 @@ export enum DiscountType {
   Amount = 'AMOUNT',
 }
 
+
 type Discount = {
   discountType: DiscountType
   value: number

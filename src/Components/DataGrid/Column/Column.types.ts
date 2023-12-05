@@ -1,10 +1,16 @@
-import {StringColumn} from './StringColumn/StringColumn.types.ts';
+import {StringColumn} from './String/String.types.ts';
 import {ReactNode} from 'react';
-import {NumberColumn} from './NumberColumn/Column.Number.types.ts';
+import {NumberColumn} from './Number/Number.types.ts';
+import {BooleanColumn} from './Boolean/Boolean.types.ts';
+import {ObjectColumn} from './Object/Object.types.ts';
+import {ArrayColumn} from './Array/Array.types.ts';
 
 export enum ColumnType {
   String = 'string',
-  Number = 'number'
+  Number = 'number',
+  Boolean = 'boolean',
+  Object = 'object',
+  Array = 'array',
 }
 
 export type MappedColumn<T extends object> = {
@@ -12,9 +18,12 @@ export type MappedColumn<T extends object> = {
   headerName?: string | number;
   editable?: boolean;
   renderCell?: (row: T, index: number) => ReactNode
-} & (StringColumn | NumberColumn);
+  getValue?: (row: T, index: number) => any
+  slots?: {
+    control?: () => ReactNode
+  }
+} & (StringColumn | NumberColumn | BooleanColumn | ObjectColumn | ArrayColumn);
 
 export type CalculatedColumn<T extends object> =
-  Required<Pick<MappedColumn<T>, 'renderCell' | 'headerName'>>
-  & (StringColumn | NumberColumn);
+  Omit<MappedColumn<T>, 'editable' | 'field'>
 export type Column<T extends object> = MappedColumn<T> | CalculatedColumn<T>

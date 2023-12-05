@@ -1,4 +1,4 @@
-import {Autocomplete, FormControl, Input, Label, Select} from '../../../Forms';
+import {Autocomplete, FormControl, Input, InputNumber, Label, Select} from '../../../Forms';
 import {twMerge} from 'tailwind-merge';
 import {DatePickerExample} from '../../Forms/DatePicker/DatePage.tsx';
 import {Button, ButtonGroup, Card} from '../../../Components';
@@ -74,6 +74,10 @@ const Page = () => (
             getOptionLabel={option => option.code}
           />
         </FormControl>
+				<FormControl>
+					<Label>Budget</Label>
+					<InputNumber/>
+				</FormControl>
       </div>
     </Card>
     <div className='flex flex-col space-y-4'>

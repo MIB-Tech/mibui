@@ -37,7 +37,8 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
     readOnly,
     multiple,
     size,
-    placeholder
+    placeholder,
+    autoFocus
   } = props;
   const hasClearIcon: boolean = !disabled && !readOnly && (multiple ? (Array.isArray(value) && value.length > 0) : !!value);
 
@@ -45,6 +46,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
   return (
     <div className='relative'>
       <Input
+        autoFocus={autoFocus}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={searchDisabled || readOnly}

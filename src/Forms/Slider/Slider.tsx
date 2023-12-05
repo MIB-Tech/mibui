@@ -35,7 +35,8 @@ const Slider = ({size, color, tooltipDisplay = 'hover', slots, slotProps, ...pro
 							ownerState.orientation === 'vertical' ?
 								`h-96 w-${sliderSizing}` :
 								`w-full h-${sliderSizing}`,
-							resolvedSlotProps?.className
+							resolvedSlotProps?.className,
+							props.className
 						)
 					};
 				},
