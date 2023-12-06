@@ -1,7 +1,8 @@
-import {UserModel} from '../../../modules';
+import {HydraUserModel, UserModel} from '../../../modules';
 
 export type FormValue = Pick<UserModel, 'username' | 'password'>
-export type ResponseData = {
+export type AuthState = {
+  user: HydraUserModel
   token: string,
   refreshToken: string
 }

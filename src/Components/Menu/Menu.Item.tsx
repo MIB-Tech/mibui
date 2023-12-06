@@ -9,7 +9,7 @@ const MenuItem: FC<MenuItemProps & ButtonProps> = ({className, ...props}) => {
   return (
     <MuiMenuItem
       slots={{
-        root: ButtonSlot
+        root: ButtonSlot,
       }}
       variant='clean'
       color={props.active ? 'primary': 'secondary'}

@@ -2,31 +2,53 @@ import {TextLogo} from '../../../Layouts/PrivateLayout.tsx';
 import {Button} from '../../../Components';
 import {Formik, FormikProps} from 'formik';
 import {Trans} from 'react-i18next';
-import {FormValue, ResponseData} from './Login.types.ts';
+import {AuthState, FormValue} from './Login.types.ts';
 import {InputFieldGroup, InputPasswordFieldGroup} from '../../../Formik';
 import {initialValues, validationSchema} from './Login.utils.ts';
 import {useMutation} from '@tanstack/react-query';
 import axios, {AxiosResponse} from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {atom, useRecoilState} from 'recoil';
+import {useEffect} from 'react';
 
-
-export const JWT_TOKEN_STATE = atom({
-  key: 'token',
-  default: localStorage.getItem('token') || null,
+const localStorageAuth = localStorage.getItem('auth');
+export const AUTH_STATE = atom<AuthState | undefined>({
+  key: 'auth',
+  default: localStorageAuth ? JSON.parse(localStorageAuth) : undefined
 });
+
+
+export const useAuth = () => {
+  const [auth, setAuth] = useRecoilState(AUTH_STATE);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    setAuth(undefined);
+    navigate('/');
+  };
+
+  useEffect(()=>{
+    if (auth) {
+      localStorage.setItem('auth', JSON.stringify(auth));
+    } else {
+      localStorage.removeItem('auth');
+    }
+  }, [auth])
+
+  return {
+    auth,
+    setAuth,
+    logout
+  };
+};
 
 const Login = () => {
   const navigate = useNavigate();
-  const [, setToken] = useRecoilState(JWT_TOKEN_STATE);
-  const {mutate, isPending} = useMutation<AxiosResponse<ResponseData>, any, FormValue>({
+  const {setAuth} = useAuth();
+  const {mutate, isPending} = useMutation<AxiosResponse<AuthState>, any, FormValue>({
     mutationFn: credentials => axios.post('/custom/auth/login', credentials),
-    onSuccess: response => {
-      const {token, refreshToken} = response.data;
-
-      setToken(token);
-      localStorage.setItem('token', token);
-      localStorage.setItem('refreshToken', refreshToken);
+    onSuccess: ({data}) => {
+      setAuth(data);
       navigate('/');
     }
   });
