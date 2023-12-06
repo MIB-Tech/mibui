@@ -1,6 +1,6 @@
 import {twMerge} from 'tailwind-merge';
 import {forwardRef} from 'react';
-import {HelperTextProps} from './FormControl.types.ts';
+import {HelperTextProps} from './FormGroup.types.ts';
 
 const HelperText = forwardRef<HTMLParagraphElement, HelperTextProps>(
   ({className, ...props}, ref) => (

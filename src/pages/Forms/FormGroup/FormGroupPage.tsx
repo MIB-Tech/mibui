@@ -1,5 +1,5 @@
 import {Preview} from '../../../Components';
-import {ErrorFeedback, FormControl, HelperText, Input, Label} from '../../../Forms';
+import {ErrorFeedback, FormGroup, HelperText, Input, Label} from '../../../Forms';
 
 
 const Page = () => {
@@ -7,28 +7,28 @@ const Page = () => {
   return (
     <div className='flex flex-col gap-12'>
       <Preview title='Basic'>
-        <FormControl>
+        <FormGroup>
           <Label>First Name</Label>
           <Input/>
-        </FormControl>
+        </FormGroup>
       </Preview>
       <Preview title='Helper text'>
-        <FormControl>
+        <FormGroup>
           <Label>Phone Number</Label>
           <Input/>
           <HelperText>
             e.g +212 690-922-699
           </HelperText>
-        </FormControl>
+        </FormGroup>
       </Preview>
       <Preview title='Validation'>
-        <FormControl>
+        <FormGroup>
           <Label>Phone Number</Label>
           <Input/>
           <ErrorFeedback>
             This field is required.
           </ErrorFeedback>
-        </FormControl>
+        </FormGroup>
       </Preview>
     </div>
   );

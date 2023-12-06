@@ -1,4 +1,4 @@
-import {Autocomplete, FormControl, Input, InputNumber, Label, Select} from '../../../Forms';
+import {Autocomplete, FormGroup, Input, InputNumber, Label, Select} from '../../../Forms';
 import {twMerge} from 'tailwind-merge';
 import {DatePickerExample} from '../../Forms/DatePicker/DatePage.tsx';
 import {Button, ButtonGroup, Card} from '../../../Components';
@@ -19,11 +19,11 @@ const Page = () => (
 			)}
 		>
 			<div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
-				<FormControl disabled value='CF BDX000001'>
+				<FormGroup>
 					<Label>N° Pièce</Label>
 					<Input/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Founisseur</Label>
 					<Autocomplete
 						options={[
@@ -39,46 +39,46 @@ const Page = () => (
 							</li>
 						)}
 					/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Date de pièce</Label>
 					<DatePickerExample/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Acronyme</Label>
 					<ButtonGroup variant='light' activeVariant='solid'>
 						<Button active>HT</Button>
 						<Button>TTC</Button>
 					</ButtonGroup>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Réf. pièce</Label>
 					<Input/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Réf. externe</Label>
 					<Input/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Réception prévue</Label>
 					<DatePickerExample/>
-				</FormControl>
-				<FormControl>
+				</FormGroup>
+				<FormGroup>
 					<Label>Devise</Label>
 					<Select
-            defaultValue={{id: 1, code: 'MAD'}}
-            options={[
-              {id: 1, code: 'MAD'},
-              {id: 2, code: 'EUR'},
-            ]}
-            getOptionLabel={option => option.code}
-          />
-        </FormControl>
-				<FormControl>
+						defaultValue={{id: 1, code: 'MAD'}}
+						options={[
+							{id: 1, code: 'MAD'},
+							{id: 2, code: 'EUR'},
+						]}
+						getOptionLabel={option => option.code}
+					/>
+				</FormGroup>
+				<FormGroup>
 					<Label>Budget</Label>
 					<InputNumber/>
-				</FormControl>
-      </div>
+				</FormGroup>
+			</div>
     </Card>
     <div className='flex flex-col space-y-4'>
       <div className='font-semibold text-2xl'>

@@ -1,3 +1,5 @@
+import {AbstractModel} from '../../../../modules';
+
 const ME = {
   id: 1,
   firstName: 'Abderrahmane',
@@ -18,9 +20,6 @@ export enum DiscountType {
 type Discount = {
   discountType: DiscountType
   value: number
-}
-export type AbstractModel = {
-  id: number
 }
 export type AbstractProduct = {
   designation: string

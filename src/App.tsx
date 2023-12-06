@@ -4,8 +4,10 @@ import {PRIVATE_ROUTES} from './pages';
 import {RouteObject} from 'react-router/dist/lib/context';
 import {RouteEnum} from './@types/Route.ts';
 import PublicLayout from './Layouts/PublicLayout.tsx';
-import {LoginFormExample} from './pages/ApplicationUI/Auth/LoginForm/Page.tsx';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {LoginPage} from './pages/Auth';
+import {RecoilRoot, useRecoilState} from 'recoil';
+import {JWT_TOKEN_STATE} from './pages/Auth/Login/Login.tsx';
 
 const PUBLIC_ROUTES: RouteObject = {
   id: RouteEnum.Home,
@@ -14,7 +16,7 @@ const PUBLIC_ROUTES: RouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to='/auth' replace />
+      element: <Navigate to='/auth' replace/>
     },
     {
       id: RouteEnum.ApplicationUIAuth,
@@ -28,24 +30,31 @@ const PUBLIC_ROUTES: RouteObject = {
           id: RouteEnum.ApplicationUIAuthLoginForm,
           path: 'login',
           index: true,
-          element: <LoginFormExample/>
+          element: <LoginPage/>
         }
       ]
     }
   ]
 };
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
+const Router = () => {
+  const [token] = useRecoilState(JWT_TOKEN_STATE);
+  const router = createBrowserRouter(!!token ? [PRIVATE_ROUTES] : [PUBLIC_ROUTES]);
+
+  return <RouterProvider router={router}/>;
+};
 const App = () => {
-  const isAuthenticated = true;
-  const router = createBrowserRouter(isAuthenticated ? [PRIVATE_ROUTES] : [PUBLIC_ROUTES]);
+
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}/>
-    </QueryClientProvider>
-  )
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Router/>
+      </QueryClientProvider>
+    </RecoilRoot>
+  );
 };
 
 export default App;
