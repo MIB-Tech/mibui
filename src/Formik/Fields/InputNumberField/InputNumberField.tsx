@@ -1,13 +1,13 @@
 import {FC} from 'react';
-import {InputPasswordFieldProps} from './InputPasswordField.types.ts';
-import {InputPassword} from '../../../Forms';
+import {InputNumber} from '../../../Forms';
 import {useField} from 'formik';
+import {InputNumberFieldProps} from "./InputNumberField.types.ts";
 
-const InputPasswordField: FC<InputPasswordFieldProps> = ({name, ...props}) => {
+const InputNumberField: FC<InputNumberFieldProps> = ({name, ...props}) => {
   const [field, {error, touched}, {}] = useField({name});
 
   return (
-    <InputPassword
+    <InputNumber
       {...props}
       {...field}
       errorMessage={touched && error}
@@ -15,4 +15,4 @@ const InputPasswordField: FC<InputPasswordFieldProps> = ({name, ...props}) => {
   );
 };
 
-export default InputPasswordField;
+export default InputNumberField;

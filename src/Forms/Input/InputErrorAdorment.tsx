@@ -1,26 +1,37 @@
-import {forwardRef} from 'react';
-import {InputProps} from './Input.types.ts';
-import {UnstyledInput} from './index.ts';
-import {twMerge} from 'tailwind-merge';
-import {useInputStyles} from '../../hooks/UseInputStyles.ts';
-import {AdornmentIconButton} from '../InputGroup/AdornmentIconButton.tsx';
-import {ExclamationTriangleIcon} from '@heroicons/react/20/solid';
-import {Tooltip} from '../../Components';
+import  { forwardRef } from 'react';
+import { ExclamationTriangleIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
+import { AdornmentIconButton } from '../InputGroup/AdornmentIconButton.tsx';
+import { unstable_useNumberInput as useNumberInput } from '@mui/base';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { Tooltip } from '../../Components';
+import { InputNumberProps } from '../InputNumber/InputNumber.types.ts';
 
+const InputErrorAdornment = forwardRef<HTMLInputElement, InputNumberProps>((props, ref) => {
+  const {
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    getInputProps,
+  } = useNumberInput({
+    ...props
+  });
 
-const Input = forwardRef<HTMLInputElement, InputProps>((
-  {className, error, errorMessage, ...props},
-  ref
-) => {
-  const inputStyles = useInputStyles();
+  const inputProps = getInputProps();
+  inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <UnstyledInput
-      error={error || !!errorMessage}
-      endAdornment={errorMessage && (
+    <>
+      <AdornmentIconButton
+        iconElement={MinusIcon}
+        {...getDecrementButtonProps()}
+      />
+      <AdornmentIconButton
+        iconElement={PlusIcon}
+        {...getIncrementButtonProps()}
+      />
+      {props.errorMessage && (
         <Tooltip
           open
-          content={errorMessage}
+          content={props.errorMessage}
           placement='top-end'
           className='text-error-500'
         >
@@ -32,12 +43,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
           </div>
         </Tooltip>
       )}
-      {...props}
-      ref={ref}
-      className={twMerge(inputStyles.className, className)}
-
-    />
+    </>
   );
 });
 
-export default Input;
+export default InputErrorAdornment;

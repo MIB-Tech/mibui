@@ -1,2 +1,2 @@
-export {default as InputPasswordField} from './InputPasswordField.tsx';
-export {default as InputPasswordFieldGroup} from './InputPasswordField.Group.tsx';
+export {default as InputPasswordField} from './InputNumberField.tsx';
+export {default as InputPasswordFieldGroup} from './InputNumberField.Group.tsx';

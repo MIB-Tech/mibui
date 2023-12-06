@@ -17,9 +17,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
   return (
     <UnstyledInput
       error={error || !!errorMessage}
-      {...props}
-      ref={ref}
-      className={twMerge(inputStyles.className, className)}
       endAdornment={errorMessage && (
         <Tooltip
           open
@@ -35,6 +32,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
           </div>
         </Tooltip>
       )}
+      {...props}
+      ref={ref}
+      className={twMerge(inputStyles.className, className)}
+
     />
   );
 });

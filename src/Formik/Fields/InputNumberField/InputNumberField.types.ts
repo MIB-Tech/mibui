@@ -1,11 +1,11 @@
 import {FieldProps, FieldSlotProps, UseFieldProps} from '../Field.types.tsx';
-import {InputPasswordProps} from '../../../Forms/InputPassword/InputPassword.types.ts';
+import {InputNumberProps} from "../../../Forms/InputNumber/InputNumber.types.ts";
 
-export type InputPasswordFieldProps = InputPasswordProps & UseFieldProps
+export type InputNumberFieldProps = InputNumberProps & UseFieldProps
 
-export type InputPasswordFieldGroupProps = {
+export type InputNumberFieldGroupProps = {
   slotProps?: {
     root?: FieldSlotProps<FieldProps>
-    input?: FieldSlotProps<InputPasswordFieldProps>
+    input?: FieldSlotProps<InputNumberFieldProps>
   }
 } & FieldProps
