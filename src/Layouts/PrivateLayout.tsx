@@ -10,6 +10,7 @@ import {FC, HTMLAttributes} from 'react';
 import {AgnosticRouteObject} from '@remix-run/router/dist/utils';
 import Breadcrumb from './Breadcrumb.tsx';
 import {useActiveRouteContext} from '../hooks/UseActiveRouteContext.tsx';
+import Layout from './Layout.tsx';
 
 const MenuItem: FC<AgnosticRouteObject> = ({id, path = '/', children}) => {
   const match = useMatch({path, end: false});
@@ -66,7 +67,7 @@ function PrivateLayout() {
   const {title} = useActiveRouteContext();
 
   return (
-    <>
+    <Layout>
       <div className='fixed top-0 left-0 z-10 h-screen bg-gradient-to-b from-white to-gray-50 to-20%'>
         <TextLogo className='mt-7 text-center'/>
         <Sidebar className='overflow-auto h-full'>
@@ -86,7 +87,7 @@ function PrivateLayout() {
           <Outlet/>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

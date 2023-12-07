@@ -9,7 +9,6 @@ import 'moment/dist/locale/fr';
 import App from './App.tsx';
 import {en} from './I18n/translation/en.ts';
 import {fr} from './I18n/translation/fr.ts';
-import axios from 'axios';
 
 enum Lang {
   English = 'en',
@@ -43,20 +42,6 @@ export const useLocale = () => ({
   locale: Lang.French
 });
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL
-// axios.interceptors.request.use(
-//   config => {
-//     // const token = localStorageService.getAccessToken()
-//     // if (token) {
-//     //   config.headers['Authorization'] = 'Bearer ' + token
-//     // }
-//     // config.headers['Content-Type'] = 'application/json';
-//     return config
-//   },
-//   error => {
-//     Promise.reject(error)
-//   }
-// )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
