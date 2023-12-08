@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Card} from '../../../../Components';
+import {Button, Card} from '../../../../Components';
 import {FormGroup, Input, InputNumber, Label} from '../../../../Forms';
 import {
   PurchaseOrderProductDataGridExample
@@ -10,7 +10,7 @@ import {HydraCollection, HydraItem} from '../../../types.ts';
 import {Formik} from 'formik';
 import {initialValues, validationSchema} from './Page.utils.ts';
 import {FormValue} from './Page.types.ts';
-import {InputFieldGroup, RemoteAutocompleteFieldGroup} from '../../../../Formik';
+import {InputFieldGroup, RemoteAutocompleteFieldGroup, SelectFieldGroup} from '../../../../Formik';
 import {Trans} from 'react-i18next';
 import {DatePickerFieldGroup} from '../../../../Components/DatePickerField';
 
@@ -61,13 +61,11 @@ const Page = () => {
                 getOptionLabel={option => option['@title']}
               />
               <DatePickerFieldGroup name='createdAt' includeTime/>
-              <FormGroup>
-                <Label>Acronyme</Label>
-                <ButtonGroup variant='light' activeVariant='solid'>
-                  <Button active>HT</Button>
-                  <Button>TTC</Button>
-                </ButtonGroup>
-              </FormGroup>
+              <SelectFieldGroup
+                name='isTaxIncluded'
+                options={[true, false]}
+                getOptionLabel={option => option ? 'TTC' : 'HT'}
+              />
               <InputFieldGroup name='ref'/>
               <InputFieldGroup name='externalRef'/>
               <DatePickerFieldGroup name='desiredDeliveryDate' includeTime/>

@@ -1,4 +1,6 @@
 export {default as Field} from './Field.tsx'
-export * from './RemoteAutocompleteField'
+export * from './AutocompleteField'
 export * from './InputField'
 export * from './InputPasswordField'
+export * from './SelectField'
+export * from './RemoteAutocompleteField'

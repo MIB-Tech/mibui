@@ -18,10 +18,20 @@ enum Lang {
 moment.locale(Lang.French);
 
 export type I18Key = RouteEnum |
+  'SAVE' |
   'LOGIN.TITLE' |
   'SIGN_IN' |
   'USERNAME' |
-  'PASSWORD'
+  'PASSWORD' |
+  'ORDER_NUMBER' |
+  'REF' |
+  'EXTERNAL_REF' |
+  'CREATED_AT' |
+  'VENDOR' |
+  'IS_TAX_INCLUDED' |
+  'DESIRED_DELIVERY_DATE' |
+  'CURRENCY' |
+  'BUDGET'
 
 const resources: Resource = {
   [Lang.English]: {

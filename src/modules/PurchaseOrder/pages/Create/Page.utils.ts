@@ -1,9 +1,10 @@
 import {FormValue} from './Page.types.ts';
 import {boolean, number, object, ObjectSchema, string} from 'yup';
+import moment from 'moment';
 
 export const initialValues: FormValue = {
   budget: 0,
-  createdAt: '2023-03-01',
+  createdAt: moment().format(),
   desiredDeliveryDate: '',
   currency: null,
   externalRef: '',

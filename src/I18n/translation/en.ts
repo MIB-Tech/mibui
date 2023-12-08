@@ -2,6 +2,16 @@ import {RouteEnum} from '../../@types/Route.ts';
 import {I18Key} from '../../main.tsx';
 
 export const en:Record<I18Key, string> = {
+  SAVE: 'Save',
+  BUDGET: 'Budget',
+  CREATED_AT: 'Created at',
+  CURRENCY: 'Currency',
+  DESIRED_DELIVERY_DATE: 'Desired delivery date',
+  EXTERNAL_REF: 'External Ref',
+  IS_TAX_INCLUDED: 'Is tax included',
+  ORDER_NUMBER: 'Order Number',
+  REF: 'Reference',
+  VENDOR: 'Vendor',
   [RouteEnum.Home]: 'Home',
   [RouteEnum.Components]: 'Components',
   [RouteEnum.ComponentsButton]: 'Button',
@@ -62,7 +72,7 @@ export const en:Record<I18Key, string> = {
   [RouteEnum.PurchaseOrderUpdate]: 'Update Purchase Order',
   [RouteEnum.PurchaseOrderDelete]: 'Delete Purchase Order',
   'LOGIN.TITLE': 'Sign in to your account',
-  'SIGN_IN': 'Sign In',
-  'USERNAME': 'Username',
-  'PASSWORD': 'Password',
+  SIGN_IN: 'Sign In',
+  USERNAME: 'Username',
+  PASSWORD: 'Password'
 }
