@@ -10,6 +10,8 @@ import {Link, LinkProps} from 'react-router-dom';
 import {Button, Icon, Pagination} from '../../../../Components';
 import {Checkbox, Input} from '../../../../Forms';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
+import {stringToI18nKey} from '../../../utils.ts';
+import {Trans} from 'react-i18next';
 
 const ModelCell: FC<{ item: HydraItem } & { slotProps?: { title?: LinkProps } }> = ({item, slotProps, ...props}) => (
   <div {...props}>
@@ -36,27 +38,34 @@ const Page = () => {
     itemsPerPage: 10
   });
 
-  const columns = useMemo<Array<Column<HydraModel>>>(() => ([
-    {
-      field: 'orderNumber',
-      renderCell: item => (
-        <div className='flex space-x-3 items-center'>
-          <Checkbox/>
-          <ModelCell item={item}/>
-        </div>
-      )
-    },
-    {field: 'ref'},
-    {field: 'externalRef'},
-    {field: 'createdAt', format: StringColumnFormat.Datetime}
-  ]), []);
+  const columns = useMemo<Array<Column<HydraModel>>>(() => {
+    const columns: Array<Column<HydraModel>> = [
+      {
+        field: 'orderNumber',
+        renderCell: item => (
+          <div className='flex space-x-3 items-center'>
+            <Checkbox/>
+            <ModelCell item={item}/>
+          </div>
+        )
+      },
+      {field: 'ref'},
+      {field: 'externalRef'},
+      {field: 'createdAt', format: StringColumnFormat.Datetime}
+    ];
+
+    return columns.map(column => ({
+      header: 'field' in column ? <Trans i18nKey={stringToI18nKey(column.field)}/> : undefined,
+      ...column,
+    }));
+  }, []);
 
   return (
     <div className='flex flex-col space-y-5'>
       <div className='flex space-x-4 justify-between'>
         <div>
           <Input
-            placeholder='orderNumber, ref ...'
+            // placeholder='orderNumber, ref ...'
             startAdornment={(
               <Icon icon={MagnifyingGlassIcon} size={5} className='h-100'/>
             )}

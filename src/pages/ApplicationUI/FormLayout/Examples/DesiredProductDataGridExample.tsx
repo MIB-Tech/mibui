@@ -37,17 +37,17 @@ export const DesiredProductDataGridExample = () => {
 
     return [
       {
-        headerName: 'Action',
+        header: 'Action',
         renderCell: ({}) => (
           <>
           </>
         )
       },
-      {headerName: 'Produit', renderCell: ({purchaseOrderProduct}) => purchaseOrderProduct.product?.designation},
-      {field: 'designation', headerName: 'Designation', editable: true},
-      {field: 'address', headerName: 'Adresse de rec.', editable: true},
-      {field: 'quantity', headerName: 'Qte', editable: true, type: ColumnType.Number},
-      {field: 'status', headerName: 'Etat de réception', editable: true, type: ColumnType.String},
+      {header: 'Produit', renderCell: ({purchaseOrderProduct}) => purchaseOrderProduct.product?.designation},
+      {field: 'designation', header: 'Designation', editable: true},
+      {field: 'address', header: 'Adresse de rec.', editable: true},
+      {field: 'quantity', header: 'Qte', editable: true, type: ColumnType.Number},
+      {field: 'status', header: 'Etat de réception', editable: true, type: ColumnType.String},
     ];
   }, []);
 

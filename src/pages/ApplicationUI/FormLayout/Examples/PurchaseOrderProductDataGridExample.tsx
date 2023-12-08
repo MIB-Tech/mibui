@@ -39,11 +39,11 @@ export const PurchaseOrderProductDataGridExample = () => {
           />
         )
       },
-      {headerName: 'N°', editable: true, renderCell: (_, index) => index + 1},
+      {header: 'N°', editable: true, renderCell: (_, index) => index + 1},
       {
         field: 'product',
         type: ColumnType.Object,
-        headerName: 'Produit',
+        header: 'Produit',
         editable: true,
         renderCell: ({product}) => product?.code,
         slots: {
@@ -58,17 +58,17 @@ export const PurchaseOrderProductDataGridExample = () => {
           )
         }
       },
-      {field: 'designation', headerName: 'Designation', editable: true},
+      {field: 'designation', header: 'Designation', editable: true},
       {
         field: 'quantity',
         type: ColumnType.Number,
         format: NumberFormat.Amount,
-        headerName: 'Qte acheté',
+        header: 'Qte acheté',
         editable: true
       },
       {
         field: 'discount',
-        headerName: 'Remise',
+        header: 'Remise',
         type: ColumnType.Object,
         editable: true,
         renderCell: ({discount}) => discount && (
@@ -91,21 +91,21 @@ export const PurchaseOrderProductDataGridExample = () => {
       },
       {
         field: 'grossPrice',
-        headerName: 'Prix brut',
+        header: 'Prix brut',
         editable: true,
         type: ColumnType.Number,
         format: NumberFormat.Amount
       },
       {
         field: 'netPrice',
-        headerName: 'Prix net',
+        header: 'Prix net',
         editable: true,
         type: ColumnType.Number,
         format: NumberFormat.Amount
       },
       {
         field: 'vatRate',
-        headerName: 'Taux TVA',
+        header: 'Taux TVA',
         editable: true,
         type: ColumnType.Number,
         format: NumberFormat.Percent,
@@ -130,22 +130,22 @@ export const PurchaseOrderProductDataGridExample = () => {
         }
       },
       {
-        headerName: 'Acheteur',
+        header: 'Acheteur',
         renderCell: ({buyer}) => <span className='truncate'>{buyer.lastName} {buyer.firstName}</span>
       },
       {
-        headerName: 'Mnt brut HT',
+        header: 'Mnt brut HT',
         type: ColumnType.Number,
         format: NumberFormat.Amount,
         getValue: ({netPrice, vatRate}) => netPrice * (1 + (vatRate / 100))
       },
       {
-        headerName: 'Mnt TTC',
+        header: 'Mnt TTC',
         type: ColumnType.Number,
         format: NumberFormat.Amount,
         getValue: ({netPrice, vatRate}) => netPrice * (1 + (vatRate / 100))
       },
-      {field: 'note', headerName: 'Commentaire', editable: true, format: StringColumnFormat.Text},
+      {field: 'note', header: 'Commentaire', editable: true, format: StringColumnFormat.Text},
     ]
 
     return COLUMNS;

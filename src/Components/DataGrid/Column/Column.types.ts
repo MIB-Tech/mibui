@@ -15,7 +15,7 @@ export enum ColumnType {
 
 export type MappedColumn<T extends object> = {
   field: Extract<keyof T, string>;
-  headerName?: string | number;
+  header?: ReactNode;
   editable?: boolean;
   renderCell?: (row: T, index: number) => ReactNode
   getValue?: (row: T, index: number) => any
