@@ -1,0 +1,1 @@
+export {default as ListingPage} from './Page.tsx';

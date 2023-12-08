@@ -1,13 +1,20 @@
 export type AbstractModel = {
   id: number
 }
-
-export type TimestampModel = {
+export type CreateTimestampModel = {
   createdAt?: string
-  updatedAt?: string
 }
+export type TimestampModel = {
+  updatedAt?: string
+} & CreateTimestampModel
 
-export type HydraItem<T extends object> = {
+export type HydraItem<T extends object = {}> = {
+  '@id': string
   '@title': string
   '@subTitle': string
-} & T
+} & AbstractModel & T
+
+export type HydraCollection<T extends object = {}> = {
+  'hydra:member': Array<HydraItem<T>>
+  'hydra:totalItems': number
+}

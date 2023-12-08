@@ -3,6 +3,8 @@ import {NumberFormat} from './Number/Number.types.ts';
 import {FC} from 'react';
 import {Icon} from '../../SvgIcon';
 import {MinusIcon, PlusIcon} from '@heroicons/react/20/solid';
+import {StringColumnFormat} from './String/String.types.ts';
+import moment from 'moment';
 
 type UnitProps = { value: number, measure?: string, precision?: number }
 export const Unit: FC<UnitProps> = ({value, measure = 'MAD', precision = 2}) => (
@@ -15,6 +17,7 @@ const ColumnCellContent = <T extends object>({column, row, rowIndex}: {
   rowIndex: number
 }) => {
   const {renderCell, getValue} = column;
+
   if (renderCell) {
     return renderCell(row, rowIndex);
   }
@@ -27,6 +30,20 @@ const ColumnCellContent = <T extends object>({column, row, rowIndex}: {
   const value = getValue?.(row, rowIndex) || row[field]
 
   switch (type) {
+    case undefined:
+    case ColumnType.String:
+      switch (column.format) {
+        case StringColumnFormat.Datetime:
+          return (
+            <>
+              {moment(value).format('L')}
+              <div className='text-gray-400'>
+                {moment(value).format('LT')}
+              </div>
+            </>
+          )
+      }
+      break;
     case ColumnType.Number:
       if (column.format) {
         return (
@@ -40,9 +57,9 @@ const ColumnCellContent = <T extends object>({column, row, rowIndex}: {
     case ColumnType.Boolean:
       return <Icon icon={value ? PlusIcon : MinusIcon} size={5}/>;
     case ColumnType.Object:
-      return value;
+      return '';
     case ColumnType.Array:
-      return 'TODO ColumnType.Array';
+      return '';
   }
 
   return value;

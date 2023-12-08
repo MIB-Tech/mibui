@@ -17,6 +17,7 @@ import {InputNumber, RemoteAutocomplete, Select} from '../../../../Forms';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon} from '@heroicons/react/20/solid';
 import {Unit} from '../../../../Components/DataGrid/Column/Column.Cell.Content.tsx';
+import {HydraCollection, HydraItem} from '../../../../modules';
 
 const initialValues: Array<PurchaseOrderProduct> = [
   PURCHASE_ORDER_PRODUCT_1,
@@ -47,7 +48,7 @@ export const PurchaseOrderProductDataGridExample = () => {
         renderCell: ({product}) => product?.code,
         slots: {
           control: () => (
-            <RemoteAutocomplete<{ 'hydra:member': Array<AbstractProduct & {"@title": string}> }, AbstractProduct & {"@title": string}, false>
+            <RemoteAutocomplete<HydraCollection<AbstractProduct>, HydraItem<AbstractProduct>, false>
               endpoint='http://localhost:84/products/base'
               getOptions={response => response['hydra:member']}
               getOptionLabel={option => option['@title']}

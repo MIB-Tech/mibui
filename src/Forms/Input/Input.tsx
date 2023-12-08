@@ -7,7 +7,7 @@ import InputErrorAdornment from "./InputErrorAdorment.tsx";
 
 
 const Input = forwardRef<HTMLInputElement, InputProps>((
-  {className, error, errorMessage, ...props},
+  {className, error, errorMessage, endAdornment,  ...props},
   ref
 ) => {
   const inputStyles = useInputStyles();
@@ -15,13 +15,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
   return (
     <UnstyledInput
       error={error || !!errorMessage}
-      endAdornment={errorMessage && (
-       <InputErrorAdornment/>
-      )}
       {...props}
       ref={ref}
       className={twMerge(inputStyles.className, className)}
-
+      endAdornment={(
+        <div className='flex gap-1 ms-auto'>
+          {endAdornment}
+          {errorMessage && (
+            <InputErrorAdornment errorMessage={errorMessage}/>
+          )}
+        </div>
+      )}
     />
   );
 });

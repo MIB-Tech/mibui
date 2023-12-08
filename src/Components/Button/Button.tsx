@@ -35,9 +35,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((
         case 'sm':
           return `p-[4px]`;
         case 'lg':
-          return `p-[8px]`;
-        default:
           return `p-[6px]`;
+        default:
+          return `p-[5px]`;
       }
     } else {
       return sizing.padding;

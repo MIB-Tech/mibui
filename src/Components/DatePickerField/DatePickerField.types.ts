@@ -1,12 +1,10 @@
-import {FieldProps, FieldSlotProps, UseFieldProps} from "../../Formik/Fields/Field.types.tsx";
-import {InputProps} from "../../Forms/Input/Input.types.ts";
+import {DatePickerProps} from '../../Forms/DatePicker/DatePicker.types.ts';
+import {FieldProps, FieldSlotProps, UseFieldProps} from '../../Formik/Fields/Field.types.tsx';
 
-export type DatePickerFieldProps = InputProps & UseFieldProps
+export type DatePickerFieldProps = Omit<DatePickerProps, 'value' | 'onChange'> & UseFieldProps
 
 export type DatePickerFieldGroupProps = {
   slotProps?: {
     root?: FieldSlotProps<FieldProps>
-    // input?: FieldSlotProps<InputFieldProps>
-    input?: InputProps
   }
-} & FieldProps
+} & DatePickerFieldProps & FieldProps
