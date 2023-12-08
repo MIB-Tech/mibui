@@ -10,8 +10,6 @@ import axios, {AxiosResponse} from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {atom, useRecoilState} from 'recoil';
 import {useEffect} from 'react';
-import InputNumberFieldGroup from "../../../Formik/Fields/InputNumberField/InputNumberField.Group.tsx";
-import DatePickerFieldGroup from "../../../Formik/Fields/DatePickerField/DatePickerField.Group.tsx";
 
 const localStorageAuth = localStorage.getItem('auth');
 export const AUTH_STATE = atom<AuthState | undefined>({
