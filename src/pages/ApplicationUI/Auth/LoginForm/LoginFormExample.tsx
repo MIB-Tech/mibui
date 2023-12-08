@@ -23,6 +23,7 @@ export const LoginFormExample = () => (
           <Label>Password</Label>
           <InputPassword/>
         </FormGroup>
+
         <Button className='w-full'>
           Sign in
         </Button>

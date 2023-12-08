@@ -1,16 +1,17 @@
 import {forwardRef} from 'react';
 import {InputNumberProps} from './InputNumber.types.ts';
-import {MinusIcon, PlusIcon} from '@heroicons/react/20/solid';
-import {AdornmentIconButton} from '../InputGroup/AdornmentIconButton.tsx';
 import {Input} from '../Input';
 import {unstable_useNumberInput as useNumberInput} from '@mui/base';
 import {unstable_useForkRef as useForkRef} from '@mui/utils';
+import {AdornmentIconButton} from "../InputGroup/AdornmentIconButton.tsx";
+import {MinusIcon, PlusIcon} from "@heroicons/react/20/solid";
 
 const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   {
     size,
     shiftMultiplier,
     autoFocus,
+    errorMessage,
     ...props
   },
   ref
@@ -30,27 +31,25 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
 
   return (
     <Input
-      //{...props}
+      errorMessage={errorMessage}
+      {...props}
       autoFocus={autoFocus}
       {...inputProps}
       {...getRootProps()}
-      // ref={ref}
+      ref={ref}
       size={size}
-      startAdornment={
+      startAdornment={<AdornmentIconButton
+        iconElement={MinusIcon}
+        {...getDecrementButtonProps()}
+      />}
+      endAdornment={(
         <AdornmentIconButton
-          size={size}
-          iconElement={MinusIcon}
-          {...getDecrementButtonProps()}
-        />
-      }
-      endAdornment={
-        <AdornmentIconButton
-          size={size}
           iconElement={PlusIcon}
           {...getIncrementButtonProps()}
         />
-      }
+      )}
     />
+
   );
   // return (
   //   <div className='relative' {...getRootProps()}>
