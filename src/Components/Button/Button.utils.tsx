@@ -1,13 +1,14 @@
-import {ColorVariant, ColorVariantEnum, WeightEnum} from './Button.types.tsx';
+import {ColorVariant} from './Button.types.tsx';
 
-export const getColorClassName = ({color, weight = WeightEnum.W500}: ColorVariant) => {
-  let className = color as string
+
+export const getColorClassName = ({color = 'primary', weight = 500}: Partial<ColorVariant>) => {
+  let className = color as string;
   switch (color) {
-    case ColorVariantEnum.Black:
+    case 'secondary':
       break;
     default:
-      className += `-${weight}`
+      className += `-${weight}`;
   }
 
-  return className
-}
+  return className;
+};

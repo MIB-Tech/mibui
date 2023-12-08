@@ -1,0 +1,1 @@
+export {default as DataGridPage} from './Page.tsx';

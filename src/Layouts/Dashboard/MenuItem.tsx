@@ -1,7 +1,7 @@
-import * as classNames from 'classnames';
 import {NavLink} from 'react-router-dom';
 import {AgnosticRouteObject} from '@remix-run/router/dist/utils';
 import {Trans} from 'react-i18next';
+import {twMerge} from 'tailwind-merge';
 
 export const MenuItem = (props: { route: AgnosticRouteObject }) => {
   const {id, path = '/'} = props.route;
@@ -10,8 +10,8 @@ export const MenuItem = (props: { route: AgnosticRouteObject }) => {
     <NavLink
       to={path}
       className={({isActive}) =>
-        classNames(
-          'flex items-end text-gray-900 dark:text-white rounded [&.active]:bg-primary-500 [&.active]:text-white hover:bg-gray-100 px-3 py-0.5',
+        twMerge(
+          'flex items-end text-gray-900 rounded [&.active]:bg-primary-500 [&.active]:text-white hover:bg-gray-100 px-3 py-0.5',
           isActive && 'active'
         )
       }

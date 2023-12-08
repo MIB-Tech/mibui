@@ -3,8 +3,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .header-icon {
-        @apply h-5 w-5;
+@layer base {
+    ::-webkit-scrollbar {
+        @apply w-1.5 h-1.5 left-5;
     }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-200 rounded;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-300;
+    }
+}
+/*
+input[type="range"]::-webkit-slider-thumb {
+    !* Styles spécifiques au "thumb" *!
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #4CAF50; !* Couleur de fond du "thumb" *!
+    cursor: pointer; !* Curseur personnalisé lorsque l'utilisateur passe dessus *!
+}*/
+.min-w-ch {
+    min-width: 10ch; /* Réglez la valeur en fonction de vos besoins */
 }

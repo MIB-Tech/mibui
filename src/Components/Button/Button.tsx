@@ -1,87 +1,70 @@
-import {FC, useMemo} from 'react';
-import * as classNames from 'classnames';
-import {ButtonType, ButtonVariant, ColorVariantEnum, SizeEnum, WeightEnum} from './Button.types.tsx';
-import {getColorClassName} from './Button.utils.tsx';
+import {forwardRef, useMemo} from 'react';
+import {ButtonProps} from './Button.types.tsx';
 import {Spinner} from '../Spinner';
+import {twMerge} from 'tailwind-merge';
+import {useVariantStyles} from '../../hooks/UseVariantStyles.ts';
+import {useSizing} from '../../hooks/UseSizing.ts';
+import {Button as MuiButton} from '@mui/base';
 
-
-export const Button: FC<ButtonType> = ({
-                                         outline,
-                                         loading,
-                                         children,
-                                         active,
-                                         size,
-                                         variant = ButtonVariant.Hard,
-                                         bgColor: color = ColorVariantEnum.Primary,
-                                         ...props
-                                       }) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((
+  {
+    outline,
+    loading,
+    children,
+    active,
+    size,
+    variant = 'solid',
+    color = 'primary',
+    activeVariant = variant,
+    activeColor = color,
+    square,
+    ...props
+  },
+  ref
+) => {
+  const variantStyles = useVariantStyles({color, variant});
+  const activeStyles = useVariantStyles({color: activeColor, variant: activeVariant});
+  const sizing = useSizing(size);
   const disabled = props.disabled || loading;
-  const hardColorWeight = WeightEnum.W500;
-  const softColorWeight = WeightEnum.W100;
-  const hardColor = getColorClassName({color, weight: hardColorWeight});
-  const softColor = color === ColorVariantEnum.Black ? 'gray-300' : getColorClassName({color, weight: softColorWeight})
 
-  const bgColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Hard:
-        return hardColor
-      case ButtonVariant.Soft:
-        return softColor
-      case ButtonVariant.Clean:
-        return 'white'
-    }
-  }, [hardColor, softColor, variant])
-
-  const hoverBgColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Hard:
-        return color === ColorVariantEnum.Black ? 'gray-700' : getColorClassName({color, weight: hardColorWeight + 100})
-      case ButtonVariant.Soft:
-        return color === ColorVariantEnum.Black ? 'gray-400' : getColorClassName({color, weight: softColorWeight + 100})
-      case ButtonVariant.Clean:
-        return 'gray-50'
-    }
-  }, [color, hardColorWeight, softColorWeight, variant])
-
-  const textColor = useMemo<string>(() => {
-    return variant === ButtonVariant.Hard ? 'white' : hardColor;
-  }, [hardColor, variant])
-
-  const outlineColor = useMemo<string>(() => {
-    switch (variant) {
-      case ButtonVariant.Hard:
-        return color === ColorVariantEnum.Black ? 'gray-400' : softColor
-      default:
-        return hardColor
-    }
-  }, [color, hardColor, softColor, variant])
-
+  const style = active ? activeStyles: variantStyles
 
   const spacingClassName = useMemo<string>(() => {
-    switch (size) {
-      case SizeEnum.Small:
-        return `px-2 py-1`
-      case SizeEnum.Large:
-        return `px-3 py-2`
-      default:
-        return `px-2.5 py-1.5`
+    if (square) {
+      switch (size) {
+        case 'sm':
+          return `p-[4px]`;
+        case 'lg':
+          return `p-[8px]`;
+        default:
+          return `p-[6px]`;
+      }
+    } else {
+      return sizing.padding;
     }
-  }, [size])
+  }, [square, size, sizing.padding])
+
 
   return (
-    <button
+    <MuiButton
+      ref={ref}
       type="button"
       {...props}
       disabled={disabled}
-      className={classNames(
+      className={twMerge(
         spacingClassName,
         loading && 'relative',
-        `rounded font-semibold bg-${bgColor} text-${textColor}`,
-        disabled ? `cursor-not-allowed opacity-60` : `hover:bg-${hoverBgColor}`,
-        active && `bg-${hoverBgColor}`,
-        size && `text-${size}`,
-        outline && `ring-1 ring-inset ring-${outlineColor}`,
-        props.className
+        `rounded font-medium`,
+        style.background,
+        style.text,
+        !disabled && style.hover,
+        active && style.active,
+        sizing.text,
+        outline && style.outline,
+        props.className,
+        // Mui state
+        '[&.Mui-disabled]:cursor-not-allowed [&.Mui-disabled]:opacity-60',
+        // `[&.Mui-active]:${style.outline}`,
       )}
     >
       {loading && (
@@ -92,14 +75,9 @@ export const Button: FC<ButtonType> = ({
           />
         </div>
       )}
-      {/*{loading && (*/}
-      {/*  <Spinner */}
-      {/*    color={color} */}
-      {/*    size={size} */}
-      {/*    className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2"*/}
-      {/*  />*/}
-      {/*)}*/}
       {children}
-    </button>
+    </MuiButton>
   )
-}
+})
+
+export default Button

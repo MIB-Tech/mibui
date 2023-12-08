@@ -1,58 +1,23 @@
-import {FC, useMemo} from 'react';
-import * as classNames from 'classnames';
-import {ArgumentArray} from 'classnames';
-import {PropsType} from './Card.types.tsx';
+import {forwardRef} from 'react';
+import {CardProps} from './Card.types.tsx';
+import {twMerge} from 'tailwind-merge';
 
-export const Card: FC<PropsType> = ({header, footer, children, ...props}) => {
-
-  const className = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'border border-gray-200 rounded',
-    ]
-
-    return classNames(_className)
-  }, [])
-
-  const bodyClassName = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'p-5'
-    ]
-
-    return classNames(_className)
-  }, [])
-
-  const headerClassName = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'p-5 border-b',
-    ]
-    return classNames(_className)
-  }, [])
-
-  const footerClassName = useMemo<string>(() => {
-    const _className: ArgumentArray = [
-      'p-5 border-t',
-    ]
-    return classNames(_className)
-  }, [])
+const Card = forwardRef<HTMLDivElement, CardProps>((
+  {header, footer, children, className, ...props},
+  ref
+) => {
 
   return (
     <div
+      ref={ref}
       {...props}
-      className={classNames(props.className, className)}
+      className={twMerge('bg-white grid gap-y-4 border border-gray-200 rounded p-4', className)}
     >
-      {header && (
-        <div className={headerClassName}>
-          {header}
-        </div>
-      )}
-      <div className={bodyClassName}>
-        {children}
-      </div>
-      {footer && (
-        <div className={footerClassName}>
-          {footer}
-        </div>
-      )}
+      {header && <div>{header}</div>}
+      {children}
+      {footer && <div className='mt-auto'>{footer}</div>}
     </div>
   )
-}
+})
+
+export default Card

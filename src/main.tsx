@@ -1,108 +1,50 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import {RouteEnum} from './@types/Route';
-import App from './App.tsx';
-import i18next from 'i18next';
+import i18next, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {BadgePage, ButtonPage, CardPage, PaginationPage} from './pages/Components';
-import {AlertPage} from './pages/Components/Alert';
+import moment from 'moment/moment';
+import 'moment/dist/locale/fr';
+import App from './App.tsx';
+import {en} from './I18n/translation/en.ts';
+import {fr} from './I18n/translation/fr.ts';
+
 enum Lang {
-  English = 'en'
+  English = 'en',
+  French = 'fr'
 }
 
-const resources: Record<Lang, { translation: Record<RouteEnum, string> }> = {
+moment.locale(Lang.French);
+
+export type I18Key = RouteEnum |
+  'LOGIN.TITLE' |
+  'SIGN_IN' |
+  'USERNAME' |
+  'PASSWORD'
+
+const resources: Resource = {
   [Lang.English]: {
-    translation: {
-      [RouteEnum.Home]: 'Home',
-      [RouteEnum.Components]: 'Components',
-      [RouteEnum.ComponentButton]: 'Button',
-      [RouteEnum.ComponentsAlert]: 'Alert',
-      [RouteEnum.ComponentsBadge]: 'Badge',
-      [RouteEnum.ComponentsBreadcrumb]: 'Breadcrumb',
-      [RouteEnum.ComponentsButtonGroup]: 'Button Group',
-      [RouteEnum.ComponentsCard]: 'Card',
-      [RouteEnum.ComponentsDropdown]: 'Dropdown',
-      [RouteEnum.ComponentsModal]: 'Modal',
-      [RouteEnum.ComponentsPagination]: 'Pagination',
-      [RouteEnum.ComponentsPopover]: 'Popover',
-      [RouteEnum.ComponentsSpinner]: 'Spinner',
-      [RouteEnum.ComponentsToast]: 'Toast',
-      [RouteEnum.ComponentsTooltip]: 'Tooltip',
-      [RouteEnum.Form]: 'Form',
-      [RouteEnum.FormInput]: 'Input',
-      [RouteEnum.FormDateAndTimePicker]: 'Date & Time Pickers',
-      [RouteEnum.FormSelect]: 'Select',
-      [RouteEnum.FormAutocomplete]: 'Autocomplete',
-      [RouteEnum.FormCheckAndRadio]: 'Checkbox & Radio',
-      [RouteEnum.FormValidation]: 'Validation',
-      [RouteEnum.Content]: 'Content',
-      [RouteEnum.ContentTypography]: 'Typography',
-      [RouteEnum.ContentTable]: 'Table',
-      [RouteEnum.ComponentsPopper]: 'Popper',
-      [RouteEnum.ComponentSkeleton]: 'Skeleton',
-      [RouteEnum.Utils]: 'Utils',
-      [RouteEnum.UtilsClickAway]: 'Click Away Listener',
-      [RouteEnum.Advanced]: 'Advanced',
-      [RouteEnum.AdvancedFilter]: 'Filter',
-      [RouteEnum.AdvancedEditor]: 'Editor',
-      [RouteEnum.AdvancedViewBuilder]: 'View Builder',
-    }
+    translation: en
+  },
+  [Lang.French]: {
+    translation: fr
   }
-}
+};
 i18next.use(initReactI18next).init({
-  lng: Lang.English,
+  lng: Lang.French,
   debug: true,
-  resources: resources,
-  // if you see an error like: "Argument of type 'DefaultTFuncReturn' is not assignable to parameter of type xyz"
-  // set returnNull to false (and also in the i18next.d.ts options)
-  // returnNull: false,
+  resources
+}).then(() => {
 });
 
-export const router = createBrowserRouter([
-  {
-    id: RouteEnum.Home,
-    path: '/',
-    element: <App/>,
-    children: [
-      {
-        id: RouteEnum.Components,
-        path: 'components',
-        children: [
-          {
-            id: RouteEnum.ComponentsAlert,
-            path: 'alert',
-            element: <AlertPage />
-          },
-          {
-            id: RouteEnum.ComponentsBadge,
-            path: 'badge',
-            element: <BadgePage />
-          },
-          {
-            id: RouteEnum.ComponentButton,
-            path: 'button',
-            element: <ButtonPage/>
-          },
-          {
-            id: RouteEnum.ComponentsCard,
-            path: 'card',
-            element: <CardPage/>
-          },
-          {
-            id: RouteEnum.ComponentsPagination,
-            path: 'pagination',
-            element: <PaginationPage/>
-          },
-        ]
-      },
-    ]
-  }
-]);
+export const useLocale = () => ({
+  locale: Lang.French
+});
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <App/>
   </React.StrictMode>,
 )

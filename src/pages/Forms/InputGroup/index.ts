@@ -1,0 +1,1 @@
+export {default as InputGroupPage} from './InputGroupPage.tsx'

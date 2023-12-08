@@ -1,1 +1,1 @@
-export {default as BadgePage} from '../../pages/Components/Badge/Page.tsx'
+export {default as Badge} from './Badge.tsx';

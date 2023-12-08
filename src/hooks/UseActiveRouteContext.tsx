@@ -1,18 +1,21 @@
 import {useTranslation} from 'react-i18next';
 import {useLocation, useMatches} from 'react-router-dom';
-import {router} from '../main.tsx';
+import ROUTES from '../pages/Components/routes.tsx';
 
 export const useActiveRouteContext = () => {
-  const {t} = useTranslation()
-  const location = useLocation()
-  const locationPathnames = location.pathname.split('/');
+  const {t} = useTranslation();
+  const location = useLocation();
+  const locationPaths = location.pathname.split('/');
   const matches = useMatches();
   const current = [...matches].pop();
-  const parent = router.routes[0].children?.find(route => route.path === locationPathnames[1])
-  const title = current ? t(current.id) : 'TODO'
+  const rootRoute = ROUTES;
+  const contextRoute = rootRoute.children?.find(route => route.path === locationPaths[1]);
+  const parentRoute = contextRoute?.children?.find(route => route.path === locationPaths[2]);
+  const title = current ? t(current.id) : 'TODO';
 
   return {
-    parent,
+    parentRoute,
+    contextRoute,
     title
-  }
+  };
 }

@@ -1,0 +1,1 @@
+export {default as ToastPage} from './Page.tsx';

@@ -1,20 +1,22 @@
-import {ButtonVariant, ColorVariantEnum, SizeEnum} from '../../../Components/Button/Button.types.tsx';
-import {Button} from '../../../Components/Button/Button.tsx';
 import {Preview} from '../../../Components/Preview';
+import {Button} from '../../../Components';
+import {COLORS} from '../../../@types/Color.ts';
+import {VARIANTS} from '../../../@types/Variant.ts';
+import {SIZING, SIZING_CONFIG} from '../../../@types/Sizing.ts';
 
 const Page = () => {
   return (
     <div>
-      <div className="flex flex-col gap-12">
-        {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
-          <Preview key={variant} title={variant} className="capitalize">
-            <div className="flex justify-center gap-2">
-              {(Object.values(ColorVariantEnum) as ColorVariantEnum[]).map(color => (
+      <div className='flex flex-col gap-12'>
+        {VARIANTS.map(variant => (
+          <Preview key={variant} title={variant}>
+            <div className='flex justify-center gap-2'>
+              {COLORS.map(color => (
                 <Button
                   key={variant + color}
                   variant={variant}
-                  bgColor={color}
-                  className="capitalize"
+                  color={color}
+                  className='capitalize'
                 >
                   {color}
                 </Button>
@@ -23,13 +25,13 @@ const Page = () => {
           </Preview>
         ))}
 
-        <Preview title="Outline" className="capitalize">
+        <Preview title="Outline">
           <div className="flex justify-center gap-2">
-            {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
+            {VARIANTS.map(variant => (
               <Button
                 key={variant}
                 variant={variant}
-                className="capitalize"
+                className='capitalize'
                 outline
               >
                 {variant}
@@ -38,26 +40,22 @@ const Page = () => {
           </div>
         </Preview>
 
-        <Preview title="Size" className="capitalize">
-          <div className="flex items-center justify-center gap-2">
-            <Button className="capitalize" size={SizeEnum.Small}>
-              Small
-            </Button>
-            <Button className="capitalize">
-              Default
-            </Button>
-            <Button className="capitalize" size={SizeEnum.Large}>
-              Large
-            </Button>
+        <Preview title='Sizing'>
+          <div className='flex items-center justify-center gap-2'>
+            {SIZING.map(size => (
+              <Button key={size} size={size}>
+                {SIZING_CONFIG[size].label}
+              </Button>
+            ))}
           </div>
         </Preview>
-        <Preview title="Disbaled" className="capitalize">
-          <div className="flex justify-center gap-2">
-            {(Object.values(ButtonVariant) as ButtonVariant[]).map(variant => (
+        <Preview title='Disbaled'>
+          <div className='flex justify-center gap-2'>
+            {VARIANTS.map(variant => (
               <Button
                 key={variant}
                 variant={variant}
-                className="capitalize"
+                className='capitalize'
                 disabled
               >
                 {variant}
@@ -65,14 +63,14 @@ const Page = () => {
             ))}
           </div>
         </Preview>
-        <Preview title="Active" className="capitalize">
+        <Preview title="Active">
           <div className="flex items-center justify-center gap-2">
             <Button active>
               Active
             </Button>
           </div>
         </Preview>
-        <Preview title="Loading" className="capitalize">
+        <Preview title="Loading">
           <div className="flex items-center justify-center gap-2">
             <Button className="capitalize" loading>
               Loading

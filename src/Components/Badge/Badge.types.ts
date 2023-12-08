@@ -1,12 +1,15 @@
-import {HTMLAttributes} from "react";
-import {ButtonVariant, ColorVariantEnum, SizeEnum} from "../Button/Button.types.tsx";
+import {HTMLAttributes, MouseEventHandler} from 'react';
+import {ColorType} from '../../@types/Color.ts';
+import {VariantType} from '../../@types/Variant.ts';
 
+import {SizingType} from '../../@types/Sizing.ts';
 
 
 export type BadgeProps = {
-    variant?: ButtonVariant
-    color?: ColorVariantEnum
-    outline?: boolean
-    size?: SizeEnum
-    closing?: boolean
+  variant?: VariantType
+  color?: ColorType
+  outline?: boolean
+  size?: SizingType
+  closable?: boolean
+  onClose?: MouseEventHandler<SVGSVGElement> | undefined
 } & HTMLAttributes<HTMLSpanElement>
