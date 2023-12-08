@@ -1,5 +1,5 @@
-import {InputProps} from '../../../Forms/Input/Input.types.ts';
-import {FieldProps, UseFieldProps, FieldSlotProps} from '../Field.types.tsx';
+import {FieldProps, FieldSlotProps, UseFieldProps} from "../../Formik/Fields/Field.types.tsx";
+import {InputProps} from "../../Forms/Input/Input.types.ts";
 
 export type DatePickerFieldProps = InputProps & UseFieldProps
 
