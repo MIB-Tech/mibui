@@ -17,7 +17,6 @@ const Table: React.FC<TableProps> = (
   }
 ) => (
   <TableSizeProvider
-
     size={size}
     borderStyle={borderStyle}
     hoverable={hoverable}
@@ -29,13 +28,12 @@ const Table: React.FC<TableProps> = (
       className={twMerge(
         'bg-white',
         stickyHeader && 'overflow-y-scroll',
-        stickyColumn && 'overflow-x-scroll',
-        className
+        stickyColumn && 'overflow-x-scroll'
       )}
     >
       <table
         {...props}
-        className='border-separate border-spacing-0'
+        className={twMerge('border-separate border-spacing-0', className)}
       />
     </div>
   </TableSizeProvider>

@@ -1,7 +1,8 @@
 import {ColumnType} from '../Column.types.ts';
 
 export enum StringColumnFormat {
-  Text = 'TEXT'
+  Text = 'TEXT',
+  Datetime = 'DATETIME'
 }
 
 export type StringColumn = {

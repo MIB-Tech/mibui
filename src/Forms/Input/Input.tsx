@@ -9,7 +9,7 @@ import {Tooltip} from '../../Components';
 
 
 const Input = forwardRef<HTMLInputElement, InputProps>((
-  {className, error, errorMessage, ...props},
+  {className, error, errorMessage, endAdornment,  ...props},
   ref
 ) => {
   const inputStyles = useInputStyles();
@@ -20,20 +20,25 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
       {...props}
       ref={ref}
       className={twMerge(inputStyles.className, className)}
-      endAdornment={errorMessage && (
-        <Tooltip
-          open
-          content={errorMessage}
-          placement='top-end'
-          className='text-error-500'
-        >
-          <div>
-            <AdornmentIconButton
-              color='error'
-              iconElement={ExclamationTriangleIcon}
-            />
-          </div>
-        </Tooltip>
+      endAdornment={(
+        <div className='flex gap-1 ms-auto'>
+          {endAdornment}
+          {errorMessage && (
+            <Tooltip
+              open
+              content={errorMessage}
+              placement='top-end'
+              className='text-error-500'
+            >
+              <div>
+                <AdornmentIconButton
+                  color='error'
+                  iconElement={ExclamationTriangleIcon}
+                />
+              </div>
+            </Tooltip>
+          )}
+        </div>
       )}
     />
   );

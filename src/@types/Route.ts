@@ -59,6 +59,13 @@ export enum RouteEnum {
   ApplicationUIFormLayout = 'APPLICATION_UI.FORM_LAYOUT',
   ApplicationUIAuth = 'APPLICATION_UI.AUTH',
   ApplicationUIAuthLoginForm = 'APPLICATION_UI.AUTH.LOGIN_FORM',
+  //
+  PurchaseOrder = 'PURCHASE_ORDER',
+  PurchaseOrderListing = 'PURCHASE_ORDER_LISTING',
+  PurchaseOrderCreate = 'PURCHASE_ORDER_CREATE',
+  PurchaseOrderDetail = 'PURCHASE_ORDER_DETAIL',
+  PurchaseOrderUpdate = 'PURCHASE_ORDER_UPDATE',
+  PurchaseOrderDelete = 'PURCHASE_ORDER_DELETE',
 }
 
 export type RouteType = {

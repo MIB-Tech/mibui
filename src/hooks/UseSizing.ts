@@ -9,9 +9,9 @@ export const useSizing = (size?: SizingType) => {
       case 'sm':
         return `py-[4px]`;
       case 'lg':
-        return `py-[8px]`;
-      default:
         return `py-[6px]`;
+      default:
+        return `py-[5px]`;
     }
   }, [size]);
 

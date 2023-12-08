@@ -38,7 +38,8 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
     multiple,
     size,
     placeholder,
-    autoFocus
+    autoFocus,
+    errorMessage
   } = props;
   const hasClearIcon: boolean = !disabled && !readOnly && (multiple ? (Array.isArray(value) && value.length > 0) : !!value);
 
@@ -49,6 +50,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
         autoFocus={autoFocus}
         placeholder={placeholder}
         disabled={disabled}
+        errorMessage={errorMessage}
         readOnly={searchDisabled || readOnly}
         slotProps={{
           root: getRootProps(),
@@ -83,7 +85,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
           );
         })}
         endAdornment={(
-          <div className='flex items-center justify-items-center gap-1 ms-auto flex-none'>
+          <div className='flex items-center justify-items-center gap-1 flex-none'>
             {hasClearIcon && (
               <AdornmentIconButton
                 iconElement={XMarkIcon}
