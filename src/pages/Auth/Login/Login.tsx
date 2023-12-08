@@ -74,8 +74,6 @@ const Login = () => {
             <div className='space-y-6'>
               <InputFieldGroup name='username'/>
               <InputPasswordFieldGroup name='password'/>
-              <InputNumberFieldGroup name='number'/>
-              <DatePickerFieldGroup name='datepicker'/>
               <Button
                 className='w-full'
                 onClick={() => handleSubmit()}
