@@ -22,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((
         <div className='flex gap-1 ms-auto'>
           {endAdornment}
           {errorMessage && (
-            <InputErrorAdornment/>
+            <InputErrorAdornment errorMessage={errorMessage}/>
           )}
         </div>
       )}

@@ -59,7 +59,7 @@ const Autocomplete = <Value, Multiple extends boolean | undefined>(
             className: twMerge('w-auto', searchDisabled && 'cursor-pointer'),
             style: {
               maxWidth: '-webkit-fill-available'
-            },
+            }
           }
         }}
         size={size}

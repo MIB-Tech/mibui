@@ -1,42 +1,23 @@
-import  { forwardRef } from 'react';
-import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
-import { AdornmentIconButton } from '../InputGroup/AdornmentIconButton.tsx';
-import { unstable_useNumberInput as useNumberInput } from '@mui/base';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { Tooltip } from '../../Components';
-import { InputNumberProps } from '../InputNumber/InputNumber.types.ts';
+import {FC} from 'react';
+import {ExclamationTriangleIcon} from '@heroicons/react/20/solid';
+import {AdornmentIconButton} from '../InputGroup/AdornmentIconButton.tsx';
+import {Tooltip} from '../../Components';
+import {InputProps} from './Input.types.ts';
 
-const InputErrorAdornment = forwardRef<HTMLInputElement, InputNumberProps>((props, ref) => {
-  const {
-
-    getInputProps,
-  } = useNumberInput({
-    ...props
-  });
-
-  const inputProps = getInputProps();
-  inputProps.ref = useForkRef(inputProps.ref, ref);
-
-  return (
-    <>
-
-      {props.errorMessage && (
-        <Tooltip
-          open
-          content={props.errorMessage}
-          placement='top-end'
-          className='text-error-500'
-        >
-          <div>
-            <AdornmentIconButton
-              color='error'
-              iconElement={ExclamationTriangleIcon}
-            />
-          </div>
-        </Tooltip>
-      )}
-    </>
-  );
-});
+const InputErrorAdornment: FC<Pick<InputProps, 'errorMessage'>> = ({errorMessage}) => errorMessage && (
+  <Tooltip
+    open
+    content={errorMessage}
+    placement='bottom-end'
+    className='text-error-500 py-0.5'
+  >
+    <div>
+      <AdornmentIconButton
+        color='error'
+        iconElement={ExclamationTriangleIcon}
+      />
+    </div>
+  </Tooltip>
+);
 
 export default InputErrorAdornment;

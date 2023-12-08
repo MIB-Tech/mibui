@@ -1,6 +1,5 @@
 import {Button, ButtonGroup, Card} from '../../../../Components';
 import {FormGroup, Input, InputNumber, Label} from '../../../../Forms';
-import {DatePickerExample} from '../../../../pages/Forms/DatePicker/DatePage.tsx';
 import {
   PurchaseOrderProductDataGridExample
 } from '../../../../pages/ApplicationUI/FormLayout/Examples/PurchaseOrderProductDataGridExample.tsx';
@@ -13,6 +12,7 @@ import {initialValues, validationSchema} from './Page.utils.ts';
 import {FormValue} from './Page.types.ts';
 import {InputFieldGroup, RemoteAutocompleteFieldGroup} from '../../../../Formik';
 import {Trans} from 'react-i18next';
+import {DatePickerFieldGroup} from '../../../../Components/DatePickerField';
 
 
 const Page = () => {
@@ -60,10 +60,7 @@ const Page = () => {
                 getOptions={response => response['hydra:member']}
                 getOptionLabel={option => option['@title']}
               />
-              <FormGroup>
-                <Label>Date de pièce</Label>
-                <DatePickerExample/>
-              </FormGroup>
+              <DatePickerFieldGroup name='createdAt' includeTime/>
               <FormGroup>
                 <Label>Acronyme</Label>
                 <ButtonGroup variant='light' activeVariant='solid'>
@@ -73,10 +70,7 @@ const Page = () => {
               </FormGroup>
               <InputFieldGroup name='ref'/>
               <InputFieldGroup name='externalRef'/>
-              <FormGroup>
-                <Label>Réception prévue</Label>
-                <DatePickerExample/>
-              </FormGroup>
+              <DatePickerFieldGroup name='desiredDeliveryDate' includeTime/>
               <RemoteAutocompleteFieldGroup<HydraCollection, HydraItem>
                 name='currency'
                 endpoint='/base/currencies'

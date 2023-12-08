@@ -3,12 +3,12 @@ import {boolean, number, object, ObjectSchema, string} from 'yup';
 
 export const initialValues: FormValue = {
   budget: 0,
-  createdAt: '',
+  createdAt: '2023-03-01',
   desiredDeliveryDate: '',
   currency: null,
   externalRef: '',
   isTaxIncluded: false,
-  ref: undefined,
+  ref: '',
   vendor: null
 };
 
