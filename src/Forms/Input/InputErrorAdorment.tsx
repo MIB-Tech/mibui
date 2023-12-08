@@ -1,5 +1,5 @@
 import  { forwardRef } from 'react';
-import { ExclamationTriangleIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
+import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { AdornmentIconButton } from '../InputGroup/AdornmentIconButton.tsx';
 import { unstable_useNumberInput as useNumberInput } from '@mui/base';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -8,8 +8,7 @@ import { InputNumberProps } from '../InputNumber/InputNumber.types.ts';
 
 const InputErrorAdornment = forwardRef<HTMLInputElement, InputNumberProps>((props, ref) => {
   const {
-    getIncrementButtonProps,
-    getDecrementButtonProps,
+
     getInputProps,
   } = useNumberInput({
     ...props
@@ -20,14 +19,7 @@ const InputErrorAdornment = forwardRef<HTMLInputElement, InputNumberProps>((prop
 
   return (
     <>
-      <AdornmentIconButton
-        iconElement={MinusIcon}
-        {...getDecrementButtonProps()}
-      />
-      <AdornmentIconButton
-        iconElement={PlusIcon}
-        {...getIncrementButtonProps()}
-      />
+
       {props.errorMessage && (
         <Tooltip
           open

@@ -3,7 +3,8 @@ import {InputNumberProps} from './InputNumber.types.ts';
 import {Input} from '../Input';
 import {unstable_useNumberInput as useNumberInput} from '@mui/base';
 import {unstable_useForkRef as useForkRef} from '@mui/utils';
-import InputErrorAdornment from "../Input/InputErrorAdorment.tsx";
+import {AdornmentIconButton} from "../InputGroup/AdornmentIconButton.tsx";
+import {MinusIcon, PlusIcon} from "@heroicons/react/20/solid";
 
 const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   {
@@ -16,7 +17,8 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
   ref
 ) => {
   const {
-
+    getIncrementButtonProps,
+    getDecrementButtonProps,
     getInputProps,
     getRootProps
   } = useNumberInput({
@@ -29,20 +31,26 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
 
   return (
     <Input
-      //{...props}
+      errorMessage={errorMessage}
+      {...props}
       autoFocus={autoFocus}
       {...inputProps}
       {...getRootProps()}
-      // ref={ref}
+      ref={ref}
       size={size}
-      startAdornment={
-        <InputErrorAdornment errorMessage={errorMessage} />
-      }
-      endAdornment={<InputErrorAdornment errorMessage={errorMessage} />}
-
+      startAdornment={<AdornmentIconButton
+        iconElement={MinusIcon}
+        {...getDecrementButtonProps()}
+      />}
+      endAdornment={(
+        <AdornmentIconButton
+          iconElement={PlusIcon}
+          {...getIncrementButtonProps()}
+        />
+      )}
     />
 
-);
+  );
   // return (
   //   <div className='relative' {...getRootProps()}>
   //     <div className='absolute inset-y-0 left-0'>
