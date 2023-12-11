@@ -1,5 +1,5 @@
 import {FormValue} from './Page.types.ts';
-import {boolean, number, object, ObjectSchema, string} from 'yup';
+import {array, boolean, number, object, ObjectSchema, string} from 'yup';
 import moment from 'moment';
 
 export const initialValues: FormValue = {
@@ -10,10 +10,16 @@ export const initialValues: FormValue = {
   externalRef: '',
   isTaxIncluded: false,
   ref: '',
-  vendor: null
+  vendor: null,
+  purchaseOrderProducts: [],
 };
 
-const relation = () => object().shape({id: number().required(), '@title': string().required()});
+const relation = () => object().shape({
+  id: number().required(),
+  '@id': string().required(),
+  '@title': string().required(),
+  '@subTitle': string().required(),
+});
 
 export const validationSchema: ObjectSchema<FormValue> = object().shape({
   budget: number().required(),
@@ -23,5 +29,6 @@ export const validationSchema: ObjectSchema<FormValue> = object().shape({
   externalRef: string().required(),
   isTaxIncluded: boolean().required(),
   ref: string().required(),
-  vendor: relation().required()
+  vendor: relation().required(),
+  purchaseOrderProducts: array().required(),
 });

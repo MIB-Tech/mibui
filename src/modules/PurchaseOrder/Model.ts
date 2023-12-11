@@ -1,6 +1,7 @@
 import {AbstractModel, CreateTimestampModel, HydraItem} from '../types.ts';
 import {CurrencyModel, HydraCurrencyModel} from '../Currency';
 import {HydraVendorModel, VendorModel} from '../Vendor';
+import {HydraPurchaseOrderProductModel, PurchaseOrderProductModel} from '../PurchaseOrderProduct';
 
 
 type Model = {
@@ -12,11 +13,13 @@ type Model = {
   budget: number
   currency: CurrencyModel
   vendor: VendorModel
+  purchaseOrderProducts: Array<PurchaseOrderProductModel>
 } & AbstractModel & CreateTimestampModel
 
 export type HydraModel = HydraItem<{
   currency: HydraCurrencyModel
   vendor: HydraVendorModel
-} & Omit<Model, 'currency' | 'vendor'>>
+  purchaseOrderProducts: Array<HydraPurchaseOrderProductModel>
+} & Omit<Model, 'currency' | 'vendor' | 'purchaseOrderProducts'>>
 
 export default Model;

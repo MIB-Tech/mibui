@@ -1,55 +1,44 @@
-import {Button, Card} from '../../../../Components';
+import {Button} from '../../../../Components';
 import {FormGroup, Input, InputNumber, Label} from '../../../../Forms';
-import {
-  PurchaseOrderProductDataGridExample
-} from '../../../../pages/ApplicationUI/FormLayout/Examples/PurchaseOrderProductDataGridExample.tsx';
 import {useMutation} from '@tanstack/react-query';
 import axios, {AxiosResponse} from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {HydraCollection, HydraItem} from '../../../types.ts';
-import {Formik} from 'formik';
+import {FieldArray, Formik, FormikProps} from 'formik';
 import {initialValues, validationSchema} from './Page.utils.ts';
-import {FormValue} from './Page.types.ts';
+import {FormValue, PurchaseOrderProductFormValue} from './Page.types.ts';
 import {InputFieldGroup, RemoteAutocompleteFieldGroup, SelectFieldGroup} from '../../../../Formik';
 import {Trans} from 'react-i18next';
 import {DatePickerFieldGroup} from '../../../../Components/DatePickerField';
+import {ProductArrayField} from './Fields/ProductArrayField.tsx';
+import {useAuth} from '../../../../pages/Auth/Login/Login.tsx';
+import {DiscountType} from '../../../Discount/Model.ts';
+import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
+import {BarsArrowUpIcon, PlusIcon} from '@heroicons/react/20/solid';
 
 
 const Page = () => {
   const navigate = useNavigate();
-
-  const {mutate, isPending} = useMutation<AxiosResponse<HydraItem>, any, FormValue>({
+  const {auth} = useAuth();
+  const {isPending} = useMutation<AxiosResponse<HydraItem>, any, FormValue>({
     mutationFn: credentials => axios.post('/custom/auth/login', credentials),
-    onSuccess: ({data}) => {
-      navigate(data['@id']);
-    }
+    onSuccess: ({data}) => navigate(data['@id'])
   });
-
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={mutate}
+      onSubmit={(values) => {
+        console.log(values);
+        // mutate(values);
+      }}
     >
-      {({handleSubmit}) => (
-        <div className='flex flex-col space-y-10'>
-          <Card
-            footer={(
-              <div className='flex space-x-3 justify-end'>
-                <Button
-                  onClick={() => handleSubmit()}
-                  loading={isPending}
-                >
-                  <Trans i18nKey='SAVE'/>
-                </Button>
-                <Button disabled>
-                  Génerer bon de réception
-                </Button>
-              </div>
-            )}
-          >
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
+      {({handleSubmit}: FormikProps<FormValue>) => {
+
+        return (
+          <div className='flex flex-col space-y-5'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-3 gap-y-2'>
               <FormGroup>
                 <Label>N° piéce</Label>
                 <Input disabled/>
@@ -80,20 +69,70 @@ const Page = () => {
                 <InputNumber/>
               </FormGroup>
             </div>
-          </Card>
-          <div className='flex flex-col space-y-4'>
-            <div className='font-semibold text-2xl'>
-              Produits
-            </div>
-            <PurchaseOrderProductDataGridExample/>
-            <div>
-              <Button>
-                Ajouter
-              </Button>
+            <div className='flex flex-col space-y-4'>
+              <div className='flex justify-between'>
+                <div className='flex space-x-2'>
+                  <div className='font-semibold text-2xl'>
+                    Produits
+                  </div>
+                  <FieldArray name='purchaseOrderProducts'>
+                    {({insert}) => (
+                      <IconButton
+                        iconElement={PlusIcon}
+                        variant='clean'
+                        onClick={() => {
+                          const initPurchaseOrderProduct: PurchaseOrderProductFormValue = {
+                            buyer: auth?.user || null,
+                            discount: {
+                              value: 0,
+                              discountType: DiscountType.Amount
+                            },
+                            designation: '',
+                            grossPrice: 0,
+                            netPrice: 0,
+                            note: '',
+                            product: null,
+                            quantity: 0,
+                            vatRate: 0,
+                            desiredProducts: [
+                              // {
+                              //   designation: '',
+                              //   quantity: 0,
+                              //   address: '',
+                              //   status: ''
+                              // }
+                            ]
+                          };
+                          insert(0, initPurchaseOrderProduct);
+                        }}
+                      />
+                    )}
+                  </FieldArray>
+
+                  <IconButton
+                    iconElement={BarsArrowUpIcon}
+                    variant='clean'
+                    onClick={() => {
+                    }}
+                  />
+                </div>
+                <div className='flex space-x-3 justify-end'>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    loading={isPending}
+                  >
+                    <Trans i18nKey='SAVE'/>
+                  </Button>
+                  <Button disabled>
+                    Génerer bon de réception
+                  </Button>
+                </div>
+              </div>
+              <ProductArrayField/>
             </div>
           </div>
-        </div>
-      )}
+        );
+      }}
     </Formik>
   );
 };

@@ -7,25 +7,30 @@ import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 import {HydraCollection, HydraItem} from '../../../types.ts';
 import {Link, LinkProps} from 'react-router-dom';
-import {Button, Icon, Pagination} from '../../../../Components';
+import {Button, Icon, Pagination, Tooltip} from '../../../../Components';
 import {Checkbox, Input} from '../../../../Forms';
-import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
+import {DocumentTextIcon, MagnifyingGlassIcon, TrashIcon} from '@heroicons/react/20/solid';
 import {stringToI18nKey} from '../../../utils.ts';
 import {Trans} from 'react-i18next';
+import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 
-const ModelCell: FC<{ item: HydraItem } & { slotProps?: { title?: LinkProps } }> = ({item, slotProps, ...props}) => (
+export const ModelCell: FC<{ item: HydraItem } & { slotProps?: { title?: LinkProps } }> = (
+  {item, slotProps, ...props}
+) => (
   <div {...props}>
     <div className='text-gray-400'>
       {item['@subTitle']}
     </div>
     <Link
-      to={item.id.toString()} {...slotProps?.title}
+      to={item['@id']}
+      {...slotProps?.title}
       className='text-primary-600 dark:text-primary-500 hover:underline'
     >
       {item['@title']}
     </Link>
   </div>
 );
+
 const Page = () => {
   const query = useQuery({
     queryKey: ['TODO'],
@@ -51,7 +56,32 @@ const Page = () => {
       },
       {field: 'ref'},
       {field: 'externalRef'},
-      {field: 'createdAt', format: StringColumnFormat.Datetime}
+      {field: 'createdAt', format: StringColumnFormat.Datetime},
+      {
+        renderCell: () => (
+          <div className='flex space-x-2 justify-end'>
+            <Tooltip content='Génerer bon de réception' placement='left'>
+              <div>
+                <IconButton
+                  iconElement={DocumentTextIcon}
+                  variant='light'
+                  size='sm'
+                  onClick={() => {
+                  }}
+                />
+              </div>
+            </Tooltip>
+            <IconButton
+              iconElement={TrashIcon}
+              variant='light'
+              color='error'
+              size='sm'
+              onClick={() => {
+              }}
+            />
+          </div>
+        )
+      },
     ];
 
     return columns.map(column => ({

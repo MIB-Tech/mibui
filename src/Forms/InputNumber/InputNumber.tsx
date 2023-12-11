@@ -20,12 +20,13 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
     getIncrementButtonProps,
     getDecrementButtonProps,
     getInputProps,
-    getRootProps
+    getRootProps,
   } = useNumberInput({
     shiftMultiplier,
     ...props
   });
 
+  const rootProps = getRootProps();
   const inputProps = getInputProps();
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
@@ -34,14 +35,16 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>((
       errorMessage={errorMessage}
       {...props}
       autoFocus={autoFocus}
+      {...rootProps}
       {...inputProps}
-      {...getRootProps()}
       ref={ref}
       size={size}
-      startAdornment={<AdornmentIconButton
-        iconElement={MinusIcon}
-        {...getDecrementButtonProps()}
-      />}
+      startAdornment={(
+        <AdornmentIconButton
+          iconElement={MinusIcon}
+          {...getDecrementButtonProps()}
+        />
+      )}
       endAdornment={(
         <AdornmentIconButton
           iconElement={PlusIcon}

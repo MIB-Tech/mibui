@@ -21,7 +21,8 @@ export type MappedColumn<T extends object> = {
   getValue?: (row: T, index: number) => any
   slots?: {
     control?: () => ReactNode
-  }
+  },
+  className?: string
 } & (StringColumn | NumberColumn | BooleanColumn | ObjectColumn | ArrayColumn);
 
 export type CalculatedColumn<T extends object> =

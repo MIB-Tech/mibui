@@ -15,8 +15,6 @@ export enum DiscountType {
   Percent = 'PERCENT',
   Amount = 'AMOUNT',
 }
-
-
 type Discount = {
   discountType: DiscountType
   value: number
@@ -37,9 +35,6 @@ export type PurchaseOrderProduct = {
   netPrice: number
   vatRate: number
   note?: string
-  mntCompte: number
-  mntTransaction: number
-  //
   product?: Product
   discount?: Discount
   buyer: User
