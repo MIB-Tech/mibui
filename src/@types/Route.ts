@@ -66,6 +66,8 @@ export enum RouteEnum {
   PurchaseOrderDetail = 'PURCHASE_ORDER_DETAIL',
   PurchaseOrderUpdate = 'PURCHASE_ORDER_UPDATE',
   PurchaseOrderDelete = 'PURCHASE_ORDER_DELETE',
+  //
+  Reporting = 'REPORTING'
 }
 
 export type RouteType = {
