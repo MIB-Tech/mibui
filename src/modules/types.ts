@@ -11,7 +11,7 @@ export type TimestampModel = {
 export type HydraItem<T extends object = {}> = {
   '@id': string
   '@title': string
-  '@subTitle': string
+  '@subTitle'?: string
 } & AbstractModel & T
 
 export type HydraCollection<T extends object = {}> = {

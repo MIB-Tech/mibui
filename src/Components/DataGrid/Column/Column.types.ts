@@ -13,6 +13,8 @@ export enum ColumnType {
   Array = 'array',
 }
 
+export type SetFieldValueType = <T extends object>(props: { rowIndex: number, field: keyof T, value: any }) => void
+export type SetRowValueType = (props: { rowIndex: number, value: any }) => void
 export type MappedColumn<T extends object> = {
   field: Extract<keyof T, string>;
   header?: ReactNode;
@@ -20,7 +22,13 @@ export type MappedColumn<T extends object> = {
   renderCell?: (row: T, index: number) => ReactNode
   getValue?: (row: T, index: number) => any
   slots?: {
-    control?: () => ReactNode
+    control?: (props: {
+      setFieldValue: SetFieldValueType,
+      setRowValue: SetRowValueType,
+      rowIndex: number,
+      value: any,
+      changeFocus: () => void
+    }) => ReactNode
   },
   className?: string
 } & (StringColumn | NumberColumn | BooleanColumn | ObjectColumn | ArrayColumn);

@@ -13,21 +13,27 @@ import {DocumentTextIcon, MagnifyingGlassIcon, TrashIcon} from '@heroicons/react
 import {stringToI18nKey} from '../../../utils.ts';
 import {Trans} from 'react-i18next';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
+import {ButtonProps} from '../../../../Components/Button/Button.types.tsx';
 
-export const ModelCell: FC<{ item: HydraItem } & { slotProps?: { title?: LinkProps } }> = (
+export const ModelCell: FC<{ item: HydraItem } & { slotProps?: { title?: Partial<LinkProps>  & Pick<ButtonProps, 'disabled'>} }> = (
   {item, slotProps, ...props}
 ) => (
   <div {...props}>
     <div className='text-gray-400'>
       {item['@subTitle']}
     </div>
-    <Link
-      to={item['@id']}
-      {...slotProps?.title}
-      className='text-primary-600 dark:text-primary-500 hover:underline'
-    >
-      {item['@title']}
-    </Link>
+    {slotProps?.title?.disabled ?
+      <span {...slotProps?.title}>
+        {item['@title']}
+      </span>:
+      <Link
+        to={item['@id']}
+        {...slotProps?.title}
+        className='text-primary-600 hover:underline'
+      >
+        {item['@title']}
+      </Link>
+    }
   </div>
 );
 
@@ -112,7 +118,7 @@ const Page = () => {
         size='sm'
         className='min-w-full'
         columns={columns}
-        value={collection}
+        data={collection}
       />
       <div className='flex justify-between'>
         <div/>

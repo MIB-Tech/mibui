@@ -21,7 +21,7 @@ const ROUTES: RouteObject = {
     {
       id: RouteEnum.PurchaseOrderUpdate,
       path: ':id',
-      // element: <CreatePage/>,
+      element: <CreatePage/>,
     },
     // {
     //   id: RouteEnum.PurchaseOrderDetail,

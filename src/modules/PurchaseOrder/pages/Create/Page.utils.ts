@@ -1,34 +1,63 @@
-import {FormValue} from './Page.types.ts';
-import {array, boolean, number, object, ObjectSchema, string} from 'yup';
+import {FormValue, PurchaseOrderProductFormValue} from './Page.types.ts';
+import {array, boolean, number, object, string} from 'yup';
 import moment from 'moment';
+import {DiscountType} from '../../../Discount/Model.ts';
 
 export const initialValues: FormValue = {
-  budget: 0,
   createdAt: moment().format(),
   desiredDeliveryDate: '',
   currency: null,
+  ref: '',
   externalRef: '',
   isTaxIncluded: false,
-  ref: '',
   vendor: null,
   purchaseOrderProducts: [],
 };
 
 const relation = () => object().shape({
-  id: number().required(),
-  '@id': string().required(),
-  '@title': string().required(),
-  '@subTitle': string().required(),
+  id: number().required()
 });
 
-export const validationSchema: ObjectSchema<FormValue> = object().shape({
-  budget: number().required(),
+export const validationSchema/*: ObjectSchema<FormValue>*/ = object().shape({
   createdAt: string().required(),
   desiredDeliveryDate: string().required(),
   currency: relation(),
-  externalRef: string().required(),
+  ref: string().optional(),
+  externalRef: string().optional(),
   isTaxIncluded: boolean().required(),
-  ref: string().required(),
   vendor: relation().required(),
   purchaseOrderProducts: array().required(),
 });
+export const getInitPurchaseOrderProduct: (init?: Partial<PurchaseOrderProductFormValue>) => PurchaseOrderProductFormValue = (initialState) => {
+  const designation = initialState?.product?.['@title'] || '';
+  const buyer = initialState?.buyer ? {
+    id: initialState.buyer.id,
+    '@id': initialState.buyer['@id'],
+    '@title': initialState.buyer['@title'],
+    '@subTitle': initialState.buyer['@subTitle'],
+  } : null;
+
+  return {
+    discount: {
+      value: 0,
+      discountType: DiscountType.Amount
+    },
+    designation,
+    grossPrice: 0,
+    netPrice: 0,
+    note: '',
+    product: null,
+    quantity: 0,
+    vatRate: 0,
+    desiredProducts: [
+      {
+        designation,
+        quantity: 0,
+        address: '',
+        status: ''
+      }
+    ],
+    ...initialState,
+    buyer: buyer
+  };
+};

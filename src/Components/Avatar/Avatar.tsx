@@ -3,8 +3,8 @@ import {AvatarProps} from './Avatar.types.ts';
 import {twMerge} from 'tailwind-merge';
 import {SpacingType} from '../../@types/Spacing.ts';
 
-const Avatar: FC<AvatarProps> = ({size, className, src, placeholder, style, ...props}) => {
-
+const Avatar: FC<AvatarProps> = ({size, className, src, style, ...props}) => {
+  const placeholder = 'placeholder' in props && props.placeholder
   const avatarSize = useMemo<Exclude<SpacingType, string>>(() => {
     switch (size) {
       case 'xs':

@@ -6,6 +6,7 @@ import {DiscountModel, HydraDiscountModel} from '../Discount';
 import {DesiredProductModel, HydraDesiredProductModel} from '../DesiredProduct';
 
 type Model = {
+  code: string,
   quantity: number
   grossPrice: number
   netPrice: number
@@ -15,6 +16,9 @@ type Model = {
   discount?: DiscountModel
   buyer: UserModel
   desiredProducts: Array<DesiredProductModel>
+  readonly grossTotalExclTax: number
+  readonly netTotalExclTax: number
+  readonly vatTax: number
 } & AbstractModel & AbstractProduct
 
 export type HydraModel = {

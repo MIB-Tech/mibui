@@ -6,7 +6,7 @@ export enum DiscountType {
 }
 
 type Model = {
-  discountType: DiscountType
+  discountType?: DiscountType
   value: number
 } & AbstractModel
 

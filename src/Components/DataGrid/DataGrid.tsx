@@ -2,15 +2,15 @@ import {useState} from 'react';
 import {Table, TableBody, TableFooter, TableHead, TableHeadCell, TableRow, TableRowCell} from '../Table';
 import {DataGridProps} from './DataGrid.types.tsx';
 import {ClickAwayListener} from '@mui/base';
-import {Input, InputNumber} from '../../Forms';
+import {Input} from '../../Forms';
 import {twMerge} from 'tailwind-merge';
-import {ColumnType, MappedColumn} from './Column/Column.types.ts';
+import {ColumnType, MappedColumn, SetFieldValueType, SetRowValueType} from './Column/Column.types.ts';
 import {StringColumnFormat} from './Column/String/String.types.ts';
 import ColumnHeaderTitle from './Column/Column.Header.Title.tsx';
 import ColumnCellContent from './Column/Column.Cell.Content.tsx';
 
-const DataGrid = <T extends object>({columns, value = [], onChange, ...props}: DataGridProps<T>) => {
-  const [focused, setFocused] = useState<{ rowIndex: number, field: string }>();
+const DataGrid = <T extends object>({columns, data = [], onChange, ...props}: DataGridProps<T>) => {
+  const [focused, setFocused] = useState<{ rowIndex: number, field: keyof T }>();
 
   const changeFocus = ({rowIndex, columnIndex}: { rowIndex: number, columnIndex: number }) => {
     const nextMappedColumn = columns.find((c, i) => {
@@ -26,138 +26,155 @@ const DataGrid = <T extends object>({columns, value = [], onChange, ...props}: D
     }
   };
 
+  const setRowValue: SetRowValueType = ({rowIndex, value}) => {
+    onChange?.(
+      data.map((r, _rowIndex) => {
+        if (rowIndex === _rowIndex) {
+          return value;
+        }
+
+        return r;
+      })
+    );
+  };
+  const setFieldValue: SetFieldValueType = ({rowIndex, field, value}) => {
+    onChange?.(
+      data.map((r, _rowIndex) => {
+        if (rowIndex === _rowIndex) {
+          return {
+            ...r,
+            [field]: value,
+          };
+        }
+        return r;
+      })
+    );
+  };
+
+
   return (
-    <Table {...props}>
-      <TableHead className='whitespace-nowrap'>
-        {columns.map((column, index) => (
-          <TableHeadCell key={index} className={column.className}>
-            <ColumnHeaderTitle column={column}/>
-          </TableHeadCell>
-        ))}
-      </TableHead>
-      <TableBody>
-        {value.map((row, rowIndex) => (
-          <TableRow key={rowIndex}>
-            {columns.map((column, columnIndex) => {
-              const isMapped = 'field' in column;
-              const isFocused = isMapped && focused?.rowIndex === rowIndex && focused.field === column.field;
-              const isEditable = isMapped && column.editable;
+    <ClickAwayListener onClickAway={() => setFocused(undefined)}>
+      <div>
+        <Table {...props}>
+          <TableHead className='whitespace-nowrap'>
+            {columns.map((column, index) => (
+              <TableHeadCell key={index} className={twMerge('truncate', column.className)}>
+                <ColumnHeaderTitle column={column}/>
+              </TableHeadCell>
+            ))}
+          </TableHead>
+          <TableBody>
+            {data.map((row, rowIndex) => (
+              <TableRow key={rowIndex}>
+                {columns.map((column, columnIndex) => {
+                  const isMapped = 'field' in column;
+                  const isFocused = isMapped && focused?.rowIndex === rowIndex && focused.field === column.field;
+                  const isEditable = isMapped && column.editable;
+                  const value = 'field' in column && row[column.field];
+                  const onKeyDown = () => {
+                    changeFocus({rowIndex, columnIndex});
+                  };
 
-              return (
-                <TableRowCell
-                  key={columnIndex}
-                  className={twMerge(
-                    'truncate p-0',
-                    // isFocused && 'ring-2',
-                    !isFocused && isEditable && 'ring-inset hover:ring-1 ring-primary-600  cursor-pointer',
-                    isFocused && 'h-full',
-                    column.className,
-                  )}
-                  onClick={() => {
-                    if (!isEditable) return;
+                  return (
+                    <TableRowCell
+                      key={columnIndex}
+                      className={twMerge(
+                        'p-0',
+                        // isFocused && 'ring-2',
+                        !isFocused && isEditable && 'ring-inset hover:ring-1 ring-primary-600  cursor-pointer',
+                        isFocused && 'h-full'
+                      )}
+                      onClick={() => {
+                        if (!isEditable) return;
 
-                    const {field} = column;
-                    setFocused({rowIndex, field});
-                  }}
-                >
-                  {isMapped ?
-                    <>
-                      {isFocused ? (
-                        <ClickAwayListener onClickAway={() => setFocused(undefined)}>
-                          <div>
-                            {column.slots?.control ?
-                              column.slots.control() :
-                              <>
-                                {(!column.type || column.type === ColumnType.String) && (
-                                  <Input
-                                    className='rounded-none'
-                                    multiline={column.format === StringColumnFormat.Text}
-                                    autoFocus
-                                    value={row[column.field]}
-                                    onChange={e => {
-                                      onChange?.(
-                                        value.map((r, _rowIndex) => {
-                                          if (focused && focused.rowIndex === _rowIndex) {
-                                            return {
-                                              ...r,
-                                              [focused.field]: e.target.value,
-                                            };
-                                          }
-                                          return r;
-                                        })
-                                      );
-                                    }}
-                                    onKeyDown={({key}) => key === 'Tab' && changeFocus({rowIndex, columnIndex})}
-                                  />
-                                )}
-                                {column.type === ColumnType.Number && (
-                                  <InputNumber
-                                    step={0.01}
-                                    className='rounded-none'
-                                    autoFocus
-                                    value={row[column.field]}
-                                    onChange={(_, val) => {
-                                      console.log(val)
-                                      onChange?.(
-                                        value.map((r, _rowIndex) => {
-                                          if (focused && focused.rowIndex === _rowIndex) {
-                                            return {
-                                              ...r,
-                                              [focused.field]: val,
-                                            };
-                                          }
-                                          return r;
-                                        })
-                                      );
-                                    }}
-                                    onKeyDown={({key}) => key === 'Tab' && changeFocus({rowIndex, columnIndex})}
-                                  />
-                                )}
-                              </>
-                            }
-                          </div>
-                        </ClickAwayListener>
-                      ) : (
-                        <div className='m-1'>
+                        const {field} = column;
+                        setFocused({rowIndex, field});
+                      }}
+                    >
+                      {isMapped ?
+                        <>
+                          {isFocused ?
+                            <>
+                              {column.slots?.control ?
+                                column.slots.control({
+                                  setRowValue,
+                                  setFieldValue,
+                                  rowIndex,
+                                  value,
+                                  changeFocus: () => changeFocus({rowIndex, columnIndex})
+                                }) :
+                                <>
+                                  {(!column.type || column.type === ColumnType.String) && (
+                                    <Input
+                                      className='rounded-none'
+                                      multiline={column.format === StringColumnFormat.Text}
+                                      autoFocus
+                                      value={value}
+                                      onChange={e => {
+                                        setFieldValue({rowIndex, field: focused.field, value: e.target.value});
+                                      }}
+                                      onKeyDown={({key}) => key === 'Tab' && onKeyDown()}
+                                    />
+                                  )}
+                                  {column.type === ColumnType.Number && (
+                                    <Input
+                                      type='number'
+                                      className='rounded-none'
+                                      autoFocus
+                                      value={value}
+                                      onChange={e => {
+                                        setFieldValue({
+                                          rowIndex,
+                                          field: focused.field,
+                                          value: parseFloat(e.target.value)
+                                        });
+                                      }}
+                                      onKeyDown={({key}) => key === 'Tab' && onKeyDown()}
+                                    />
+                                  )}
+                                </>
+                              }
+                            </> :
+                            <div className='mx-2'>
+                              <ColumnCellContent
+                                rowIndex={rowIndex}
+                                column={column}
+                                row={row}
+                              />
+                            </div>
+                          }
+                        </> :
+                        <div className='mx-2'>
                           <ColumnCellContent
                             rowIndex={rowIndex}
                             column={column}
                             row={row}
                           />
                         </div>
-                      )}
-                    </> :
-                    <div className='m-1'>
-                      <ColumnCellContent
-                        rowIndex={rowIndex}
-                        column={column}
-                        row={row}
-                      />
-                    </div>
-                  }
+                      }
+                    </TableRowCell>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              {columns.map((column, index) => (
+                <TableRowCell key={index}>
+                  {'field' in column && column.type === ColumnType.Number && data.reduce((count, row) => {
+                    const value = row[column.field] as number | undefined;
+                    if (!value) return count;
 
-                </TableRowCell>
-              );
-            })}
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          {columns.map((column, index) => (
-            <TableRowCell key={index}>
-              {'field' in column && (
-                <>
-                  {column.type === ColumnType.Number && value?.reduce((a, row) => {
-                    return a + (row[column.field] as number);
+                    return count + value;
                   }, 0)}
-                </>
-              )}
-            </TableRowCell>
-          ))}
-        </TableRow>
-      </TableFooter>
-    </Table>
+                </TableRowCell>
+              ))}
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </div>
+    </ClickAwayListener>
   );
 };
 

@@ -8,6 +8,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {LoginPage} from './pages/Auth';
 import {RecoilRoot, useRecoilState} from 'recoil';
 import {AUTH_STATE} from './pages/Auth/Login/Login.tsx';
+import {Toaster} from 'react-hot-toast';
 
 const PUBLIC_ROUTES: RouteObject = {
   id: RouteEnum.Home,
@@ -52,6 +53,7 @@ const App = () => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
+        <Toaster/>
         <Router/>
       </QueryClientProvider>
     </RecoilRoot>
