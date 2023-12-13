@@ -4,6 +4,7 @@ import {RouteEnum} from '../../@types/Route.ts';
 
 export const fr: Record<I18Key, string> = {
   ...en,
+  [RouteEnum.Home]: 'Accueil',
   [RouteEnum.PurchaseOrder]: 'Bon de commandes',
   [RouteEnum.PurchaseOrderListing]: 'Liste bon de commandes',
   [RouteEnum.PurchaseOrderCreate]: 'Saisir un BC',
@@ -14,7 +15,6 @@ export const fr: Record<I18Key, string> = {
   SIGN_IN: 'Connectez-vous',
   USERNAME: 'Nom utilisateur',
   PASSWORD: 'Mot de passe',
-  BUDGET: 'Budget',
   CREATED_AT: 'Date création',
   CURRENCY: 'Devise',
   DESIRED_DELIVERY_DATE: 'Réception prévue',

@@ -18,6 +18,11 @@ const ROUTES: RouteObject = {
       path: 'create',
       element: <CreatePage/>,
     },
+    {
+      id: RouteEnum.PurchaseOrderUpdate,
+      path: ':id',
+      element: <CreatePage/>,
+    },
     // {
     //   id: RouteEnum.PurchaseOrderDetail,
     //   path: ':id',

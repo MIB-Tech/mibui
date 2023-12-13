@@ -13,7 +13,7 @@ export const AutocompletePopper = forwardRef<HTMLDivElement, AutocompletePopperP
       ref={ref}
       {...props}
       className={twMerge(
-        'absolute bottom-auto mt-1 overflow-auto bg-white box-border --min-w-[200px] --max-w-[320px] max-h-[300px] z-10 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+        'absolute bottom-auto mt-1 overflow-auto bg-white box-border --min-w-[200px] --max-w-[320px] max-h-[300px] z-20 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
         className
       )}
     />
