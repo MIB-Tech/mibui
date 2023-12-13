@@ -1,18 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Stimulsoft } from 'stimulsoft-reports-js/Scripts/stimulsoft.viewer';
 
-export type ReportViewerProps ={
-  fileName: string;
+type ReportViewerProps = {
+  fileName: string
+  params?: object
 }
 
-const ReportViewer: React.FC<ReportViewerProps> = ({ fileName }) => {
+const ReportViewer: React.FC<ReportViewerProps> = ({ fileName, params }) => {
   const [viewer, setViewer] = useState(new Stimulsoft.Viewer.StiViewer(undefined, 'StiViewer', false));
 
   const report = useMemo(() => {
     const reportInstance = new Stimulsoft.Report.StiReport();
     reportInstance.loadFile(`/${fileName}`);
+    reportInstance.regData('JsonData', 'JsonData', params);
     return reportInstance;
-  }, [fileName]);
+  }, [fileName, params]);
 
   useEffect(() => {
     setViewer((currentViewer) => {

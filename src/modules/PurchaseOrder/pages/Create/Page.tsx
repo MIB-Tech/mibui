@@ -25,7 +25,6 @@ const Page = () => {
     }
   });
 
-
   return (
     <Formik
       initialValues={initialValues}
