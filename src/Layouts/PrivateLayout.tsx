@@ -8,8 +8,6 @@ import SidebarItem from '../Components/Sidebar/Sidebar.Item.tsx';
 import {PRIVATE_ROUTES} from '../pages';
 import {FC, HTMLAttributes} from 'react';
 import {AgnosticRouteObject} from '@remix-run/router/dist/utils';
-import Breadcrumb from './Breadcrumb.tsx';
-import {useActiveRouteContext} from '../hooks/UseActiveRouteContext.tsx';
 import Layout from './Layout.tsx';
 
 const MenuItem: FC<AgnosticRouteObject> = ({id, path = '/', children}) => {
@@ -23,7 +21,7 @@ const MenuItem: FC<AgnosticRouteObject> = ({id, path = '/', children}) => {
         className={twMerge('border-s-2 border-s-transparent hover:border-s-primary-500', isActive && 'border-s-primary-500')}
         label={<Trans i18nKey={id}/>}
       >
-        {children.map(childRoute => (
+        {children.filter(child => !child.path?.includes(':')).map(childRoute => (
           <ChildMenuItem
             {...childRoute}
             key={childRoute.id}
@@ -58,32 +56,26 @@ const ChildMenuItem: FC<AgnosticRouteObject> = ({id, path = '/'}) => {
 };
 export const TextLogo: FC<HTMLAttributes<HTMLDivElement>> = ({className, ...props}) => (
   <div className={twMerge('text-3xl font-semibold tracking-wide', className)} {...props}>
-    MIB<span className='text-primary-500'>UI</span>
+    ACHAT
+    {/*A<span className='text-primary-500'>CH</span>AT*/}
   </div>
 );
 
 function PrivateLayout() {
   const routes = PRIVATE_ROUTES.children;
-  const {title} = useActiveRouteContext();
 
   return (
     <Layout>
       <div className='fixed top-0 left-0 z-10 h-screen bg-gradient-to-b from-white to-gray-50 to-20%'>
         <TextLogo className='mt-7 text-center'/>
         <Sidebar className='overflow-auto h-full'>
-          {routes?.map(MenuItem)}
+          {routes?.filter(route => !route.path?.includes(':')).map(MenuItem)}
         </Sidebar>
       </div>
 
       <div className='sm:ml-64'>
         <TopHeader/>
-        <div className='container mx-auto p-4'>
-          <div className='mb-5'>
-            <h2 className='text-3xl font-bold'>
-              {title}
-            </h2>
-            <Breadcrumb/>
-          </div>
+        <div className='container mx-auto mt-5 px-5'>
           <Outlet/>
         </div>
       </div>

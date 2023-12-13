@@ -60,7 +60,7 @@ export const DesiredProductDataGridExample = () => {
         size='sm'
         bordered
         columns={columns}
-        value={value}
+        data={value}
         onChange={setValue}
       />
     </>

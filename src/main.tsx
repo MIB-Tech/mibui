@@ -30,8 +30,7 @@ export type I18Key = RouteEnum |
   'VENDOR' |
   'IS_TAX_INCLUDED' |
   'DESIRED_DELIVERY_DATE' |
-  'CURRENCY' |
-  'BUDGET'
+  'CURRENCY'
 
 const resources: Resource = {
   [Lang.English]: {

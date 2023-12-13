@@ -16,8 +16,8 @@ import {NumberFormat} from '../../../../Components/DataGrid/Column/Number/Number
 import {InputNumber, RemoteAutocomplete, Select} from '../../../../Forms';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon} from '@heroicons/react/20/solid';
-import {Unit} from '../../../../Components/DataGrid/Column/Column.Cell.Content.tsx';
 import {HydraCollection, HydraItem} from '../../../../modules';
+import {NumberUnit} from '../../../../Components/DataGrid/Column/Number/Number.Unit.tsx';
 
 const initialValues: Array<PurchaseOrderProduct> = [
   PURCHASE_ORDER_PRODUCT_1,
@@ -49,7 +49,7 @@ export const PurchaseOrderProductDataGridExample = () => {
         slots: {
           control: () => (
             <RemoteAutocomplete<HydraCollection<AbstractProduct>, HydraItem<AbstractProduct>, false>
-              endpoint='http://localhost:84/products/base'
+              endpoint='/products/base'
               getOptions={response => response['hydra:member']}
               getOptionLabel={option => option['@title']}
               autoFocus
@@ -72,7 +72,7 @@ export const PurchaseOrderProductDataGridExample = () => {
         type: ColumnType.Object,
         editable: true,
         renderCell: ({discount}) => discount && (
-          <Unit
+          <NumberUnit
             value={discount.value}
             measure={discount.discountType === DiscountType.Amount ? 'MAD' : '%'}
           />
@@ -160,7 +160,7 @@ export const PurchaseOrderProductDataGridExample = () => {
         size='sm'
         bordered
         columns={columns}
-        value={value}
+        data={value}
         onChange={setValue}
       />
       <Modal

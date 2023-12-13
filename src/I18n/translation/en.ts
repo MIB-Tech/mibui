@@ -3,7 +3,6 @@ import {I18Key} from '../../main.tsx';
 
 export const en:Record<I18Key, string> = {
   SAVE: 'Save',
-  BUDGET: 'Budget',
   CREATED_AT: 'Created at',
   CURRENCY: 'Currency',
   DESIRED_DELIVERY_DATE: 'Desired delivery date',
