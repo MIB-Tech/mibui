@@ -2,6 +2,8 @@ import {AbstractModel, CreateTimestampModel, HydraItem} from '../types.ts';
 import {CurrencyModel, HydraCurrencyModel} from '../Currency';
 import {HydraVendorModel, VendorModel} from '../Vendor';
 import {HydraPurchaseOrderProductModel, PurchaseOrderProductModel} from '../PurchaseOrderProduct';
+import {DiscountModel} from '../Discount';
+import {ProductModel} from '../Product';
 
 
 type Model = {
@@ -27,19 +29,19 @@ export type HydraModel = HydraItem<{
 export default Model;
 
 
-// type PurchaseOrderPrint = {
-//   taxType: 'HT' | 'TTC'
-//   currency: Pick<CurrencyModel, 'code'>
-//   vendor: {
-//     phoneNumber: string
-//     address: string
-//     postalCode: number
-//   } & Pick<VendorModel, 'name'>
-//   purchaseOrderProducts: Array<{
-//     discount: Pick<DiscountModel, 'value' | 'discountType'>
-//     product: Pick<ProductModel, 'code'>
-//   } & Pick<PurchaseOrderProductModel, 'designation' | 'quantity' | 'grossPrice' | 'netPrice' | 'vatRate' | 'grossTotalExclTax'>>
-// } & Pick<Model, 'orderNumber' | 'createdAt' | 'ref' | 'externalRef' | 'desiredDeliveryDate' | 'grossTotalExclTax' | 'totalVatTax' | 'totalInclTax'>
+export type PurchaseOrderPrint = {
+  taxType: 'HT' | 'TTC'
+  currency: Pick<CurrencyModel, 'code'>
+  vendor: {
+    phoneNumber: string
+    address: string
+    postalCode: number
+  } & Pick<VendorModel, 'name'>
+  purchaseOrderProducts: Array<{
+    discount: Pick<DiscountModel, 'value' | 'discountType'>
+    product: Pick<ProductModel, 'code'>
+  } & Pick<PurchaseOrderProductModel, 'designation' | 'quantity' | 'grossPrice' | 'netPrice' | 'vatRate' | 'grossTotalExclTax'>>
+} & Pick<Model, 'orderNumber' | 'createdAt' | 'ref' | 'externalRef' | 'desiredDeliveryDate' | 'grossTotalExclTax' | 'totalVatTax' | 'totalInclTax'>
 
 // const EXAMPLE: PurchaseOrderPrint = {
 //   grossTotalExclTax: 0,

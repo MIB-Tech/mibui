@@ -17,6 +17,10 @@ import {BarsArrowUpIcon, PlusIcon, PrinterIcon} from '@heroicons/react/20/solid'
 import {notify} from '../../../../Components/Toast/Toast.utils.tsx';
 import PrintView from '../../components/PrintView/PrintView.tsx';
 import {useBooleanState} from '../../../../hooks/UseBooleanState.tsx';
+import {PurchaseOrderPrint} from '../../../../Components/Reporting/ReportViewer.types.ts';
+import {DiscountType} from '../../../../pages/ApplicationUI/FormLayout/Examples/types.ts';
+import {HydraPurchaseOrderModel} from '../../index.ts';
+import moment from 'moment/moment';
 
 const Page = () => {
   const [printModelOpen, setModalOpen] = useBooleanState();
@@ -175,6 +179,34 @@ const Page = () => {
                 ids={[values.id]}
                 endpoint='/print/purchase-orders'
                 onClose={() => setModalOpen(false)}
+                getItemParams={(item: HydraPurchaseOrderModel) => {
+                  const objectToPrint: PurchaseOrderPrint = {
+                    ...item,
+                    //
+                    createdAt: moment(item.createdAt).format(),
+                    desiredDeliveryDate: moment(item.createdAt).format('L'),
+                    taxType: item.isTaxIncluded ? 'TTC' : 'HT',
+                    //
+                    grossTotalExclTax: 0, //TODO
+                    totalInclTax: 0, //TODO
+                    totalVatTax: 0, //TODO
+                    purchaseOrderProducts: item.purchaseOrderProducts.map(purchaseOrderProduct=>({
+                      ...purchaseOrderProduct,
+                      product: {
+                        code: 'P01',
+                      },
+                      grossTotalExclTax: 0, // todo
+                      grossPrice: 0, // todo
+                      netPrice: 0, // todo
+                      discount: {
+                        discountType: DiscountType.Amount,
+                        value: 0
+                      }
+                    }))
+                  };
+
+                  return objectToPrint;
+                }}
               />
             )}
 

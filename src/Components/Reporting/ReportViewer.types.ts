@@ -9,16 +9,14 @@ export type PurchaseOrderPrint = {
   currency: {
     code: string;
   };
-  desiredDeliveryDate: string;
-  externalRef: string;
-  ref: string;
+  desiredDeliveryDate?: string;
+  externalRef?: string;
+  ref?: string;
   taxType: string;
   vendor: {
     name: string;
-    address: string;
-    cityName: string;
-    postalCode: number;
-    phoneNumber: string;
+    address?: string;
+    postalCode?: string;
   };
   purchaseOrderProducts: Array<{
     product: {
@@ -53,9 +51,7 @@ export const EXAMPLE: PurchaseOrderPrint = {
   vendor: {
     name: 'MERI',
     address: 'Adresse 1',
-    cityName: 'Casa',
-    postalCode: 12345,
-    phoneNumber: '+2126966998855'
+    postalCode: '12345',
   },
   purchaseOrderProducts: [
     {

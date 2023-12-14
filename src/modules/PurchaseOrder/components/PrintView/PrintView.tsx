@@ -1,9 +1,9 @@
 import {Modal, Tab, TabPanel, Tabs, TabsList} from '../../../../Components';
-import {FC, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {PrintModalProps} from './PrintView.types.ts';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
-import {HydraCollection, HydraItem} from '../../../index.ts';
+import {AbstractModel, HydraCollection} from '../../../index.ts';
 import {ReportViewer} from '../../../../Components/Reporting';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {XMarkIcon} from '@heroicons/react/20/solid';
@@ -12,18 +12,18 @@ import {Filter} from '../../../../Components/Filter/Filter.types.ts';
 import {PropertyFilterOperator} from '../../../../Components/Filter/Condition/Condition.types.ts';
 import {ModelCell} from '../ModelCell.tsx';
 
-const PrintView: FC<PrintModalProps> = ({ids, endpoint, className, onClose, ...props}) => {
+const PrintView = <T extends object>({ids, endpoint, className, onClose, getItemParams, ...props}: PrintModalProps<T>) => {
   const [activeId, setActiveId] = useState<number | null>(ids[0]);
   const {data} = useQuery({
     queryKey: [endpoint],
     queryFn: () => {
-      const filter: Filter<HydraItem> = {
+      const filter: Filter<AbstractModel> = {
         property: 'id',
         operator: PropertyFilterOperator.In,
         value: ids
       };
 
-      return axios.get<HydraCollection<HydraItem>>(endpoint, {params: filterToParams({filter, fieldsMapping: {}})});
+      return axios.get<HydraCollection<T>>(endpoint, {params: filterToParams({filter, fieldsMapping: {}})});
     },
     enabled: !!props.open
   });
@@ -66,7 +66,10 @@ const PrintView: FC<PrintModalProps> = ({ids, endpoint, className, onClose, ...p
           </TabsList>
           {collection.map(item => (
             <TabPanel value={item.id} className='w-full'>
-              <ReportViewer fileName='purchase-order-report.mrt' params={item}/>
+              <ReportViewer
+                fileName='purchase-order-report.mrt'
+                params={getItemParams?.(item) || item}
+              />
             </TabPanel>
           ))}
         </Tabs>
