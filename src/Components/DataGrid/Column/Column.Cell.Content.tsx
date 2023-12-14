@@ -44,12 +44,14 @@ const ColumnCellContent = <T extends object>({column, row, rowIndex}: {
       if (column.format) {
         return (
           <NumberUnit
-            value={value || 0}
+            value={column.format === NumberFormat.Percent ? (value || 0) * 100 : (value || 0)}
             measure={column.format === NumberFormat.Percent ? '%' : column.currencyCode}
+            precision={column.precision}
           />
         );
       }
-      break;
+
+      return value
     case ColumnType.Boolean:
       return <Icon icon={value ? PlusIcon : MinusIcon} size={5}/>;
     case ColumnType.Object:

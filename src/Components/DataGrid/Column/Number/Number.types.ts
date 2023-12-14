@@ -16,4 +16,5 @@ export type PercentFormatColumn = {
 
 export type NumberColumn = {
   type: ColumnType.Number
+  precision?: number
 } & (AmountFormatColumn | PercentFormatColumn)

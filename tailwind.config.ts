@@ -30,7 +30,7 @@ const CONFIG:Config = {
         primary: colors.blue,
         secondary: colors.white,
         success: colors.emerald,
-        info: colors.blue,
+        info: colors.sky,
         error: colors.red,
         warning: colors.amber,
       },

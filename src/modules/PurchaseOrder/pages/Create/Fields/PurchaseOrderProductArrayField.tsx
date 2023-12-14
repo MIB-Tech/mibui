@@ -1,4 +1,4 @@
-import {FieldArray, useField} from 'formik';
+import {FieldArray, useFormikContext} from 'formik';
 import DataGrid from '../../../../../Components/DataGrid/DataGrid.tsx';
 import Modal from '../../../../../Components/Modal/Modal.tsx';
 import {Button} from '../../../../../Components';
@@ -6,7 +6,7 @@ import {useMemo, useState} from 'react';
 import {Column, ColumnType} from '../../../../../Components/DataGrid/Column/Column.types.ts';
 import {IconButton} from '../../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon, XMarkIcon} from '@heroicons/react/20/solid';
-import {Input, InputGroup, RemoteAutocomplete, Select} from '../../../../../Forms';
+import {Input, InputGroup, InputGroupAddon, RemoteAutocomplete, Select} from '../../../../../Forms';
 import {HydraCollection, HydraItem} from '../../../../types.ts';
 import {NumberFormat} from '../../../../../Components/DataGrid/Column/Number/Number.types.ts';
 import {StringColumnFormat} from '../../../../../Components/DataGrid/Column/String/String.types.ts';
@@ -17,14 +17,14 @@ import {useAuth} from '../../../../../pages/Auth/Login/Login.tsx';
 import {DesiredProductArrayField} from './DesiredProductArrayField.tsx';
 import {getInitPurchaseOrderProduct} from '../Page.utils.ts';
 import {AutocompleteOption} from '../../../../../Forms/Autocomplete/Autocomplete.Option.tsx';
-import {ModelCell} from '../../Listing/Page.tsx';
-import {DiscountModel} from '../../../../Discount';
+import {Switch} from '../../../../../Components/Switch';
+import {ModelCell} from '../../../components/ModelCell.tsx';
 
 export const PurchaseOrderProductArrayField = () => {
   const {auth} = useAuth();
   const [activeIndex, setActiveIndex] = useState<number>();
-  const [{value}, , {setValue}] = useField<Array<PurchaseOrderProductFormValue>>({name: 'purchaseOrderProducts'});
-  const [{value: currency}] = useField<FormValue['currency']>({name: 'currency'});
+  const {values, setFieldValue} = useFormikContext<FormValue>();
+  const {currency, isTaxIncluded, purchaseOrderProducts} = values;
   const currencyCode = currency?.['@title'] || 'MAD';
   const columns = useMemo<Array<Column<PurchaseOrderProductFormValue>>>(() => {
     const columns: Array<Column<PurchaseOrderProductFormValue>> = [
@@ -106,9 +106,8 @@ export const PurchaseOrderProductArrayField = () => {
       {
         field: 'quantity',
         type: ColumnType.Number,
-        format: NumberFormat.Amount,
         currencyCode,
-        header: 'Qte acheté',
+        header: 'Quantité',
         editable: true
       },
       {
@@ -116,54 +115,57 @@ export const PurchaseOrderProductArrayField = () => {
         header: 'Remise',
         type: ColumnType.Object,
         editable: true,
-        renderCell: ({discount}) => discount && (
-          <NumberUnit
-            value={discount.value}
-            measure={discount.discountType === DiscountType.Amount ? currencyCode : '%'}
-          />
-        ),
+        renderCell: ({discount}) => {
+          const {value = 0, discountType = DiscountType.Percent} = {...discount};
+
+          return (
+            <NumberUnit
+              value={discountType === DiscountType.Amount ? value : value * 100}
+              measure={discountType === DiscountType.Amount ? currencyCode : '%'}
+            />
+          );
+        },
         slots: {
           control: ({rowIndex, setRowValue}) => {
-            const {discount} = value[rowIndex];
+            const row = purchaseOrderProducts[rowIndex];
+            const {value = 0, discountType = DiscountType.Percent} = {...row.discount};
 
             return (
               <InputGroup>
+                <InputGroupAddon className='rounded-none space-x-2 text-sm'>
+                  <div>{currencyCode}</div>
+                  <Switch
+                    checked={discountType === DiscountType.Percent}
+                    onChange={e => {
+                      const rowValue: PurchaseOrderProductFormValue = {
+                        ...row,
+                        discount: {
+                          value: 0,
+                          discountType: e.target.checked ? DiscountType.Percent : DiscountType.Amount
+                        }
+                      };
+                      setRowValue({rowIndex, value: rowValue});
+                    }}
+                  />
+                  <div>%</div>
+                </InputGroupAddon>
                 <Input
                   className='w-20 rounded-none'
                   type='number'
                   autoFocus
-                  placeholder='Valeur'
-                  value={discount?.value}
+                  value={discountType === DiscountType.Amount ? value : value * 100}
                   onChange={e => {
-                    const rowValue: Omit<DiscountModel, 'id'> = {
-                      ...discount,
-                      value: parseFloat(e.target.value),
+                    const value = parseFloat(e.target.value);
+                    const rowValue: PurchaseOrderProductFormValue = {
+                      ...row,
+                      discount: {
+                        discountType,
+                        value: discountType === DiscountType.Amount ? value : value / 100
+                      }
                     };
                     setRowValue({rowIndex, value: rowValue});
                   }}
                 />
-                {[
-                  {discountType: DiscountType.Amount, label: currencyCode},
-                  {discountType: DiscountType.Percent, label: '%'},
-                ].map(({discountType, label})=>(
-                  <Button
-                    key={discountType}
-                    variant='light'
-                    activeVariant='solid'
-                    active={(discount?.discountType || DiscountType.Amount) === discountType}
-                    className='rounded-none'
-                    onClick={()=>{
-                      const rowValue: Omit<DiscountModel, 'id'> = {
-                        ...discount,
-                        value: discount?.value || 0,
-                        discountType,
-                      };
-                      setRowValue({rowIndex, value: rowValue});
-                    }}
-                  >
-                    {label}
-                  </Button>
-                ))}
               </InputGroup>
             );
           }
@@ -171,19 +173,32 @@ export const PurchaseOrderProductArrayField = () => {
       },
       {
         field: 'grossPrice',
-        header: 'Prix brut',
+        header: 'P.U. Brut',
         editable: true,
         type: ColumnType.Number,
         format: NumberFormat.Amount,
         currencyCode,
       },
       {
-        field: 'netPrice',
-        header: 'Prix net',
-        editable: true,
+        header: 'P.U. Net',
         type: ColumnType.Number,
         format: NumberFormat.Amount,
         currencyCode,
+        renderCell: ({grossPrice = 0, vatRate = 0, discount}) => {
+          const amount = isTaxIncluded ?
+            grossPrice / (1 + vatRate) :
+            grossPrice;
+          let discountAmount = discount?.value || 0;
+          if (discount?.discountType === DiscountType.Percent) {
+            discountAmount = amount * discount.value;
+          }
+
+          return (
+            <NumberUnit
+              value={amount - discountAmount}
+            />
+          );
+        },
       },
       {
         field: 'vatRate',
@@ -191,22 +206,19 @@ export const PurchaseOrderProductArrayField = () => {
         editable: true,
         type: ColumnType.Number,
         format: NumberFormat.Percent,
+        precision: 0,
         slots: {
-          control: () => (
-            // <div className='w-64 px-3 pb-5'>
-            //   <Slider
-            //     autoFocus
-            //     tooltipDisplay='none'
-            //     step={null}
-            //     max={20}
-            //     marks={[0, 7, 10, 14, 20].map(value => ({value, label: `${value}%`}))}
-            //   />
-            // </div>
+          control: ({rowIndex, setFieldValue, changeFocus, value}) => (
             <Select
               autoFocus
               openOnFocus
-              options={[0, 7, 10, 14, 20]}
-              getOptionLabel={option => `${option} %`}
+              options={[0, .07, .1, .14, .2]}
+              getOptionLabel={option => `${(option * 100).toFixed(0)} %`}
+              value={value}
+              onChange={(_, discountValue) => {
+                setFieldValue({rowIndex, field: 'vatRate', value: discountValue});
+                changeFocus();
+              }}
             />
           )
         }
@@ -216,14 +228,35 @@ export const PurchaseOrderProductArrayField = () => {
       //   renderCell: ({buyer}) => buyer?.['@title']
       // },
       {
-        header: 'Mnt brut HT',
-        renderCell: ({grossPrice, quantity}) => <NumberUnit value={grossPrice * quantity} measure={currencyCode}/>,
+        header: 'Mnt Net HT',
+        renderCell: ({grossPrice = 0, quantity = 0, vatRate = 0, discount,}) => {
+          const amount = isTaxIncluded ?
+            grossPrice / (1 + vatRate) :
+            grossPrice;
+          let discountAmount = discount?.value || 0;
+          if (discount?.discountType === DiscountType.Percent) {
+            discountAmount = amount * discount.value;
+          }
+
+          return (
+            <NumberUnit
+              value={isTaxIncluded ?
+                (grossPrice * quantity / (1 + vatRate)) / (1 + vatRate) :
+                (amount - discountAmount) * quantity
+              }
+              measure={currencyCode}
+            />
+          )
+        },
       },
       {
-        header: 'Mnt TTC',
+        header: 'Montant TTC',
         renderCell: ({grossPrice, quantity, vatRate}) => (
           <NumberUnit
-            value={(grossPrice * quantity) * (1 + vatRate) / 100}
+            value={isTaxIncluded ?
+              grossPrice * quantity / (1 + vatRate) :
+              grossPrice * quantity * (1 + vatRate)
+            }
             measure={currencyCode}
           />
         ),
@@ -232,7 +265,7 @@ export const PurchaseOrderProductArrayField = () => {
     ];
 
     return columns;
-  }, [value, currencyCode]);
+  }, [purchaseOrderProducts, currencyCode, isTaxIncluded]);
 
   return (
     <>
@@ -242,8 +275,8 @@ export const PurchaseOrderProductArrayField = () => {
         size='sm'
         bordered
         columns={columns}
-        data={value}
-        onChange={setValue}
+        data={purchaseOrderProducts}
+        onChange={value => setFieldValue('purchaseOrderProducts', value)}
         // className='table-fixed'
       />
       {typeof activeIndex === 'number' && (

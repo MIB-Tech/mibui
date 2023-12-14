@@ -12,7 +12,7 @@ export type PurchaseOrderProductFormValue = {
   buyer: Relationship | null
   discount: Pick<DiscountModel, 'discountType' | 'value'> | null
   desiredProducts: Array<DesiredProductFormValue>
-} & Pick<PurchaseOrderProductModel, 'designation' | 'quantity' | 'grossPrice' | 'netPrice' | 'note' | 'vatRate'>
+} & Pick<PurchaseOrderProductModel, 'designation' | 'quantity' | 'grossPrice' | 'note' | 'vatRate'>
 
 export type FormValue = {
   vendor: Relationship | null

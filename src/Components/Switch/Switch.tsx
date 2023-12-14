@@ -21,22 +21,22 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
   const rootSizingClassName = useMemo<string>(() => {
     switch (size) {
       case 'sm':
-        return 'w-10 h-6';
+        return 'w-8 h-5';
       case 'md':
-        return 'w-12 h-7';
+        return 'w-10 h-6';
       case 'lg':
-        return 'w-14 h-8';
+        return 'w-12 h-7';
     }
   }, [size]);
 
   const thumbPositionClassName = useMemo<string>(() => {
     switch (size) {
       case 'sm':
-        return 'left-5';
+        return 'left-4';
       case 'md':
-        return 'left-6';
+        return 'left-5';
       case 'lg':
-        return 'left-7';
+        return 'left-6';
     }
   }, [size]);
 
@@ -52,7 +52,7 @@ const Switch = forwardRef<HTMLSpanElement, SwitchProps>((
           return {
             ...resolvedSlotProps,
             className: twMerge(
-              'relative inline-block m-2.5',
+              'relative inline-block',
               rootSizingClassName,
               ownerState.disabled ? 'opacity-50' : 'cursor-pointer',
               resolvedSlotProps?.className

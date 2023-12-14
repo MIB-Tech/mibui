@@ -9,13 +9,13 @@ type Model = {
   code: string,
   quantity: number
   grossPrice: number
-  netPrice: number
   vatRate: number
   note?: string
   product?: ProductModel
   discount?: DiscountModel
   buyer: UserModel
   desiredProducts: Array<DesiredProductModel>
+  readonly netPrice: number
   readonly grossTotalExclTax: number
   readonly netTotalExclTax: number
   readonly vatTax: number

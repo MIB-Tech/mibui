@@ -5,11 +5,13 @@ import {twMerge} from "tailwind-merge";
 const Checkbox: FC<CheckboxProps> = ({color = 'primary', size, className, ...props}) => {
   const checkboxSize = useMemo<string | undefined>(() => {
     switch (size) {
+      case 'sm':
+        return 'w-3 h-3';
       case undefined:
       case 'md':
-        return 'w-5 h-5';
+        return 'w-4 h-4';
       case 'lg':
-        return 'w-6 h-6';
+        return 'w-5 h-5';
     }
   }, [size]);
 

@@ -7,7 +7,7 @@ import {Button, Icon} from '../index.ts';
 export type IconButtonProps = {
   iconElement: IconElement,
 } & Omit<ButtonProps, 'square'>
-export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement, ...props}) => {
+export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement, children, ...props}) => {
 
   const iconSize = useMemo<SpacingType>(() => {
     switch (size) {
@@ -31,6 +31,7 @@ export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement,
         icon={IconElement}
         size={iconSize}
       />
+      {children}
     </Button>
   );
 };
