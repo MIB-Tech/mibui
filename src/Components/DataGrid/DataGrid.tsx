@@ -162,12 +162,7 @@ const DataGrid = <T extends object>({columns, data = [], onChange, ...props}: Da
             <TableRow>
               {columns.map((column, index) => (
                 <TableRowCell key={index}>
-                  {'field' in column && column.type === ColumnType.Number && data.reduce((count, row) => {
-                    const value = row[column.field] as number | undefined;
-                    if (!value) return count;
-
-                    return count + value;
-                  }, 0)}
+                  {column.renderFooterCell?.()}
                 </TableRowCell>
               ))}
             </TableRow>

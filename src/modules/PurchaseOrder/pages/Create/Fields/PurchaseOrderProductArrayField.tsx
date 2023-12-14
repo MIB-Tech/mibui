@@ -20,6 +20,12 @@ import {AutocompleteOption} from '../../../../../Forms/Autocomplete/Autocomplete
 import {Switch} from '../../../../../Components/Switch';
 import {ModelCell} from '../../../components/ModelCell.tsx';
 
+const getUnitNetAmount = ({isTaxIncluded = false, vatRate = 0, grossPrice = 0}: Pick<PurchaseOrderProductFormValue, 'vatRate' | 'grossPrice'> & Pick<FormValue, 'isTaxIncluded'>) => {
+  return isTaxIncluded ?
+    grossPrice / (1 + vatRate) :
+    grossPrice
+}
+
 export const PurchaseOrderProductArrayField = () => {
   const {auth} = useAuth();
   const [activeIndex, setActiveIndex] = useState<number>();
@@ -108,7 +114,16 @@ export const PurchaseOrderProductArrayField = () => {
         type: ColumnType.Number,
         currencyCode,
         header: 'Quantité',
-        editable: true
+        editable: true,
+        renderFooterCell: () => (
+          <NumberUnit
+            measure=''
+            value={purchaseOrderProducts.reduce((count, purchaseOrderProduct) => {
+
+              return count + purchaseOrderProduct.quantity;
+            }, 0)}
+          />
+        )
       },
       {
         field: 'discount',
@@ -184,15 +199,13 @@ export const PurchaseOrderProductArrayField = () => {
         type: ColumnType.Number,
         format: NumberFormat.Amount,
         currencyCode,
-        renderCell: ({grossPrice = 0, vatRate = 0, discount}) => {
-          const amount = isTaxIncluded ?
-            grossPrice / (1 + vatRate) :
-            grossPrice;
+        renderCell: item => {
+          const {discount} = item
+          const amount = getUnitNetAmount({...item, isTaxIncluded})
           let discountAmount = discount?.value || 0;
           if (discount?.discountType === DiscountType.Percent) {
             discountAmount = amount * discount.value;
           }
-
           return (
             <NumberUnit
               value={amount - discountAmount}
@@ -229,37 +242,59 @@ export const PurchaseOrderProductArrayField = () => {
       // },
       {
         header: 'Mnt Net HT',
-        renderCell: ({grossPrice = 0, quantity = 0, vatRate = 0, discount,}) => {
-          const amount = isTaxIncluded ?
-            grossPrice / (1 + vatRate) :
-            grossPrice;
+        renderCell: item => {
+          const {discount, quantity = 0,} = item
+          const amount = getUnitNetAmount({...item, isTaxIncluded})
           let discountAmount = discount?.value || 0;
           if (discount?.discountType === DiscountType.Percent) {
             discountAmount = amount * discount.value;
           }
-
           return (
             <NumberUnit
               value={isTaxIncluded ?
-                (grossPrice * quantity / (1 + vatRate)) / (1 + vatRate) :
+                //(grossPrice * quantity / (1 + vatRate)) / (1 + vatRate)
+                (amount - discountAmount) * quantity :
+                //  grossPrice / (1 + vatRate)*quantity : //add
                 (amount - discountAmount) * quantity
               }
               measure={currencyCode}
             />
           )
         },
+        renderFooterCell: () => (
+
+          <NumberUnit
+            measure=''
+            value={purchaseOrderProducts.reduce((count, purchaseOrderProduct) => {
+
+              return count + purchaseOrderProduct.grossPrice;
+            }, 0)}
+          />
+        )
       },
       {
         header: 'Montant TTC',
-        renderCell: ({grossPrice, quantity, vatRate}) => (
-          <NumberUnit
-            value={isTaxIncluded ?
-              grossPrice * quantity / (1 + vatRate) :
-              grossPrice * quantity * (1 + vatRate)
-            }
-            measure={currencyCode}
-          />
-        ),
+        renderCell: item => {
+          const {discount, quantity = 0, grossPrice, vatRate} = item
+          const amount = getUnitNetAmount({...item, isTaxIncluded})
+          let discountAmount = discount?.value || 0;
+          if (discount?.discountType === DiscountType.Percent) {
+            discountAmount = amount * discount.value;
+          }
+          let totalInclTax = isTaxIncluded ?
+            grossPrice * quantity : /// (1 + vatRate)
+            (amount - discountAmount) * quantity + ((amount - discountAmount) * (quantity * vatRate))
+
+          //grossPrice * quantity * (1 + vatRate)
+          //  (amount - discountAmount) * quantity+((amount - discountAmount) * (quantity*vatRate))
+
+          return (
+            <NumberUnit
+              value={vatRate ? totalInclTax : 0}
+              measure={currencyCode}
+            />
+          )
+        },
       },
       {field: 'note', header: 'Commentaire', editable: true, format: StringColumnFormat.Text},
     ];
