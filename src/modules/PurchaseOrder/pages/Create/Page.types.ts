@@ -14,9 +14,11 @@ export type PurchaseOrderProductFormValue = {
   desiredProducts: Array<DesiredProductFormValue>
 } & Pick<PurchaseOrderProductModel, 'designation' | 'quantity' | 'grossPrice' | 'note' | 'vatRate'>
 
+
 export type FormValue = {
   vendor: Relationship | null
   currency: Relationship | null
   purchaseOrderProducts: Array<PurchaseOrderProductFormValue>
-} & Pick<Model, 'createdAt' | 'isTaxIncluded' | 'ref' | 'externalRef' | 'desiredDeliveryDate'>
+} & Pick<Model, 'orderNumber' | 'createdAt' | 'isTaxIncluded' | 'ref' | 'externalRef' | 'desiredDeliveryDate'>
+& Partial<Pick<Model, 'id' | 'orderNumber'>>
 

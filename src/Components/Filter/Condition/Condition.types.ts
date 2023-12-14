@@ -38,6 +38,7 @@ export type PropertyFilter<T extends {}> = {
 export enum FieldType {
   String = 'STRING',
   Number = 'NUMBER',
+  Boolean = 'BOOLEAN',
   Array = 'ARRAY',
 }
 export type FieldMapping<Type extends FieldType> = {

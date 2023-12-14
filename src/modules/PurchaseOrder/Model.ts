@@ -9,7 +9,7 @@ type Model = {
   isTaxIncluded: boolean
   ref?: string
   externalRef?: string
-  desiredDeliveryDate: string
+  desiredDeliveryDate?: string | null
   currency: CurrencyModel
   vendor: VendorModel
   purchaseOrderProducts: Array<PurchaseOrderProductModel>

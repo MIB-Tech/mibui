@@ -10,6 +10,8 @@ const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, childr
         return 'max-w-sm';
       case 'lg':
         return 'max-w-5xl';
+      case 'fullscreen':
+        return 'w-full min-h-full';
       default:
         return 'max-w-md';
     }
@@ -23,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, childr
     <MuiModal
       open={open}
       onClose={() => onClose?.()}
-      className='fixed inset-0 z-10 overflow-y-auto'
+      className='fixed inset-0 z-20 overflow-y-auto'
     >
       <div className='flex items-center justify-center min-h-screen'>
         <div className='fixed inset-0 bg-black bg-opacity-25'/>

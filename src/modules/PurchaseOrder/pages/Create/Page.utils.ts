@@ -4,8 +4,9 @@ import moment from 'moment';
 import {DiscountType} from '../../../Discount/Model.ts';
 
 export const initialValues: FormValue = {
+  orderNumber: '',
   createdAt: moment().format(),
-  desiredDeliveryDate: '',
+  desiredDeliveryDate: null,
   currency: null,
   ref: '',
   externalRef: '',
@@ -20,13 +21,13 @@ const relation = () => object().shape({
 
 export const validationSchema/*: ObjectSchema<FormValue>*/ = object().shape({
   createdAt: string().required(),
-  desiredDeliveryDate: string().required(),
+  desiredDeliveryDate: string().nullable(),
   currency: relation(),
-  ref: string().optional(),
-  externalRef: string().optional(),
+  ref: string().nullable(),
+  externalRef: string().nullable(),
   isTaxIncluded: boolean().required(),
   vendor: relation().required(),
-  purchaseOrderProducts: array().required(),
+  purchaseOrderProducts: array().min(1).required(),
 });
 export const getInitPurchaseOrderProduct: (init?: Partial<PurchaseOrderProductFormValue>) => PurchaseOrderProductFormValue = (initialState) => {
   const designation = initialState?.product?.['@title'] || '';

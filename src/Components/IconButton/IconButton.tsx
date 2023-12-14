@@ -11,7 +11,7 @@ export type IconButtonProps = {
 
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((
-  {size, iconElement: IconElement, color = 'secondary', ...props},
+  {size, iconElement: IconElement, color = 'primary', children, ...props},
   ref
 ) => {
 
@@ -39,6 +39,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((
         icon={IconElement}
         size={iconSize}
       />
+      {children}
     </Button>
   );
 })

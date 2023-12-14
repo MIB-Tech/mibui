@@ -3,13 +3,14 @@ import {ExclamationTriangleIcon} from '@heroicons/react/20/solid';
 import {AdornmentIconButton} from '../InputGroup/AdornmentIconButton.tsx';
 import {Tooltip} from '../../Components';
 import {InputProps} from './Input.types.ts';
+import {ErrorFeedback} from '../FormGroup';
 
 const InputErrorAdornment: FC<Pick<InputProps, 'errorMessage'>> = ({errorMessage}) => errorMessage && (
   <Tooltip
     open
-    content={errorMessage}
+    content={<ErrorFeedback>{errorMessage}</ErrorFeedback>}
     placement='bottom-end'
-    className='text-error-500 py-0.5'
+    className='py-0.5'
   >
     <div>
       <AdornmentIconButton

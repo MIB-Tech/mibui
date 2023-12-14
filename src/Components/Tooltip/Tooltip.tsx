@@ -14,7 +14,7 @@ const Tooltip: FC<TooltipProps> = (
   <Popup
     trigger={trigger}
     {...props}
-    className={twMerge('px-3 py-2 text-sm', className)}
+    className={twMerge('px-1.5 py-1 text-sm', className)}
   >
     {children}
   </Popup>

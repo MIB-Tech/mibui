@@ -8,7 +8,7 @@ import {useQuery} from '@tanstack/react-query';
 import {HydraCollection} from '../../../types.ts';
 import {Badge, Button, Icon, Tooltip} from '../../../../Components';
 import {Checkbox, Input} from '../../../../Forms';
-import {DocumentTextIcon, MagnifyingGlassIcon, PrinterIcon, TrashIcon} from '@heroicons/react/20/solid';
+import {MagnifyingGlassIcon, PrinterIcon} from '@heroicons/react/20/solid';
 import {stringToI18nKey} from '../../../utils.ts';
 import {Trans} from 'react-i18next';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
@@ -17,8 +17,11 @@ import {twMerge} from 'tailwind-merge';
 import {RouteEnum} from '../../../../@types/Route.ts';
 import {Link} from 'react-router-dom';
 import PrintView from '../../components/PrintView/PrintView.tsx';
+import {ActionCell} from './ActionCell.tsx';
+import {useBooleanState} from '../../../../hooks/UseBooleanState.tsx';
 
 const Page = () => {
+  const [printModelOpen, setModalOpen] = useBooleanState();
   const query = useQuery({
     queryKey: ['TODO'],
     queryFn: () => axios.get<HydraCollection<HydraModel>>('/purchase-orders')
@@ -33,7 +36,7 @@ const Page = () => {
 
   const columns = useMemo<Array<Column<HydraModel>>>(() => {
     const collectionIds = collection.map(item => item.id);
-    const allSelected = collection.every(item => selectedIds.includes(item.id));
+    const allSelected = collectionIds.length > 0 && collection.every(item => selectedIds.includes(item.id));
 
     const columns: Array<Column<HydraModel>> = [
       {
@@ -69,46 +72,7 @@ const Page = () => {
       {field: 'externalRef'},
       {field: 'createdAt', format: StringColumnFormat.Datetime},
       {
-        renderCell: () => (
-          <div className='flex space-x-2 justify-end'>
-            <Tooltip content='Génerer bon de réception' placement='left'>
-              <div>
-                <IconButton
-                  iconElement={DocumentTextIcon}
-                  variant='clean'
-                  color='primary'
-                  size='sm'
-                  onClick={() => {
-                  }}
-                />
-              </div>
-            </Tooltip>
-            <Tooltip content='Imprimer' placement='left'>
-              <div>
-                <IconButton
-                  iconElement={PrinterIcon}
-                  variant='clean'
-                  color='primary'
-                  size='sm'
-                  onClick={() => {
-                  }}
-                />
-                <PrintView
-                  endpoint='/print/purchase-orders'
-                  ids={selectedIds}
-                />
-              </div>
-            </Tooltip>
-            <IconButton
-              iconElement={TrashIcon}
-              variant='clean'
-              color='error'
-              size='sm'
-              onClick={() => {
-              }}
-            />
-          </div>
-        )
+        renderCell: item => <ActionCell item={item}/>
       },
     ];
 
@@ -137,8 +101,7 @@ const Page = () => {
                 iconElement={PrinterIcon}
                 color='primary'
                 disabled={selectedIds.length === 0}
-                onClick={() => {
-                }}
+                onClick={() => setModalOpen(true)}
               >
                 {selectedIds.length > 0 && (
                   <Badge
@@ -174,6 +137,12 @@ const Page = () => {
       {/*    setPage={page => setPagination({...pagination, page})}*/}
       {/*  />*/}
       {/*</div>*/}
+      <PrintView
+        open={printModelOpen}
+        ids={selectedIds}
+        endpoint='/print/purchase-orders'
+        onClose={() => setModalOpen(false)}
+      />
     </div>
   );
 };

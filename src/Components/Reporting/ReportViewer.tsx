@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Stimulsoft } from 'stimulsoft-reports-js/Scripts/stimulsoft.viewer';
+import React, {useEffect, useId, useMemo, useState} from 'react';
+import {Stimulsoft} from 'stimulsoft-reports-js/Scripts/stimulsoft.viewer';
 
 type ReportViewerProps = {
   fileName: string
   params?: object
 }
 
-const ReportViewer: React.FC<ReportViewerProps> = ({ fileName, params }) => {
+const ReportViewer: React.FC<ReportViewerProps> = ({fileName, params}) => {
+  const id = useId();
   const [viewer, setViewer] = useState(new Stimulsoft.Viewer.StiViewer(undefined, 'StiViewer', false));
 
   const report = useMemo(() => {
@@ -22,10 +23,12 @@ const ReportViewer: React.FC<ReportViewerProps> = ({ fileName, params }) => {
       return currentViewer;
     });
 
-    viewer.renderHtml('viewer-container');
-  }, [report, viewer]);
+    viewer.renderHtml(id);
+  }, [report, viewer, id]);
 
-  return <div id="viewer-container" />;
+  return (
+    <div id={id}/>
+  );
 };
 
 export default ReportViewer;

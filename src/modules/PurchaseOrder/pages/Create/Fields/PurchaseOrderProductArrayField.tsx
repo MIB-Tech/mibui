@@ -64,14 +64,14 @@ export const PurchaseOrderProductArrayField = () => {
         header: 'Produit',
         editable: true,
         renderCell: ({product}) => (
-          <div className='!w-52 truncate'>
+          <div className='truncate'>
             {product?.['@subTitle'] || product?.['@title']}
           </div>
         ),
         slots: {
           control: ({setRowValue, changeFocus, rowIndex, value: product}) => (
             <RemoteAutocomplete<HydraCollection, HydraItem, false>
-              className='w-10'
+              className='w-72'
               endpoint='/products/base'
               getOptions={response => response['hydra:member']}
               getOptionLabel={option => option['@subTitle'] + ' - ' + option['@title']}
