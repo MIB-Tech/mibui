@@ -16,6 +16,7 @@ import {ModelCell} from '../../components/ModelCell.tsx';
 import {twMerge} from 'tailwind-merge';
 import {RouteEnum} from '../../../../@types/Route.ts';
 import {Link} from 'react-router-dom';
+import PrintView from '../../components/PrintView/PrintView.tsx';
 
 const Page = () => {
   const query = useQuery({
@@ -91,6 +92,10 @@ const Page = () => {
                   size='sm'
                   onClick={() => {
                   }}
+                />
+                <PrintView
+                  endpoint='/print/purchase-orders'
+                  ids={selectedIds}
                 />
               </div>
             </Tooltip>

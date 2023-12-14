@@ -9,7 +9,8 @@ import {HydraCollection} from '../../../index.ts';
 const PrintView: FC<PrintModalProps> = ({ids, endpoint, ...props}) => {
   const query = useQuery({
     queryKey: [endpoint],
-    queryFn: () => axios.get<HydraCollection<HydraModel>>(endpoint)
+    queryFn: () => axios.get<HydraCollection<HydraModel>>(endpoint),
+    enabled: props.open
   });
   const collection = query.data?.data['hydra:member'] || [];
 
