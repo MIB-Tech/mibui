@@ -3,7 +3,7 @@ import {ModalProps} from './Modal.types';
 import {twMerge} from 'tailwind-merge';
 import {Modal as MuiModal} from '@mui/base';
 
-const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, children}) => {
+const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, children, className, ...props}) => {
   const sizeClassName = useMemo<string>(() => {
     switch (size) {
       case 'sm':
@@ -30,9 +30,11 @@ const Modal: React.FC<ModalProps> = ({title, open = false, onClose, size, childr
         <div className='fixed inset-0 overflow-y-auto'>
           <div className='flex min-h-full items-center justify-center p-5 text-center'>
             <div
+              {...props}
               className={twMerge(
                 `rounded pt-5 transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl`,
-                sizeClassName
+                sizeClassName,
+                className,
               )}
             >
               {title && (

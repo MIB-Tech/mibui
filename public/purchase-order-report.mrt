@@ -684,6 +684,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.product}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell1>
             <Table2_Cell2 Ref="41" type="TableCell" isKey="true">
@@ -702,6 +703,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts_product.root_purchaseOrderProducts.designation}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
             </Table2_Cell2>
             <Table2_Cell3 Ref="42" type="TableCell" isKey="true">
@@ -720,6 +722,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.quantity}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
             </Table2_Cell3>
             <Table2_Cell4 Ref="43" type="TableCell" isKey="true">
@@ -738,6 +741,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.grossTotalExclTax}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
             </Table2_Cell4>
             <Table2_Cell5 Ref="44" type="TableCell" isKey="true">
@@ -756,6 +760,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.grossPrice}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell5>
             <Table2_Cell6 Ref="45" type="TableCell" isKey="true">
@@ -774,6 +779,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.discount}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell6>
             <Table2_Cell7 Ref="46" type="TableCell" isKey="true">
@@ -792,6 +798,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.netPrice}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell7>
             <Table2_Cell8 Ref="47" type="TableCell" isKey="true">
@@ -810,6 +817,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{root_purchaseOrderProducts.grossTotalExclTax}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell8>
             <Table2_Cell9 Ref="48" type="TableCell" isKey="true">
@@ -836,6 +844,7 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
                 <PositivePattern>0</PositivePattern>
                 <Symbol>%</Symbol>
               </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
             </Table2_Cell9>
           </Components>
@@ -982,10 +991,10 @@ QRAEQRAEQZD2CML/AJME6s9pcFyvAAAAAElFTkSuQmCC</ImageBytes>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
   <ReportAuthor>Mohamed Sarih</ReportAuthor>
-  <ReportChanged>12/13/2023 11:17:41 AM</ReportChanged>
+  <ReportChanged>12/13/2023 12:04:44 PM</ReportChanged>
   <ReportCreated>12/11/2023 5:46:07 PM</ReportCreated>
   <ReportFile>C:\Users\User.DESKTOP-PLQ0ALO\Desktop\Stimulsoft_Template\Report_V2.mrt</ReportFile>
-  <ReportGuid>d5721e8f1d7b4607998094c111e991ed</ReportGuid>
+  <ReportGuid>8e08b0c0fa4f49949e111e2f21512f4f</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2023.4.4.0</ReportVersion>
