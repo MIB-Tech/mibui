@@ -20,6 +20,7 @@ export type MappedColumn<T extends object> = {
   header?: ReactNode;
   editable?: boolean;
   renderCell?: (row: T, index: number) => ReactNode
+  renderFooterCell?: () => ReactNode
   getValue?: (row: T, index: number) => any
   slots?: {
     control?: (props: {
