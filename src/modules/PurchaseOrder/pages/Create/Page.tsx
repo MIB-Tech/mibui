@@ -1,5 +1,5 @@
 import {Button, Modal} from '../../../../Components';
-import {FormGroup, Input, Label} from '../../../../Forms';
+import {FormGroup, Input, Label, Option} from '../../../../Forms';
 import {useMutation, useQuery} from '@tanstack/react-query';
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {useNavigate, useParams} from 'react-router-dom';
@@ -15,8 +15,8 @@ import {useAuth} from '../../../../pages/Auth/Login/Login.tsx';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {BarsArrowUpIcon, PlusIcon} from '@heroicons/react/20/solid';
 import {notify} from '../../../../Components/Toast/Toast.utils.tsx';
-import {useState} from "react";
-import {ReportViewer} from "../../../../Components/Reporting";
+import {useState} from 'react';
+import {ReportViewer} from '../../../../Components/Reporting';
 
 const Page = () => {
   const [open, setOpen] = useState<boolean>();
@@ -92,11 +92,10 @@ const Page = () => {
                 getOptionLabel={option => option['@title']}
               />
               <DatePickerFieldGroup name='createdAt' includeTime/>
-              <SelectFieldGroup
-                name='isTaxIncluded'
-                options={[true, false]}
-                getOptionLabel={option => option ? 'TTC' : 'HT'}
-              />
+              <SelectFieldGroup name='isTaxIncluded'>
+                <Option value={true}>TTC</Option>
+                <Option value={false}>HT</Option>
+              </SelectFieldGroup>
               <InputFieldGroup name='ref'/>
               <InputFieldGroup name='externalRef'/>
               <DatePickerFieldGroup name='desiredDeliveryDate'/>

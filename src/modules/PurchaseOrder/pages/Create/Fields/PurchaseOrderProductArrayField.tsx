@@ -6,7 +6,7 @@ import {useMemo, useState} from 'react';
 import {Column, ColumnType} from '../../../../../Components/DataGrid/Column/Column.types.ts';
 import {IconButton} from '../../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon, XMarkIcon} from '@heroicons/react/20/solid';
-import {Input, InputGroup, InputGroupAddon, RemoteAutocomplete, Select} from '../../../../../Forms';
+import {Input, InputGroup, InputGroupAddon, Option, RemoteAutocomplete, Select} from '../../../../../Forms';
 import {HydraCollection, HydraItem} from '../../../../types.ts';
 import {NumberFormat} from '../../../../../Components/DataGrid/Column/Number/Number.types.ts';
 import {StringColumnFormat} from '../../../../../Components/DataGrid/Column/String/String.types.ts';
@@ -211,15 +211,19 @@ export const PurchaseOrderProductArrayField = () => {
           control: ({rowIndex, setFieldValue, changeFocus, value}) => (
             <Select
               autoFocus
-              openOnFocus
-              options={[0, .07, .1, .14, .2]}
-              getOptionLabel={option => `${(option * 100).toFixed(0)} %`}
+              // openOnFocus
               value={value}
               onChange={(_, discountValue) => {
                 setFieldValue({rowIndex, field: 'vatRate', value: discountValue});
                 changeFocus();
               }}
-            />
+            >
+              {[0, .07, .1, .14, .2].map(varRate=>(
+                <Option value={varRate}>
+                  {(varRate * 100).toFixed(0)} %
+                </Option>
+              ))}
+            </Select>
           )
         }
       },

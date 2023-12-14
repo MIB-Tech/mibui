@@ -1,4 +1,4 @@
-import {MenuButtonProps} from '@mui/base';
+import {MenuButtonProps, MenuItemProps as MuiMenuItemProps, DropdownProps as MuiDropdownProps} from '@mui/base';
 import {ButtonProps} from '../Button/Button.types.tsx';
 
 export enum DropdownDirection {
@@ -11,5 +11,8 @@ export enum DropdownDirection {
 export type DropdownToggleProps = {
   withToggleIcon?: boolean
 } & MenuButtonProps
+
+export type MenuItemProps = MuiMenuItemProps & ButtonProps
+export type DropdownProps = MuiDropdownProps
 
 export type MenuToggleButtonProps = DropdownToggleProps & ButtonProps

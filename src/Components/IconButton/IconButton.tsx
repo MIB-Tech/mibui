@@ -1,13 +1,19 @@
 import {IconElement} from '../../Forms/InputGroup/InputGroup.types.ts';
 import {ButtonProps} from '../Button/Button.types.tsx';
-import {FC, useMemo} from 'react';
+import {forwardRef, useMemo} from 'react';
 import {SpacingType} from '../../@types/Spacing.ts';
 import {Button, Icon} from '../index.ts';
+import {prepareForSlot} from '@mui/base';
 
 export type IconButtonProps = {
   iconElement: IconElement,
 } & Omit<ButtonProps, 'square'>
-export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement, children, ...props}) => {
+
+
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((
+  {size, iconElement: IconElement, color = 'secondary', ...props},
+  ref
+) => {
 
   const iconSize = useMemo<SpacingType>(() => {
     switch (size) {
@@ -22,7 +28,9 @@ export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement,
 
   return (
     <Button
+      ref={ref}
       variant='light'
+      color={color}
       square
       size={size}
       {...props}
@@ -31,7 +39,8 @@ export const IconButton: FC<IconButtonProps> = ({size, iconElement: IconElement,
         icon={IconElement}
         size={iconSize}
       />
-      {children}
     </Button>
   );
-};
+})
+
+export const IconButtonSlot = prepareForSlot(IconButton);

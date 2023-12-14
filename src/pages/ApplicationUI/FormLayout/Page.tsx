@@ -1,4 +1,4 @@
-import {Autocomplete, FormGroup, Input, Label, Select} from '../../../Forms';
+import {Autocomplete, FormGroup, Input, Label} from '../../../Forms';
 import {twMerge} from 'tailwind-merge';
 import {DatePickerExample} from '../../Forms/DatePicker/DatePage.tsx';
 import {Button, ButtonGroup, Card} from '../../../Components';
@@ -65,14 +65,14 @@ const Page = () => (
 				</FormGroup>
 				<FormGroup>
 					<Label>Devise</Label>
-					<Select
-						defaultValue={{id: 1, code: 'MAD'}}
-						options={[
-							{id: 1, code: 'MAD'},
-							{id: 2, code: 'EUR'},
-						]}
-						getOptionLabel={option => option.code}
-					/>
+					{/*<Select*/}
+					{/*	defaultValue={{id: 1, code: 'MAD'}}*/}
+					{/*	options={[*/}
+					{/*		{id: 1, code: 'MAD'},*/}
+					{/*		{id: 2, code: 'EUR'},*/}
+					{/*	]}*/}
+					{/*	getOptionLabel={option => option.code}*/}
+					{/*/>*/}
 				</FormGroup>
 			</div>
     </Card>

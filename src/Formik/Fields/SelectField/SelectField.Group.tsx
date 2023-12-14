@@ -2,7 +2,7 @@ import {SelectFieldGroupProps} from './SelectField.types.ts';
 import {SelectField} from './index.ts';
 import {Field} from '../index.ts';
 
-const SelectFieldGroup = <Value, Multiple extends boolean | undefined>(
+const SelectFieldGroup = <Value  extends {}, Multiple extends boolean> (
   {name, slotProps, ...props}: SelectFieldGroupProps<Value, Multiple>
 ) => {
 

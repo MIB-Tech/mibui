@@ -13,7 +13,7 @@ import {
 import {Column, ColumnType} from '../../../../Components/DataGrid/Column/Column.types.ts';
 import {StringColumnFormat} from '../../../../Components/DataGrid/Column/String/String.types.ts';
 import {NumberFormat} from '../../../../Components/DataGrid/Column/Number/Number.types.ts';
-import {InputNumber, RemoteAutocomplete, Select} from '../../../../Forms';
+import {InputNumber, Option, RemoteAutocomplete, Select} from '../../../../Forms';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {ListBulletIcon} from '@heroicons/react/20/solid';
 import {HydraCollection, HydraItem} from '../../../../modules';
@@ -81,10 +81,10 @@ export const PurchaseOrderProductDataGridExample = () => {
           control: () => (
             <div className='grid gap-3'>
               <InputNumber autoFocus placeholder='Valeur'/>
-              <Select
-                options={Object.values(DiscountType)}
-                getOptionLabel={option => option === DiscountType.Amount ? 'MAD' : '%'}
-              />
+              <Select>
+                <Option value={DiscountType.Amount}>MAD</Option>
+                <Option value={DiscountType.Percent}>%</Option>
+              </Select>
             </div>
           )
         }
@@ -122,9 +122,9 @@ export const PurchaseOrderProductDataGridExample = () => {
             // </div>
             <Select
               autoFocus
-              openOnFocus
-              options={[0, 7, 10, 14, 20]}
-              getOptionLabel={option => `${option} %`}
+              // openOnFocus
+              // options={[0, 7, 10, 14, 20]}
+              // getOptionLabel={option => `${option} %`}
             />
           )
         }

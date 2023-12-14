@@ -6,6 +6,7 @@ export * from './Button';
 export * from './ButtonGroup';
 export * from './Card';
 export * from './List';
+export * from './Filter';
 export * from './Menu';
 export * from './Modal';
 export * from './Pagination';

@@ -2,7 +2,7 @@ import {SelectFieldProps} from './SelectField.types.ts';
 import {Select} from '../../../Forms';
 import {useField} from 'formik';
 
-const SelectField = <Value, Multiple extends boolean | undefined = false>(
+const SelectField = <Value  extends {}, Multiple extends boolean>(
   {name, ...props}: SelectFieldProps<Value, Multiple>
 ) => {
   const [field, {error, touched}, {setValue}] = useField({name});
