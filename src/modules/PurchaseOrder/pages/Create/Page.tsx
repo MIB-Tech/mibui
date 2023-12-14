@@ -1,4 +1,4 @@
-import {Button} from '../../../../Components';
+import {Button, Modal} from '../../../../Components';
 import {FormGroup, Input, Label} from '../../../../Forms';
 import {useMutation, useQuery} from '@tanstack/react-query';
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
@@ -15,8 +15,17 @@ import {useAuth} from '../../../../pages/Auth/Login/Login.tsx';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
 import {BarsArrowUpIcon, PlusIcon} from '@heroicons/react/20/solid';
 import {notify} from '../../../../Components/Toast/Toast.utils.tsx';
+import {useState} from "react";
+import {ReportViewer} from "../../../../Components/Reporting";
 
 const Page = () => {
+  const [open, setOpen] = useState<boolean>();
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+
   const {id} = useParams<'id'>();
   const navigate = useNavigate();
   const {auth} = useAuth();
@@ -67,8 +76,8 @@ const Page = () => {
       enableReinitialize
       onSubmit={mutate}
     >
-      {({handleSubmit}: FormikProps<FormValue>) => {
-
+      {({handleSubmit, values}: FormikProps<FormValue>) => {
+        console.log(values)
         return (
           <div className='flex flex-col space-y-5'>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-3 gap-y-2'>
@@ -137,6 +146,21 @@ const Page = () => {
                   <Button disabled>
                     Génerer bon de réception
                   </Button>
+                  <div>
+                    <Button onClick={() => setOpen(true)}>
+                      <Trans i18nKey='PRINT'/>
+                    </Button>
+                    <Modal
+                      open={open}
+                      onClose={onClose}
+                      className='max-w-full'
+                    >
+                      <ReportViewer fileName='purchase-order-report.mrt' params={values}/>
+                      <div className="flex justify-end gap-2 mt-4">
+                        <Button onClick={onClose}>Close</Button>
+                      </div>
+                    </Modal>
+                  </div>
                 </div>
               </div>
               <PurchaseOrderProductArrayField/>
