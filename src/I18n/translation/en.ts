@@ -2,6 +2,7 @@ import {RouteEnum} from '../../@types/Route.ts';
 import {I18Key} from '../../main.tsx';
 
 export const en:Record<I18Key, string> = {
+  REPORTING: "Report Viewer",
   SAVE: 'Save',
   CREATED_AT: 'Created at',
   CURRENCY: 'Currency',

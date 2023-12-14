@@ -1,0 +1,1 @@
+export {default as ReportingPage} from './Page.tsx';
