@@ -13,7 +13,7 @@ import {DatePickerFieldGroup} from '../../../../Components/DatePickerField';
 import {PurchaseOrderProductArrayField} from './Fields/PurchaseOrderProductArrayField.tsx';
 import {useAuth} from '../../../../pages/Auth/Login/Login.tsx';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
-import {BarsArrowUpIcon, PlusIcon, PrinterIcon} from '@heroicons/react/20/solid';
+import {PlusIcon, PrinterIcon} from '@heroicons/react/20/solid';
 import {notify} from '../../../../Components/Toast/Toast.utils.tsx';
 import PrintView from '../../components/PrintView/PrintView.tsx';
 import {useBooleanState} from '../../../../hooks/UseBooleanState.tsx';
@@ -21,6 +21,8 @@ import {PurchaseOrderPrint} from '../../../../Components/Reporting/ReportViewer.
 import {DiscountType} from '../../../../pages/ApplicationUI/FormLayout/Examples/types.ts';
 import {HydraPurchaseOrderModel} from '../../index.ts';
 import moment from 'moment/moment';
+import {RouteEnum} from '../../../../@types/Route.ts';
+import {useGenerateReceipt} from '../../../Receipt/pages/Create/Page.utils.ts';
 
 const Page = () => {
   const [printModelOpen, setModalOpen] = useBooleanState();
@@ -60,10 +62,13 @@ const Page = () => {
 
   const isUpdate = !!id;
   const {data, isPending: fetching} = useQuery({
-    queryKey: ['GET_PURCHASE_ORDER'],
+    queryKey: [RouteEnum.PurchaseOrderUpdate],
     queryFn: () => axios.get<FormValue>(`/purchase-orders/${id}`),
     enabled: isUpdate
   });
+
+  const generateReceipt = useGenerateReceipt();
+
 
   if (isUpdate && fetching) {
     return <>Chargement...</>;
@@ -77,6 +82,7 @@ const Page = () => {
       onSubmit={mutate}
     >
       {({handleSubmit, values, isValid}: FormikProps<FormValue>) => {
+        const {id, purchaseOrderProducts} = values;
 
         return (
           <>
@@ -91,7 +97,7 @@ const Page = () => {
                   disabled={isUpdate}
                 />
                 <DatePickerFieldGroup name='createdAt' includeTime disabled={isUpdate}/>
-                <SelectFieldGroup name='isTaxIncluded' disabled={values.purchaseOrderProducts.length > 0}>
+                <SelectFieldGroup name='isTaxIncluded' disabled={purchaseOrderProducts.length > 0}>
                   <Option value={true}>TTC</Option>
                   <Option value={false}>HT</Option>
                 </SelectFieldGroup>
@@ -127,12 +133,12 @@ const Page = () => {
                         />
                       )}
                     </FieldArray>
-                    <IconButton
-                      iconElement={BarsArrowUpIcon}
-                      variant='clean'
-                      onClick={() => {
-                      }}
-                    />
+                    {/*<IconButton*/}
+                    {/*  iconElement={BarsArrowUpIcon}*/}
+                    {/*  variant='clean'*/}
+                    {/*  onClick={() => {*/}
+                    {/*  }}*/}
+                    {/*/>*/}
                     <ErrorFeedback>
                       <ErrorMessage name='purchaseOrderProducts'/>
                     </ErrorFeedback>
@@ -145,9 +151,12 @@ const Page = () => {
                     >
                       <Trans i18nKey='SAVE'/>
                     </Button>
-                    {isUpdate && (
+                    {id && isUpdate && (
                       <>
-                        <Button disabled>
+                        <Button
+                          loading={generateReceipt.isPending}
+                          onClick={() => generateReceipt.mutate({id})}
+                        >
                           Génerer bon de réception
                         </Button>
                         {values.id && (
@@ -190,7 +199,7 @@ const Page = () => {
                     grossTotalExclTax: 0, //TODO
                     totalInclTax: 0, //TODO
                     totalVatTax: 0, //TODO
-                    purchaseOrderProducts: item.purchaseOrderProducts.map(purchaseOrderProduct=>({
+                    purchaseOrderProducts: item.purchaseOrderProducts.map(purchaseOrderProduct => ({
                       ...purchaseOrderProduct,
                       product: {
                         code: 'P01',

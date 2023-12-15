@@ -2,7 +2,6 @@ import {useMemo, useState} from 'react';
 import {Column} from '../../../../Components/DataGrid/Column/Column.types.ts';
 import DataGrid from '../../../../Components/DataGrid/DataGrid.tsx';
 import {HydraModel} from '../../Model.ts';
-import {StringColumnFormat} from '../../../../Components/DataGrid/Column/String/String.types.ts';
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 import {HydraCollection} from '../../../types.ts';
@@ -16,15 +15,16 @@ import {ModelCell} from '../../components/ModelCell.tsx';
 import {twMerge} from 'tailwind-merge';
 import {RouteEnum} from '../../../../@types/Route.ts';
 import {Link} from 'react-router-dom';
-import PrintView from '../../components/PrintView/PrintView.tsx';
 import {ActionCell} from './ActionCell.tsx';
 import {useBooleanState} from '../../../../hooks/UseBooleanState.tsx';
+import PrintView from '../../../PurchaseOrder/components/PrintView/PrintView.tsx';
+import {StringColumnFormat} from '../../../../Components/DataGrid/Column/String/String.types.ts';
 
 const Page = () => {
   const [printModelOpen, setModalOpen] = useBooleanState();
   const query = useQuery({
-    queryKey: [RouteEnum.PurchaseOrderListing],
-    queryFn: () => axios.get<HydraCollection<HydraModel>>('/purchase-orders')
+    queryKey: [RouteEnum.ReceiptListing],
+    queryFn: () => axios.get<HydraCollection<HydraModel>>('/receipts')
   });
   const collection = query.data?.data['hydra:member'] || [];
   // const totalItems = query.data?.data['hydra:totalItems'] || 10;
@@ -40,7 +40,7 @@ const Page = () => {
 
     const columns: Array<Column<HydraModel>> = [
       {
-        field: 'orderNumber',
+        field: 'receiptNumber',
         header: (
           <div className='flex space-x-3 items-center'>
             <Checkbox
@@ -68,12 +68,9 @@ const Page = () => {
           );
         }
       },
-      {field: 'ref'},
-      {field: 'externalRef'},
-      {field: 'createdAt', format: StringColumnFormat.Datetime},
-      {
-        renderCell: item => <ActionCell item={item}/>
-      },
+      {field: 'receivedAt', header: 'BC', format: StringColumnFormat.Datetime},
+      {field: 'purchaseOrder', renderCell: ({purchaseOrder}) => purchaseOrder && <ModelCell item={purchaseOrder}/>},
+      {renderCell: item => <ActionCell item={item}/>},
     ];
 
     return columns.map(column => ({
@@ -87,7 +84,7 @@ const Page = () => {
       <div className='flex space-x-4 justify-between'>
         <div>
           {/*<Input*/}
-          {/*  // placeholder='orderNumber, ref ...'*/}
+          {/*  // placeholder='receiptNumber, ref ...'*/}
           {/*  startAdornment={(*/}
           {/*    <Icon icon={MagnifyingGlassIcon} size={5} className='h-100'/>*/}
           {/*  )}*/}
@@ -114,9 +111,9 @@ const Page = () => {
               </IconButton>
             </div>
           </Tooltip>
-          <Link to='/purchase-orders/create'>
+          <Link to='/receipts/create'>
             <Button>
-              <Trans i18nKey={RouteEnum.PurchaseOrderCreate}/>
+              <Trans i18nKey={RouteEnum.ReceiptCreate}/>
             </Button>
           </Link>
         </div>
@@ -140,7 +137,7 @@ const Page = () => {
       <PrintView
         open={printModelOpen}
         ids={selectedIds}
-        endpoint='/print/purchase-orders'
+        endpoint='/print/receipts'
         onClose={() => setModalOpen(false)}
       />
     </div>

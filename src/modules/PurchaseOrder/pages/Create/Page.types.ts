@@ -20,5 +20,5 @@ export type FormValue = {
   currency: Relationship | null
   purchaseOrderProducts: Array<PurchaseOrderProductFormValue>
 } & Pick<Model, 'orderNumber' | 'createdAt' | 'isTaxIncluded' | 'ref' | 'externalRef' | 'desiredDeliveryDate'>
-& Partial<Pick<Model, 'id' | 'orderNumber'>>
+  & Partial<Pick<Model, 'id' | 'orderNumber'>>
 

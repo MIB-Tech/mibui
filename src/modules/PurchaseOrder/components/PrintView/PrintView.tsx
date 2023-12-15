@@ -12,7 +12,14 @@ import {Filter} from '../../../../Components/Filter/Filter.types.ts';
 import {PropertyFilterOperator} from '../../../../Components/Filter/Condition/Condition.types.ts';
 import {ModelCell} from '../ModelCell.tsx';
 
-const PrintView = <T extends object>({ids, endpoint, className, onClose, getItemParams, ...props}: PrintModalProps<T>) => {
+const PrintView = <T extends object>({
+                                       ids,
+                                       endpoint,
+                                       className,
+                                       onClose,
+                                       getItemParams,
+                                       ...props
+                                     }: PrintModalProps<T>) => {
   const [activeId, setActiveId] = useState<number | null>(ids[0]);
   const {data} = useQuery({
     queryKey: [endpoint],

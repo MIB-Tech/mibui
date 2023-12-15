@@ -67,6 +67,13 @@ export enum RouteEnum {
   PurchaseOrderUpdate = 'PURCHASE_ORDER_UPDATE',
   PurchaseOrderDelete = 'PURCHASE_ORDER_DELETE',
   //
+  Receipt = 'RECEIPT',
+  ReceiptListing = 'RECEIPT_LISTING',
+  ReceiptCreate = 'RECEIPT_CREATE',
+  ReceiptDetail = 'RECEIPT_DETAIL',
+  ReceiptUpdate = 'RECEIPT_UPDATE',
+  ReceiptDelete = 'RECEIPT_DELETE',
+  //
   Reporting = 'REPORTING'
 }
 

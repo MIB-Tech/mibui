@@ -2,6 +2,8 @@ import {RouteEnum} from '../../@types/Route.ts';
 import {I18Key} from '../../main.tsx';
 
 export const en:Record<I18Key, string> = {
+  RECEIPT_NUMBER: 'Receipt Number',
+  RECEIVED_AT: 'Received At',
   REPORTING: "Report Viewer",
   SAVE: 'Save',
   CREATED_AT: 'Created at',
@@ -71,6 +73,12 @@ export const en:Record<I18Key, string> = {
   [RouteEnum.PurchaseOrderDetail]: 'Purchase Order Detail',
   [RouteEnum.PurchaseOrderUpdate]: 'Update Purchase Order',
   [RouteEnum.PurchaseOrderDelete]: 'Delete Purchase Order',
+  [RouteEnum.Receipt]: 'Purchase Order',
+  [RouteEnum.ReceiptListing]: 'Receipt Listing',
+  [RouteEnum.ReceiptCreate]: 'Create Receipt',
+  [RouteEnum.ReceiptDetail]: 'Receipt Detail',
+  [RouteEnum.ReceiptUpdate]: 'Update Receipt',
+  [RouteEnum.ReceiptDelete]: 'Delete Receipt',
   'LOGIN.TITLE': 'Sign in to your account',
   SIGN_IN: 'Sign In',
   USERNAME: 'Username',

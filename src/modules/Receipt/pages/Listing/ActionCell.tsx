@@ -1,31 +1,17 @@
 import {FC} from 'react';
-import {PurchaseOrderModel} from '../../index.ts';
+import {HydraReceiptModel} from '../../index.ts';
 import {Tooltip} from '../../../../Components';
 import {IconButton} from '../../../../Components/IconButton/IconButton.tsx';
-import {DocumentTextIcon, PrinterIcon} from '@heroicons/react/20/solid';
-import PrintView from '../../components/PrintView/PrintView.tsx';
 import {useBooleanState} from '../../../../hooks/UseBooleanState.tsx';
-import {useGenerateReceipt} from '../../../Receipt/pages/Create/Page.utils.ts';
+import PrintView from '../../../PurchaseOrder/components/PrintView/PrintView.tsx';
+import {PrinterIcon} from '@heroicons/react/20/solid';
 
-export const ActionCell: FC<{ item: PurchaseOrderModel }> = ({item}) => {
+export const ActionCell: FC<{ item: HydraReceiptModel }> = ({item}) => {
   const [printModelOpen, setModalOpen] = useBooleanState();
-  const generateReceipt = useGenerateReceipt();
 
   return (
     <>
       <div className='flex space-x-2 justify-end'>
-        <Tooltip content='Génerer bon de réception' placement='left'>
-          <div>
-            <IconButton
-              iconElement={DocumentTextIcon}
-              variant='clean'
-              color='primary'
-              size='sm'
-              loading={generateReceipt.isPending}
-              onClick={() => generateReceipt.mutate({id: item.id})}
-            />
-          </div>
-        </Tooltip>
         <Tooltip content='Imprimer' placement='left'>
           <div>
             <IconButton
@@ -51,7 +37,7 @@ export const ActionCell: FC<{ item: PurchaseOrderModel }> = ({item}) => {
       <PrintView
         open={printModelOpen}
         ids={[item.id]}
-        endpoint='/print/purchase-orders'
+        endpoint='/print/receipts'
         onClose={() => setModalOpen(false)}
       />
     </>

@@ -1,12 +1,19 @@
-import {FieldArray, useFormikContext} from 'formik';
+import {ErrorMessage, FieldArray, useFormikContext} from 'formik';
 import DataGrid from '../../../../../Components/DataGrid/DataGrid.tsx';
 import Modal from '../../../../../Components/Modal/Modal.tsx';
-import {Button} from '../../../../../Components';
 import {useMemo, useState} from 'react';
 import {Column, ColumnType} from '../../../../../Components/DataGrid/Column/Column.types.ts';
 import {IconButton} from '../../../../../Components/IconButton/IconButton.tsx';
-import {ListBulletIcon, XMarkIcon} from '@heroicons/react/20/solid';
-import {Input, InputGroup, InputGroupAddon, Option, RemoteAutocomplete, Select} from '../../../../../Forms';
+import {ListBulletIcon, PlusIcon, XMarkIcon} from '@heroicons/react/20/solid';
+import {
+  ErrorFeedback,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  Option,
+  RemoteAutocomplete,
+  Select
+} from '../../../../../Forms';
 import {HydraCollection, HydraItem} from '../../../../types.ts';
 import {NumberFormat} from '../../../../../Components/DataGrid/Column/Number/Number.types.ts';
 import {StringColumnFormat} from '../../../../../Components/DataGrid/Column/String/String.types.ts';
@@ -20,11 +27,15 @@ import {AutocompleteOption} from '../../../../../Forms/Autocomplete/Autocomplete
 import {Switch} from '../../../../../Components/Switch';
 import {ModelCell} from '../../../components/ModelCell.tsx';
 
-const getUnitNetAmount = ({isTaxIncluded = false, vatRate = 0, grossPrice = 0}: Pick<PurchaseOrderProductFormValue, 'vatRate' | 'grossPrice'> & Pick<FormValue, 'isTaxIncluded'>) => {
+const getUnitNetAmount = ({
+                            isTaxIncluded = false,
+                            vatRate = 0,
+                            grossPrice = 0
+                          }: Pick<PurchaseOrderProductFormValue, 'vatRate' | 'grossPrice'> & Pick<FormValue, 'isTaxIncluded'>) => {
   return isTaxIncluded ?
     grossPrice / (1 + vatRate) :
-    grossPrice
-}
+    grossPrice;
+};
 
 export const PurchaseOrderProductArrayField = () => {
   const {auth} = useAuth();
@@ -200,8 +211,8 @@ export const PurchaseOrderProductArrayField = () => {
         format: NumberFormat.Amount,
         currencyCode,
         renderCell: item => {
-          const {discount} = item
-          const amount = getUnitNetAmount({...item, isTaxIncluded})
+          const {discount} = item;
+          const amount = getUnitNetAmount({...item, isTaxIncluded});
           let discountAmount = discount?.value || 0;
           if (discount?.discountType === DiscountType.Percent) {
             discountAmount = amount * discount.value;
@@ -231,7 +242,7 @@ export const PurchaseOrderProductArrayField = () => {
                 changeFocus();
               }}
             >
-              {[0, .07, .1, .14, .2].map(varRate=>(
+              {[0, .07, .1, .14, .2].map(varRate => (
                 <Option value={varRate}>
                   {(varRate * 100).toFixed(0)} %
                 </Option>
@@ -247,8 +258,8 @@ export const PurchaseOrderProductArrayField = () => {
       {
         header: 'Mnt Net HT',
         renderCell: item => {
-          const {discount, quantity = 0,} = item
-          const amount = getUnitNetAmount({...item, isTaxIncluded})
+          const {discount, quantity = 0,} = item;
+          const amount = getUnitNetAmount({...item, isTaxIncluded});
           let discountAmount = discount?.value || 0;
           if (discount?.discountType === DiscountType.Percent) {
             discountAmount = amount * discount.value;
@@ -263,7 +274,7 @@ export const PurchaseOrderProductArrayField = () => {
               }
               measure={currencyCode}
             />
-          )
+          );
         },
         renderFooterCell: () => (
 
@@ -279,15 +290,15 @@ export const PurchaseOrderProductArrayField = () => {
       {
         header: 'Montant TTC',
         renderCell: item => {
-          const {discount, quantity = 0, grossPrice, vatRate} = item
-          const amount = getUnitNetAmount({...item, isTaxIncluded})
+          const {discount, quantity = 0, grossPrice, vatRate} = item;
+          const amount = getUnitNetAmount({...item, isTaxIncluded});
           let discountAmount = discount?.value || 0;
           if (discount?.discountType === DiscountType.Percent) {
             discountAmount = amount * discount.value;
           }
           let totalInclTax = isTaxIncluded ?
             grossPrice * quantity : /// (1 + vatRate)
-            (amount - discountAmount) * quantity + ((amount - discountAmount) * (quantity * vatRate))
+            (amount - discountAmount) * quantity + ((amount - discountAmount) * (quantity * vatRate));
 
           //grossPrice * quantity * (1 + vatRate)
           //  (amount - discountAmount) * quantity+((amount - discountAmount) * (quantity*vatRate))
@@ -297,7 +308,7 @@ export const PurchaseOrderProductArrayField = () => {
               value={vatRate ? totalInclTax : 0}
               measure={currencyCode}
             />
-          )
+          );
         },
       },
       {field: 'note', header: 'Commentaire', editable: true, format: StringColumnFormat.Text},
@@ -323,17 +334,45 @@ export const PurchaseOrderProductArrayField = () => {
           size='lg'
           open
           onClose={() => setActiveIndex(undefined)}
-          title='Détail réception'
+          className='flex flex-col space-y-4'
         >
-          <DesiredProductArrayField index={activeIndex}/>
-          <div className='flex justify-end gap-2 mt-4'>
-            {/*<Button variant='clean' onClick={() => {}}>Ajouter un produit</Button>*/}
-            <Button
+          <div className='flex justify-between gap-2'>
+            <div className='flex items-center space-x-2'>
+              <div className='font-semibold text-xl'>
+                Détail réception
+              </div>
+              <FieldArray name={`purchaseOrderProducts.${activeIndex}.desiredProducts`}>
+                {({insert}) => (
+                  <IconButton
+                    iconElement={PlusIcon}
+                    variant='clean'
+                    onClick={() => {
+                      const initPurchaseOrderProduct: PurchaseOrderProductFormValue = getInitPurchaseOrderProduct({
+                        buyer: auth?.user || null
+                      });
+
+                      insert(0, initPurchaseOrderProduct);
+                    }}
+                  />
+                )}
+              </FieldArray>
+              {/*<IconButton*/}
+              {/*  iconElement={BarsArrowUpIcon}*/}
+              {/*  variant='clean'*/}
+              {/*  onClick={() => {*/}
+              {/*  }}*/}
+              {/*/>*/}
+              <ErrorFeedback>
+                <ErrorMessage name={`purchaseOrderProducts.${activeIndex}.desiredProducts`}/>
+              </ErrorFeedback>
+            </div>
+            <IconButton
+              color='secondary'
+              iconElement={XMarkIcon}
               onClick={() => setActiveIndex(undefined)}
-            >
-              Fermer
-            </Button>
+            />
           </div>
+          <DesiredProductArrayField index={activeIndex}/>
         </Modal>
       )}
     </>

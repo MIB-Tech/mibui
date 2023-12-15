@@ -29,7 +29,7 @@ const ColumnCellContent = <T extends object>({column, row, rowIndex}: {
     case ColumnType.String:
       switch (column.format) {
         case StringColumnFormat.Datetime:
-          return (
+          return value && (
             <>
               {moment(value).format('L')}
               <div className='text-gray-400'>

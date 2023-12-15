@@ -24,6 +24,8 @@ export type I18Key = RouteEnum |
   'USERNAME' |
   'PASSWORD' |
   'ORDER_NUMBER' |
+  'RECEIPT_NUMBER' |
+  'RECEIVED_AT' |
   'REF' |
   'EXTERNAL_REF' |
   'CREATED_AT' |
